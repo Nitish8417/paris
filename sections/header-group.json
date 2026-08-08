@@ -1,1 +1,145 @@
-{"name":"t:sections.header.name","type":"header","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"announcement_3rGpVb":{"type":"announcement","settings":{"announcement_text":"Free shipping on orders above 20 KD","icon":"delivery","background_color":"#000000","text_color":"#cccccc","link_color":"#ffffff"}}},"block_order":["announcement_3rGpVb"],"disabled":true,"settings":{"enable_announcement":true,"enable_on_homepage":false,"layout_type":"marquee","rotate":false,"interval":6,"scrolling_speed":25,"scrolling_speed_mobile":15,"direction":"ltr"}},"header":{"type":"header","blocks":{"mega_menu_mbzeqp":{"type":"mega_menu","settings":{"title":"","image_1":"shopify:\/\/shop_images\/smartwatch.jpg","title_1":"Cases","description_1":"","link_1":"","image_2":"shopify:\/\/shop_images\/display_screens.jpg","title_2":"Chargers","description_2":"","link_2":"","image_3":"shopify:\/\/shop_images\/powerbanks.jpg","title_3":"Cables & Adapters","description_3":"","link_3":"","image_4":"shopify:\/\/shop_images\/wireless_earbuds.jpg","title_4":"","description_4":"","link_4":"","title_5":"","description_5":"","link_5":"","featured_collection":"","featured_collection_heading":"","featured_collection_text":"","sale_icon":"shopify:\/\/shop_images\/NewProject-2025-04-09T151819.902.webp","icon_width":100,"sale_text":"<h2><strong>Sale is live now<\/strong><\/h2>","btn_text":"Shop now","btn_link":"shopify:\/\/collections\/all","btn_size":"medium","bgColor":"#ffffff","hightlightColor":"#ce7366","textColor":"#000000"}},"mega_menu_Qff9YF":{"type":"mega_menu","settings":{"title":"Brands","title_1":"","description_1":"","link_1":"","title_2":"","description_2":"","link_2":"","title_3":"","description_3":"","link_3":"","title_4":"","description_4":"","link_4":"","title_5":"","description_5":"","link_5":"","featured_collection":"","featured_collection_heading":"","featured_collection_text":"","icon_width":100,"sale_text":"","btn_text":"Shop now","btn_link":"shopify:\/\/collections\/all","btn_size":"medium","bgColor":"#ffffff","hightlightColor":"#ce7366","textColor":"#000000"}}},"block_order":["mega_menu_mbzeqp","mega_menu_Qff9YF"],"settings":{"enable_sticky_header":true,"sticky_header_type":"always","logo":"shopify:\/\/shop_images\/white_logo_final_0070f615-83dd-44a3-b67b-a7c0ed9c3e5c.png","logo_width":300,"logo_position":"left","desktop_transparent_header":false,"menu":"new-mega-menu","menu_type":"mega_menu","menu_font":"heading","menu_font_size":"14","sub_menu_font":"body","submenu_font_size":"12","enable_search":true,"enable_account":true,"enable_cart":true,"enable_language_selector":false,"enable_currency_selector":false}}},"order":["announcement-bar","header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_3rGpVb": {
+          "type": "announcement",
+          "settings": {
+            "announcement_text": "Free shipping on orders above 20 KD",
+            "icon": "delivery",
+            "background_color": "#000000",
+            "text_color": "#cccccc",
+            "link_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_3rGpVb"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_announcement": true,
+        "enable_on_homepage": false,
+        "layout_type": "marquee",
+        "rotate": false,
+        "interval": 6,
+        "scrolling_speed": 25,
+        "scrolling_speed_mobile": 15,
+        "direction": "ltr"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_mbzeqp": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "",
+            "image_1": "shopify://shop_images/smartwatch.jpg",
+            "title_1": "Cases",
+            "description_1": "",
+            "link_1": "",
+            "image_2": "shopify://shop_images/display_screens.jpg",
+            "title_2": "Chargers",
+            "description_2": "",
+            "link_2": "",
+            "image_3": "shopify://shop_images/powerbanks.jpg",
+            "title_3": "Cables & Adapters",
+            "description_3": "",
+            "link_3": "",
+            "image_4": "shopify://shop_images/wireless_earbuds.jpg",
+            "title_4": "",
+            "description_4": "",
+            "link_4": "",
+            "title_5": "",
+            "description_5": "",
+            "link_5": "",
+            "featured_collection": "",
+            "featured_collection_heading": "",
+            "featured_collection_text": "",
+            "sale_icon": "shopify://shop_images/NewProject-2025-04-09T151819.902.webp",
+            "icon_width": 100,
+            "sale_text": "<h2><strong>Sale is live now</strong></h2>",
+            "btn_text": "Shop now",
+            "btn_link": "shopify://collections/all",
+            "btn_size": "medium",
+            "bgColor": "#ffffff",
+            "hightlightColor": "#ce7366",
+            "textColor": "#000000"
+          }
+        },
+        "mega_menu_Qff9YF": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "Brands",
+            "title_1": "",
+            "description_1": "",
+            "link_1": "",
+            "title_2": "",
+            "description_2": "",
+            "link_2": "",
+            "title_3": "",
+            "description_3": "",
+            "link_3": "",
+            "title_4": "",
+            "description_4": "",
+            "link_4": "",
+            "title_5": "",
+            "description_5": "",
+            "link_5": "",
+            "featured_collection": "",
+            "featured_collection_heading": "",
+            "featured_collection_text": "",
+            "icon_width": 100,
+            "sale_text": "",
+            "btn_text": "Shop now",
+            "btn_link": "shopify://collections/all",
+            "btn_size": "medium",
+            "bgColor": "#ffffff",
+            "hightlightColor": "#ce7366",
+            "textColor": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_mbzeqp",
+        "mega_menu_Qff9YF"
+      ],
+      "settings": {
+        "enable_sticky_header": true,
+        "sticky_header_type": "always",
+        "logo": "shopify://shop_images/white_logo_final_0070f615-83dd-44a3-b67b-a7c0ed9c3e5c.png",
+        "logo_width": 300,
+        "logo_position": "left",
+        "desktop_transparent_header": true,
+        "menu": "new-mega-menu",
+        "menu_type": "mega_menu",
+        "menu_font": "heading",
+        "menu_font_size": "14",
+        "sub_menu_font": "body",
+        "submenu_font_size": "12",
+        "enable_search": true,
+        "enable_account": true,
+        "enable_cart": true,
+        "enable_language_selector": false,
+        "enable_currency_selector": false
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
