@@ -1,0 +1,248 @@
+{%- liquid
+  assign heading_text = section.settings.heading | default: "From Tech to Tea, We've Got It All"
+  assign heading_words = heading_text | split: ' '
+-%}
+
+<div
+  id="scroll-text-{{ section.id }}"
+  class="scroll-text spacing-box"
+>
+  <div class="{{ settings.layout_width }}">
+    <h2 class="scroll-text__heading {{ section.settings.heading_size }} {{ section.settings.heading_size_mobile }} align-{{ section.settings.text_alignment }} font-{{ section.settings.font_family }}">
+      {%- for word in heading_words -%}
+        <span class="scroll-text__word">{{ word }}</span>
+      {%- endfor -%}
+    </h2>
+  </div>
+</div>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --topSpace: {{ section.settings.top_space_desktop }}px;
+    --bottomSpace: {{ section.settings.bottom_space_desktop }}px;
+    --scrollTextColor: {{ section.settings.text_color }};
+    --scrollTextBg: {{ section.settings.background_color }};
+    --scrollHighlightColor: {{ section.settings.highlight_color }};
+  }
+
+  #shopify-section-{{ section.id }} .scroll-text {
+    background-color: var(--scrollTextBg);
+  }
+
+  #shopify-section-{{ section.id }} .scroll-text__heading {
+    margin: 0;
+    color: var(--scrollTextColor);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .scroll-text__word {
+    display: inline-block;
+    margin-right: 0.28em;
+    color: var(--scrollTextColor);
+    transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  #shopify-section-{{ section.id }} .scroll-text__word:last-child {
+    margin-right: 0;
+  }
+
+  #shopify-section-{{ section.id }} .scroll-text__word.is-highlight {
+    color: var(--scrollHighlightColor);
+  }
+
+  #shopify-section-{{ section.id }} .scroll-text__word.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  {% if section.settings.enable_scroll_fade %}
+    #shopify-section-{{ section.id }} .scroll-text__word {
+      opacity: 0.28;
+      transform: translateY(10px);
+    }
+
+    #shopify-section-{{ section.id }} .scroll-text__word.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      color: var(--scrollHighlightColor);
+    }
+  {% endif %}
+
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }}.shopify-section {
+      --topSpace: {{ section.settings.top_space_mobile }}px;
+      --bottomSpace: {{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+</style>
+
+{% if section.settings.enable_scroll_fade %}
+  <script>
+    (function () {
+      var sectionEl = document.getElementById('scroll-text-{{ section.id }}');
+      if (!sectionEl) return;
+
+      var words = sectionEl.querySelectorAll('.scroll-text__word');
+      if (!words.length || !('IntersectionObserver' in window)) {
+        words.forEach(function (word) { word.classList.add('is-active'); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            words.forEach(function (word, index) {
+              setTimeout(function () {
+                word.classList.add('is-active');
+              }, index * 80);
+            });
+            observer.disconnect();
+          });
+        },
+        { threshold: 0.35 }
+      );
+
+      observer.observe(sectionEl);
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Scroll Text",
+  "tag": "section",
+  "class": "section-scroll-text",
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  },
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From Tech to Tea, We've Got It All"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Desktop heading size",
+      "default": "h1",
+      "options": [
+        { "value": "h1", "label": "Extra large" },
+        { "value": "h2", "label": "Large" },
+        { "value": "h3", "label": "Medium" },
+        { "value": "h4", "label": "Small" },
+        { "value": "h5", "label": "Extra small" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_size_mobile",
+      "label": "Mobile heading size",
+      "default": "h2_mobile",
+      "options": [
+        { "value": "h1_mobile", "label": "Extra large" },
+        { "value": "h2_mobile", "label": "Large" },
+        { "value": "h3_mobile", "label": "Medium" },
+        { "value": "h4_mobile", "label": "Small" },
+        { "value": "h5_mobile", "label": "Extra small" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font",
+      "default": "heading",
+      "options": [
+        { "value": "heading", "label": "Heading" },
+        { "value": "body", "label": "Body" }
+      ]
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_scroll_fade",
+      "label": "Enable scroll fade animation",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "Top spacing (desktop)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "Bottom spacing (desktop)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "Top spacing (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "Bottom spacing (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scroll Text"
+    }
+  ]
+}
+{% endschema %}

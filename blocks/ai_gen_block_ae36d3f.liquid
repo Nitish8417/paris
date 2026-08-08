@@ -1,0 +1,120 @@
+{% doc %}
+  @prompt
+    Remove hover animations and effects from all buttons. Disable any transitions, transforms, or visual changes that occur when hovering over buttons to create a static button appearance.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .static-buttons-{{ ai_gen_id }} button,
+  .static-buttons-{{ ai_gen_id }} .button,
+  .static-buttons-{{ ai_gen_id }} [type="button"],
+  .static-buttons-{{ ai_gen_id }} [type="submit"],
+  .static-buttons-{{ ai_gen_id }} [role="button"],
+  .static-buttons-{{ ai_gen_id }} a.btn,
+  .static-buttons-{{ ai_gen_id }} a.button {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .static-buttons-{{ ai_gen_id }} button:hover,
+  .static-buttons-{{ ai_gen_id }} .button:hover,
+  .static-buttons-{{ ai_gen_id }} [type="button"]:hover,
+  .static-buttons-{{ ai_gen_id }} [type="submit"]:hover,
+  .static-buttons-{{ ai_gen_id }} [role="button"]:hover,
+  .static-buttons-{{ ai_gen_id }} a.btn:hover,
+  .static-buttons-{{ ai_gen_id }} a.button:hover {
+    background-color: {{ block.settings.button_bg }} !important;
+    color: {{ block.settings.button_text }} !important;
+    border-color: {{ block.settings.button_border }} !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    scale: 1 !important;
+  }
+{% endstyle %}
+
+<div class="static-buttons-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.show_sample %}
+    <div style="padding: 20px; text-align: center; background-color: {{ block.settings.sample_bg }}; border-radius: 8px; margin-bottom: 20px;">
+      <h3 style="margin-bottom: 15px;">Sample Static Button</h3>
+      <button style="
+        background-color: {{ block.settings.button_bg }};
+        color: {{ block.settings.button_text }};
+        border: 1px solid {{ block.settings.button_border }};
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      ">
+        Sample Button (No Hover Effects)
+      </button>
+      <p style="margin-top: 10px; font-size: 0.9em;">This button and all buttons in this section will have no hover effects</p>
+    </div>
+  {% endif %}
+  
+  <div>{{ block.settings.content }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Static Buttons",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button Appearance"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border",
+      "label": "Button border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Section content",
+      "default": "<p>Add your content with buttons here. All buttons within this section will have hover effects disabled.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Sample Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sample",
+      "label": "Show sample button",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "sample_bg",
+      "label": "Sample area background",
+      "default": "#f4f4f4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Static Buttons"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

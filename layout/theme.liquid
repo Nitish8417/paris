@@ -1,0 +1,494 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+
+  <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GT-K8KWQ675"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GT-K8KWQ675');
+</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {% render 'meta-tags' %}
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- unless settings.type_heading_font.system? and settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+    {{ content_for_header }}
+    {% render 'style-variable' %}
+    {% render 'theme-variable' %}
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+  </head>
+  <body class="{% if template == 'cart' %}template-cart{% endif %} main-wrapper">
+    <a class="btn unstyled-link skip-to-content-link  focus-inside" href="#MainContent">
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+    {% sections 'header-group' %}
+    {% sections 'Overlay-group' %}
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% sections 'footer-group' %}
+    {% render 'quick-view-model' %}
+    {% render 'mini-cart-drawer' %}
+    {% render 'back-to-top' %}
+    <script>
+      {% if settings.animation_enable %}
+        document.addEventListener('DOMContentLoaded', function () {
+          AOS.init({
+              easing: 'ease',
+              once: true,
+              duration: 1000,
+              offset: 60,
+              disableMutationObserver: true,
+          });
+        });
+      {% endif %}
+    </script>
+    {%- if settings.enable_search_drawer -%}
+      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {%- if request.design_mode -%}
+      <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    <!-- Techty client fixes: image fit, brand background, headings, empty metafields, sold-out controls -->
+    <style id="techty-client-fixes">
+      :root {
+        --techty-surface-bg: var(--body-background, var(--color-background, #ffffff));
+      }
+
+      /* Product/card/banner images should fit their containers instead of overflowing. */
+      .product-card .media-image,
+      .product-card__image-wrapper,
+      .product__media,
+      .product-media,
+      .card__media,
+      .collection-card__image,
+      .banner-media,
+      .banner__media,
+      .image-banner__media,
+      .slideshow__media {
+        overflow: hidden;
+      }
+
+      .product-card .media-image img,
+      .product-card__image-wrapper img,
+      .product__media img,
+      .product-media img,
+      .card__media img,
+      .collection-card__image img,
+      .banner-media img,
+      .banner__media img,
+      .image-banner__media img,
+      .slideshow__media img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      /* Enlarged product image/modal background should match page surface, not dark purple. */
+      .product-media-modal,
+      .product-media-modal__dialog,
+      .product-media-modal__content,
+      .pswp,
+      .pswp__bg,
+      .modal__content.product-media-modal__content {
+        background: var(--techty-surface-bg) !important;
+      }
+
+      /* Remove unwanted white panel behind Brands sections while keeping logos visible. */
+      .brand-section,
+      .brands-section,
+      .section-brands,
+      .brand-list,
+      .brands-list,
+      [class*="brand"] .spacing-box,
+      [class*="Brand"] .spacing-box {
+        background: transparent !important;
+      }
+
+      /* Smaller informational page headings: About, Shipping, Returns, Terms, etc. */
+      body:not(.template-index) .page-title,
+      body:not(.template-index) .main-page-title,
+      body:not(.template-index) .section-page-title h1,
+      body:not(.template-index) .content-for-layout h1 {
+        font-size: clamp(28px, 4vw, 44px) !important;
+        line-height: 1.15 !important;
+      }
+
+      body:not(.template-index) .content-for-layout h2 {
+        font-size: clamp(22px, 3vw, 32px) !important;
+        line-height: 1.2 !important;
+      }
+
+      /* Hide empty metafield rows/blocks when SKU, warranty, key benefits, or similar fields are blank. */
+      .product-sku:empty,
+      .sku:empty,
+      .sku-wrapper:empty,
+      .product__sku:empty,
+      .product-warranty:empty,
+      .warranty:empty,
+      .warrantee:empty,
+      .key-benefits:empty,
+      .product-key-benefits:empty,
+      [data-metafield-value=""],
+      [data-metafield-value=" "] {
+        display: none !important;
+      }
+
+      .techty-disabled-atc,
+
+
+
+
+
+
+      /* Menu image/name cleanup: keep images dominant, text below in small size. */
+      .submenu-heading--with-image,
+      .site-nav-dropdown-item .submenu-heading--with-image,
+      .megamenu .submenu-heading--with-image {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        text-align: center !important;
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+      }
+
+      .submenu-heading--with-image img,
+      .megamenu img,
+      .site-nav-dropdown img {
+        display: block !important;
+        max-width: 86px !important;
+        max-height: 58px !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
+      }
+
+      .submenu-heading--with-image br {
+        display: none !important;
+      }
+
+      /* Footer/info pages need a banner treatment even when no image banner section is assigned. */
+      body:not(.template-index) .content-for-layout > .shopify-section:first-child,
+      body:not(.template-index) main .page-width:first-child,
+      body:not(.template-index) .main-page-title,
+      body:not(.template-index) .page-title {
+        position: relative;
+      }
+
+      body:not(.template-index) .main-page-title,
+      body:not(.template-index) .page-title,
+      body:not(.template-index) .content-for-layout h1:first-child {
+        padding: 34px 18px !important;
+        margin-bottom: 28px !important;
+        border-radius: 18px !important;
+        background: linear-gradient(135deg, rgba(14,23,38,.96), rgba(32,55,90,.88)) !important;
+        color: #fff !important;
+        text-align: center !important;
+        overflow: hidden !important;
+      }
+
+      body:not(.template-index) .main-page-title::after,
+      body:not(.template-index) .page-title::after,
+      body:not(.template-index) .content-for-layout h1:first-child::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 78% 20%, rgba(255,255,255,.18), transparent 34%);
+      }
+
+      /* Active WhatsApp floating action */
+      .techty-whatsapp-float {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 9999;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: #25D366;
+        color: #fff !important;
+        text-decoration: none !important;
+        box-shadow: 0 10px 28px rgba(37, 211, 102, .35);
+        transition: transform .2s ease;
+      }
+
+      .techty-whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+        display: block;
+        fill: currentColor;
+      }
+
+      .techty-whatsapp-float:hover {
+        color: #fff !important;
+        transform: translateY(-1px);
+      }
+
+      @media (max-width: 767px) {
+        .techty-whatsapp-float {
+          right: 14px;
+          bottom: 14px;
+          width: 50px;
+          height: 50px;
+        }
+
+        .techty-whatsapp-float svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+
+      /* Cart/order note: hide note UI requested by client. */
+      textarea[name="note"],
+      input[name="note"],
+      label[for*="note"],
+      .cart-note,
+      .cart__note,
+      .cart-note-wrapper,
+      .order-note,
+      .cart-drawer__note,
+      [class*="note"] textarea[name="note"] {
+        display: none !important;
+      }
+
+      /* Shipping estimate hover should stay readable and not shift to unintended color. */
+      .shipping-estimator a:hover,
+      .shipping-estimator button:hover,
+      .shipping-calculator a:hover,
+      .shipping-calculator button:hover,
+      [class*="shipping"] a:hover,
+      [class*="shipping"] button:hover {
+        color: inherit !important;
+      }
+
+      .techty-disabled-atc:hover {
+        opacity: .48 !important;
+        cursor: not-allowed !important;
+        pointer-events: none !important;
+      }
+
+
+
+      /* Collection boxes: make collection tiles visibly contained. */
+      .collection-list .collection-card,
+      .collection-list .collection-item,
+      .collection-card,
+      .collection-carousel .collection-card,
+      [class*="collection"] .collection-card,
+      [class*="collection"] .card-wrapper {
+        border: 1px solid rgba(0,0,0,.08);
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--techty-surface-bg);
+        box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      }
+
+      .collection-card img,
+      .collection-list img,
+      .collection-carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain !important;
+        object-position: center;
+      }
+
+      /* Brand logo cards: prioritize logo; keep text small if theme outputs it. */
+      .brand-list .collection-title,
+      .brand-list .collection-card__title,
+      .brands-list .collection-title,
+      .brands-list .collection-card__title,
+      .section-brands .collection-title,
+      .section-brands .collection-card__title,
+      [class*="brand"] .collection-title,
+      [class*="brand"] .collection-card__title,
+      [class*="Brand"] .collection-title,
+      [class*="Brand"] .collection-card__title {
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+        margin-top: 6px !important;
+        opacity: .72 !important;
+        text-align: center !important;
+      }
+
+      /* Prevent banner images from rendering at full natural size.
+         Exclude hero slideshow — it must cover edge-to-edge (section class: section-hero-banner). */
+      .banner-with-text img,
+      .image-with-text img,
+      .slideshow img,
+      .hero-banner img,
+      [class*="banner"]:not(.section-hero-banner) img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain !important;
+        object-position: center !important;
+      }
+
+      /* Hero slideshow: fill banner full width/height, no overflow scrollbar line */
+      .section-hero-banner,
+      .section-hero-banner .hero-media-wrapper,
+      .section-hero-banner .hero-media-inner,
+      .section-hero-banner .slider-wrapper,
+      .section-hero-banner .slider-wrapper:not(.flickity-enabled),
+      .section-hero-banner .flickity-viewport,
+      .section-hero-banner .hero-media-card,
+      .section-hero-banner .hero-media-content-wrapper,
+      .section-hero-banner .hero-media-img {
+        overflow: hidden !important;
+        overflow-x: hidden !important;
+        padding-bottom: 0 !important;
+      }
+
+      .section-hero-banner .slider-wrapper::-webkit-scrollbar,
+      .section-hero-banner .flickity-viewport::-webkit-scrollbar,
+      .section-hero-banner .hero-media-inner::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+
+      .section-hero-banner .hero-media-img img,
+      .section-hero-banner .hero-media-img .placeholder-svg {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+      }
+
+      @media (max-width: 767px) {
+        /* Remove product-gallery left/right arrows on mobile. */
+        .product__media-list .flickity-button,
+        .product-media-gallery .flickity-button,
+        .product-gallery .flickity-button,
+        .product__media-wrapper .slider-button,
+        .product__media-wrapper .swiper-button-prev,
+        .product__media-wrapper .swiper-button-next {
+          display: none !important;
+        }
+      }
+    </style>
+    <script id="techty-stock-button-fixes">
+      (function () {
+        function normalise(text) {
+          return (text || '').replace(/s+/g, ' ').trim().toLowerCase();
+        }
+
+        function disableButton(button, label) {
+          if (!button) return;
+          button.disabled = true;
+          button.setAttribute('aria-disabled', 'true');
+          button.classList.add('techty-disabled-atc');
+          if (label && normalise(button.textContent) !== normalise(label)) {
+            button.setAttribute('data-techty-original-text', button.textContent || '');
+            button.textContent = label;
+          }
+        }
+
+        function applySoldOutState(root) {
+          var scope = root || document;
+          var soldOutPattern = /sold out|out of stock|unavailable|0 stock|outofstock/i;
+          var actionableSelector = 'button[name="add"], button.add-to-cart-btn, button[name="checkout"], button.checkout, .shopify-payment-button__button, [data-addtocart-main]';
+
+          scope.querySelectorAll('.outofstock, [data-sold-out="true"]').forEach(function (marker) {
+            var container = marker.closest('form, .product-card, .product-form, .product__info-container, .quick-view, .card-wrapper, .product-info, .product-details, tr, .cart-product-item, .checkout-btns') || marker;
+            container.querySelectorAll(actionableSelector).forEach(function (button) {
+              disableButton(button, 'OUT OF STOCK');
+            });
+          });
+
+          scope.querySelectorAll(actionableSelector).forEach(function (button) {
+            var text = normalise(button.value || button.textContent || button.getAttribute('aria-label'));
+            if (soldOutPattern.test(text) || button.classList.contains('sold-out') || button.getAttribute('data-sold-out') === 'true') {
+              disableButton(button, 'OUT OF STOCK');
+            }
+          });
+        }
+
+        function hideEmptyMetafields(root) {
+          var scope = root || document;
+          scope.querySelectorAll('.product-sku, .sku, .product__sku, .product-warranty, .warranty, .warrantee, .key-benefits, .product-key-benefits, [data-metafield-value]').forEach(function (el) {
+            var value = el.getAttribute('data-metafield-value');
+            var text = normalise(value != null ? value : el.textContent);
+            if (!text || /^(sku|warranty|warrantee|key benefits)s*:?$/i.test(text)) {
+              el.style.display = 'none';
+            }
+          });
+        }
+
+
+
+        function hideOrderNote(root) {
+          var scope = root || document;
+          scope.querySelectorAll('textarea[name="note"], input[name="note"]').forEach(function (field) {
+            var wrapper = field.closest('.cart-note, .cart__note, .cart-note-wrapper, .order-note, .cart-drawer__note, .field, .form-field, div');
+            if (wrapper) wrapper.style.display = 'none';
+            field.style.display = 'none';
+          });
+        }
+
+
+        function runTechtyFixes(root) {
+          applySoldOutState(root);
+          hideEmptyMetafields(root);
+          hideOrderNote(root);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          runTechtyFixes(document);
+          var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+              mutation.addedNodes && mutation.addedNodes.forEach(function (node) {
+                if (node.nodeType === 1) runTechtyFixes(node);
+              });
+            });
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+        });
+      })();
+    </script>
+    <a class="techty-whatsapp-float" href="https://wa.me/96522280345" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+      </svg>
+    </a>
+
+  </body>
+</html>
