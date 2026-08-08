@@ -1,0 +1,106 @@
+{%- liquid
+  assign page_content = page.content
+  if page_content != blank
+    assign page_content = page_content | replace: '<table', '<div class="table-content"><table' | replace: '</table>', '</table></div>'
+
+    unless page_content contains 'mailto:info@techty.com'
+      assign page_content = page_content | replace: 'info@techty.com', '<a href="mailto:info@techty.com">info@techty.com</a>'
+    endunless
+
+    unless page_content contains 'wa.me/96522280345'
+      assign page_content = page_content | replace: '+965 22280345', '<a href="https://wa.me/96522280345" target="_blank" rel="noopener noreferrer">+965 22280345</a>'
+      assign page_content = page_content | replace: '+96522280345', '<a href="https://wa.me/96522280345" target="_blank" rel="noopener noreferrer">+96522280345</a>'
+    endunless
+  endif
+-%}
+<div class="{{ section.settings.color_scheme }}-scheme spacing-box">
+  {%- if page_content != blank -%}
+    <div class="page-content ">
+      <div class="{{ settings.layout_width }}">
+        <div class="page-content__text rich-text-editor-content rte">
+          {{ page_content }}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+<style>
+  #shopify-section-{{ section.id }} {
+     --topSpace:{{ section.settings.top_space_desktop }}px;
+     --bottomSpace:{{ section.settings.bottom_space_desktop }}px;
+   }
+
+   #shopify-section-{{ section.id }} .page-content__text a[href^="mailto:"],
+   #shopify-section-{{ section.id }} .page-content__text a[href*="wa.me"] {
+     color: inherit;
+     text-decoration: underline;
+     text-underline-offset: 3px;
+   }
+
+   @media only screen and (max-width:767px) {
+     #shopify-section-{{ section.id }}.shopify-section{
+       --topSpace:{{ section.settings.top_space_mobile }}px;
+       --bottomSpace:{{ section.settings.bottom_space_mobile }}px;
+     }
+
+   }
+</style>
+{% schema %}
+{
+  "name": "t:sections.main_page.name",
+  "tag": "section",
+  "class": "main-page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:common.header.colors.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "primary",
+      "label": "t:common.global.color_scheme.label"
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.section_spacing.content"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.section_spacing.top_space_desktop.label",
+      "default": 80,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.section_spacing.bottom_space_desktop.label",
+      "default": 80,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.section_spacing.top_space_mobile.label",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.section_spacing.bottom_space_mobile.label",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ]
+}
+{% endschema %}

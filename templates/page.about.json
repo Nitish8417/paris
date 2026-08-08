@@ -1,0 +1,475 @@
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "primary",
+        "top_space_desktop": 70,
+        "bottom_space_desktop": 70,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "banner": {
+      "type": "page-banner",
+      "settings": {
+        "banner_height_desktop": "small",
+        "banner_height_mobile": "small",
+        "heading": "About Us",
+        "description": "Our focus is on crafting collections that feel considered, timeless, and relevant across evolving styles.",
+        "heading_size": "h1",
+        "heading_size_mobile": "h1_mobile",
+        "content_width": "medium",
+        "heading_alignment": "center",
+        "color_scheme": "tertiary",
+        "bg_color_opacity": "#000000",
+        "overlay_opacity": 35,
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
+      }
+    },
+    "658178d8-5095-495e-9e46-567641a056ff": {
+      "type": "rich-text",
+      "blocks": {
+        "template--21937777180987__658178d8-5095-495e-9e46-567641a056ff-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Inspiring everyone to experience modern elegance and timeless sophistication.",
+            "heading_size": "h2",
+            "heading_size_mobile": "h3_mobile"
+          }
+        },
+        "template--21937777180987__658178d8-5095-495e-9e46-567641a056ff-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our collections are thoughtfully curated to reflect a modern sensibility, combining clean lines, refined details, and enduring sophistication. Each piece is designed with intention, balancing contemporary aesthetics with timeless appeal to create a cohesive visual experience.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--21937777180987__658178d8-5095-495e-9e46-567641a056ff-heading-1",
+        "template--21937777180987__658178d8-5095-495e-9e46-567641a056ff-text-1"
+      ],
+      "settings": {
+        "layout_type": false,
+        "content_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "color_scheme": "primary",
+        "top_space_desktop": 90,
+        "bottom_space_desktop": 70,
+        "top_space_mobile": 55,
+        "bottom_space_mobile": 20
+      }
+    },
+    "aff2d4ba-aa1e-4b2f-9c91-84dc2e956480": {
+      "type": "media-grid",
+      "blocks": {
+        "template--21937777180987__aff2d4ba-aa1e-4b2f-9c91-84dc2e956480-grid-1": {
+          "type": "grid",
+          "settings": {
+            "heading": "",
+            "heading_size": "h5",
+            "heading_size_mobile": "h5_mobile",
+            "description": "",
+            "description_size": "textMedium",
+            "column": 2,
+            "row": 1,
+            "content_position": "down-start",
+            "content_alignment": "center",
+            "content_width": "small",
+            "btn_text": "Shop now",
+            "btn_link": "",
+            "btn_size": "medium",
+            "heading_color": "#000000",
+            "text_color": "#b3b3b3",
+            "btn_bg_color": "#0b0e0d",
+            "btn_text_color": "#ffffff",
+            "btn_border_color": "#5c5b5b",
+            "btn_hover_color": "#0b0e0d",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_border_color": "#5c5b5b",
+            "overlay_background_color": "#b3b3b3",
+            "overlay_background_opacity": 0
+          }
+        },
+        "template--21937777180987__aff2d4ba-aa1e-4b2f-9c91-84dc2e956480-grid-2": {
+          "type": "grid",
+          "settings": {
+            "heading": "",
+            "heading_size": "h5",
+            "heading_size_mobile": "h5_mobile",
+            "description": "",
+            "description_size": "textMedium",
+            "column": 2,
+            "row": 1,
+            "content_position": "down-start",
+            "content_alignment": "center",
+            "content_width": "small",
+            "btn_text": "Shop now",
+            "btn_link": "",
+            "btn_size": "medium",
+            "heading_color": "#000000",
+            "text_color": "#b3b3b3",
+            "btn_bg_color": "#0b0e0d",
+            "btn_text_color": "#ffffff",
+            "btn_border_color": "#5c5b5b",
+            "btn_hover_color": "#0b0e0d",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_border_color": "#5c5b5b",
+            "overlay_background_color": "#b3b3b3",
+            "overlay_background_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--21937777180987__aff2d4ba-aa1e-4b2f-9c91-84dc2e956480-grid-1",
+        "template--21937777180987__aff2d4ba-aa1e-4b2f-9c91-84dc2e956480-grid-2"
+      ],
+      "settings": {
+        "color_scheme": "primary",
+        "grid_row_gap": 10,
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 0
+      }
+    },
+    "event_calendar_pKBJx6": {
+      "type": "event-calendar",
+      "blocks": {
+        "event_dP6nrW": {
+          "type": "event",
+          "settings": {
+            "title": "New York Design Atelier",
+            "description": "<p>New York Design Atelier brings together innovative collections, curated experiences, modern design and forward-thinking ideas.<\/p>",
+            "date": "26, Jan",
+            "time": "8 AM - 12 PM",
+            "location": "New York",
+            "location_url": "",
+            "link_text": "Book now",
+            "link_url": ""
+          }
+        },
+        "event_ApxeCw": {
+          "type": "event",
+          "settings": {
+            "title": "Paris Haute Couture",
+            "description": "<p>Paris Haute Couture presents elevated collections, signature silhouettes, and iconic expressions of modern sophistication.<\/p>",
+            "date": "14, FEb",
+            "time": "10 AM - 05 PM",
+            "location": "Paris, France",
+            "location_url": "",
+            "link_text": "Book now",
+            "link_url": ""
+          }
+        },
+        "event_DP3R4y": {
+          "type": "event",
+          "settings": {
+            "title": "Tokyo Modern Craft",
+            "description": "<p>Tokyo Modern Craft highlights precision, detail, and a fresh perspective through curated showcases and creative installations.<\/p>",
+            "date": "20, Nov",
+            "time": "09 AM - 03 PM",
+            "location": "Shibuya, Tokyo",
+            "location_url": "",
+            "link_text": "Book now",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": ["event_dP6nrW", "event_ApxeCw", "event_DP3R4y"],
+      "settings": {
+        "heading": "Upcoming Events",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "text": "<p>Stay connected with our curated events and experiences, designed to inspire, educate, and bring our modern collections to life.<\/p>",
+        "image_size": "auto",
+        "color_scheme": "scheme-33312f08-d201-439f-8cf6-1b9e0e68d7b8",
+        "bg_color_opacity": "#000000",
+        "overlay_opacity": 34,
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "95b2913b-2a37-4e45-b85f-23f61a813e4f": {
+      "type": "collapsible-content",
+      "blocks": {
+        "template--21937777180987__95b2913b-2a37-4e45-b85f-23f61a813e4f-content-1": {
+          "type": "content",
+          "settings": {
+            "heading": "Our design approach focuses on modern expression.",
+            "content": "<p>Fashion is shaped by evolving ideas, cultural influences, and design innovation. Our approach centers on creating pieces that balance contemporary aesthetics with refined details, resulting in collections that feel relevant and intentional<\/p>"
+          }
+        },
+        "template--21937777180987__95b2913b-2a37-4e45-b85f-23f61a813e4f-content-2": {
+          "type": "content",
+          "settings": {
+            "heading": "Each collection is developed with attention to quality and design.",
+            "content": "<p>Quality reflects not only materials but also structure, finish, and overall execution. We emphasize consistency across our collections, ensuring each design aligns with our visual standards and delivers a refined, considered experience.<\/p>"
+          }
+        },
+        "template--21937777180987__95b2913b-2a37-4e45-b85f-23f61a813e4f-content-3": {
+          "type": "content",
+          "settings": {
+            "heading": "We believe style is influenced by creativity and personal identity.",
+            "content": "<p>Style goes beyond trends, representing how individuals express themselves through form, color, and detail. Our collections are inspired by modern lifestyles and creative expression, offering designs that feel personal, confident, and adaptable.<\/p>"
+          }
+        },
+        "content_HLfkDH": {
+          "type": "content",
+          "settings": {
+            "heading": "Our vision is to create collections that remain relevant beyond seasons",
+            "content": "<p>Rather than following fleeting trends, we focus on designs that maintain appeal over time. This approach allows our collections to feel enduring while still reflecting modern design sensibilities and evolving style influences.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--21937777180987__95b2913b-2a37-4e45-b85f-23f61a813e4f-content-1",
+        "template--21937777180987__95b2913b-2a37-4e45-b85f-23f61a813e4f-content-2",
+        "template--21937777180987__95b2913b-2a37-4e45-b85f-23f61a813e4f-content-3",
+        "content_HLfkDH"
+      ],
+      "settings": {
+        "enable_first_default": false,
+        "heading": "Goals with style",
+        "heading_size": "h1",
+        "heading_size_mobile": "h1_mobile",
+        "heading_alignment": "left",
+        "color_scheme": "quaternary",
+        "top_space_desktop": 60,
+        "bottom_space_desktop": 90,
+        "top_space_mobile": 60,
+        "bottom_space_mobile": 65
+      }
+    },
+    "9d89c209-d16d-45a1-8e88-b61a5a13e1e9": {
+      "type": "scrolling-text",
+      "blocks": {
+        "template--21937777180987__9d89c209-d16d-45a1-8e88-b61a5a13e1e9-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "Experience<strong> The <\/strong>Difference<strong> Crafted <\/strong>For <strong>You.<\/strong>",
+            "color": "#ffffff",
+            "highlighted": "",
+            "enable_text_gradient": false,
+            "textbackground": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--21937777180987__9d89c209-d16d-45a1-8e88-b61a5a13e1e9-text-1"
+      ],
+      "settings": {
+        "height": "height-medium",
+        "heading_font_size": 86,
+        "heading_font_size_mobile": 60,
+        "scrolling_speed": 15,
+        "scrolling_speed_mobile": 15,
+        "direction": "rtl",
+        "items_gap": 15,
+        "font_family": "heading",
+        "color_scheme": "tertiary",
+        "overlay_color": "#000000",
+        "overlay_opacity_image": 46,
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
+      }
+    },
+    "image_with_text_CMXkBt": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_DJhcUh": {
+          "type": "heading",
+          "settings": {
+            "heading": "Inspiring everyone to experience refined design & modern elegance.",
+            "heading_size": "h2",
+            "heading_size_mobile": "h3_mobile"
+          }
+        },
+        "text_aL93Ve": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We are guided by a vision to elevate modern style through carefully curated collections that balance aesthetics and intention. Each piece is designed to reflect individuality while maintaining a refined, cohesive design language. With a focus on quality, innovation, and attention to detail, we collaborate with creative minds to deliver designs that feel considered and purposeful.<\/p>"
+          }
+        }
+      },
+      "block_order": ["heading_DJhcUh", "text_aL93Ve"],
+      "settings": {
+        "image_height": "medium",
+        "image_width": "auto",
+        "layout_style": "both_image_first",
+        "content_position": "middle",
+        "text_alignment": "left",
+        "color_scheme": "",
+        "top_space_desktop": 125,
+        "bottom_space_desktop": 100,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "e558ac3d-a095-410a-9a9b-5eb645a95c61": {
+      "type": "rich-text",
+      "blocks": {
+        "65000c99-5186-4c50-a5bc-133e0ba80e66": {
+          "type": "heading",
+          "settings": {
+            "heading": "Inspiring everyone to enjoy",
+            "heading_size": "h2",
+            "heading_size_mobile": "h1_mobile"
+          }
+        },
+        "93e2f0f9-5097-418c-8fcb-66bc9c3b6d7a": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We focus on creating an experience that feels refined and easy to explore. Our curated selections highlight thoughtful design and attention to detail, making it easier to find pieces that resonate with your style.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "65000c99-5186-4c50-a5bc-133e0ba80e66",
+        "93e2f0f9-5097-418c-8fcb-66bc9c3b6d7a"
+      ],
+      "settings": {
+        "layout_type": true,
+        "content_width": "small",
+        "text_position": "center",
+        "text_alignment": "center",
+        "color_scheme": "tertiary",
+        "top_space_desktop": 55,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 15
+      }
+    },
+    "a34f6c33-99fe-4c60-bda0-2659a2b2338a": {
+      "type": "icon-with-text",
+      "blocks": {
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-1": {
+          "type": "column",
+          "settings": {
+            "icon": "delivery",
+            "custom_svg": "",
+            "heading": "Free Shipping",
+            "description": "Free shipping available.",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-2": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Gift Packaging",
+            "description": "Gift packaging included.",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-3": {
+          "type": "column",
+          "settings": {
+            "icon": "return",
+            "custom_svg": "",
+            "heading": "Easy Returns",
+            "description": "Easy returns supported.",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-4": {
+          "type": "column",
+          "settings": {
+            "icon": "guarantee",
+            "custom_svg": "",
+            "heading": "Secure Payment",
+            "description": "Secure payment processing.",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-1",
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-2",
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-3",
+        "template--21937777180987__a34f6c33-99fe-4c60-bda0-2659a2b2338a-column-4"
+      ],
+      "settings": {
+        "number_column": 4,
+        "heading_size": "h6",
+        "icon_position": "top",
+        "icon_size": "small",
+        "icon_background_enable": false,
+        "color_scheme": "tertiary",
+        "column_background": "#ffffff",
+        "icon_background": "#ffffff",
+        "icon_color": "#000000",
+        "heading_color": "#000000",
+        "text_color": "#000000",
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 40
+      }
+    },
+    "scrolling_text_ErapDy": {
+      "type": "scrolling-text",
+      "blocks": {
+        "text_pDhpVw": {
+          "type": "text",
+          "settings": {
+            "text": "Experience The Difference",
+            "color": "",
+            "highlighted": "",
+            "enable_text_gradient": false,
+            "textbackground": ""
+          }
+        }
+      },
+      "block_order": ["text_pDhpVw"],
+      "settings": {
+        "height": "height-ratio-adapt",
+        "heading_font_size": 20,
+        "heading_font_size_mobile": 20,
+        "scrolling_speed": 60,
+        "scrolling_speed_mobile": 15,
+        "direction": "rtl",
+        "items_gap": 40,
+        "font_family": "heading",
+        "color_scheme": "",
+        "overlay_color": "#000000",
+        "overlay_opacity_image": 0,
+        "top_space_desktop": 20,
+        "bottom_space_desktop": 20,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 20
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "banner",
+    "658178d8-5095-495e-9e46-567641a056ff",
+    "aff2d4ba-aa1e-4b2f-9c91-84dc2e956480",
+    "event_calendar_pKBJx6",
+    "95b2913b-2a37-4e45-b85f-23f61a813e4f",
+    "9d89c209-d16d-45a1-8e88-b61a5a13e1e9",
+    "image_with_text_CMXkBt",
+    "e558ac3d-a095-410a-9a9b-5eb645a95c61",
+    "a34f6c33-99fe-4c60-bda0-2659a2b2338a",
+    "scrolling_text_ErapDy"
+  ]
+}

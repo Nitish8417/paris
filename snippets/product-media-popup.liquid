@@ -1,0 +1,228 @@
+<div id="product-media-popup" class="product-gallery-wrapper" data-model-main-body>
+  <div class="product-gallery-background-layer"></div>
+  <div class="product-gallery-inner">
+    {%- assign product_variant = product.selected_or_first_available_variant -%}
+    {%- assign featured_media = product_variant.featured_media -%}
+    <button class="product-gallery-button-close close-btn" title="Close" data-model-close>
+      <svg
+        class="close-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 23.691 22.723"
+      >
+        <g transform="translate(-126.154 -143.139)">
+          <line x2="23" y2="22" transform="translate(126.5 143.5)" fill="none" stroke="CurrentColor" stroke-width="2"></line>
+          <path d="M0,22,23,0" transform="translate(126.5 143.5)" fill="none" stroke="CurrentColor" stroke-width="2"></path>
+        </g>
+      </svg>
+    </button>
+    <div class="product-gallery-container">
+      <div
+        id="main-popup-slider"
+        class="paroduct-main-gallery slider"
+        {% if product.media.size > 1 %}
+          data-flickity-slider
+          data-flickity='
+            {"fade":true,
+            "resize": true,
+            "selectedAttraction": 0.01,
+            "friction": 0.15,
+            "touchVerticalScroll": false,
+            "contain": true,
+            "pageDots": true,
+            "draggable":false,
+            "prevNextButtons":true}
+          '
+        {% endif %}
+      >
+        {%- comment -%} Keep same order as main product gallery: featured first, then remaining media {%- endcomment -%}
+        {%- if featured_media != null -%}
+          {%- case featured_media.media_type -%}
+            {%- when 'image' -%}
+              <div
+                class="product-gallery-image-wrapper"
+                align="center"
+                data-media-id="{{ featured_media.id }}"
+                data-popup-index="0"
+              >
+                {%- render 'image', image: featured_media -%}
+              </div>
+            {%- when 'external_video' -%}
+              {% assign video_class = 'no-js-hidden product-media-' | append: featured_media.host %}
+              <div
+                id="product-media-popup-{{ featured_media.id }}"
+                class="product-info-item product-external-video-media product-media-{{ featured_media.id }}"
+                data-media-id="{{ featured_media.id }}"
+                data-popup-index="0"
+              >
+                <div class="media-box" style="--mediaRatio:{{ 1 | divided_by : featured_media.aspect_ratio | times: 100 }}%">
+                  {{
+                    featured_media
+                    | external_video_url: autoplay: false
+                    | external_video_tag: class: video_class, loading: 'lazy'
+                  }}
+                </div>
+              </div>
+            {%- when 'video' -%}
+              {%- assign video_class = 'no-js-hidden producut-media-video' -%}
+              <div
+                id="product-media-popup-{{ featured_media.id }}"
+                class="product-info-item product-video-media"
+                data-media-id="{{ featured_media.id }}"
+                data-popup-index="0"
+              >
+                <div
+                  class="media-box"
+                  style="--mediaRatio:{{ 1 | divided_by : featured_media.aspect_ratio | times: 100 }}%"
+                >
+                  {{
+                    featured_media
+                    | media_tag:
+                      image_size: '2048x',
+                      autoplay: false,
+                      controls: true,
+                      preload: 'none',
+                      class: video_class
+                  }}
+                </div>
+              </div>
+            {%- when 'model' -%}
+              <product-model
+                id="product-media-popup-{{ featured_media.id }}"
+                class="product-media-modal__model product-info-item product-media-model"
+                data-media-id="{{ featured_media.id }}"
+                data-popup-index="0"
+              >
+                <div>
+                  <div
+                    class="media-box no-js-hidden"
+                    style="--mediaRatio: {{ 100 | divided_by: featured_media.preview_image.aspect_ratio }}%"
+                  >
+                    {{
+                      featured_media
+                      | model_viewer_tag:
+                        image_size: true,
+                        reveal: 'interaction',
+                        toggleable: true,
+                        data-model-id: featured_media.id
+                    }}
+                  </div>
+                </div>
+              </product-model>
+          {%- endcase -%}
+        {%- endif -%}
+
+        {%- assign popup_index = 1 -%}
+        {%- for media in product.media -%}
+          {%- unless featured_media != null and media.id == featured_media.id -%}
+            {%- case media.media_type -%}
+              {%- when 'image' -%}
+                <div
+                  class="product-gallery-image-wrapper"
+                  align="center"
+                  data-media-id="{{ media.id }}"
+                  data-popup-index="{{ popup_index }}"
+                >
+                  {%- render 'image', image: media -%}
+                </div>
+              {%- when 'external_video' -%}
+                {% assign video_class = 'no-js-hidden product-media-' | append: media.host %}
+                <div
+                  id="product-media-popup-{{ media.id }}"
+                  class="product-info-item product-external-video-media product-media-{{ media.id }}"
+                  data-media-id="{{ media.id }}"
+                  data-popup-index="{{ popup_index }}"
+                >
+                  <div class="media-box" style="--mediaRatio:{{ 1 | divided_by : media.aspect_ratio | times: 100 }}%">
+                    {{
+                      media
+                      | external_video_url: autoplay: false
+                      | external_video_tag: class: video_class, loading: 'lazy'
+                    }}
+                  </div>
+                </div>
+              {%- when 'video' -%}
+                {%- assign video_class = 'no-js-hidden producut-media-video' -%}
+                <div
+                  id="product-media-popup-{{ media.id }}"
+                  class="product-info-item product-video-media"
+                  data-media-id="{{ media.id }}"
+                  data-popup-index="{{ popup_index }}"
+                >
+                  <div
+                    class="media-box"
+                    style="--mediaRatio:{{ 1 | divided_by : media.aspect_ratio | times: 100 }}%"
+                  >
+                    {{
+                      media
+                      | media_tag:
+                        image_size: '2048x',
+                        autoplay: false,
+                        controls: true,
+                        preload: 'none',
+                        class: video_class
+                    }}
+                  </div>
+                </div>
+              {%- when 'model' -%}
+                <product-model
+                  id="product-media-popup-{{ media.id }}"
+                  class="product-media-modal__model product-info-item product-media-model"
+                  data-media-id="{{ media.id }}"
+                  data-popup-index="{{ popup_index }}"
+                >
+                  <div>
+                    <div
+                      class="media-box no-js-hidden"
+                      style="--mediaRatio: {{ 100 | divided_by: media.preview_image.aspect_ratio }}%"
+                    >
+                      {{
+                        media
+                        | model_viewer_tag:
+                          image_size: true,
+                          reveal: 'interaction',
+                          toggleable: true,
+                          data-model-id: media.id
+                      }}
+                    </div>
+                  </div>
+                </product-model>
+            {%- endcase -%}
+            {%- assign popup_index = popup_index | plus: 1 -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+      <div
+        class="product-thumbnail-gallery slider"
+        {% if product.media.size > 1 %}
+          data-flickity-slider
+          data-flickity='
+                { "asNavFor": "#main-popup-slider",
+              "contain": true,
+              "pageDots": false,
+              "cellAlign":"left",
+              "prevNextButtons": false
+            }
+          '
+        {% endif %}
+      >
+        {%- if featured_media != null -%}
+          <div class="product-gallery-thumbnail-item" align="center" data-media-id="{{ featured_media.id }}">
+            {%- render 'image', image: featured_media -%}
+          </div>
+        {%- endif -%}
+        {%- for media in product.media -%}
+          {%- unless featured_media != null and media.id == featured_media.id -%}
+            <div class="product-gallery-thumbnail-item" align="center" data-media-id="{{ media.id }}">
+              {%- render 'image', image: media -%}
+            </div>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/json" id="ProductJSON-{{ product.id }}">
+  {{ product.media | where: 'media_type', 'model' | json }}
+</script>
