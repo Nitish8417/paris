@@ -1,1 +1,46 @@
-{"sections":{"banner":{"type":"main-collection-banner","settings":{"show_collection_title":true,"show_collection_description":true,"show_collection_image":true,"content_width":"small","content_alignment":"center","custom_collection_image":"{{ collection.image }}","banner_height_desktop":"small","banner_height_mobile":"small","color_scheme":"secondary","bg_color_opacity":"#000000","overlay_opacity":49}},"breadcrumb_JigR4z":{"type":"breadcrumb","settings":{"color_scheme":"","top_space_desktop":5,"bottom_space_desktop":5,"top_space_mobile":40,"bottom_space_mobile":40}},"main-collection":{"type":"main-collection","settings":{"products_per_page":20,"enable_filtering":true,"enable_sorting":true,"pagination_type":"pagination","grid_image_size":"portrait","color_scheme":"primary","top_space_desktop":0,"bottom_space_desktop":70,"top_space_mobile":0,"bottom_space_mobile":40}}},"order":["banner","breadcrumb_JigR4z","main-collection"]}
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_title": true,
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "content_width": "small",
+        "content_alignment": "left",
+        "custom_collection_image": "{{ collection.image }}",
+        "banner_height_desktop": "medium",
+        "banner_height_mobile": "small",
+        "color_scheme": "secondary",
+        "bg_color_opacity": "#000000",
+        "overlay_opacity": 0
+      }
+    },
+    "breadcrumb_JigR4z": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "",
+        "top_space_desktop": 5,
+        "bottom_space_desktop": 5,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "settings": {
+        "products_per_page": 20,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "pagination_type": "pagination",
+        "grid_image_size": "portrait",
+        "color_scheme": "primary",
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 70,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 40
+      }
+    }
+  },
+  "order": ["banner", "breadcrumb_JigR4z", "main-collection"]
+}

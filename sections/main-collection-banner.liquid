@@ -1,4 +1,4 @@
-<div class="{{ section.settings.color_scheme }}-scheme">
+<div class="{{ section.settings.color_scheme }}-scheme collection-split-banner-section">
   {% liquid
     assign collectionImageStatus = false
     if section.settings.show_collection_image
@@ -10,52 +10,264 @@
         assign collectionImageStatus = true
       endif
     endif
-  %}
-  {% if collectionImageStatus == true
-    or section.settings.show_collection_title
-    and collection.title != blank
-    or section.settings.show_collection_description
-    and collection.description != blank
-  %}
-    <div class="banner-main-box text-overlap height-{{ section.settings.banner_height_desktop }} mobile-height-{{ section.settings.banner_height_mobile  }}">
-      {% if collectionImageStatus == true %}
-        <div class="banner-image">
-          {% render 'image', image: collectionImage %}
-        </div>
-      {% endif %}
-      {% assign contentStatus = false %}
 
-      {% if section.settings.show_collection_title and collection.title != blank %}
-        {% assign contentStatus = true %}
-      {% elsif section.settings.show_collection_description and collection.description != blank %}
-        {% assign contentStatus = true %}
-      {% endif %}
-      {% if contentStatus == true %}
-        <div class="banner-content content-width-{{ section.settings.content_width }} align-{{ section.settings.content_alignment }}">
-          <div class="container">
-            {% if section.settings.show_collection_title and collection.title != blank %}
-              <h1 class="banner-heading h2">{{ collection.title | escape }}</h1>
-            {% endif %}
-            {% if section.settings.show_collection_description and collection.description != blank %}
-              <div class="textLarge rte">
-                {{
-                  collection.description
-                  | replace: '<table', '<div class="table-content"><table '
-                  | replace: '</table>', '</table></div>'
-                }}
-              </div>
-            {% endif %}
+    assign contentStatus = false
+    if section.settings.show_collection_title and collection.title != blank
+      assign contentStatus = true
+    elsif section.settings.show_collection_description and collection.description != blank
+      assign contentStatus = true
+    endif
+
+    assign description_plain = collection.description | strip_html | strip
+    assign description_word_count = description_plain | split: ' ' | size
+    assign show_read_more = false
+    if description_word_count > 40
+      assign show_read_more = true
+    endif
+  %}
+
+  {% if collectionImageStatus or contentStatus %}
+    <div class="{{ settings.layout_width }}">
+      <div
+        class="collection-split-banner height-{{ section.settings.banner_height_desktop }} mobile-height-{{ section.settings.banner_height_mobile }}{% if collectionImageStatus == false %} collection-split-banner--no-image{% endif %}{% if contentStatus == false %} collection-split-banner--no-content{% endif %}"
+      >
+        {% if contentStatus %}
+          <div class="collection-split-banner__content align-{{ section.settings.content_alignment }}">
+            <div class="collection-split-banner__content-inner content-width-{{ section.settings.content_width }}">
+              {% if section.settings.show_collection_title and collection.title != blank %}
+                <h1 class="collection-split-banner__heading banner-heading h2">
+                  {{ collection.title | escape }}
+                </h1>
+              {% endif %}
+
+              {% if section.settings.show_collection_description and collection.description != blank %}
+                {% if show_read_more %}
+                  <details class="collection-split-banner__details">
+                    <summary class="collection-split-banner__summary">
+                      <div class="collection-split-banner__desc textLarge rte collection-split-banner__desc--clamped">
+                        {{
+                          collection.description
+                          | replace: '<table', '<div class="table-content"><table '
+                          | replace: '</table>', '</table></div>'
+                        }}
+                      </div>
+                      <span class="collection-split-banner__read-more">Read More</span>
+                    </summary>
+                    <div class="collection-split-banner__desc textLarge rte">
+                      {{
+                        collection.description
+                        | replace: '<table', '<div class="table-content"><table '
+                        | replace: '</table>', '</table></div>'
+                      }}
+                    </div>
+                  </details>
+                {% else %}
+                  <div class="collection-split-banner__desc textLarge rte">
+                    {{
+                      collection.description
+                      | replace: '<table', '<div class="table-content"><table '
+                      | replace: '</table>', '</table></div>'
+                    }}
+                  </div>
+                {% endif %}
+              {% endif %}
+            </div>
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
+
+        {% if collectionImageStatus %}
+          <div class="collection-split-banner__media">
+            <div class="collection-split-banner__image banner-image">
+              {% render 'image', image: collectionImage %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 </div>
 
 <style>
-   #shopify-section-{{ section.id }} {
-      --overlayBg: {{ section.settings.bg_color_opacity }};
-      --overlayOpacity:{{ section.settings.overlay_opacity | divided_by:100.0 }};
+  #shopify-section-{{ section.id }} {
+    --overlayBg: {{ section.settings.bg_color_opacity }};
+    --overlayOpacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner-section {
+    padding: 20px 0 0;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.4fr) minmax(0, 0.6fr);
+    align-items: stretch;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--bodyColor);
+    color: var(--mainHeadingColor);
+    height: auto !important;
+    min-height: 300px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner.height-small {
+    min-height: 300px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner.height-medium {
+    min-height: 380px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner.height-large {
+    min-height: 480px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner--no-image,
+  #shopify-section-{{ section.id }} .collection-split-banner--no-content {
+    grid-template-columns: 1fr;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 40px;
+    background: var(--bodyColor);
+    z-index: 1;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__content.align-center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__content.align-left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__content-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__content-inner.content-width-small {
+    max-width: 420px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__content-inner.content-width-medium {
+    max-width: 520px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__content-inner.content-width-large {
+    max-width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__heading {
+    margin: 0 0 16px;
+    color: var(--mainHeadingColor);
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__desc {
+    color: var(--textColor, var(--mainHeadingColor));
+    opacity: 0.9;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__desc p:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__details {
+    border: 0;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__desc--clamped {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__read-more {
+    display: inline-block;
+    margin-top: 18px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    color: var(--mainHeadingColor);
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__details[open] .collection-split-banner__summary {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__media {
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--bodyColor) 85%, #fff 15%);
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__image:after {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media only screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .collection-split-banner {
+      grid-template-columns: 1fr;
+      border-radius: 20px;
+      min-height: 0;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner.mobile-height-small .collection-split-banner__media {
+      min-height: 220px;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner.mobile-height-medium .collection-split-banner__media {
+      min-height: 280px;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner.mobile-height-large .collection-split-banner__media {
+      min-height: 340px;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner__content {
+      padding: 32px 24px;
+      order: 1;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner__media {
+      order: 2;
+      min-height: 240px;
+      aspect-ratio: 16 / 10;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner__image {
+      position: absolute;
+    }
   }
 </style>
 
@@ -111,7 +323,7 @@
       "type": "select",
       "id": "content_alignment",
       "label": "t:common.global.alignment.label",
-      "default": "center",
+      "default": "left",
       "options": [
         {
           "label": "t:common.global.left.label",
@@ -132,7 +344,7 @@
       "type": "select",
       "id": "banner_height_desktop",
       "label": "t:common.global.desktop_height.label",
-      "default": "small",
+      "default": "medium",
       "options": [
         {
           "value": "small",
@@ -182,17 +394,19 @@
       "type": "color",
       "id": "bg_color_opacity",
       "default": "#000000",
-      "label": "t:common.global.image_overlay.label"
+      "label": "t:common.global.image_overlay.label",
+      "info": "Not used in the split banner layout."
     },
     {
       "type": "range",
       "id": "overlay_opacity",
       "label": "t:common.global.overlay_opacity.label",
-      "default": 34,
+      "default": 0,
       "min": 0,
       "max": 100,
       "step": 1,
-      "unit": "%"
+      "unit": "%",
+      "info": "Not used in the split banner layout."
     }
   ]
 }
