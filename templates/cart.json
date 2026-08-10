@@ -1,1 +1,127 @@
-{"sections":{"main":{"type":"main-cart","settings":{"show_cart_note":true,"payment_enable":true,"shipping_estimates":true,"top_space_desktop":80,"bottom_space_desktop":80,"top_space_mobile":40,"bottom_space_mobile":40}},"related-products":{"type":"related-products","settings":{"grid_image_size":"auto","heading":"Related products","heading_size":"h3","heading_size_mobile":"h3_mobile","heading_alignment":"left","products_count":8,"color_scheme":"","top_space_desktop":80,"bottom_space_desktop":80,"top_space_mobile":40,"bottom_space_mobile":40}},"icon_with_text_n7HaFa":{"type":"icon-with-text","blocks":{"column_jLkqYy":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}},"column_zkAcBX":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}},"column_C4L8jt":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}},"column_tCyxaE":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}}},"block_order":["column_jLkqYy","column_zkAcBX","column_C4L8jt","column_tCyxaE"],"settings":{"number_column":4,"heading_size":"h5","icon_position":"top","icon_size":"small","icon_background_enable":false,"color_scheme":"secondary","column_background":"#FFFFFF","icon_background":"#FFFFFF","icon_color":"#000000","heading_color":"#000000","text_color":"#000000","top_space_desktop":80,"bottom_space_desktop":80,"top_space_mobile":40,"bottom_space_mobile":40}}},"order":["main","related-products","icon_with_text_n7HaFa"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "cityLabel": "Area",
+        "optionPreview": "Select The Delivery Area",
+        "citylist": "Abdaly\nAbdulla Al Salem\nAbdullah Mubarak\nAbu Futaira\nAbu Halifa\nAbu Hasaniya\nAdailiya\nAdan\nAhmadi\nAli Sabah Al Salim\nAmghara\nAndalous\nAnjafa\nArdiya\nBayan\nBida\nBneid Al-Qar\nBneidar\nDaiya\nDajeej\nDasma\nDhaher\nDoha\nEgaila\nFahad Al Ahmad\nFahaheel\nFaiha\nFarwaniya\nFintas\nFirdous\nFunaitis\nGarnata\nHadiya\nHawally\nHittin\nIshbelya\nJaber Al Ahmad\nJaber Al Ali\nJabriya\nJahra\nJibla\nJleeb Al Shuyoukh\nKabd\nKaifan\nKhairan\nKhaitan\nKhaldiya\nMahboula\nMaidan Hawalli\nMangaf\nMansuriya\nMesayel\nMessila\nMina Abdullah\nMina Zour\nMirgab\nMishrif\nMubarak Al Abdullah\nMubarak Al Kabeer\nMutla\nNaeem\nNahda\nNahdha\nNaseem\nNuwaiseeb\nNuzha\nOmariya\nOyoun\nQadsiya\nQairawan\nQasr\nQortuba\nQurain\nQusour\nRabiya\nRai\nRawda\nRehab\nRiggae\nRiqqa\nRumaithiya\nSaad Al Abdullah\nSabah Al Ahmad\nSabah Al Nasser\nSabah Al Salem\nSabahiya\nSabhan\nSalam\nSalmiya\nSalwa\nShaab\nShamiya\nSharq\nShuhada\nShuwaikh\nSiddiq\nSulaibikhat\nSulaibiya\nSurra\nTaima\nUmm Qasr\nWafra\nYarmouk\nZahra",
+        "citylistwarning": "Please do not change area name on the auto fill at checkout.",
+        "cityselecterror": "",
+        "show_cart_note": true,
+        "payment_enable": true,
+        "shipping_estimates": true,
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "grid_image_size": "auto",
+        "heading": "Related products",
+        "heading_size": "h3",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "products_count": 8,
+        "color_scheme": "",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "icon_with_text_n7HaFa": {
+      "type": "icon-with-text",
+      "blocks": {
+        "column_jLkqYy": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "column_zkAcBX": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "column_C4L8jt": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "column_tCyxaE": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "column_jLkqYy",
+        "column_zkAcBX",
+        "column_C4L8jt",
+        "column_tCyxaE"
+      ],
+      "settings": {
+        "number_column": 4,
+        "heading_size": "h5",
+        "icon_position": "top",
+        "icon_size": "small",
+        "icon_background_enable": false,
+        "color_scheme": "secondary",
+        "column_background": "#ffffff",
+        "icon_background": "#ffffff",
+        "icon_color": "#000000",
+        "heading_color": "#000000",
+        "text_color": "#000000",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "icon_with_text_n7HaFa"
+  ]
+}
