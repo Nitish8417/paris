@@ -546,7 +546,7 @@
                       areachange();
                       $('body').on('change','#arealist', function(){
                         areachange();
-                        $(this).closest('form').attr('action','/cart?step=contact_information&checkout[shipping_address][city]='+$(this).val());
+                        $('.cart-form').attr('action','/cart?step=contact_information&checkout[shipping_address][city]='+$(this).val());
                       })
                     });
                   </script>
