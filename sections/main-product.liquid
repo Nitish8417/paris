@@ -210,8 +210,6 @@
     border: 0;
     background: transparent;
     cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
   }
 
   #shopify-section-{{ section.id }} .main-product-thumb .main-product-thumb-item {
@@ -231,14 +229,24 @@
   }
 
   #shopify-section-{{ section.id }} .main-product-thumb .media-image {
+    display: block !important;
     transform: none !important;
     padding-top: 100% !important;
     height: 0 !important;
     background-color: var(--mpImageBg) !important;
   }
 
-  #shopify-section-{{ section.id }} .main-product-thumb .media-image img {
+  #shopify-section-{{ section.id }} .main-product-thumb .media-image img,
+  #shopify-section-{{ section.id }} .main-product-thumb .main-product-thumb-img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
     object-fit: contain !important;
+    display: block !important;
+    opacity: 1 !important;
   }
 
   #shopify-section-{{ section.id }} .main-product-slider,
@@ -542,31 +550,59 @@
           index = Array.prototype.indexOf.call(thumbs, thumb);
         }
         var mediaId = thumb.getAttribute('data-media-id');
-        var flkty = getFlickity();
 
-        if (flkty) {
-          var matchedIndex = -1;
+        function applySelect(flkty) {
+          if (!flkty) {
+            setActive(index, mediaId);
+            return;
+          }
+
+          var targetIndex = index;
           var cells = flkty.cells || [];
-          for (var i = 0; i < cells.length; i++) {
-            var el = cells[i].element;
-            if (!el) continue;
-            var cellId = el.getAttribute('data-media-id');
-            if (!cellId && el.id && el.id.indexOf('product-media-') === 0) {
-              cellId = el.id.replace('product-media-', '');
-            }
-            if (mediaId && String(cellId) === String(mediaId)) {
-              matchedIndex = i;
-              break;
+          if (mediaId && cells.length) {
+            for (var i = 0; i < cells.length; i++) {
+              var el = cells[i].element;
+              if (!el) continue;
+              var cellId = el.getAttribute('data-media-id');
+              if (!cellId && el.id && el.id.indexOf('product-media-') === 0) {
+                cellId = el.id.replace('product-media-', '');
+              }
+              if (String(cellId) === String(mediaId)) {
+                targetIndex = i;
+                break;
+              }
             }
           }
 
-          var targetIndex = matchedIndex >= 0 ? matchedIndex : index;
-          if (window.jQuery && jQuery(main).hasClass('flickity-enabled')) {
-            jQuery(main).flickity('select', targetIndex);
-          } else if (typeof flkty.select === 'function') {
-            flkty.select(targetIndex);
+          if (targetIndex < 0) targetIndex = 0;
+          if (cells.length && targetIndex >= cells.length) {
+            targetIndex = cells.length - 1;
           }
+
+          if (window.jQuery && jQuery(main).hasClass('flickity-enabled')) {
+            jQuery(main).flickity('select', targetIndex, false, true);
+          } else if (typeof flkty.select === 'function') {
+            flkty.select(targetIndex, false, true);
+          }
+
           setActive(targetIndex, mediaId);
+        }
+
+        var flkty = getFlickity();
+        if (flkty) {
+          applySelect(flkty);
+        } else if (window.jQuery) {
+          // Flickity may still be initializing — wait briefly then select.
+          var tries = 0;
+          (function retry() {
+            flkty = getFlickity();
+            if (flkty || tries > 20) {
+              applySelect(flkty);
+              return;
+            }
+            tries += 1;
+            setTimeout(retry, 50);
+          })();
         } else {
           setActive(index, mediaId);
         }
@@ -577,10 +613,13 @@
       function syncFromSlider() {
         var flkty = getFlickity();
         if (!flkty) return;
-        var index = flkty.selectedIndex || 0;
+        var index = typeof flkty.selectedIndex === 'number' ? flkty.selectedIndex : 0;
         var mediaId = flkty.selectedElement
           ? flkty.selectedElement.getAttribute('data-media-id')
           : null;
+        if (!mediaId && thumbs[index]) {
+          mediaId = thumbs[index].getAttribute('data-media-id');
+        }
         setActive(index, mediaId);
         var activeThumb =
           (mediaId && stack.querySelector('.main-product-thumb[data-media-id="' + mediaId + '"]')) ||
@@ -589,6 +628,14 @@
       }
 
       stack.addEventListener('click', function (event) {
+        var thumb = event.target.closest('.main-product-thumb');
+        if (!thumb || !stack.contains(thumb)) return;
+        event.preventDefault();
+        selectByThumb(thumb);
+      });
+
+      stack.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
         var thumb = event.target.closest('.main-product-thumb');
         if (!thumb || !stack.contains(thumb)) return;
         event.preventDefault();

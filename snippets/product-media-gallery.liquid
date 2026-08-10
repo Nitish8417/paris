@@ -39,23 +39,32 @@
           tabindex="-1"
         >
           {% for media in product.media %}
-            <button
-              type="button"
+            {%- assign thumb_image = media.preview_image | default: media -%}
+            <div
               class="main-product-thumb{% if media.id == featured_media_id or featured_media_id == blank and forloop.first %} is-nav-selected{% endif %}"
               data-index="{{ forloop.index0 }}"
               data-media-id="{{ media.id }}"
+              role="button"
+              tabindex="0"
               aria-label="{{ media.alt | default: product.title | escape }}"
             >
-              <span class="main-product-thumb-item">
-                <span class="media-image">
-                  {%- if media.preview_image != blank -%}
-                    {%- render 'image', image: media.preview_image, sizes: '[200]' -%}
-                  {%- elsif media.media_type == 'image' -%}
-                    {%- render 'image', image: media, sizes: '[200]' -%}
+              <div class="main-product-thumb-item">
+                <div class="media-image">
+                  {%- if thumb_image != blank -%}
+                    <img
+                      src="{{ thumb_image | image_url: width: 200 }}"
+                      srcset="{{ thumb_image | image_url: width: 120 }} 120w, {{ thumb_image | image_url: width: 200 }} 200w, {{ thumb_image | image_url: width: 300 }} 300w"
+                      sizes="{{ section.settings.thumb_size | default: 80 }}px"
+                      alt="{{ media.alt | default: product.title | escape }}"
+                      width="{{ thumb_image.width }}"
+                      height="{{ thumb_image.height }}"
+                      loading="lazy"
+                      class="main-product-thumb-img"
+                    >
                   {%- endif -%}
-                </span>
-              </span>
-            </button>
+                </div>
+              </div>
+            </div>
           {% endfor %}
         </div>
 
