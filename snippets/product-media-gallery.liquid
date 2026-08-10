@@ -19,8 +19,12 @@
           class="product-slider-nav-wrapper carousel-nav main-product-thumbs-stack"
           tabindex="-1"
         >
-          {%- if product_variant.featured_media != null -%}
-            {%- assign featured_media = product_variant.featured_media -%}
+          {%- liquid
+            assign featured_media = product_variant.featured_media
+            assign featured_media_id = featured_media.id
+            assign thumb_index = 0
+          -%}
+          {%- if featured_media != null -%}
             <div class="main-product-thumb is-nav-selected" data-index="0" data-media-id="{{ featured_media.id }}">
               <div class="main-product-thumb-item">
                 <div class="media-image">
@@ -28,11 +32,11 @@
                 </div>
               </div>
             </div>
+            {% assign thumb_index = 1 %}
           {% endif %}
 
-          {% assign thumb_index = 1 %}
           {% for media in product.media %}
-            {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+            {%- unless media.id == featured_media_id -%}
               <div class="main-product-thumb" data-index="{{ thumb_index }}" data-media-id="{{ media.id }}">
                 <div class="main-product-thumb-item">
                   <div class="media-image">
@@ -57,7 +61,7 @@
               "cellAlign": "center",
               "imagesLoaded": true,
               "lazyLoad": true,
-              "wrapAround": true,
+              "wrapAround": false,
               "pageDots": true,
               "autoPlay": false,
               "draggable": true,
@@ -72,8 +76,11 @@
     >
       {%- if product.media.size > 0 -%}
         {% assign countId = 0 %}
-        {%- if product_variant.featured_media != null -%}
-          {%- assign featured_media = product_variant.featured_media -%}
+        {%- liquid
+          assign featured_media = product_variant.featured_media
+          assign featured_media_id = featured_media.id
+        -%}
+        {%- if featured_media != null -%}
           <div
             id="product-media-{{ featured_media.id }}"
             class="product-info-item"
@@ -104,7 +111,7 @@
           {% assign countId = countId | plus: 1 %}
         {% endif %}
         {% for media in product.media %}
-          {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+          {%- unless media.id == featured_media_id -%}
             {% case media.media_type %}
               {% when 'image' %}
                 <div
