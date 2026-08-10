@@ -497,7 +497,22 @@
                   <div class="cityInput">
                     {% assign citylist = section.settings.citylist | newline_to_br | remove: '/>' %}
                     {% assign citylists = citylist | split: '<br' %}
-                    <div class="form__input-wrapper form__input-wrapper--labelled">
+                    <div class="form-row">
+                      <div class="form-field">
+                        <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label>
+                        <select
+                          id="arealist"
+                          name="checkout[shipping_address][city]" 
+                          class="form-input-field select-box"
+                        >
+                          <option selected value="" disabled>{{ section.settings.optionPreview }}</option>
+                          {% for i in citylists %}
+                            <option value="{{ i | strip }}">{{ i | strip }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    {% comment %} <div class="form__input-wrapper form__input-wrapper--labelled">
                       <div class="select-wrapper select-wrapper--primary is-filled">
                         <svg focusable="false" class="{{ icon_class }}" viewBox="0 0 12 8" role="presentation">
                           <path stroke="currentColor" stroke-width="2" d="M10 2L6 6 2 2" fill="none" stroke-linecap="square"></path>
@@ -510,7 +525,7 @@
                         </select>
                       </div>
                       <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label>
-                    </div>
+                    </div> {% endcomment %}
                     <!-- <small>{{ section.settings.citylistwarning }}</small> -->
                   </div>
                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
