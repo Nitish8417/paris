@@ -20,7 +20,7 @@
         "custom_collection_image": "{{ collection.image }}",
         "banner_height_desktop": "medium",
         "banner_height_mobile": "small",
-        "color_scheme": "scheme-774d6648-8f47-4a6e-94b8-04081478bf83",
+        "color_scheme": "tertiary",
         "bg_color_opacity": "#000000",
         "overlay_opacity": 0
       }
