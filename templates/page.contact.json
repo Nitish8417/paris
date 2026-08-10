@@ -1,1 +1,66 @@
-{"sections":{"banner":{"type":"page-banner","settings":{"banner_height_desktop":"small","banner_height_mobile":"small","heading":"","description":"Add description here","heading_size":"h2","heading_size_mobile":"h2_mobile","content_width":"medium","heading_alignment":"center","color_scheme":"secondary","bg_color_opacity":"#eeeeee","overlay_opacity":50,"top_space_desktop":0,"bottom_space_desktop":0,"top_space_mobile":0,"bottom_space_mobile":0}},"main-page":{"type":"main-page","settings":{"color_scheme":"primary","top_space_desktop":70,"bottom_space_desktop":70,"top_space_mobile":40,"bottom_space_mobile":40}},"rich_text_HhqibT":{"type":"rich-text","name":"t:sections.rich_text.presets.name","settings":{"layout_type":false,"content_width":"small","text_position":"center","text_alignment":"center","color_scheme":"","top_space_desktop":80,"bottom_space_desktop":80,"top_space_mobile":40,"bottom_space_mobile":40}}},"order":["banner","main-page","rich_text_HhqibT"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "page-banner",
+      "settings": {
+        "banner_height_desktop": "small",
+        "banner_height_mobile": "small",
+        "heading": "Contact Us",
+        "description": "We’re here to help with orders, products, and support.",
+        "heading_size": "h2",
+        "heading_size_mobile": "h2_mobile",
+        "content_width": "medium",
+        "heading_alignment": "center",
+        "color_scheme": "secondary",
+        "bg_color_opacity": "#eeeeee",
+        "overlay_opacity": 50,
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
+      }
+    },
+    "contact_form": {
+      "type": "contact-form",
+      "settings": {
+        "section_full_width": false,
+        "heading": "Get in touch",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "description": "Questions about orders, products, or support? Reach out and we’ll reply soon.",
+        "email": "info@techty.com",
+        "phone": "+965 22280345",
+        "address": "Techty\nHamad Al-Mubarak Street\nSalmiya, Kuwait",
+        "form_heading": "Send us a message",
+        "form_description": "Fill in the form and our team will get back to you.",
+        "content_alignment": "left",
+        "color_scheme": "primary",
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 50
+      }
+    },
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "primary",
+        "top_space_desktop": 40,
+        "bottom_space_desktop": 40,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 20
+      }
+    }
+  },
+  "order": ["banner", "contact_form", "main-page"]
+}
