@@ -1048,6 +1048,7 @@
         "logo_7ckM8x": {
           "type": "logo",
           "name": "ShakeSphere",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Untitled_design_d5884197-974c-41b5-b624-2a1dd6666816.png",
             "image_link": "shopify://collections/shakesphere",

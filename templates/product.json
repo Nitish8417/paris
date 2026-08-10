@@ -15,7 +15,7 @@
         "15246e45-9a22-49c1-9538-e094ce9e25d8": {
           "type": "inventory",
           "settings": {
-            "minimun_inventory": 6
+            "minimun_inventory": 3
           }
         },
         "463311dc-a27e-4651-b22f-9db7b9a5f806": {
@@ -293,6 +293,11 @@
         "heading_size": "h2",
         "heading_size_mobile": "h3_mobile",
         "description": "",
+        "email": "info@techty.com",
+        "phone": "+965 22280345",
+        "address": "Techty\nHamad Al-Mubarak Street\nSalmiya, Kuwait",
+        "form_heading": "Send us a message",
+        "form_description": "Fill in the form and our team will get back to you.",
         "content_alignment": "left",
         "color_scheme": "scheme-774d6648-8f47-4a6e-94b8-04081478bf83",
         "top_space_desktop": 50,
