@@ -499,7 +499,7 @@
                     {% assign citylists = citylist | split: '<br' %}
                     <div class="form-row">
                       <div class="form-field">
-                        <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label>
+                        {% comment %} <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label> {% endcomment %}
                         <select
                           id="arealist"
                           name="checkout[shipping_address][city]" 
