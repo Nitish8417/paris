@@ -247,8 +247,8 @@
         "settings": {
           "bg_color": "#000000",
           "alternate_bg_color": "#e3dff8",
-          "heading_color": "#F4F1FF",
-          "text_color": "#F4F1FF",
+          "heading_color": "#f4f1ff",
+          "text_color": "#f4f1ff",
           "btn_bg_color": "#000000",
           "btn_text_color": "#f4f1ff",
           "btn_border_color": "#000000",
@@ -1148,5 +1148,10 @@
         }
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".minicart button#checkoutCart {display: none;}"
+    ]
   }
 }
