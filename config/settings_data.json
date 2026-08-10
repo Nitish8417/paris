@@ -1151,7 +1151,9 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".minicart button#checkoutCart {display: none;}"
+      ".minicart button#checkoutCart {display: none;}",
+      ".minicart a.btn.btn-medium {text-align: center; display: block;}",
+      ".minicart .checkout-btns {display: block;}"
     ]
   }
 }
