@@ -230,10 +230,13 @@
         background: radial-gradient(circle at 78% 20%, rgba(255,255,255,.18), transparent 34%);
       }
 
-      /* Collection split banner: plain title, no page-heading chrome */
+      /* Collection/page split banner: plain title, no page-heading chrome */
       body:not(.template-index) .collection-split-banner h1,
       body:not(.template-index) .collection-split-banner .collection-split-banner__heading,
-      body:not(.template-index) .content-for-layout .collection-split-banner h1:first-child {
+      body:not(.template-index) .page-split-banner h1,
+      body:not(.template-index) .page-split-banner .collection-split-banner__heading,
+      body:not(.template-index) .content-for-layout .collection-split-banner h1:first-child,
+      body:not(.template-index) .content-for-layout .page-split-banner h1:first-child {
         padding: 0 !important;
         margin: 0 0 16px !important;
         border-radius: 0 !important;
@@ -246,7 +249,10 @@
 
       body:not(.template-index) .collection-split-banner h1::after,
       body:not(.template-index) .collection-split-banner .collection-split-banner__heading::after,
-      body:not(.template-index) .content-for-layout .collection-split-banner h1:first-child::after {
+      body:not(.template-index) .page-split-banner h1::after,
+      body:not(.template-index) .page-split-banner .collection-split-banner__heading::after,
+      body:not(.template-index) .content-for-layout .collection-split-banner h1:first-child::after,
+      body:not(.template-index) .content-for-layout .page-split-banner h1:first-child::after {
         content: none !important;
         display: none !important;
       }
