@@ -1798,16 +1798,20 @@ noscript .product-variants-options-details {
 
 .product-warranty {
   margin: 0 0 18px;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .product-warranty__inner {
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px 14px;
+  padding: 10px 14px;
   border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 10px;
   background: linear-gradient(180deg, #fafafa 0%, #f4f4f4 100%);
+  width: fit-content;
+  max-width: 100%;
 }
 
 .product-warranty__icon {
@@ -1824,7 +1828,7 @@ noscript .product-variants-options-details {
 
 .product-warranty__content {
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 }
 
 .product-warranty__label {
