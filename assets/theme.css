@@ -3319,23 +3319,45 @@ loop-heading-outer {
 
 .collection-split-banner__media {
   position: relative;
+  align-self: stretch;
   min-height: 100%;
   overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: transparent;
 }
 
 .collection-split-banner__image:after {
   display: none;
 }
 
-.collection-split-banner__image,
-.collection-split-banner__image img {
+.collection-split-banner__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
 
 .collection-split-banner__image img {
-  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center;
   display: block;
+}
+
+.collection-split-banner__heading {
+  background: none !important;
+  box-shadow: none;
+}
+
+.collection-split-banner__heading::after {
+  content: none !important;
+  display: none !important;
 }
 
 .collection-split-banner__read-more {
