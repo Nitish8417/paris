@@ -497,20 +497,18 @@
                   <div class="cityInput">
                     {% assign citylist = section.settings.citylist | newline_to_br | remove: '/>' %}
                     {% assign citylists = citylist | split: '<br' %}
-                    <div class="form-row">
-                      <div class="form-field">
-                        {% comment %} <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label> {% endcomment %}
-                        <select
-                          id="arealist"
-                          name="checkout[shipping_address][city]" 
-                          class="form-input-field select-box"
-                        >
-                          <option selected value="" disabled>{{ section.settings.optionPreview }}</option>
-                          {% for i in citylists %}
-                            <option value="{{ i | strip }}">{{ i | strip }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
+                    <div class="form-field">
+                      {% comment %} <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label> {% endcomment %}
+                      <select
+                        id="arealist"
+                        name="checkout[shipping_address][city]" 
+                        class="form-input-field select-box"
+                      >
+                        <option selected value="" disabled>{{ section.settings.optionPreview }}</option>
+                        {% for i in citylists %}
+                          <option value="{{ i | strip }}">{{ i | strip }}</option>
+                        {% endfor %}
+                      </select>
                     </div>
                     {% comment %} <div class="form__input-wrapper form__input-wrapper--labelled">
                       <div class="select-wrapper select-wrapper--primary is-filled">
