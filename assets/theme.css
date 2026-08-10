@@ -1796,6 +1796,61 @@ noscript .product-variants-options-details {
   margin-right: 4px;
 }
 
+.product-warranty {
+  margin: 0 0 18px;
+}
+
+.product-warranty__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fafafa 0%, #f4f4f4 100%);
+}
+
+.product-warranty__icon {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #fff;
+}
+
+.product-warranty__content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.product-warranty__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #111;
+  margin-bottom: 2px;
+}
+
+.product-warranty__value {
+  font-size: var(--textSmall, 14px);
+  line-height: 1.45;
+  color: rgba(17, 17, 17, 0.78);
+}
+
+.product-warranty__value p {
+  margin: 0;
+}
+
+.product-warranty__value p + p {
+  margin-top: 4px;
+}
+
 .checkout-btn,
 .checkout-btns {
   display: grid;

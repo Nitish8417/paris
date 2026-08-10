@@ -66,6 +66,44 @@
           </div>
         {% endif %}
       </div>
+    {% when 'warranty' %}
+      {%- liquid
+        assign warranty_mf = product.metafields.custom.warantee
+        assign warranty_text = ''
+        if warranty_mf != blank
+          if warranty_mf.type contains 'rich_text_field' or warranty_mf.type contains 'multi_line_text_field'
+            assign warranty_text = warranty_mf | metafield_tag
+          else
+            assign warranty_text = warranty_mf.value
+          endif
+        endif
+      -%}
+      {%- if warranty_text != blank -%}
+        <div
+          class="product-warranty"
+          data-metafield-value="{{ warranty_mf.value | strip_html | escape }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="product-warranty__inner">
+            <span class="product-warranty__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l7 3v5.5c0 4.4-2.9 8.4-7 9.5-4.1-1.1-7-5.1-7-9.5V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M9.2 12.2l1.8 1.8 3.8-3.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div class="product-warranty__content">
+              <span class="product-warranty__label">
+                {%- if block.settings.heading != blank -%}
+                  {{ block.settings.heading }}
+                {%- else -%}
+                  Warranty
+                {%- endif -%}
+              </span>
+              <div class="product-warranty__value rte">{{ warranty_text }}</div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
     {% when 'description' %}
       <div class="product-item-description description rte" {{ block.shopify_attributes }}>
         {{
