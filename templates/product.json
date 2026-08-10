@@ -1,1 +1,308 @@
-{"sections":{"main":{"type":"main-product","blocks":{"15246e45-9a22-49c1-9538-e094ce9e25d8":{"type":"inventory","settings":{"minimun_inventory":6}},"463311dc-a27e-4651-b22f-9db7b9a5f806":{"type":"title","settings":{}},"text_jbyTEQ":{"type":"text","settings":{"text":"{{ product.vendor }}"}},"6fba1c78-de63-4219-8c77-75a6fe1e8e16":{"type":"review_rating","settings":{}},"5602e101-22f4-41c0-be8d-d39ba8b8180e":{"type":"sku","disabled":true,"settings":{}},"c033bf0d-321c-4c90-a67b-21ed411255b8":{"type":"price","settings":{"hide_shipping_content":false}},"b6ff0a73-18aa-413b-bfac-7c95f307582f":{"type":"variant","settings":{}},"a2823306-223d-4eb6-b15e-6f224d0448e3":{"type":"quantity","settings":{"show_volume_pricing_tooltip":true}},"88cb8425-2939-4eb0-9932-d2c67e629a10":{"type":"button","settings":{"dynamic_checkout_btn":true,"show_recipient_form":true}},"ede9143f-6f27-49e8-8dc2-c71d85160bd7":{"type":"share","settings":{}},"dd248fbc-e1dc-4ffc-a4fa-fc8137d77fe1":{"type":"pickup","settings":{}},"description_47NbPA":{"type":"description","disabled":true,"settings":{}},"acd68ee6-98e3-4cb0-bb5c-ccad7d700379":{"type":"complementary_products","settings":{"heading":"You may also like","products_count":5}}},"block_order":["15246e45-9a22-49c1-9538-e094ce9e25d8","463311dc-a27e-4651-b22f-9db7b9a5f806","text_jbyTEQ","6fba1c78-de63-4219-8c77-75a6fe1e8e16","5602e101-22f4-41c0-be8d-d39ba8b8180e","c033bf0d-321c-4c90-a67b-21ed411255b8","b6ff0a73-18aa-413b-bfac-7c95f307582f","a2823306-223d-4eb6-b15e-6f224d0448e3","88cb8425-2939-4eb0-9932-d2c67e629a10","ede9143f-6f27-49e8-8dc2-c71d85160bd7","dd248fbc-e1dc-4ffc-a4fa-fc8137d77fe1","description_47NbPA","acd68ee6-98e3-4cb0-bb5c-ccad7d700379"],"settings":{"container_type":"container","gallery_type":"carousel","media_max_width":680,"main_image_height":540,"main_image_height_mobile":420,"thumb_size":76,"thumb_size_mobile":68,"gallery_image_padding":28,"gallery_image_padding_mobile":16,"image_radius":8,"enable_image_border":true,"image_background_color":"#ffffff","image_border_color":"#f7f9fd","thumb_active_border_color":"#111111","color_scheme":"scheme-2650adcd-2cb1-4453-b006-7133d808b04b","top_space_desktop":65,"bottom_space_desktop":65,"top_space_mobile":40,"bottom_space_mobile":40}},"rich_text_A7hYrb":{"type":"rich-text","blocks":{"heading_Nj4BqD":{"type":"heading","settings":{"heading":"Quick Highlights","heading_size":"h5","heading_size_mobile":"h5_mobile"}},"text_6HKzgi":{"type":"text","settings":{"text":"{{ product.metafields.custom.quick_highlights | metafield_tag }}"}}},"block_order":["heading_Nj4BqD","text_6HKzgi"],"name":"t:sections.rich_text.presets.name","settings":{"layout_type":true,"content_width":"large","text_position":"end","text_alignment":"left","color_scheme":"","top_space_desktop":5,"bottom_space_desktop":0,"top_space_mobile":40,"bottom_space_mobile":40}},"rich_text_FQE4Qa":{"type":"rich-text","blocks":{"heading_76MdC9":{"type":"heading","settings":{"heading":"Description","heading_size":"h2","heading_size_mobile":"h3_mobile"}}},"block_order":["heading_76MdC9"],"disabled":true,"name":"t:sections.rich_text.presets.name","settings":{"layout_type":true,"content_width":"large","text_position":"start","text_alignment":"left","color_scheme":"","top_space_desktop":80,"bottom_space_desktop":80,"top_space_mobile":40,"bottom_space_mobile":40}},"collapsible_content_99hJfE":{"type":"collapsible-content","blocks":{"content_GVkwBP":{"type":"content","settings":{"heading":"Description","content":"{{ product.metafields.custom.description | metafield_tag }}"}},"content_rBcwA8":{"type":"content","settings":{"heading":"Specification","content":"{{ product.metafields.custom.specification | metafield_tag }}"}},"content_g3VxKV":{"type":"content","settings":{"heading":"Key Benefits","content":"{{ product.metafields.custom.why_choose_this | metafield_tag }}"}}},"block_order":["content_GVkwBP","content_rBcwA8","content_g3VxKV"],"name":"t:sections.collapsible_content.presets.name","settings":{"enable_first_default":false,"heading":"About Product","heading_size":"h2","heading_size_mobile":"h3_mobile","heading_alignment":"center","color_scheme":"","top_space_desktop":50,"bottom_space_desktop":50,"top_space_mobile":25,"bottom_space_mobile":25}},"bfb023f6-71c9-4883-aa09-6bf3f790e033":{"type":"scrolling-text","blocks":{"template--21557854994751__bfb023f6-71c9-4883-aa09-6bf3f790e033-text-1":{"type":"text","settings":{"text":"TRENDY TECH, HANDPICKED FOR YOU.","color":"#000000","highlighted":"#000000","enable_text_gradient":false,"textbackground":""}}},"block_order":["template--21557854994751__bfb023f6-71c9-4883-aa09-6bf3f790e033-text-1"],"disabled":true,"settings":{"height":"height-ratio-adapt","heading_font_size":22,"heading_font_size_mobile":24,"scrolling_speed":50,"scrolling_speed_mobile":5,"direction":"rtl","items_gap":15,"font_family":"heading","color_scheme":"scheme-774d6648-8f47-4a6e-94b8-04081478bf83","overlay_color":"#000000","overlay_opacity_image":0,"top_space_desktop":75,"bottom_space_desktop":65,"top_space_mobile":10,"bottom_space_mobile":40}},"related-products":{"type":"related-products","settings":{"grid_image_size":"square","heading":"Related products","heading_size":"h4","heading_size_mobile":"h3_mobile","heading_alignment":"left","products_count":8,"color_scheme":"secondary","top_space_desktop":80,"bottom_space_desktop":80,"top_space_mobile":40,"bottom_space_mobile":40}},"contact_form_iMKqhm":{"type":"contact-form","settings":{"section_full_width":true,"image_position":"left","heading":"How can we help you?","heading_size":"h2","heading_size_mobile":"h3_mobile","description":"","content_alignment":"left","color_scheme":"scheme-774d6648-8f47-4a6e-94b8-04081478bf83","top_space_desktop":50,"bottom_space_desktop":50,"top_space_mobile":25,"bottom_space_mobile":25}}},"order":["main","rich_text_A7hYrb","rich_text_FQE4Qa","collapsible_content_99hJfE","bfb023f6-71c9-4883-aa09-6bf3f790e033","related-products","contact_form_iMKqhm"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "15246e45-9a22-49c1-9538-e094ce9e25d8": {
+          "type": "inventory",
+          "settings": {
+            "minimun_inventory": 6
+          }
+        },
+        "463311dc-a27e-4651-b22f-9db7b9a5f806": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_jbyTEQ": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}"
+          }
+        },
+        "6fba1c78-de63-4219-8c77-75a6fe1e8e16": {
+          "type": "review_rating",
+          "settings": {}
+        },
+        "5602e101-22f4-41c0-be8d-d39ba8b8180e": {
+          "type": "sku",
+          "disabled": true,
+          "settings": {}
+        },
+        "c033bf0d-321c-4c90-a67b-21ed411255b8": {
+          "type": "price",
+          "settings": {
+            "hide_shipping_content": false
+          }
+        },
+        "b6ff0a73-18aa-413b-bfac-7c95f307582f": {
+          "type": "variant",
+          "settings": {}
+        },
+        "a2823306-223d-4eb6-b15e-6f224d0448e3": {
+          "type": "quantity",
+          "settings": {
+            "show_volume_pricing_tooltip": true
+          }
+        },
+        "88cb8425-2939-4eb0-9932-d2c67e629a10": {
+          "type": "button",
+          "settings": {
+            "dynamic_checkout_btn": true,
+            "show_recipient_form": true
+          }
+        },
+        "ede9143f-6f27-49e8-8dc2-c71d85160bd7": {
+          "type": "share",
+          "settings": {}
+        },
+        "dd248fbc-e1dc-4ffc-a4fa-fc8137d77fe1": {
+          "type": "pickup",
+          "settings": {}
+        },
+        "description_47NbPA": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "acd68ee6-98e3-4cb0-bb5c-ccad7d700379": {
+          "type": "complementary_products",
+          "settings": {
+            "heading": "You may also like",
+            "products_count": 5
+          }
+        }
+      },
+      "block_order": [
+        "15246e45-9a22-49c1-9538-e094ce9e25d8",
+        "463311dc-a27e-4651-b22f-9db7b9a5f806",
+        "text_jbyTEQ",
+        "6fba1c78-de63-4219-8c77-75a6fe1e8e16",
+        "5602e101-22f4-41c0-be8d-d39ba8b8180e",
+        "c033bf0d-321c-4c90-a67b-21ed411255b8",
+        "b6ff0a73-18aa-413b-bfac-7c95f307582f",
+        "a2823306-223d-4eb6-b15e-6f224d0448e3",
+        "88cb8425-2939-4eb0-9932-d2c67e629a10",
+        "ede9143f-6f27-49e8-8dc2-c71d85160bd7",
+        "dd248fbc-e1dc-4ffc-a4fa-fc8137d77fe1",
+        "description_47NbPA",
+        "acd68ee6-98e3-4cb0-bb5c-ccad7d700379"
+      ],
+      "settings": {
+        "container_type": "container",
+        "gallery_type": "carousel",
+        "media_max_width": 680,
+        "main_image_height": 540,
+        "main_image_height_mobile": 420,
+        "thumb_size": 76,
+        "thumb_size_mobile": 68,
+        "gallery_image_padding": 28,
+        "gallery_image_padding_mobile": 16,
+        "image_radius": 8,
+        "enable_image_border": false,
+        "image_background_color": "#ffffff",
+        "image_border_color": "#f7f9fd",
+        "thumb_active_border_color": "#111111",
+        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
+        "top_space_desktop": 65,
+        "bottom_space_desktop": 65,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "rich_text_A7hYrb": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Nj4BqD": {
+          "type": "heading",
+          "settings": {
+            "heading": "Quick Highlights",
+            "heading_size": "h5",
+            "heading_size_mobile": "h5_mobile"
+          }
+        },
+        "text_6HKzgi": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.quick_highlights | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Nj4BqD",
+        "text_6HKzgi"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "layout_type": true,
+        "content_width": "large",
+        "text_position": "end",
+        "text_alignment": "left",
+        "color_scheme": "",
+        "top_space_desktop": 5,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "rich_text_FQE4Qa": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_76MdC9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Description",
+            "heading_size": "h2",
+            "heading_size_mobile": "h3_mobile"
+          }
+        }
+      },
+      "block_order": [
+        "heading_76MdC9"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "layout_type": true,
+        "content_width": "large",
+        "text_position": "start",
+        "text_alignment": "left",
+        "color_scheme": "",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "collapsible_content_99hJfE": {
+      "type": "collapsible-content",
+      "blocks": {
+        "content_GVkwBP": {
+          "type": "content",
+          "settings": {
+            "heading": "Description",
+            "content": "{{ product.metafields.custom.description | metafield_tag }}"
+          }
+        },
+        "content_rBcwA8": {
+          "type": "content",
+          "settings": {
+            "heading": "Specification",
+            "content": "{{ product.metafields.custom.specification | metafield_tag }}"
+          }
+        },
+        "content_g3VxKV": {
+          "type": "content",
+          "settings": {
+            "heading": "Key Benefits",
+            "content": "{{ product.metafields.custom.why_choose_this | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "content_GVkwBP",
+        "content_rBcwA8",
+        "content_g3VxKV"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "enable_first_default": false,
+        "heading": "About Product",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "center",
+        "color_scheme": "",
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 50,
+        "top_space_mobile": 25,
+        "bottom_space_mobile": 25
+      }
+    },
+    "bfb023f6-71c9-4883-aa09-6bf3f790e033": {
+      "type": "scrolling-text",
+      "blocks": {
+        "template--21557854994751__bfb023f6-71c9-4883-aa09-6bf3f790e033-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "TRENDY TECH, HANDPICKED FOR YOU.",
+            "color": "#000000",
+            "highlighted": "#000000",
+            "enable_text_gradient": false,
+            "textbackground": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--21557854994751__bfb023f6-71c9-4883-aa09-6bf3f790e033-text-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "height-ratio-adapt",
+        "heading_font_size": 22,
+        "heading_font_size_mobile": 24,
+        "scrolling_speed": 50,
+        "scrolling_speed_mobile": 5,
+        "direction": "rtl",
+        "items_gap": 15,
+        "font_family": "heading",
+        "color_scheme": "scheme-774d6648-8f47-4a6e-94b8-04081478bf83",
+        "overlay_color": "#000000",
+        "overlay_opacity_image": 0,
+        "top_space_desktop": 75,
+        "bottom_space_desktop": 65,
+        "top_space_mobile": 10,
+        "bottom_space_mobile": 40
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "grid_image_size": "square",
+        "heading": "Related products",
+        "heading_size": "h4",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "products_count": 8,
+        "color_scheme": "secondary",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "contact_form_iMKqhm": {
+      "type": "contact-form",
+      "settings": {
+        "section_full_width": true,
+        "image_position": "left",
+        "heading": "How can we help you?",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "description": "",
+        "content_alignment": "left",
+        "color_scheme": "scheme-774d6648-8f47-4a6e-94b8-04081478bf83",
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 50,
+        "top_space_mobile": 25,
+        "bottom_space_mobile": 25
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_A7hYrb",
+    "rich_text_FQE4Qa",
+    "collapsible_content_99hJfE",
+    "bfb023f6-71c9-4883-aa09-6bf3f790e033",
+    "related-products",
+    "contact_form_iMKqhm"
+  ]
+}
