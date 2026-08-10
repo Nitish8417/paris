@@ -1778,9 +1778,22 @@ noscript .product-variants-options-details {
 .pro-sku-box {
   margin-bottom: 10px;
   border-radius: 20px;
-  background: var(--bodyForegroundColor);
-  padding: 2px 12px;
-  display: inline-flex;
+  background: transparent;
+  padding: 0;
+  display: block;
+}
+
+.pro-sku-title {
+  margin: 0 0 8px;
+  font-size: var(--textSmall, 14px);
+  line-height: 1.4;
+  color: var(--textColor, inherit);
+  opacity: 0.85;
+}
+
+.pro-sku-label {
+  font-weight: 600;
+  margin-right: 4px;
 }
 
 .checkout-btn,

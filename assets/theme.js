@@ -1387,12 +1387,13 @@ class VariantSelector extends HTMLElement {
     }
 
     if (skuDestination) {
-      if (skuSource) {
-        skuDestination.textContent = skuSource.textContent;
+      if (skuSource && skuSource.textContent.trim() !== "") {
+        skuDestination.innerHTML = skuSource.innerHTML;
         skuDestination
           .closest(".pro-sku-box")
           ?.classList.remove("visibility-hidden");
       } else {
+        skuDestination.textContent = "";
         skuDestination
           .closest(".pro-sku-box")
           ?.classList.add("visibility-hidden");

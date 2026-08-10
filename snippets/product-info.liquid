@@ -20,11 +20,17 @@
         {% endif %}
       </div>
     {% when 'sku' %}
-      {% if product_variant.sku != blank %}
-        <div class="pro-sku-box" {{ block.shopify_attributes }}>
-          <p id="Sku-{{ section.id }}" class="pro-sku-title" data-variant-sku>{{ product_variant.sku }}</p>
-        </div>
-      {% endif %}
+      <div
+        class="pro-sku-box{% if product_variant.sku == blank %} visibility-hidden{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        <p id="Sku-{{ section.id }}" class="pro-sku-title" data-variant-sku>
+          {%- if product_variant.sku != blank -%}
+            <span class="pro-sku-label">{{ 'products.product.sku' | t }}:</span>
+            {{ product_variant.sku }}
+          {%- endif -%}
+        </p>
+      </div>
     {% when 'text' %}
       {% if block.settings.text != blank %}
         <p class="product-text" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
