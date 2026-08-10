@@ -492,13 +492,61 @@
                     {{ 'sections.cart.update' | t }}
                   </button>
                 </noscript>
+
+                {% if section.settings.cityLabel != blank %}
+                  <div class="cityInput">
+                    {% assign citylist = section.settings.citylist | newline_to_br | remove: '/>' %}
+                    {% assign citylists = citylist | split: '<br' %}
+                    <div class="form__input-wrapper form__input-wrapper--labelled">
+                      <div class="select-wrapper select-wrapper--primary is-filled">
+                        <svg focusable="false" class="{{ icon_class }}" viewBox="0 0 12 8" role="presentation">
+                          <path stroke="currentColor" stroke-width="2" d="M10 2L6 6 2 2" fill="none" stroke-linecap="square"></path>
+                        </svg>
+                        <select class="" name="checkout[shipping_address][city]" id="arealist">
+                          <option selected value="" disabled>{{ section.settings.optionPreview }}</option>
+                          {% for i in citylists %}
+                            <option value="{{ i | strip }}">{{ i | strip }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label>
+                    </div>
+                    <!-- <small>{{ section.settings.citylistwarning }}</small> -->
+                  </div>
+                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+                  <script>
+                    $(document).ready(function(){
+                      function areachange() {
+                        console.log($('#arealist').val(),'ssss')
+                        if($('#arealist').val()=='' || $('#arealist').val() == null) {
+                          $('[name="checkout"]').attr('disabled','disabled');
+                          $('#arealist').addClass('warnselectCity');
+                          $('<p class="redwarnig">{{ section.settings.cityselecterror }}</p>').insertAfter('[name="checkout"]');
+                        } else {
+                          $('[name="checkout"]').removeAttr('disabled');
+                          $('.redwarnig').remove();
+                          $('#arealist').removeClass('warnselectCity');
+                        }
+                      }
+                      areachange();
+                      $('body').on('change','#arealist', function(){
+                        areachange();
+                        $(this).closest('form').attr('action','/cart?step=contact_information&checkout[shipping_address][city]='+$(this).val());
+                      })
+                    });
+                  </script>
+                {% endif %}
                 <button
                   type="submit"
                   name="checkout"
                   id="checkout"
                   form="cart"
                   class="btn btn-medium btn-w100 checkout"
+                  {% if section.settings.cityLabel != blank %}
+                    disabled="disabled" aria-disabled="true"
+                  {% endif %}
                   {% if cart_has_oos %}disabled aria-disabled="true"{% endif %}
+                  
                 >
                   <span>
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
