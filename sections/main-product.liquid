@@ -132,25 +132,71 @@
     max-width: 100%;
   }
 
-  #shopify-section-{{ section.id }} .product-slider-thumbnail {
+  #shopify-section-{{ section.id }} .product-slider-thumbnail,
+  #shopify-section-{{ section.id }} .main-product-thumbs-rail {
     order: 0 !important;
     width: var(--mpThumbSize) !important;
     flex: 0 0 var(--mpThumbSize) !important;
     height: var(--mpMainImageHeight) !important;
     overflow: hidden;
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .main-product-thumbs-arrow {
+    flex: 0 0 28px;
+    width: 100%;
+    height: 28px;
+    border: 1px solid #111;
+    border-radius: 999px;
+    background: #fff;
+    color: #111;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .main-product-thumbs-arrow:hover {
+    background: #111;
+    color: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .main-product-thumbs-arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .main-product-thumbs-arrow--prev svg,
+  #shopify-section-{{ section.id }} .main-product-thumbs-arrow--next svg {
+    display: block;
   }
 
   #shopify-section-{{ section.id }} .product-slider-nav-wrapper.main-product-thumbs-stack {
     transform: none !important;
     transform-origin: unset !important;
     width: 100% !important;
-    height: 100% !important;
+    flex: 1 1 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
     margin: 0 !important;
     display: flex !important;
     flex-direction: column;
     gap: 8px;
     overflow-y: auto;
     overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .product-slider-nav-wrapper.main-product-thumbs-stack::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
   }
 
   #shopify-section-{{ section.id }} .product-slider-nav-wrapper.main-product-thumbs-stack .main-product-thumb {
@@ -160,14 +206,23 @@
     position: relative !important;
     left: auto !important;
     padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
   }
 
   #shopify-section-{{ section.id }} .main-product-thumb .main-product-thumb-item {
+    display: block;
+    width: 100%;
+    height: 100%;
     border-radius: {{ mp_radius }}px;
     background-color: var(--mpImageBg);
     border: 1px solid {{ mp_border }};
     overflow: hidden;
+    box-sizing: border-box;
   }
 
   #shopify-section-{{ section.id }} .main-product-thumb.is-nav-selected .main-product-thumb-item {
@@ -429,74 +484,145 @@
 
     function initMainThumbs() {
       var main = root.querySelector('#main-product-' + sectionId);
+      var rail = root.querySelector('.main-product-thumbs-rail');
+      var stack = root.querySelector('.main-product-thumbs-stack');
       var thumbs = root.querySelectorAll('.main-product-thumbs-stack .main-product-thumb');
-      if (!main || !thumbs.length) return;
+      var prevBtn = root.querySelector('.main-product-thumbs-arrow--prev');
+      var nextBtn = root.querySelector('.main-product-thumbs-arrow--next');
+      if (!main || !stack || !thumbs.length) return;
 
-      if (main.dataset.thumbsBound === 'true') return;
-      main.dataset.thumbsBound = 'true';
+      if (stack.dataset.thumbsBound === 'true') return;
+      stack.dataset.thumbsBound = 'true';
 
       function getFlickity() {
-        var flkty = main.flickityInstance || (window.Flickity && Flickity.data(main));
-        if (!flkty && window.jQuery) {
+        if (window.jQuery) {
           try {
-            flkty = jQuery(main).data('flickity');
+            var jqFlkty = jQuery(main).data('flickity');
+            if (jqFlkty) return jqFlkty;
           } catch (e) {}
         }
-        return flkty;
+        return main.flickityInstance || (window.Flickity && Flickity.data(main)) || null;
       }
 
-      function setActiveByMediaId(mediaId) {
-        if (!mediaId) return;
-        var id = String(mediaId);
-        thumbs.forEach(function (thumb) {
-          thumb.classList.toggle(
-            'is-nav-selected',
-            String(thumb.getAttribute('data-media-id')) === id
-          );
+      function setActive(index, mediaId) {
+        thumbs.forEach(function (thumb, i) {
+          var active = mediaId
+            ? String(thumb.getAttribute('data-media-id')) === String(mediaId)
+            : i === index;
+          thumb.classList.toggle('is-nav-selected', active);
         });
       }
 
-      function syncActiveFromSlider() {
-        var flkty = getFlickity();
-        if (!flkty || !flkty.selectedElement) return;
-        setActiveByMediaId(flkty.selectedElement.getAttribute('data-media-id'));
+      function scrollThumbIntoView(thumb) {
+        if (!thumb || !stack) return;
+        var stackRect = stack.getBoundingClientRect();
+        var thumbRect = thumb.getBoundingClientRect();
+        if (thumbRect.top < stackRect.top) {
+          stack.scrollTop -= stackRect.top - thumbRect.top + 8;
+        } else if (thumbRect.bottom > stackRect.bottom) {
+          stack.scrollTop += thumbRect.bottom - stackRect.bottom + 8;
+        }
+        updateArrowState();
       }
 
-      thumbs.forEach(function (thumb) {
-        thumb.addEventListener('click', function () {
-          var mediaId = thumb.getAttribute('data-media-id');
-          if (!mediaId) return;
+      function updateArrowState() {
+        if (!prevBtn || !nextBtn) return;
+        var maxScroll = stack.scrollHeight - stack.clientHeight;
+        prevBtn.disabled = stack.scrollTop <= 2;
+        nextBtn.disabled = stack.scrollTop >= maxScroll - 2 || maxScroll <= 0;
+        if (rail) {
+          rail.classList.toggle('is-scrollable', maxScroll > 2);
+        }
+      }
 
-          var flkty = getFlickity();
-          if (!flkty) return;
+      function selectByThumb(thumb) {
+        if (!thumb) return;
+        var index = parseInt(thumb.getAttribute('data-index'), 10);
+        if (isNaN(index)) {
+          index = Array.prototype.indexOf.call(thumbs, thumb);
+        }
+        var mediaId = thumb.getAttribute('data-media-id');
+        var flkty = getFlickity();
 
-          var slide =
-            main.querySelector('.product-info-item[data-media-id="' + mediaId + '"]') ||
-            main.querySelector('[data-media-id="' + mediaId + '"]');
-
-          if (slide && typeof flkty.selectCell === 'function') {
-            flkty.selectCell(slide);
-          } else if (slide) {
-            var cells = flkty.cells || [];
-            for (var i = 0; i < cells.length; i++) {
-              if (cells[i].element === slide || (cells[i].element && cells[i].element.contains(slide))) {
-                flkty.select(i);
-                break;
-              }
+        if (flkty) {
+          var matchedIndex = -1;
+          var cells = flkty.cells || [];
+          for (var i = 0; i < cells.length; i++) {
+            var el = cells[i].element;
+            if (!el) continue;
+            var cellId = el.getAttribute('data-media-id');
+            if (!cellId && el.id && el.id.indexOf('product-media-') === 0) {
+              cellId = el.id.replace('product-media-', '');
+            }
+            if (mediaId && String(cellId) === String(mediaId)) {
+              matchedIndex = i;
+              break;
             }
           }
 
-          setActiveByMediaId(mediaId);
-        });
-      });
+          var targetIndex = matchedIndex >= 0 ? matchedIndex : index;
+          if (window.jQuery && jQuery(main).hasClass('flickity-enabled')) {
+            jQuery(main).flickity('select', targetIndex);
+          } else if (typeof flkty.select === 'function') {
+            flkty.select(targetIndex);
+          }
+          setActive(targetIndex, mediaId);
+        } else {
+          setActive(index, mediaId);
+        }
 
-      if (window.jQuery) {
-        jQuery(main).on('change.flickity select.flickity', syncActiveFromSlider);
-      } else if (main.addEventListener) {
-        main.addEventListener('change', syncActiveFromSlider);
+        scrollThumbIntoView(thumb);
       }
 
-      syncActiveFromSlider();
+      function syncFromSlider() {
+        var flkty = getFlickity();
+        if (!flkty) return;
+        var index = flkty.selectedIndex || 0;
+        var mediaId = flkty.selectedElement
+          ? flkty.selectedElement.getAttribute('data-media-id')
+          : null;
+        setActive(index, mediaId);
+        var activeThumb =
+          (mediaId && stack.querySelector('.main-product-thumb[data-media-id="' + mediaId + '"]')) ||
+          thumbs[index];
+        scrollThumbIntoView(activeThumb);
+      }
+
+      stack.addEventListener('click', function (event) {
+        var thumb = event.target.closest('.main-product-thumb');
+        if (!thumb || !stack.contains(thumb)) return;
+        event.preventDefault();
+        selectByThumb(thumb);
+      });
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          stack.scrollBy({ top: -(thumbs[0].offsetHeight + 8) * 2, behavior: 'smooth' });
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          stack.scrollBy({ top: (thumbs[0].offsetHeight + 8) * 2, behavior: 'smooth' });
+        });
+      }
+      stack.addEventListener('scroll', updateArrowState, { passive: true });
+
+      if (window.jQuery) {
+        jQuery(main).on('ready.flickity change.flickity select.flickity settle.flickity', syncFromSlider);
+      }
+
+      var tries = 0;
+      (function waitForFlickity() {
+        if (getFlickity() || tries > 40) {
+          syncFromSlider();
+          updateArrowState();
+          return;
+        }
+        tries += 1;
+        setTimeout(waitForFlickity, 100);
+      })();
+
+      updateArrowState();
     }
 
     if (document.readyState === 'loading') {
@@ -507,8 +633,8 @@
 
     document.addEventListener('shopify:section:load', function (event) {
       if (event.detail && String(event.detail.sectionId) === String(sectionId)) {
-        var main = root.querySelector('#main-product-' + sectionId);
-        if (main) delete main.dataset.thumbsBound;
+        var stack = root.querySelector('.main-product-thumbs-stack');
+        if (stack) delete stack.dataset.thumbsBound;
         initMainThumbs();
       }
     });
