@@ -86,7 +86,7 @@
     "suggestions_list": "",
     "product_suggestions": [],
     "show_shipping": true,
-    "shipping_rate": "1000",
+    "shipping_rate": "20",
     "shipping_text": "Need ||price|| for free shipping",
     "shipping_success_text": "Congrats! You're qualified for free shipping!",
     "enable_gift_wrap": true,
