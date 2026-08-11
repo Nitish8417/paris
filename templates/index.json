@@ -251,7 +251,7 @@
         "autoplay": true,
         "interval": 5,
         "btn_text": "View All",
-        "btn_link": "shopify://collections",
+        "btn_link": "",
         "color_scheme": "secondary",
         "frame_color": "#f4f1ff",
         "divider_color": "#000041",
