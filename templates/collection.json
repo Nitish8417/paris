@@ -96,55 +96,10 @@
         "content_MwayKk",
         "content_fCigPe"
       ],
-      "disabled": true,
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
         "enable_first_default": false,
         "heading": "Frequently Asked Questions",
-        "heading_size": "h2",
-        "heading_size_mobile": "h3_mobile",
-        "heading_alignment": "left",
-        "color_scheme": "",
-        "top_space_desktop": 0,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
-    },
-    "collapsible_content_ax7xFL": {
-      "type": "collapsible-content",
-      "blocks": {
-        "content_FdeNaP": {
-          "type": "content",
-          "settings": {
-            "heading": "Collapsible row",
-            "content": "<p>Make use of collapsible tabs to provide customers with more specific information so they can decide what to buy.</p>"
-          }
-        },
-        "content_GDjpYy": {
-          "type": "content",
-          "settings": {
-            "heading": "Collapsible row",
-            "content": "<p>Make use of collapsible tabs to provide customers with more specific information so they can decide what to buy.</p>"
-          }
-        },
-        "content_RmYhAr": {
-          "type": "content",
-          "settings": {
-            "heading": "Collapsible row",
-            "content": "<p>Make use of collapsible tabs to provide customers with more specific information so they can decide what to buy.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "content_FdeNaP",
-        "content_GDjpYy",
-        "content_RmYhAr"
-      ],
-      "name": "t:sections.collapsible_content.presets.name",
-      "settings": {
-        "enable_first_default": false,
-        "heading": "Collapsible content",
         "heading_size": "h2",
         "heading_size_mobile": "h3_mobile",
         "heading_alignment": "left",
@@ -160,7 +115,6 @@
     "banner",
     "breadcrumb_JigR4z",
     "main-collection",
-    "collapsible_content_nxNdgy",
-    "collapsible_content_ax7xFL"
+    "collapsible_content_nxNdgy"
   ]
 }
