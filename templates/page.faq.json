@@ -31,12 +31,13 @@
     },
     "main-page": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
-        "color_scheme": "",
-        "top_space_desktop": 70,
-        "bottom_space_desktop": 70,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
+        "color_scheme": "scheme-774d6648-8f47-4a6e-94b8-04081478bf83",
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 10
       }
     },
     "collapsible_content_CPz7AY": {
