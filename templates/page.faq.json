@@ -1,1 +1,209 @@
-{"sections":{"banner":{"type":"page-banner","settings":{"banner_height_desktop":"small","banner_height_mobile":"small","heading":"FAQs","description":"Add description here","heading_size":"h2","heading_size_mobile":"h2_mobile","content_width":"medium","heading_alignment":"center","color_scheme":"secondary","bg_color_opacity":"#eeeeee","overlay_opacity":50,"top_space_desktop":0,"bottom_space_desktop":0,"top_space_mobile":0,"bottom_space_mobile":0}},"main-page":{"type":"main-page","settings":{"color_scheme":"","top_space_desktop":70,"bottom_space_desktop":70,"top_space_mobile":40,"bottom_space_mobile":40}},"collapsible_content_CPz7AY":{"type":"collapsible-content","blocks":{"content_BmDRhN":{"type":"content","settings":{"heading":"Frequently asked question","content":"<p>Use this text to answer questions in as much detail as possible for your customers.<\/p>"}},"content_TDLBXe":{"type":"content","settings":{"heading":"Frequently asked question","content":"<p>Use this text to answer questions in as much detail as possible for your customers.<\/p>"}},"content_BgVgKE":{"type":"content","settings":{"heading":"Frequently asked question","content":"<p>Use this text to answer questions in as much detail as possible for your customers.<\/p>"}}},"block_order":["content_BmDRhN","content_TDLBXe","content_BgVgKE"],"settings":{"enable_first_default":false,"heading":"Collapsible content","heading_size":"h3","heading_size_mobile":"h3_mobile","heading_alignment":"left","color_scheme":"","top_space_desktop":70,"bottom_space_desktop":70,"top_space_mobile":40,"bottom_space_mobile":40}},"icon_with_text_NkFYDE":{"type":"icon-with-text","blocks":{"column_QwwjNQ":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}},"column_QEtaRq":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}},"column_cB998P":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}},"column_QUjpeW":{"type":"column","settings":{"icon":"shipping","custom_svg":"","heading":"Add Heading here","description":"Add text here","btn_text":"","btn_link":"","btn_size":"medium"}}},"block_order":["column_QwwjNQ","column_QEtaRq","column_cB998P","column_QUjpeW"],"settings":{"number_column":4,"heading_size":"h5","icon_position":"top","icon_size":"small","icon_background_enable":false,"color_scheme":"secondary","column_background":"#ffffff","icon_background":"#ffffff","icon_color":"#000000","heading_color":"#000000","text_color":"#000000","top_space_desktop":80,"bottom_space_desktop":80,"top_space_mobile":40,"bottom_space_mobile":40}}},"order":["banner","main-page","collapsible_content_CPz7AY","icon_with_text_NkFYDE"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "page-banner",
+      "settings": {
+        "banner_height_desktop": "small",
+        "banner_height_mobile": "small",
+        "heading": "FAQs",
+        "description": "",
+        "heading_size": "h2",
+        "heading_size_mobile": "h2_mobile",
+        "content_width": "medium",
+        "heading_alignment": "center",
+        "color_scheme": "secondary",
+        "bg_color_opacity": "#eeeeee",
+        "overlay_opacity": 50,
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
+      }
+    },
+    "main-page": {
+      "type": "main-page",
+      "settings": {
+        "color_scheme": "",
+        "top_space_desktop": 70,
+        "bottom_space_desktop": 70,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "collapsible_content_CPz7AY": {
+      "type": "collapsible-content",
+      "blocks": {
+        "content_BmDRhN": {
+          "type": "content",
+          "settings": {
+            "heading": "Do Techty products come with a warranty?",
+            "content": "<p><br/>Yes, and the length is printed on each product page under the Warranty section, it varies by brand and item. As examples, the RAVPower jump starters carry 18 months and the Ugreen LP592 laptop stand carries two years. Check the specific product page before buying, or call +965 2228 0345 and we'll confirm.<br/><br/></p>"
+          }
+        },
+        "content_TDLBXe": {
+          "type": "content",
+          "settings": {
+            "heading": "How do I make a warranty claim?",
+            "content": "<p>Call +965 2228 0345 or email <a href=\"mailto:info@techty.com\">info@techty.com</a> with your order number and a short description of the fault. Keep the original packaging and accessories where you can,  it makes the process faster. For heavy items already installed, issues are handled through technical support or a warranty claim rather than a return.<br/><br/></p>"
+          }
+        },
+        "content_BgVgKE": {
+          "type": "content",
+          "settings": {
+            "heading": "Does Techty deliver for free in Kuwait?",
+            "content": "<p><br/>Orders over KD 20 ship free within Kuwait City limits. Under KD 20 there's a KD 2 delivery fee. Outlying areas Wafra, Khairan, Kabd, Abdaly, Sabah Al Ahmad, Nuwaiseeb and similar are a flat KD 6 for small items, or KD 30 for anything heavy enough to need a larger vehicle.<br/><br/></p>"
+          }
+        },
+        "content_bWhTd8": {
+          "type": "content",
+          "settings": {
+            "heading": "How fast is delivery in Kuwait?",
+            "content": "<p>Most orders arrive within one to two working days. Pre-order items take longer usually 12 to 15 working days and customised orders can run to 10 working days or more. If a product is listed as pre-order on its page, that timeline applies rather than the standard one.<br/><br/></p>"
+          }
+        },
+        "content_yANbUb": {
+          "type": "content",
+          "settings": {
+            "heading": "Can I get an item that's out of stock?",
+            "content": "<p>Often, yes. Message us on WhatsApp at +965 2228 0345 with the product name and we'll tell you whether it's due back and roughly when. Some items can be ordered in specially, depending on the brand.</p>"
+          }
+        },
+        "content_7ddbAq": {
+          "type": "content",
+          "settings": {
+            "heading": "What does \"pre-order\" mean on a product page?",
+            "content": "<p>The item isn't in stock yet but you can reserve one now. Pre-orders usually ship in 12 to 15 working days rather than the standard one to two. If your order mixes pre-order and in-stock items, tell us whether you'd like them shipped together or separately.</p>"
+          }
+        },
+        "content_aTMPm4": {
+          "type": "content",
+          "settings": {
+            "heading": "Do you ship outside Kuwait?",
+            "content": "<p>Yes,  across the GCC, plus Jordan and Lebanon. International orders usually take 3 to 10 working days depending on destination and how quickly customs clears. You'll get a tracking number once it ships. Customs duties and import taxes in the destination country are the buyer's responsibility.<br/><br/></p>"
+          }
+        },
+        "content_BKY7mM": {
+          "type": "content",
+          "settings": {
+            "heading": "Do the products work with Kuwait plugs and voltage?",
+            "content": "<p><br/>Kuwait uses the Type G three-pin socket at 240V, the same as the UK. Wall chargers and mains-powered devices stocked for the Gulf market come with the correct plug fitted. The plug type is listed in the specification section on each product page.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "content_BmDRhN",
+        "content_TDLBXe",
+        "content_BgVgKE",
+        "content_bWhTd8",
+        "content_yANbUb",
+        "content_7ddbAq",
+        "content_aTMPm4",
+        "content_BKY7mM"
+      ],
+      "settings": {
+        "enable_first_default": false,
+        "heading": "Frequently Asked Questions",
+        "heading_size": "h3",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "color_scheme": "",
+        "top_space_desktop": 70,
+        "bottom_space_desktop": 70,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "icon_with_text_NkFYDE": {
+      "type": "icon-with-text",
+      "blocks": {
+        "column_QwwjNQ": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "column_QEtaRq": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "column_cB998P": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        },
+        "column_QUjpeW": {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "custom_svg": "",
+            "heading": "Add Heading here",
+            "description": "Add text here",
+            "btn_text": "",
+            "btn_link": "",
+            "btn_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "column_QwwjNQ",
+        "column_QEtaRq",
+        "column_cB998P",
+        "column_QUjpeW"
+      ],
+      "disabled": true,
+      "settings": {
+        "number_column": 4,
+        "heading_size": "h5",
+        "icon_position": "top",
+        "icon_size": "small",
+        "icon_background_enable": false,
+        "color_scheme": "secondary",
+        "column_background": "#ffffff",
+        "icon_background": "#ffffff",
+        "icon_color": "#000000",
+        "heading_color": "#000000",
+        "text_color": "#000000",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main-page",
+    "collapsible_content_CPz7AY",
+    "icon_with_text_NkFYDE"
+  ]
+}
