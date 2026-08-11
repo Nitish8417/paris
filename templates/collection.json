@@ -49,11 +49,72 @@
         "top_space_mobile": 0,
         "bottom_space_mobile": 40
       }
+    },
+    "collapsible_content_nxNdgy": {
+      "type": "collapsible-content",
+      "blocks": {
+        "content_cwtYxH": {
+          "type": "content",
+          "settings": {
+            "heading": "Will a magnetic car mount hold my phone properly?",
+            "content": "<p>Magnetic mounts need either a MagSafe-compatible case or a metal ring fitted between your phone and its case. Thick rugged cases weaken the hold, so a clip-on or gooseneck mount is safer for those. Each product page lists the mounting type, whether it is vent, dashboard or windscreen.</p>"
+          }
+        },
+        "content_i99f9p": {
+          "type": "content",
+          "settings": {
+            "heading": "Does wireless car charging still work in Kuwait summer heat?",
+            "content": "<p>Wireless charging generates more heat than a cable, and phones slow charging down to protect the battery when they get hot. Keep the mount out of direct sun on the dashboard and use the air vent position where you can. In peak summer, a wired car charger will charge faster and cooler.</p>"
+          }
+        },
+        "content_tTdq7i": {
+          "type": "content",
+          "settings": {
+            "heading": "Do I need a 100W cable if my charger is only 20W?",
+            "content": "<p>No, but there is no harm in it. A cable rated above your charger simply works at the charger's speed. The problem is the reverse: a low-rated cable will throttle a powerful charger. If you are buying one cable for a phone and a laptop, choose the 100W rating.</p>"
+          }
+        },
+        "content_MwayKk": {
+          "type": "content",
+          "settings": {
+            "heading": "Do you sell phone cases and screen protectors?",
+            "content": "<p>Yes. Cases are at techty.com/collections/phone-cases and screen protectors at techty.com/collections/screen-protector. Both are model-specific, so check the compatible devices listed on the product page before ordering. If your exact model is not shown, message us on WhatsApp at +965 2228 0345 and we will confirm.</p>"
+          }
+        },
+        "content_fCigPe": {
+          "type": "content",
+          "settings": {
+            "heading": "Which brands do you stock for mobile accessories?",
+            "content": "<p>Techty carries Anker, Ugreen, Promate, Porodo, Powerology, Hoco, RAVPower, LDNIO, Earldom and Pawa across cables, chargers, power banks and car mounts. Anker and Ugreen cover the premium end, while Porodo, Powerology and Promate are built for the Gulf market with local warranty support. Every brand has its own collection page under the Brands menu.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "content_cwtYxH",
+        "content_i99f9p",
+        "content_tTdq7i",
+        "content_MwayKk",
+        "content_fCigPe"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "enable_first_default": false,
+        "heading": "Frequently Asked Questions",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "color_scheme": "",
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
     }
   },
   "order": [
     "banner",
     "breadcrumb_JigR4z",
-    "main-collection"
+    "main-collection",
+    "collapsible_content_nxNdgy"
   ]
 }
