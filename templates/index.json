@@ -905,7 +905,7 @@
           "type": "logo",
           "name": "PROMiXX",
           "settings": {
-            "image": "shopify://shop_images/promixx_na_sirku.svg",
+            "image": "shopify://shop_images/Untitled_design_2.png",
             "image_link": "shopify://collections/promixx",
             "image_width": 50
           }
@@ -941,7 +941,7 @@
           "type": "logo",
           "name": "Earldom",
           "settings": {
-            "image": "shopify://shop_images/A5521db2c569643758ea36c2d8f386222F.avif",
+            "image": "shopify://shop_images/Earldom_Logo.webp",
             "image_link": "shopify://collections/earldom",
             "image_width": 50
           }
@@ -968,7 +968,7 @@
           "type": "logo",
           "name": "Hoco",
           "settings": {
-            "image": "shopify://shop_images/images.png",
+            "image": "shopify://shop_images/lg-671e08616a7a8-hoco_2ba44442-46b2-489f-8129-08577072b8c4.webp",
             "image_link": "shopify://collections/hoco",
             "image_width": 100
           }
@@ -977,7 +977,7 @@
           "type": "logo",
           "name": "UGreen",
           "settings": {
-            "image": "shopify://shop_images/UGREEN-logo.jpg",
+            "image": "shopify://shop_images/Porodo_Logo_2_0858171e-99d2-43fc-9545-4fe156d19218.png",
             "image_link": "shopify://collections/ugreen-1",
             "image_width": 100
           }
@@ -986,7 +986,7 @@
           "type": "logo",
           "name": "Laifen",
           "settings": {
-            "image": "shopify://shop_images/logo2.webp",
+            "image": "shopify://shop_images/image_1_-min.png",
             "image_link": "shopify://collections/laifen",
             "image_width": 100
           }
@@ -1004,7 +1004,7 @@
           "type": "logo",
           "name": "Monster",
           "settings": {
-            "image": "shopify://shop_images/6165e211a7b8465af945cbb7_monster-web.png",
+            "image": "shopify://shop_images/6165e211a7b8465af945cbb7_monster-web.webp",
             "image_link": "shopify://collections/monster",
             "image_width": 100
           }
@@ -1013,7 +1013,7 @@
           "type": "logo",
           "name": "Nebula",
           "settings": {
-            "image": "shopify://shop_images/nebula-by-anker-innovations-limited-vector-logo.png",
+            "image": "shopify://shop_images/nebula_bbc0cbc3-a39f-41e8-ae74-dd9b62c4fa40.png",
             "image_link": "shopify://collections/nebula",
             "image_width": 100
           }
@@ -1022,7 +1022,7 @@
           "type": "logo",
           "name": "Porodo",
           "settings": {
-            "image": "shopify://shop_images/Porodo_-_Logo_71bf8338-0424-47c4-87bc-24001e87a18e.jpg",
+            "image": "shopify://shop_images/Porodo_Logo1_888a2887-b87f-4793-a0eb-49bab756297b.png",
             "image_link": "shopify://collections/porodo",
             "image_width": 100
           }
@@ -1031,7 +1031,7 @@
           "type": "logo",
           "name": "Powerology",
           "settings": {
-            "image": "shopify://shop_images/powerology.png",
+            "image": "shopify://shop_images/Logos_3.png",
             "image_link": "shopify://collections/powerology",
             "image_width": 100
           }
@@ -1059,7 +1059,7 @@
           "type": "logo",
           "name": "Soundcore",
           "settings": {
-            "image": "shopify://shop_images/soundcore-logo-png_seeklogo-402822.png",
+            "image": "shopify://shop_images/Soundcore_logo.png",
             "image_link": "shopify://collections/soundcore",
             "image_width": 100
           }
@@ -1115,7 +1115,7 @@
         "heading_size_mobile": "h3_mobile",
         "heading_alignment": "center",
         "color_scheme": "secondary",
-        "background": "#ffffff",
+        "background": "#0F0E0E",
         "border": "#7c7cee",
         "top_space_desktop": 50,
         "bottom_space_desktop": 50,
