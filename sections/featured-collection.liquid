@@ -58,7 +58,7 @@
             "cellAlign": "left",
             "contain": false,
             "pageDots": false,
-            "prevNextButtons": false,
+            "prevNextButtons": true,
             "resize": true,
             "draggable": true,
             "freeScroll": true,
@@ -174,7 +174,7 @@
     box-sizing: border-box;
   }
 
-  /* Same image height for every card — do not use height:100% (breaks Flickity) */
+  /* Same image height for every card */
   #shopify-section-{{ section.id }} .product-card .media-image {
     height: auto !important;
     padding-top: var(--fcMediaRatio) !important;
@@ -249,6 +249,14 @@
     margin-bottom: 6px;
   }
 
+  /* Desktop View: Keep Arrows Visible */
+  @media only screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .flickity-button,
+    #shopify-section-{{ section.id }} .flickity-prev-next-button {
+      display: flex !important;
+    }
+  }
+
   @media only screen and (max-width: 989px) and (min-width: 768px) {
     #shopify-section-{{ section.id }} .product-media-cards.featured-collection-item {
       width: 33.333%;
@@ -259,13 +267,14 @@
     }
   }
 
+  /* Mobile View Settings */
   @media only screen and (max-width: 767px) {
     #shopify-section-{{ section.id }}.shopify-section {
       --topSpace: {{ section.settings.top_space_mobile }}px;
       --bottomSpace: 20px;
     }
 
-    /* Hide Flickity Navigation Buttons / Arrows completely in Mobile */
+    /* Hide Flickity Navigation Buttons / Arrows completely on Mobile */
     #shopify-section-{{ section.id }} .flickity-button,
     #shopify-section-{{ section.id }} .flickity-prev-next-button,
     #shopify-section-{{ section.id }} .flickity-page-dots {
@@ -290,7 +299,6 @@
       overflow: hidden !important;
     }
 
-    /* Prevent the theme layout wrapper from adding extra spacing */
     #shopify-section-{{ section.id }} .featured-collection-wrapper > div {
       width: 100% !important;
       max-width: 100% !important;
@@ -301,7 +309,6 @@
       box-sizing: border-box !important;
     }
 
-    /* Heading spacing */
     #shopify-section-{{ section.id }} .featured-collection__header {
       margin-bottom: 14px !important;
       gap: 10px !important;
@@ -312,7 +319,6 @@
       line-height: 1.25;
     }
 
-    /* Slider stays inside the 10px section container */
     #shopify-section-{{ section.id }} .slider.product_card {
       width: 100% !important;
       max-width: 100% !important;
@@ -344,13 +350,11 @@
       height: auto !important;
     }
 
-    /* Remove extra space from first and second visible cards */
     #shopify-section-{{ section.id }} .product-media-cards.featured-collection-item:first-child {
       padding-left: 0 !important;
       padding-right: 5px !important;
     }
 
-    /* Equal card layout */
     #shopify-section-{{ section.id }} .product-card,
     #shopify-section-{{ section.id }} .product-card-inner {
       width: 100% !important;
@@ -359,7 +363,6 @@
       flex-direction: column !important;
     }
 
-    /* Equal image box */
     #shopify-section-{{ section.id }} .product-card .media-image {
       width: 100% !important;
       height: 145px !important;
@@ -377,7 +380,6 @@
       box-sizing: border-box !important;
     }
 
-    /* Product content */
     #shopify-section-{{ section.id }} .product-header {
       width: 100% !important;
       padding-top: 8px !important;
@@ -416,7 +418,6 @@
       font-size: 11px !important;
     }
 
-    /* Add to cart alignment */
     #shopify-section-{{ section.id }} .product-card-atc {
       width: 100% !important;
       margin-top: auto !important;
@@ -431,7 +432,6 @@
       font-size: 11px !important;
     }
 
-    /* View All closer to products */
     #shopify-section-{{ section.id }} .show-all-btn-box {
       margin-top: 18px !important;
       margin-bottom: 0 !important;
