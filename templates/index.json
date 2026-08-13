@@ -1107,7 +1107,7 @@
         "show_card_background": true,
         "show_card_border": true,
         "layout_type": "marquee",
-        "scrolling_speed": 30,
+        "scrolling_speed": 50,
         "direction": "ltr",
         "column_spacing": 50,
         "heading": "Brands",
