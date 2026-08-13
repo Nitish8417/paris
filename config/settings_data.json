@@ -100,6 +100,7 @@
     "enable_categories": true,
     "enable_upsell_product": true,
     "upsell_product": [],
+    "enable_back_to_top": false,
     "favicon": "shopify://shop_images/instgaram2.png",
     "content_for_index": [],
     "blocks": {
