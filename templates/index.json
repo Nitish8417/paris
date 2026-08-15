@@ -653,7 +653,7 @@
           "type": "button",
           "settings": {
             "text": "View Collection",
-            "link": "shopify://collections/miko",
+            "link": "shopify://collections/anker",
             "size": "medium"
           }
         }
