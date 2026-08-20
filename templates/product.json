@@ -61,6 +61,7 @@
         },
         "ede9143f-6f27-49e8-8dc2-c71d85160bd7": {
           "type": "share",
+          "disabled": true,
           "settings": {}
         },
         "dd248fbc-e1dc-4ffc-a4fa-fc8137d77fe1": {
