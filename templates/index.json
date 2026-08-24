@@ -15,7 +15,7 @@
         "slide_X4Wh74": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/banner_b2s.webp",
+            "image_desktop": "shopify://shop_images/techty_banner_b2s.jpg",
             "image_mobile": "shopify://shop_images/banner_b2s.webp",
             "subheading": "Back to School",
             "heading": "",
@@ -193,7 +193,7 @@
       ],
       "settings": {
         "layout_type": "fullwidth",
-        "desktop_height": "slider-custom",
+        "desktop_height": "desktop-adapt-image",
         "desktop_custom_height": 480,
         "mobile_height": "mobile-adapt-image",
         "mobile_custom_height": 370,
