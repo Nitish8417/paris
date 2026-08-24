@@ -12,6 +12,47 @@
     "slideshow_AwDwyy": {
       "type": "slideshow",
       "blocks": {
+        "slide_6XQqNQ": {
+          "type": "slide",
+          "settings": {
+            "subheading": "Back to School",
+            "heading": "Slide Heading",
+            "heading_size": "h2",
+            "heading_size_mobile": "h2_mobile",
+            "font_family": "heading",
+            "description": "Add descriptive text for your slide here.",
+            "description_size": "textMedium",
+            "content_position": "down-start",
+            "content_alignment": "left",
+            "content_width": "medium",
+            "mobile_content_position": "down-start",
+            "mobile_content_alignment": "left",
+            "btn_text_1": "Shop now",
+            "btn_link_1": "shopify://collections/all",
+            "btn_size_1": "medium",
+            "btn_as_link_1": false,
+            "btn_text_2": "Shop now",
+            "btn_link_2": "shopify://collections/all",
+            "btn_size_2": "medium",
+            "btn_as_link_2": false,
+            "heading_color": "#ffffff",
+            "description_color": "#ffffff",
+            "text_Overlay": "#000000",
+            "text_overlay_opacity": 20,
+            "btn_bg_color_1": "#0b0e0d",
+            "btn_text_color_1": "#ffffff",
+            "btn_border_color_1": "#000000",
+            "btn_hover_bg_color_1": "#ffffff",
+            "btn_hover_text_color_1": "#000000",
+            "btn_hover_border_color_1": "#ffffff",
+            "btn_bg_color_2": "#000000",
+            "btn_text_color_2": "#ffffff",
+            "btn_border_color_2": "#000000",
+            "btn_hover_bg_color_2": "#ffffff",
+            "btn_hover_text_color_2": "#000000",
+            "btn_hover_border_color_2": "#ffffff"
+          }
+        },
         "slide_X4Wh74": {
           "type": "slide",
           "settings": {
@@ -143,6 +184,7 @@
         }
       },
       "block_order": [
+        "slide_6XQqNQ",
         "slide_X4Wh74",
         "slide_3AR3Cp",
         "slide_RPf7kT"
