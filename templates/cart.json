@@ -18,7 +18,7 @@
         "citylist": "Abdaly\nAbdulla Al Salem\nAbdullah Mubarak\nAbu Futaira\nAbu Halifa\nAbu Hasaniya\nAdailiya\nAdan\nAhmadi\nAli Sabah Al Salim\nAmghara\nAndalous\nAnjafa\nArdiya\nBayan\nBida\nBneid Al-Qar\nBneidar\nDaiya\nDajeej\nDasma\nDhaher\nDoha\nEgaila\nFahad Al Ahmad\nFahaheel\nFaiha\nFarwaniya\nFintas\nFirdous\nFunaitis\nGarnata\nHadiya\nHawally\nHittin\nIshbelya\nJaber Al Ahmad\nJaber Al Ali\nJabriya\nJahra\nJibla\nJleeb Al Shuyoukh\nKabd\nKaifan\nKhairan\nKhaitan\nKhaldiya\nMahboula\nMaidan Hawalli\nMangaf\nMansuriya\nMesayel\nMessila\nMina Abdullah\nMina Zour\nMirgab\nMishrif\nMubarak Al Abdullah\nMubarak Al Kabeer\nMutla\nNaeem\nNahda\nNahdha\nNaseem\nNuwaiseeb\nNuzha\nOmariya\nOyoun\nQadsiya\nQairawan\nQasr\nQortuba\nQurain\nQusour\nRabiya\nRai\nRawda\nRehab\nRiggae\nRiqqa\nRumaithiya\nSaad Al Abdullah\nSabah Al Ahmad\nSabah Al Nasser\nSabah Al Salem\nSabahiya\nSabhan\nSalam\nSalmiya\nSalwa\nShaab\nShamiya\nSharq\nShuhada\nShuwaikh\nSiddiq\nSulaibikhat\nSulaibiya\nSurra\nTaima\nUmm Qasr\nWafra\nYarmouk\nZahra",
         "citylistwarning": "Please do not change area name on the auto fill at checkout.",
         "cityselecterror": "",
-        "show_cart_note": false,
+        "show_cart_note": true,
         "payment_enable": true,
         "shipping_estimates": true,
         "top_space_desktop": 80,
