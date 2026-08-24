@@ -5234,27 +5234,3 @@ figure.scaner-image {
     padding-right: 12px !important;
   }
 
-}
-/* Forces Paris Product Gallery into an Infinite Scrollable Stack Layout */
-@media screen and (min-width: 750px) {
-  .product-single__media-group, 
-  .product__media-list {
-    display: flex !important;
-    flex-direction: column !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    height: auto !important;
-  }
-  .product__media-item,
-  .product-single__media-wrapper {
-    width: 100% !important;
-    margin-bottom: 15px !important;
-    max-width: 100% !important;
-  }
-  /* Keeps navigation arrows hidden since they are no longer needed */
-  .slider-button, 
-  .product__media-navigation {
-    display: none !important;
-  }
-}
-

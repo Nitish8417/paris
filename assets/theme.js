@@ -2513,3 +2513,20 @@ function videoTagPause(section = document) {
       });
     });
 }
+document.addEventListener("DOMContentLoaded", function() {
+  // Wait a split second for the Paris theme to build its sliders
+  setTimeout(function() {
+    // Target all Flickity sliders on the product page
+    const productSliders = document.querySelectorAll('.product-media-slider, .product__media-list');
+    
+    productSliders.forEach(function(slider) {
+      // Check if Flickity is running on the element
+      const flkty = Flickity.data(slider);
+      if (flkty) {
+        // Force Flickity to enable infinite loop wrapping
+        flkty.options.wrapAround = true;
+        flkty.activate(); // Refresh the slider UI
+      }
+    });
+  }, 1000); 
+});
