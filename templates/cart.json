@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-cart",
+      "custom_css": [],
       "settings": {
         "cityLabel": "Area",
         "optionPreview": "Select The Delivery Area",
