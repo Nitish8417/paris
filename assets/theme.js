@@ -2513,3 +2513,25 @@ function videoTagPause(section = document) {
       });
     });
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const checkSlider = setInterval(() => {
+    // Targets the standard product slider container in Paris theme
+    const slider = document.querySelector('.product__media-list, .product-media-slider, [data-product-single-media-group]');
+    
+    if (slider) {
+      clearInterval(checkSlider);
+      
+      // Monitor scrolling/sliding actions
+      slider.addEventListener('scroll', () => {
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+        
+        // If user scrolls to the absolute end, snap back to the start smoothly
+        if (slider.scrollLeft >= maxScroll - 5) {
+          setTimeout(() => {
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
+          }, 300); // Small delay for user visual feedback
+        }
+      });
+    }
+  }, 500);
+});
