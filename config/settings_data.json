@@ -52,7 +52,7 @@
     "all_box_radius": "4",
     "all_product_grid_radius": "4",
     "all_button_radius": "4",
-    "all_input_radius": "4",
+    "all_input_radius": "10",
     "show_variant_image": true,
     "swatches_style": "square",
     "swatchs_custom_value": "",
@@ -126,7 +126,7 @@
           "border_color": "#000000",
           "link_color": "#e6dfff",
           "input_bg": "#ffffff",
-          "input_border": "#03032b",
+          "input_border": "#000041",
           "input_text": "#5c5d5d"
         }
       },
