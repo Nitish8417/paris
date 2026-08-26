@@ -196,7 +196,7 @@
         "desktop_height": "slider-custom",
         "desktop_custom_height": 480,
         "mobile_height": "mobile-slider-custom",
-        "mobile_custom_height": 370,
+        "mobile_custom_height": 350,
         "rotate": true,
         "interval": 4,
         "transition": "swipe",
