@@ -193,7 +193,7 @@
       ],
       "settings": {
         "layout_type": "fullwidth",
-        "desktop_height": "slider-small",
+        "desktop_height": "slider-custom",
         "desktop_custom_height": 480,
         "mobile_height": "mobile-slider-custom",
         "mobile_custom_height": 370,
