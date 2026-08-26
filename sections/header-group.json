@@ -124,7 +124,7 @@
         "logo_width": 300,
         "logo_position": "left",
         "desktop_transparent_header": false,
-        "menu": "new-mega-menu",
+        "menu": "",
         "menu_type": "mega_menu",
         "menu_font": "heading",
         "menu_font_size": "14",
