@@ -135,7 +135,7 @@ class PredictiveSearch extends HTMLElement {
       return;
     }
     fetch(
-      `${window.routes.predictive_search_url}?q=${encodeURIComponent(searchTerm)}&section_id=predictive-search`,
+      `${window.routes.predictive_search_url}?q=${encodeURIComponent(searchTerm)}&resources[type]=product&resources[options][fields]=title,variants.sku,product_type,variants.title,vendor&section_id=predictive-search`,
     )
       .then((response) => {
         if (!response.ok) {
