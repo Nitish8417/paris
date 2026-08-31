@@ -147,3 +147,17 @@ https://flickity.metafizzy.co
   pointer-events: auto;
   z-index: 1;
 }
+.product-images-wrapper .flickity-prev-next-button {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+
+.product-images-wrapper .flickity-prev-next-button.previous {
+  left: 20px;
+}
+
+.product-images-wrapper .flickity-prev-next-button.next {
+  right: 20px;
+}
