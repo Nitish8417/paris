@@ -2063,8 +2063,8 @@ button.shopify-payment-button__more-options {
 }
 
 .product-slider-nav-wrapper .flickity-prev-next-button {
-  width: 40px;
-  height: 40px;
+  width: 4px;
+  height: 4px;
   background: transparent;
   box-shadow: none;
   display: none;
