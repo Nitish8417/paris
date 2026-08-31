@@ -2104,7 +2104,7 @@ button.shopify-payment-button__more-options {
 
 .product-slider-wrapper .flickity-page-dots .dot.is-selected,
 .paroduct-main-gallery .flickity-page-dots .dot.is-selected {
-  opacity: .5;
+  opacity: 1;
 }
 
 .social-icons-wrapper {
