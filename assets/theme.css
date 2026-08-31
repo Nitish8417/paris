@@ -5257,4 +5257,27 @@ figure.scaner-image {
 
 .product-slider-wrapper .flickity-prev-next-button .flickity-button-icon {
   fill: #333;
+}.paroduct-main-gallery .flickity-prev-next-button {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: 32px;
+  height: 32px;
+  z-index: 9999;
+}
+
+.paroduct-main-gallery .flickity-prev-next-button.previous {
+  left: 40px;
+}
+
+.paroduct-main-gallery .flickity-prev-next-button.next {
+  right: 40px;
+}
+
+.paroduct-main-gallery .flickity-prev-next-button .flickity-button-icon {
+  fill: #333;
 }
