@@ -99,7 +99,7 @@ https://flickity.metafizzy.co
 }
 
 .flickity-prev-next-button .flickity-button-icon {
-  position: absolute;
+  position: flex;
   left: 20%;
   top: 20%;
   width: 60%;
