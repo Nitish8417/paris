@@ -2063,19 +2063,19 @@ button.shopify-payment-button__more-options {
 }
 
 .product-slider-nav-wrapper .flickity-prev-next-button {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background: transparent;
   box-shadow: none;
   display: none;
 }
 
 .product-slider-nav-wrapper .flickity-prev-next-button.previous {
-  left: -40px;
+  left: -30px;
 }
 
 .product-slider-nav-wrapper .flickity-prev-next-button.next {
-  right: -40px;
+  right: -30px;
 }
 
 .product-slider-wrapper .flickity-page-dots,
