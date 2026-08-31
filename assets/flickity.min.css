@@ -151,13 +151,28 @@ https://flickity.metafizzy.co
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: 32px;
+  height: 32px;
   z-index: 9999;
 }
 
+.product-images-wrapper .flickity-prev-next-button:hover,
+.product-images-wrapper .flickity-prev-next-button:focus {
+  background: transparent;
+  box-shadow: none;
+}
+
 .product-images-wrapper .flickity-prev-next-button.previous {
-  left: 20px;
+  left: 40px;
 }
 
 .product-images-wrapper .flickity-prev-next-button.next {
-  right: 20px;
+  right: 40px;
+}
+
+.product-images-wrapper .flickity-prev-next-button .flickity-button-icon {
+  fill: #333;
 }
