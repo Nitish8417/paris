@@ -41,7 +41,7 @@
         "products_per_page": 20,
         "enable_filtering": true,
         "enable_sorting": true,
-        "pagination_type": "pagination",
+        "pagination_type": "infinite",
         "grid_image_size": "portrait",
         "color_scheme": "primary",
         "top_space_desktop": 0,
