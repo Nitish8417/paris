@@ -147,7 +147,7 @@ https://flickity.metafizzy.co
   pointer-events: auto;
   z-index: 1;
 }
-.product-images-wrapper .flickity-prev-next-button {
+.product-slider-wrapper .flickity-prev-next-button {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
