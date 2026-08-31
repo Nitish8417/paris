@@ -159,20 +159,20 @@ https://flickity.metafizzy.co
   z-index: 9999;
 }
 
-.product-images-wrapper .flickity-prev-next-button:hover,
-.product-images-wrapper .flickity-prev-next-button:focus {
+.product-slider-wrapper .flickity-prev-next-button:hover,
+.product-slider-wrapper .flickity-prev-next-button:focus {
   background: transparent;
   box-shadow: none;
 }
 
-.product-images-wrapper .flickity-prev-next-button.previous {
+.product-slider-wrapper .flickity-prev-next-button.previous {
   left: 40px;
 }
 
-.product-images-wrapper .flickity-prev-next-button.next {
+.product-slider-wrapper .flickity-prev-next-button.next {
   right: 40px;
 }
 
-.product-images-wrapper .flickity-prev-next-button .flickity-button-icon {
+.product-slider-wrapper .flickity-prev-next-button .flickity-button-icon {
   fill: #333;
 }
