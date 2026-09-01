@@ -214,7 +214,7 @@
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
-        "enable_first_default": false,
+        "enable_first_default": true,
         "heading": "About Product",
         "heading_size": "h2",
         "heading_size_mobile": "h3_mobile",
