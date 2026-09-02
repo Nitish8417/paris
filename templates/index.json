@@ -479,7 +479,7 @@
         "image_background_color": "#ffffff",
         "enable_image_border": true,
         "show_add_to_cart": true,
-        "heading": "Audio & Wearables",
+        "heading": "Audio",
         "heading_size": "h3",
         "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
