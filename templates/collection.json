@@ -38,7 +38,7 @@
     "main-collection": {
       "type": "main-collection",
       "settings": {
-        "products_per_page": 20,
+        "products_per_page": 25,
         "enable_filtering": true,
         "enable_sorting": true,
         "pagination_type": "infinite",
