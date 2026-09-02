@@ -53,6 +53,13 @@
     "collapsible_content_nxNdgy": {
       "type": "collapsible-content",
       "blocks": {
+        "content_3th4Gy": {
+          "type": "content",
+          "settings": {
+            "heading": "",
+            "content": "<p>Make use of collapsible tabs to provide customers with more specific information so they can decide what to buy.</p>"
+          }
+        },
         "content_cwtYxH": {
           "type": "content",
           "disabled": true,
@@ -103,6 +110,7 @@
         }
       },
       "block_order": [
+        "content_3th4Gy",
         "content_cwtYxH",
         "content_ydatPV",
         "content_i99f9p",
