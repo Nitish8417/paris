@@ -225,7 +225,7 @@
         "collection_gHGXhn": {
           "type": "collection",
           "settings": {
-            "collection": "security",
+            "collection": "security-maintenance",
             "image": "shopify://shop_images/HomeScreen_Banner.jpg",
             "heading": "Home Security"
           }
