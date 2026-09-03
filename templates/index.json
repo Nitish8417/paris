@@ -209,7 +209,7 @@
         "collection_k6i6Mw": {
           "type": "collection",
           "settings": {
-            "collection": "smart-watch",
+            "collection": "smart-watches-fitness-trackers",
             "image": "shopify://shop_images/smartwatch.jpg",
             "heading": "Smart Watches"
           }
