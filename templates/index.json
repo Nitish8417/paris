@@ -1113,7 +1113,7 @@
           "name": "Xiaomi",
           "settings": {
             "image": "shopify://shop_images/xiaomi-new-2021-logo-png_seeklogo-400999.png",
-            "image_link": "shopify://collections/xiaomi-1",
+            "image_link": "shopify://collections/xiaomi",
             "image_width": 50
           }
         }
