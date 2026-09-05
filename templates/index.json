@@ -102,7 +102,7 @@
           "type": "slide",
           "settings": {
             "image_desktop": "shopify://shop_images/Monster_Blaster.jpg",
-            "image_mobile": "shopify://shop_images/maxresdefault.jpg",
+            "image_mobile": "shopify://shop_images/Monster_Blaster.jpg",
             "subheading": "Blaster 3.0 Wireless Boombox",
             "heading": "Monster",
             "heading_size": "h2",
