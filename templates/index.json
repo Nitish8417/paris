@@ -191,6 +191,9 @@
         "slide_3AR3Cp",
         "slide_RPf7kT"
       ],
+      "custom_css": [
+        ".slider-button--prev,.slider-button--next,.swiper-button-prev,.swiper-button-next,.slick-prev,.slick-next {display: none !important;}"
+      ],
       "settings": {
         "layout_type": "fullwidth",
         "desktop_height": "desktop-adapt-image",
