@@ -192,7 +192,7 @@
         "slide_RPf7kT"
       ],
       "custom_css": [
-        "button {display: none !important;}"
+        "button {opacity: 0 !important; pointer-events: none !important;}"
       ],
       "settings": {
         "layout_type": "fullwidth",
