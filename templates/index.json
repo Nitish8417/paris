@@ -192,7 +192,7 @@
         "slide_RPf7kT"
       ],
       "custom_css": [
-        "button[aria-label*=\"previous\" i],button[aria-label*=\"next\" i],a[aria-label*=\"previous\" i],a[aria-label*=\"next\" i],.splide__arrow,.swiper-button-prev,.swiper-button-next,.slider-button,.slick-arrow,.flickity-button,[class*=\"arrow-prev\"],[class*=\"arrow-next\"],[class*=\"prev-button\"],[class*=\"next-button\"] {display: none !important;}"
+        "button {display: none !important;}"
       ],
       "settings": {
         "layout_type": "fullwidth",
