@@ -141,6 +141,49 @@
             "btn_hover_border_color_2": "#ffffff"
           }
         },
+        "slide_xmtrXU": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/techty_web_banners.jpg",
+            "image_mobile": "shopify://shop_images/techty_web_banners.jpg",
+            "subheading": "",
+            "heading": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "h2_mobile",
+            "font_family": "heading",
+            "description": "",
+            "description_size": "textMedium",
+            "content_position": "down-start",
+            "content_alignment": "left",
+            "content_width": "medium",
+            "mobile_content_position": "down-start",
+            "mobile_content_alignment": "left",
+            "btn_text_1": "Shop Now",
+            "btn_link_1": "shopify://collections/dji",
+            "btn_size_1": "medium",
+            "btn_as_link_1": false,
+            "btn_text_2": "",
+            "btn_link_2": "shopify://collections/all",
+            "btn_size_2": "medium",
+            "btn_as_link_2": false,
+            "heading_color": "#ffffff",
+            "description_color": "#ffffff",
+            "text_Overlay": "#000000",
+            "text_overlay_opacity": 20,
+            "btn_bg_color_1": "#0b0e0d",
+            "btn_text_color_1": "#ffffff",
+            "btn_border_color_1": "#000000",
+            "btn_hover_bg_color_1": "#ffffff",
+            "btn_hover_text_color_1": "#000000",
+            "btn_hover_border_color_1": "#ffffff",
+            "btn_bg_color_2": "#000000",
+            "btn_text_color_2": "#ffffff",
+            "btn_border_color_2": "#000000",
+            "btn_hover_bg_color_2": "#ffffff",
+            "btn_hover_text_color_2": "#000000",
+            "btn_hover_border_color_2": "#ffffff"
+          }
+        },
         "slide_RPf7kT": {
           "type": "slide",
           "settings": {
@@ -189,6 +232,7 @@
         "slide_X4Wh74",
         "slide_LAXRE3",
         "slide_3AR3Cp",
+        "slide_xmtrXU",
         "slide_RPf7kT"
       ],
       "custom_css": [
