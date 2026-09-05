@@ -240,9 +240,9 @@
       ],
       "settings": {
         "layout_type": "fullwidth",
-        "desktop_height": "desktop-adapt-image",
+        "desktop_height": "slider-custom",
         "desktop_custom_height": 480,
-        "mobile_height": "mobile-adapt-image",
+        "mobile_height": "mobile-slider-custom",
         "mobile_custom_height": 370,
         "rotate": true,
         "interval": 4,
