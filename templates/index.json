@@ -144,14 +144,14 @@
         "slide_RPf7kT": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/UrbanPouch-Pro_2000_x_750_df8c1edb-d27b-41ba-9378-53b79d318a07.webp",
-            "image_mobile": "shopify://shop_images/UrbanPouch-Pro_2000_x_750_8acaac51-aec9-4976-bf2e-9b49d0665ff3.webp",
+            "image_desktop": "shopify://shop_images/Shop_New_Arrivals_1500x_a3a23aee-6178-4a2a-aab7-aed6ae9c8233.webp",
+            "image_mobile": "shopify://shop_images/Shop_New_Arrivals_1500x_a3a23aee-6178-4a2a-aab7-aed6ae9c8233.webp",
             "subheading": "Promate",
             "heading": "",
             "heading_size": "h3",
             "heading_size_mobile": "h4_mobile",
             "font_family": "heading",
-            "description": "Multipocket Tech Pouch with Biometric Lock",
+            "description": "",
             "description_size": "textMedium",
             "content_position": "down-start",
             "content_alignment": "left",
