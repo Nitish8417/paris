@@ -291,7 +291,7 @@
         "card_height": 280,
         "enable_slider": true,
         "infinite": true,
-        "show_arrows": true,
+        "show_arrows": false,
         "autoplay": true,
         "interval": 5,
         "btn_text": "View All",
