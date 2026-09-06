@@ -16,7 +16,7 @@
     "blur_background_color": "#000000",
     "custom_badge_background": "#FFFFFF",
     "sale_badge_text": "#ffffff",
-    "sale_badge_background": "#3f8146",
+    "sale_badge_background": "#d32f2f",
     "soldout_badge_background": "#ec7979",
     "preorder_badge_background": "#FFFFFF",
     "successMsg": "#ffffff",
