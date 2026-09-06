@@ -1248,6 +1248,28 @@
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
       }
+    },
+    "1788689024b5e5f99c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_00cb3c0_4anEVL": {
+          "type": "ai_gen_block_00cb3c0",
+          "disabled": true,
+          "settings": {
+            "selection_message": "Please select all options",
+            "message_font_size": 14,
+            "message_border_radius": 4,
+            "message_bg_color": "#F4F1FF",
+            "message_text_color": "#585981",
+            "message_border_color": "#F1F1FC"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_00cb3c0_4anEVL"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1269,6 +1291,7 @@
     "featured_product_9gXb4k",
     "banner_with_text_8QkUYa",
     "logo_list_9UqKFM",
-    "rich_text_yi96Lj"
+    "rich_text_yi96Lj",
+    "1788689024b5e5f99c"
   ]
 }
