@@ -1,6 +1,270 @@
+{% doc %}
+  @prompt
+    Modify the product page so that no variant is pre-selected by default when the page loads. When a customer lands on a product page with variants (e.g., color or size options), none of the variant options should be automatically selected. The "Add to cart" button should be disabled or show a prompt like "Please select an option" until the customer manually selects a variant. This should work for all variant types (color swatches, dropdowns, buttons).
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-variant-selector-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-variant-selector__message-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 12px 16px;
+    background-color: {{ block.settings.message_bg_color }};
+    color: {{ block.settings.message_text_color }};
+    border-radius: {{ block.settings.message_border_radius }}px;
+    font-size: {{ block.settings.message_font_size }}px;
+    margin-top: 12px;
+    border: 1px solid {{ block.settings.message_border_color }};
+  }
+
+  .ai-variant-selector__hidden-{{ ai_gen_id }} {
+    display: none;
+  }
+{% endstyle %}
+
+<variant-selector-control-{{ ai_gen_id }}
+  class="ai-variant-selector-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  data-product-url="{{ product.url }}"
+  data-section-id="{{ section.id }}"
+>
+  <div
+    class="ai-variant-selector__message-{{ ai_gen_id }}"
+    data-selection-message
+  >
+    {{ block.settings.selection_message }}
+  </div>
+</variant-selector-control-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class VariantSelectorControl{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.productForm = null;
+        this.addToCartButton = null;
+        this.variantSelects = [];
+        this.allOptionsSelected = false;
+        this.messageElement = null;
+      }
+
+      connectedCallback() {
+        this.messageElement = this.querySelector('[data-selection-message]');
+        this.init();
+      }
+
+      init() {
+        const sectionId = this.getAttribute('data-section-id');
+        const productFormSelector = `#product-form-${sectionId}`;
+        this.productForm = document.querySelector(productFormSelector);
+
+        if (!this.productForm) {
+          this.productForm = document.querySelector('form[action*="/cart/add"]');
+        }
+
+        if (!this.productForm) {
+          return;
+        }
+
+        this.addToCartButton = this.productForm.querySelector('[name="add"]');
+        
+        this.variantSelects = Array.from(
+          this.productForm.querySelectorAll('select[name="id"], input[type="radio"][name*="option"]')
+        );
+
+        if (this.variantSelects.length === 0) {
+          this.variantSelects = Array.from(
+            this.productForm.querySelectorAll('input[name="id"]')
+          );
+        }
+
+        this.clearAllSelections();
+        this.disableAddToCart();
+        this.attachListeners();
+      }
+
+      clearAllSelections() {
+        this.variantSelects.forEach((element) => {
+          if (element.tagName === 'SELECT') {
+            element.selectedIndex = -1;
+            const placeholderOption = document.createElement('option');
+            placeholderOption.value = '';
+            placeholderOption.textContent = 'Select an option';
+            placeholderOption.disabled = true;
+            placeholderOption.selected = true;
+            element.insertBefore(placeholderOption, element.firstChild);
+          } else if (element.type === 'radio') {
+            element.checked = false;
+          }
+        });
+
+        const variantIdInput = this.productForm.querySelector('input[name="id"]');
+        if (variantIdInput) {
+          variantIdInput.value = '';
+        }
+      }
+
+      attachListeners() {
+        this.variantSelects.forEach((element) => {
+          element.addEventListener('change', () => {
+            this.checkSelections();
+          });
+        });
+
+        const variantButtons = this.productForm.querySelectorAll('[data-variant-option]');
+        variantButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            setTimeout(() => {
+              this.checkSelections();
+            }, 100);
+          });
+        });
+
+        const colorSwatches = this.productForm.querySelectorAll('.color-swatch, [class*="swatch"]');
+        colorSwatches.forEach((swatch) => {
+          swatch.addEventListener('click', () => {
+            setTimeout(() => {
+              this.checkSelections();
+            }, 100);
+          });
+        });
+      }
+
+      checkSelections() {
+        let allSelected = true;
+
+        const selectElements = this.productForm.querySelectorAll('select[name*="option"]');
+        selectElements.forEach((select) => {
+          if (!select.value || select.value === '') {
+            allSelected = false;
+          }
+        });
+
+        const radioGroups = {};
+        const radioElements = this.productForm.querySelectorAll('input[type="radio"][name*="option"]');
+        radioElements.forEach((radio) => {
+          if (!radioGroups[radio.name]) {
+            radioGroups[radio.name] = false;
+          }
+          if (radio.checked) {
+            radioGroups[radio.name] = true;
+          }
+        });
+
+        Object.values(radioGroups).forEach((selected) => {
+          if (!selected) {
+            allSelected = false;
+          }
+        });
+
+        this.allOptionsSelected = allSelected;
+
+        if (this.allOptionsSelected) {
+          this.enableAddToCart();
+          this.hideMessage();
+        } else {
+          this.disableAddToCart();
+          this.showMessage();
+        }
+      }
+
+      disableAddToCart() {
+        if (this.addToCartButton) {
+          this.addToCartButton.disabled = true;
+          this.addToCartButton.setAttribute('aria-disabled', 'true');
+        }
+      }
+
+      enableAddToCart() {
+        if (this.addToCartButton) {
+          this.addToCartButton.disabled = false;
+          this.addToCartButton.setAttribute('aria-disabled', 'false');
+        }
+      }
+
+      showMessage() {
+        if (this.messageElement) {
+          this.messageElement.classList.remove('ai-variant-selector__hidden-{{ ai_gen_id }}');
+        }
+      }
+
+      hideMessage() {
+        if (this.messageElement) {
+          this.messageElement.classList.add('ai-variant-selector__hidden-{{ ai_gen_id }}');
+        }
+      }
+    }
+
+    customElements.define('variant-selector-control-{{ ai_gen_id }}', VariantSelectorControl{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Variant selection control",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Message"
+    },
+    {
+      "type": "text",
+      "id": "selection_message",
+      "label": "Selection message",
+      "default": "Please select all options"
+    },
+    {
+      "type": "range",
+      "id": "message_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "message_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "message_bg_color",
+      "label": "Background",
+      "default": "#FFF3CD"
+    },
+    {
+      "type": "color",
+      "id": "message_text_color",
+      "label": "Text",
+      "default": "#856404"
+    },
+    {
+      "type": "color",
+      "id": "message_border_color",
+      "label": "Border",
+      "default": "#FFEAA7"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Variant selection control"
+    }
+  ]
+}
 {% endschema %}
