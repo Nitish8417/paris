@@ -2697,7 +2697,17 @@ product-card {
     padding-right: 12px !important;
   }
 }
-/* Bold sale price */
+/* Option 1 */
 .price--on-sale .price-item--sale {
+  font-weight: 700;
+}
+
+/* Option 2 */
+.price__sale .price-item {
+  font-weight: 700;
+}
+
+/* Option 3 - targets all sale prices broadly */
+[class*="sale"] .money {
   font-weight: 700;
 }
