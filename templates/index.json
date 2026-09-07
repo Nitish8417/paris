@@ -614,7 +614,7 @@
         "image_k6DECP": {
           "type": "image",
           "settings": {
-            "collection": "portable-tech",
+            "collection": "travel",
             "heading": "",
             "image": "shopify://shop_images/Powerology-Dual-Protocol-Portable-SSD-512GB-Up-to-480MBs-External-SSD-Solid-State-Drive-Ssd-Powerology-Star-Light-Kuwait-3.webp"
           }
@@ -913,7 +913,7 @@
         "image_radius": 8,
         "enable_image_border": true,
         "image_background_color": "#ffffff",
-        "image_border_color": "#e6e6e6",
+        "image_border_color": "#1E1C1E",
         "thumb_active_border_color": "#111111",
         "card_padding": 28,
         "card_padding_mobile": 16,
@@ -1198,7 +1198,7 @@
         "show_card_background": true,
         "show_card_border": true,
         "layout_type": "marquee",
-        "scrolling_speed": 75,
+        "scrolling_speed": 80,
         "direction": "rtl",
         "column_spacing": 62,
         "heading": "Brands",
