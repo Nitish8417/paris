@@ -37,6 +37,9 @@
     },
     "main-collection": {
       "type": "main-collection",
+      "custom_css": [
+        ".price-item--sale {font-weight: 700;}"
+      ],
       "settings": {
         "products_per_page": 25,
         "enable_filtering": true,
