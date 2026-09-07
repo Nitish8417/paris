@@ -2697,17 +2697,17 @@ product-card {
     padding-right: 12px !important;
   }
 }
-/* Option 1 */
-.price--on-sale .price-item--sale {
+/* Bold sale price on product page */
+.item-price.h4 {
   font-weight: 700;
 }
 
-/* Option 2 */
-.price__sale .price-item {
+/* Bold sale price on collection/product cards */
+.item-price.textBase {
   font-weight: 700;
 }
 
-/* Option 3 - targets all sale prices broadly */
-[class*="sale"] .money {
-  font-weight: 700;
+/* Optional: make the old/crossed-out price lighter for contrast */
+.item-price-old {
+  font-weight: 400;
 }
