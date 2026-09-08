@@ -41,7 +41,7 @@
         ".price-item--sale {font-weight: 700;}"
       ],
       "settings": {
-        "products_per_page": 25,
+        "products_per_page": 21,
         "enable_filtering": true,
         "enable_sorting": true,
         "pagination_type": "infinite",
