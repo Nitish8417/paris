@@ -896,7 +896,7 @@
       ],
       "name": "Trending",
       "settings": {
-        "product": "powerology-paganspo-ai-camera-smart-glasses",
+        "product": "grit-apex-smart-watch-with-2-straps",
         "image_position": "left",
         "heading": "Trending Items",
         "heading_size": "h4",
@@ -913,7 +913,7 @@
         "image_radius": 8,
         "enable_image_border": true,
         "image_background_color": "#ffffff",
-        "image_border_color": "#1E1C1E",
+        "image_border_color": "#1e1c1e",
         "thumb_active_border_color": "#111111",
         "card_padding": 28,
         "card_padding_mobile": 16,
@@ -1259,9 +1259,9 @@
             "selection_message": "Please select all options",
             "message_font_size": 14,
             "message_border_radius": 4,
-            "message_bg_color": "#F4F1FF",
+            "message_bg_color": "#f4f1ff",
             "message_text_color": "#585981",
-            "message_border_color": "#F1F1FC"
+            "message_border_color": "#f1f1fc"
           },
           "blocks": {}
         }
