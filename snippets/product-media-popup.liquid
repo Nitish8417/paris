@@ -114,7 +114,7 @@
           {%- endcase -%}
         {%- endif -%}
 
-        {%- assign popup_index = 1 -%}
+        {%- assign popup_index = 0 -%}
         {%- for media in product.media -%}
           {%- unless featured_media != null and media.id == featured_media.id -%}
             {%- case media.media_type -%}
