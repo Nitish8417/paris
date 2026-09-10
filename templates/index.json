@@ -536,7 +536,7 @@
         "products_to_show": 10,
         "columns_desktop": 4,
         "btn_text": "View All",
-        "btn_link": "shopify://collections/audio",
+        "btn_link": "shopify://collections/content-creator-kit",
         "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
         "top_space_desktop": 80,
         "bottom_space_desktop": 80,
