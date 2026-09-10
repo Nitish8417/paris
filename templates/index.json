@@ -58,10 +58,10 @@
         "slide_LAXRE3": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/16c342f044ba2aa3e9e823449f790329.webp",
-            "image_mobile": "shopify://shop_images/aab9e480effb7a03b694cf84edee94fc.png",
-            "subheading": "Xiaomi TV S Mini LED 98 2026",
-            "heading": "Xiaomi",
+            "image_desktop": "shopify://shop_images/techty_web_banners_14ca1c60-34be-4f2b-a7c0-9c8d121360a3.jpg",
+            "image_mobile": "shopify://shop_images/techty_web_banners_14ca1c60-34be-4f2b-a7c0-9c8d121360a3.jpg",
+            "subheading": "",
+            "heading": "",
             "heading_size": "h2",
             "heading_size_mobile": "h3_mobile",
             "font_family": "heading",
@@ -73,7 +73,7 @@
             "mobile_content_position": "down-start",
             "mobile_content_alignment": "left",
             "btn_text_1": "Shop Now",
-            "btn_link_1": "shopify://products/xiaomi-tv-s-mini-led-98-2026-titan-view",
+            "btn_link_1": "shopify://collections/content-creator-kit",
             "btn_size_1": "medium",
             "btn_as_link_1": false,
             "btn_text_2": "",
