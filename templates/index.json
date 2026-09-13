@@ -108,7 +108,7 @@
             "heading_size": "h2",
             "heading_size_mobile": "h3_mobile",
             "font_family": "heading",
-            "description": "Bigger is Better.",
+            "description": "",
             "description_size": "textBase",
             "content_position": "down-start",
             "content_alignment": "left",
