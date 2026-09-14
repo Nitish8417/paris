@@ -96,6 +96,10 @@
         "description_47NbPA",
         "acd68ee6-98e3-4cb0-bb5c-ccad7d700379"
       ],
+      "custom_css": [
+        ".product-swatch-list.small-large .swatch-variant-color {min-width: 44px; min-height: 44px;}",
+        ".product-swatch-list.large .swatch-variant-color {min-width: 44px; min-height: 44px;}"
+      ],
       "settings": {
         "container_type": "fullwidth",
         "gallery_type": "carousel",
