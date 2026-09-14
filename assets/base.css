@@ -999,10 +999,6 @@ product-card {
   min-height: 44px;
 }
 
-.featured-product-content .product-swatch-list .swatch-variant-color {
-  min-width: 44px;
-  min-height: 44px;
-}
 
 .product-swatch-list .color-swatch.active,
 .product-swatch-list .color-swatch:hover,
@@ -2727,4 +2723,18 @@ product-card {
   box-sizing: border-box;
   transition: all 0.5s ease;
   border-radius: 3px;
+}
+[id$="__main"] .product-swatch-list .swatch-variant-item {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  padding: 8px 12px !important;
+  font-size: 16px !important;
+  box-sizing: border-box;
+}
+
+[id$="__main"] .product-swatch-list .swatch-variant-color {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
 }
