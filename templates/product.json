@@ -97,7 +97,7 @@
         "acd68ee6-98e3-4cb0-bb5c-ccad7d700379"
       ],
       "settings": {
-        "container_type": "container",
+        "container_type": "fullwidth",
         "gallery_type": "carousel",
         "media_max_width": 680,
         "main_image_height": 540,
@@ -109,7 +109,7 @@
         "image_radius": 8,
         "enable_image_border": false,
         "image_background_color": "#ffffff",
-        "image_border_color": "#f7f9fd",
+        "image_border_color": "#585981",
         "thumb_active_border_color": "#111111",
         "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
         "top_space_desktop": 65,
