@@ -81,7 +81,7 @@
     "social_tumblr_link": "",
     "social_vimeo_link": "",
     "enable_search_drawer": true,
-    "enable_full_width": false,
+    "enable_full_width": true,
     "suggestions_heading": "Popular suggestions",
     "suggestions_list": "",
     "product_suggestions": [],
