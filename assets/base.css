@@ -990,18 +990,18 @@ product-card {
 }
 
 .product-swatch-list.small-large .swatch-variant-color {
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .product-swatch-list.large .swatch-variant-color {
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .featured-product-content .product-swatch-list .swatch-variant-color {
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .product-swatch-list .color-swatch.active,
