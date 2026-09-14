@@ -1154,9 +1154,7 @@
     "custom_css": [
       ".minicart a.btn.btn-medium {text-align: center; display: block;}",
       ".minicart .checkout-btns {display: block;}",
-      ".quest-icon-box {display: none;}",
-      ".product-form__input input[type=\"radio\"] + label,.product-form__input select,.product-form__input .select__select,.variant-picker input[type=\"radio\"] + label,.variant-picker select {font-size: 18px !important; min-height: 52px !important; padding: 14px 20px !important;}",
-      ".product-form__input input[type=\"radio\"] + label,.variant-picker input[type=\"radio\"] + label {display: inline-flex; align-items: center; justify-content: center;}"
+      ".quest-icon-box {display: none;}"
     ]
   }
 }
