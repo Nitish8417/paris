@@ -2714,3 +2714,9 @@ product-card {
   font-weight: 400;
 }
 
+.product-swatch-list .swatch-variant-item {
+  transform: scale(1.5);
+  transform-origin: center;
+  margin: 6px;
+  z-index: 2;
+}
