@@ -97,8 +97,7 @@
         "acd68ee6-98e3-4cb0-bb5c-ccad7d700379"
       ],
       "custom_css": [
-        ".product-swatch-list.small-large .swatch-variant-color {min-width: 44px; min-height: 44px;}",
-        ".product-swatch-list.large .swatch-variant-color {min-width: 44px; min-height: 44px;}"
+        ".product-swatch-item input.swatch-option + .swatch-variant-color {width: 64px !important; height: 64px !important; min-width: 64px !important; min-height: 64px !important; border-radius: 50% !important; background-size: cover !important; background-position: center !important;}"
       ],
       "settings": {
         "container_type": "fullwidth",
