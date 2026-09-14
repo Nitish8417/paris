@@ -974,39 +974,34 @@ product-card {
   transition: border-color 0.5s ease;
 }
 
-.product-swatch-list .swatch-variant-item {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 8px 12px;
-  font-size: 16px;
-}
 
 .product-swatch-list .swatch-variant-item {
   position: relative;
-  font-size: var(--textBase);
+  font-size: 16px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
   transition: all 0.5s ease;
   border-radius: 3px;
 }
 
 .product-swatch-list.small-large .swatch-variant-color {
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .product-swatch-list.large .swatch-variant-color {
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .featured-product-content .product-swatch-list .swatch-variant-color {
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .product-swatch-list .color-swatch.active,
