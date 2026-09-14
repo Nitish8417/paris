@@ -2715,8 +2715,16 @@ product-card {
 }
 
 .product-swatch-list .swatch-variant-item {
-  transform: scale(1.5);
-  transform-origin: center;
-  margin: 6px;
-  z-index: 2;
+  position: relative;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+  border-radius: 3px;
 }
