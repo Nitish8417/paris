@@ -982,21 +982,21 @@ product-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 20px;
+  min-height: 20px;
   padding: 8px 12px;
   transition: all 0.5s ease;
   border-radius: 3px;
 }
 
 .product-swatch-list.small-large .swatch-variant-color {
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .product-swatch-list.large .swatch-variant-color {
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 
@@ -2717,8 +2717,8 @@ product-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 20px;
+  min-height: 20px;
   padding: 8px 12px;
   box-sizing: border-box;
   transition: all 0.5s ease;
