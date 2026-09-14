@@ -172,5 +172,19 @@
   </{% if settings.option_style=='swatch' %}variant-radios{% else %}variant-selects{% endif %}>
 
 {% endfor %}
+.product-swatch-item input.swatch-option + .swatch-variant-item {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  padding: 8px 12px !important;
+  font-size: 16px !important;
+  box-sizing: border-box;
+}
 
+.product-swatch-item input.swatch-option + .swatch-variant-color {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  box-sizing: border-box;
+}
 {% endif %}
