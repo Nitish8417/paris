@@ -981,25 +981,25 @@ product-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 40px;
-  min-height: 40px;
+  min-width: 20px;
+  min-height: 20px;
   transition: all 0.5s ease;
   border-radius: 3px;
 }
 
 .product-swatch-list.small-large .swatch-variant-color {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .product-swatch-list.large .swatch-variant-color {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .featured-product-content .product-swatch-list .swatch-variant-color {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .product-swatch-list .color-swatch.active,
