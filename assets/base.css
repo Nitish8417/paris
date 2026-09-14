@@ -990,8 +990,8 @@ product-card {
 }
 
 .product-swatch-list.small-large .swatch-variant-color {
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .product-swatch-list.large .swatch-variant-color {
