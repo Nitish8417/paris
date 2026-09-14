@@ -2,7 +2,7 @@
 {%- if unique_3d_model -%}
   <link rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css">
 {%- endif -%}
-{% assign product_variant = product.selected_or_first_available_variant %}
+{% assign product_variant = product.selected_variant %}
 <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
   <product-recently-viewed data-product-id="{{ product.id }}" class="hidden"></product-recently-viewed>
 
