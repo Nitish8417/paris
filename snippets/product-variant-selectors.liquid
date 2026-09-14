@@ -52,7 +52,7 @@
         <span
           class="swatch-variant-item {% if swatch_featured_media %} swatch-variant-img{% endif %} {% if colorOptionsname contains optionaname %}swatch-variant-color{% else %} swatch-variant-option-name{% endif %}"
           {% if colorOptionsname contains optionaname %} data-tooltip="{{ value.name }}" {% if swatch_featured_media %}
-          style="background-image:url({{ swatch_featured_media.preview_image | image_url: width: '22' }});" {%
+          style="background-image:url({{ swatch_featured_media.preview_image | image_url: width: '128' }});" {%
           else %} data-color="{{ value.name }}" style="background-color:{{ value.name }};" {% endif %} {% endif %}>{% unless colorOptionsname contains optionaname -%}{{- value.name -}}{%- endunless -%}
         </span>
       </li>
