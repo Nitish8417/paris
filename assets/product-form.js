@@ -309,14 +309,3 @@ if (!customElements.get("product-form")) {
     },
   );
 }
-.template-product .variant-picker label,
-.template-product .variant-input label,
-.template-product .swatch-element label,
-.template-product .product-form__input label,
-.template-product .single-option-selector,
-.template-product .selector-wrapper select,
-.template-product .product-form__input select {
-  font-size: 18px !important;
-  min-height: 52px !important;
-  padding: 14px 20px !important;
-  line-height: 1.3 !important;
