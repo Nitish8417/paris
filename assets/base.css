@@ -2748,17 +2748,3 @@ product-card {
   box-sizing: border-box;
 }
 
-#shopify-section-template--22738416271578__main
-  .product-swatch-list
-  .swatch-variant-color {
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
-  min-height: 44px !important;
-}
-
-#shopify-section-template--22738416271578__main
-  .product-swatch-list
-  .color-swatch {
-  padding: 4px !important;
-}
