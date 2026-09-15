@@ -15,8 +15,8 @@
         "slide_xmtrXU": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/techty_web_banners.jpg",
-            "image_mobile": "shopify://shop_images/techty_web_banners_2.jpg",
+            "image_desktop": "shopify://shop_images/techty_web_banners_4.jpg",
+            "image_mobile": "shopify://shop_images/techty_web_banners_4.jpg",
             "subheading": "",
             "heading": "",
             "heading_size": "h2",
@@ -29,7 +29,7 @@
             "content_width": "medium",
             "mobile_content_position": "down-end",
             "mobile_content_alignment": "center",
-            "btn_text_1": "Shop Now",
+            "btn_text_1": "",
             "btn_link_1": "shopify://collections/dji",
             "btn_size_1": "small",
             "btn_as_link_1": false,
