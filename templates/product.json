@@ -59,6 +59,12 @@
             "show_recipient_form": true
           }
         },
+        "custom_liquid_Ghh3A8": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<!-- Font Awesome CDN (only if not already included in theme) -->\n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css\" />\n\n<!-- Order Tracking Section -->\n<div class=\"order-tracking\">\n  <div class=\"tracking-step\">\n    <div class=\"tracking-icon\"><i class=\"fas fa-shopping-bag\"></i></div>\n    <div class=\"tracking-label\">Ordered</div>\n    <div class=\"tracking-date\" id=\"ordered-date\"></div>\n  </div>\n\n  <div class=\"tracking-arrow\">»</div>\n\n  <div class=\"tracking-step\">\n    <div class=\"tracking-icon\"><i class=\"fas fa-box\"></i></div>\n    <div class=\"tracking-label\">Est. Delivered</div>\n    <div class=\"tracking-date\" id=\"delivered-date\"></div>\n    <div class=\"tracking-note\">Pre-order items may take up to 15 days</div>\n  </div>\n</div>\n\n<!-- Scoped Styling -->\n<style>\n  .order-tracking {\n    display: flex;\n    justify-content: space-around;\n    align-items: stretch;\n    gap: 10px;\n    padding: 0;\n    width: 100%;\n  }\n\n  .tracking-step {\n    flex: 1;\n    text-align: center;\n    padding: 10px 8px;\n    border: 1px solid #ccc;\n    border-radius: 8px;\n    background-color: transparent;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n  }\n\n  .order-tracking .tracking-icon {\n    font-size: 28px;\n    color: #7563C9;\n    margin-bottom: -4px;\n  }\n\n  .order-tracking .tracking-label {\n    font-weight: 600;\n    font-size: 14px;\n    margin-bottom: -4px;\n    color: #121212;\n  }\n\n  .order-tracking .tracking-date {\n    font-size: 13px;\n    color: #121212;\n  }\n\n  .order-tracking .tracking-note {\n    font-size: 11px;\n    line-height: 1.3;\n    color: #6b6b6b;\n    margin-top: 4px;\n  }\n\n  .order-tracking .tracking-arrow {\n    font-size: 30px;\n    color: #494949;\n    align-self: center;\n  }\n</style>\n\n<!-- Date Logic -->\n<script>\n  (function () {\n    function formatDate(date) {\n      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });\n    }\n\n    var today = new Date();\n\n    var deliveredDateObj = new Date();\n    deliveredDateObj.setDate(today.getDate() + 3);\n\n    document.getElementById('ordered-date').textContent = formatDate(today);\n    document.getElementById('delivered-date').textContent = formatDate(deliveredDateObj);\n  })();\n</script>"
+          }
+        },
         "ede9143f-6f27-49e8-8dc2-c71d85160bd7": {
           "type": "share",
           "disabled": true,
@@ -91,6 +97,7 @@
         "b6ff0a73-18aa-413b-bfac-7c95f307582f",
         "a2823306-223d-4eb6-b15e-6f224d0448e3",
         "88cb8425-2939-4eb0-9932-d2c67e629a10",
+        "custom_liquid_Ghh3A8",
         "ede9143f-6f27-49e8-8dc2-c71d85160bd7",
         "dd248fbc-e1dc-4ffc-a4fa-fc8137d77fe1",
         "description_47NbPA",
