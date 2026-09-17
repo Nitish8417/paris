@@ -121,11 +121,13 @@
                   {%- render 'image', image: media -%}
                 </div>
                 <a
-                  class="product-media-popup-btn"
-                  href="#product-media-popup"
-                  data-index="{{ forloop.index0 }}"
-                  data-id="product-media-popup"
-                  data-model-main-head
+                  <a
+  class="product-media-popup-btn"
+  href="#product-media-popup"
+  data-index="{{ forloop.index0 }}"
+  data-media-id="{{ media.id }}"
+  data-id="product-media-popup"
+  data-model-main-head
                   aria-label="product gallery popup button"
                 >
                   <span class="product-zoom">
