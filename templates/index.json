@@ -153,7 +153,7 @@
             "content_position": "down-start",
             "content_alignment": "left",
             "content_width": "medium",
-            "mobile_content_position": "mid-center",
+            "mobile_content_position": "down-start",
             "mobile_content_alignment": "left",
             "btn_text_1": "Shop Now",
             "btn_link_1": "shopify://collections/back-to-school",
