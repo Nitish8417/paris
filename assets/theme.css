@@ -221,7 +221,7 @@ body {
 }
 
 .hero-media-card .hero-media-cont-inner .hero-media-btns {
-  display: none;
+  display: block;
 }
 
 .hero-media-card.is-selected .hero-media-cont-inner .hero-media-btns {
@@ -277,7 +277,7 @@ a:not(.btn).hero-media-shop {
 }
 
 .section-hero-banner .flickity-button {
-  display: none;
+  display: block;
 }
 
 .section-hero-banner .flickity-page-dots {
