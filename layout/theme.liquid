@@ -910,9 +910,6 @@
             reset(btn, label);
           });
       })
-      .catch(function (e) {
-        log('add failed', e);
-        btn.classList.add('is-error');
         btn.textContent = 'TRY AGAIN';
         reset(btn, label);
       });
