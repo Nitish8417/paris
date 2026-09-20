@@ -533,39 +533,74 @@
       </svg>
     </a>
 <!-- ============ TT QUICK BUY + CART COUNT (additive, safe to delete) ============ -->
-<script id="tt-wa-context">
+<script id="tt-wa-smart">
 (function () {
   var PHONE = '96522280345';
-  var float = document.querySelector('.techty-whatsapp-float');
-  if (!float) return;
 
-  var path = window.location.pathname;
-  var msg;
+  function productTitle() {
+    var og = document.querySelector('meta[property="og:title"]');
+    if (og && og.content) return og.content.trim();
 
-  if (path.indexOf('/products/') > -1) {
-    var title = document.querySelector('h1');
-    title = title ? title.textContent.trim() : 'this product';
-    msg = 'Hi Techty, I would like to know more about this product:\n\n'
-        + title + '\n' + window.location.origin + path;
+    var h1 = document.querySelector('main h1, .product__title h1, .product-title, h1');
+    if (h1 && h1.textContent.trim()) return h1.textContent.trim();
 
-  } else if (path.indexOf('/collections/') > -1) {
-    var h1 = document.querySelector('h1');
-    var name = h1 ? h1.textContent.trim() : 'your products';
-    msg = 'Hi Techty, I am looking at your ' + name
-        + ' and need help choosing the right one. Can you recommend something?';
-
-  } else if (path.indexOf('/cart') > -1) {
-    msg = 'Hi Techty, I have a question about my order before I check out.';
-
-  } else if (path.indexOf('/search') > -1) {
-    msg = 'Hi Techty, I am trying to find a product on your site. Can you help me?';
-
-  } else {
-    msg = 'Hi Techty, I need help picking the right product. What do you recommend?';
+    return document.title.split('–')[0].split('|')[0].trim();
   }
 
-  float.href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg);
-  float.setAttribute('aria-label', 'Chat with Techty on WhatsApp');
+  function pageTitle() {
+    var h1 = document.querySelector('main h1, .collection-title, h1');
+    return h1 && h1.textContent.trim() ? h1.textContent.trim() : 'your products';
+  }
+
+  function build() {
+    var path = window.location.pathname;
+    var here = window.location.origin + path;
+
+    if (path.indexOf('/products/') > -1) {
+      return 'Hi Techty, I would like to enquire about this product:\n\n'
+           + productTitle() + '\n' + here;
+    }
+    if (path.indexOf('/collections/') > -1) {
+      return 'Hi Techty, I am looking at your ' + pageTitle()
+           + ' and need help choosing the right one. Can you recommend something?';
+    }
+    if (path.indexOf('/cart') > -1) {
+      return 'Hi Techty, I have a question about my order before I check out.';
+    }
+    if (path.indexOf('/search') > -1) {
+      return 'Hi Techty, I am trying to find a product on your site. Can you help me?';
+    }
+    return 'Hi Techty, I need help picking the right product. What do you recommend?';
+  }
+
+  function apply() {
+    var float = document.querySelector('.techty-whatsapp-float');
+    if (!float) return false;
+
+    float.href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(build());
+    float.setAttribute('aria-label', 'Chat with Techty on WhatsApp');
+    return true;
+  }
+
+  function start() {
+    if (apply()) return;
+
+    // Button not in the DOM yet — retry briefly
+    var tries = 0;
+    var t = setInterval(function () {
+      if (apply() || ++tries > 20) clearInterval(t);
+    }, 150);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+
+  // Variant switches change the URL — rebuild the link
+  document.addEventListener('change', function () { setTimeout(apply, 80); });
+  window.addEventListener('popstate', apply);
 })();
 </script>
 <style id="tt-quick-buy-css">
