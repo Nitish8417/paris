@@ -649,8 +649,7 @@
     openDrawer:  true,     // slide the mini-cart open after adding
     wiggle:      true,     // shake the header cart icon
     floatBadge:  true,     // the little +1 that drifts up
-    debug:       true      // set false once you're happy
-  };
+    debug:       false
 
   var ROOT   = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
   var SEED   = {{ cart.item_count | default: 0 }};
