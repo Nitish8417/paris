@@ -919,10 +919,26 @@
   }
 
   /* ---------------- wiring ---------------- */
+  var SKIP_ZONES = '.section-hero-banner, .hero-media-wrapper, .hero-media-card, ' +
+                   '.hero-media-content-wrapper, [class*="hero"], [class*="banner"], ' +
+                   '[class*="slideshow"], [class*="marquee"], [class*="megamenu"], ' +
+                   '[class*="submenu"], [class*="collection-card"], ' +
+                   'header, footer, cart-drawer, .side-drawer-panel';
 
+  function looksLikeProductCard(card) {
+    // Every real product card shows a price. Banners and menu tiles never do.
+    if (card.querySelector('[class*="price"], .money, .item-price')) return true;
+    return /\d+[.,]\d{2,3}\s*(KD|د\.ك)/i.test(card.textContent || '');
+  }
   function enhance(link) {
     var card = findCard(link);
     if (!card || card.dataset.ttDone) return false;
+
+    // Banners, sliders, menu tiles and drawers are not product cards.
+    if (card.closest(SKIP_ZONES) || !looksLikeProductCard(card)) {
+      card.dataset.ttDone = 'skip';
+      return false;
+    }
 
     var media = findMedia(card);
     if (!media) return false;
