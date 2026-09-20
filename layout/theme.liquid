@@ -533,62 +533,129 @@
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
       </svg>
     </a>
-<style>
-  /* Hover reveal — desktop only */
-  @media (hover: hover) and (min-width: 990px) {
-    .tt-quick-card { position: relative; }
+<!-- ============ TT QUICK BUY (additive, safe to delete) ============ -->
+<style id="tt-quick-buy-css">
+  .tt-media { position: relative; }
 
-    .tt-card-form {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(6px);
-      transition: opacity .2s ease, transform .2s ease, visibility .2s;
-    }
-
-    .tt-quick-card:hover  .tt-card-form,
-    .tt-quick-card:focus-within .tt-card-form {
-      opacity: 1;
-      visibility: visible;
-      transform: none;
-    }
-  }
-
-  .tt-buy-now {
-    display: block;
-    width: 100%;
-    margin-top: .5rem;
-    padding: .75rem 1rem;
-    border: 1px solid currentColor;
-    border-radius: 6px;
-    background: transparent;
+  .tt-quick-buy {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -40%);
+    z-index: 4;
+    min-width: 70%;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(0,0,0,.18);
+    border-radius: 4px;
+    background: #fff;
+    color: #111;
     font: inherit;
+    font-size: .9rem;
     font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
     cursor: pointer;
-    transition: background .15s ease, color .15s ease;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .22s ease, transform .22s ease, visibility .22s, background .15s ease, color .15s ease;
   }
 
-  .tt-buy-now:hover { background: #000; color: #fff; border-color: #000; }
-  .tt-buy-now[disabled] { opacity: .5; cursor: wait; }
+  .tt-media:hover .tt-quick-buy,
+  .tt-media:focus-within .tt-quick-buy {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+  }
+
+  .tt-quick-buy:hover { background: #111; color: #fff; border-color: #111; }
+  .tt-quick-buy[disabled] { opacity: .6; cursor: wait; }
+
+  @media (hover: none) {
+    .tt-quick-buy { display: none; }
+  }
 </style>
 
-<script>
+<script id="tt-quick-buy">
 (function () {
-  var CARD_SEL = 'li, article, .card, .card-wrapper, .product-card, .grid__item, .product-item, .product-grid-item';
-  var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
-  var pending = false;
+  var CONFIG = {
+    label:    'QUICK BUY',
+    afterAdd: 'drawer',  // 'drawer' | 'cart' | 'stay'
+    debug:    true       // set false once it works
+  };
 
-  function variantId(form) {
-    var el = form.querySelector('[name="id"]');
-    return el ? el.value : null;
+  var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+  var queued = false;
+
+  function log() {
+    if (CONFIG.debug && window.console) console.log.apply(console, ['[tt]'].concat([].slice.call(arguments)));
   }
 
-  function buyNow(form, btn) {
-    var id = variantId(form);
-    if (!id) return;
+  function findCard(link) {
+    var el = link.parentElement, best = null, d = 0;
+    while (el && el !== document.body && d < 10) {
+      var seen = {}, n = 0;
+      el.querySelectorAll('a[href*="/products/"]').forEach(function (a) {
+        if (!seen[a.pathname]) { seen[a.pathname] = 1; n++; }
+      });
+      if (n > 1) break;
+      if (el.querySelector('img')) best = el;
+      el = el.parentElement; d++;
+    }
+    return best;
+  }
+
+  function findMedia(card) {
+    var img = card.querySelector('img');
+    if (!img) return null;
+    var el = img.parentElement, d = 0;
+    while (el && el !== card && d < 4) {
+      if (el.clientHeight > 80) return el;
+      el = el.parentElement; d++;
+    }
+    return img.parentElement;
+  }
+
+  function productUrl(card) {
+    var a = card.querySelector('a[href*="/products/"]');
+    return a ? a.href : null;
+  }
+
+  function variantId(card) {
+    var a = card.querySelector('a[href*="variant="]');
+    if (a) { try { return new URL(a.href, location.origin).searchParams.get('variant'); } catch (e) {} }
+    var i = card.querySelector('[name="id"]');
+    return i ? i.value : null;
+  }
+
+  function isSoldOut(card) {
+    return /sold out|out of stock|نفذ/i.test(card.textContent || '');
+  }
+
+  function hasChoices(card) {
+    return card.querySelectorAll('[class*="swatch"], [data-variant-option], [class*="color-option"]').length > 1;
+  }
+
+  function openDrawer() {
+    ['cart:refresh', 'cart:updated', 'cart:build', 'ajaxProduct:added'].forEach(function (n) {
+      document.dispatchEvent(new CustomEvent(n, { bubbles: true, detail: {} }));
+    });
+    var d = document.querySelector('cart-drawer, #CartDrawer, .cart-drawer, [id*="cart-drawer"]');
+    if (d && typeof d.open === 'function') { d.open(); return; }
+    if (d) {
+      d.classList.add('is-open', 'active', 'open');
+      document.body.classList.add('cart-drawer-open', 'drawer-open');
+    }
+  }
+
+  function add(card, btn) {
+    var id = variantId(card);
+    if (!id) { log('no variant id'); return; }
 
     btn.disabled = true;
-    var original = btn.textContent;
-    btn.textContent = 'One sec…';
+    btn.textContent = 'ADDING…';
 
     fetch(ROOT + 'cart/add.js', {
       method: 'POST',
@@ -596,54 +663,68 @@
       body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
     })
       .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (data.status) throw new Error(data.description || 'Unavailable');
-        window.location.href = ROOT + 'checkout';
+      .then(function (d) {
+        if (d.status) throw new Error(d.description || 'Unavailable');
+        btn.textContent = 'ADDED ✓';
+        if (CONFIG.afterAdd === 'cart') { window.location.href = ROOT + 'cart'; return; }
+        if (CONFIG.afterAdd === 'drawer') openDrawer();
+        setTimeout(function () { btn.disabled = false; btn.textContent = CONFIG.label; }, 1600);
       })
-      .catch(function () {
-        btn.disabled = false;
-        btn.textContent = original;
+      .catch(function (e) {
+        log('add failed', e);
+        btn.textContent = 'TRY AGAIN';
+        setTimeout(function () { btn.disabled = false; btn.textContent = CONFIG.label; }, 1600);
       });
   }
 
-  function enhance(form) {
-    if (form.dataset.ttDone) return;
+  function enhance(link) {
+    var card = findCard(link);
+    if (!card || card.dataset.ttDone) return false;
 
-    var card = form.closest(CARD_SEL);
-    if (!card || !card.querySelector('a[href*="/products/"]')) return;
+    var media = findMedia(card);
+    if (!media) return false;
 
-    form.dataset.ttDone = '1';
-    card.classList.add('tt-quick-card');
-    form.classList.add('tt-card-form');
+    card.dataset.ttDone = '1';
+    if (isSoldOut(card)) return false;
 
-    // Remove this block if you only want the hover reveal, no Buy Now
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'tt-buy-now';
-    btn.textContent = 'Buy now';
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      buyNow(form, btn);
-    });
-    form.appendChild(btn);
+    media.classList.add('tt-media');
+
+    var choose = hasChoices(card);
+    var btn = document.createElement(choose ? 'a' : 'button');
+    btn.className = 'tt-quick-buy';
+    btn.textContent = choose ? 'CHOOSE OPTIONS' : CONFIG.label;
+
+    if (choose) {
+      btn.href = productUrl(card) || '#';
+    } else {
+      btn.type = 'button';
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        add(card, btn);
+      });
+    }
+
+    media.appendChild(btn);
+    return true;
   }
 
   function scan() {
-    pending = false;
-    document.querySelectorAll('form[action*="/cart/add"]').forEach(enhance);
+    queued = false;
+    var links = document.querySelectorAll('a[href*="/products/"]');
+    var n = 0;
+    links.forEach(function (l) { if (enhance(l)) n++; });
+    log('links:', links.length, '| cards wired:', n);
   }
 
-  function queue() {
-    if (pending) return;
-    pending = true;
-    requestAnimationFrame(scan);
-  }
+  function queue() { if (queued) return; queued = true; setTimeout(scan, 120); }
 
-  scan();
-  document.addEventListener('DOMContentLoaded', scan);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scan);
+  else scan();
+  window.addEventListener('load', queue);
   new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+<!-- ============ END TT QUICK BUY ============ -->
   </body>
 </html>
