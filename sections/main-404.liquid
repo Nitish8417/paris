@@ -41,8 +41,8 @@
 
   <script>
     (function () {
-      var DELAY  = {{ section.settings.redirect_delay | default: 5 }};
-      var TARGET = {{ redirect_to | json }};
+      var DELAY  = 0;
+            var TARGET = {{ redirect_to | json }};
 
       // Escape hatch: add ?stay=1 to any 404 URL to stop the redirect
       if (new URLSearchParams(window.location.search).has('stay')) return;
