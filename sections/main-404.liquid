@@ -10,17 +10,103 @@
       <p class="textLarge">
         {{ 'templates.404.content' | t }}
       </p>
+
+      {%- if section.settings.enable_redirect -%}
+        <p class="textLarge tt-redirect-note" data-tt-redirect-note>
+          {{ section.settings.redirect_message }}
+          <strong><span data-tt-countdown>{{ section.settings.redirect_delay }}</span></strong>
+        </p>
+      {%- endif -%}
+
       <a href="{{ routes.all_products_collection_url }}" class="btn fill-btn">
         <span>{{ 'general.continue_shopping' | t }}</span>
       </a>
+
+      {%- if section.settings.enable_redirect -%}
+        <button type="button" class="tt-stay-btn" data-tt-stay>
+          {{ section.settings.stay_label }}
+        </button>
+      {%- endif -%}
     </div>
   </div>
 </div>
+
+{%- if section.settings.enable_redirect -%}
+  {%- liquid
+    assign redirect_to = section.settings.redirect_url
+    if redirect_to == blank
+      assign redirect_to = routes.root_url
+    endif
+  -%}
+
+  <script>
+    (function () {
+      var DELAY  = {{ section.settings.redirect_delay | default: 5 }};
+      var TARGET = {{ redirect_to | json }};
+
+      // Escape hatch: add ?stay=1 to any 404 URL to stop the redirect
+      if (new URLSearchParams(window.location.search).has('stay')) return;
+
+      // Don't bounce if the destination would 404 as well
+      if (window.location.pathname === TARGET) return;
+
+      var note     = document.querySelector('[data-tt-redirect-note]');
+      var counter  = document.querySelector('[data-tt-countdown]');
+      var stayBtn  = document.querySelector('[data-tt-stay]');
+      var left     = DELAY;
+      var timer    = null;
+
+      function cancel() {
+        clearInterval(timer);
+        if (note) note.style.display = 'none';
+        if (stayBtn) stayBtn.style.display = 'none';
+      }
+
+      if (stayBtn) stayBtn.addEventListener('click', cancel);
+
+      if (DELAY <= 0) {
+        window.location.replace(TARGET);
+        return;
+      }
+
+      timer = setInterval(function () {
+        left--;
+        if (counter) counter.textContent = left;
+        if (left <= 0) {
+          clearInterval(timer);
+          window.location.replace(TARGET);
+        }
+      }, 1000);
+    })();
+  </script>
+{%- endif -%}
+
 <style>
   #shopify-section-{{ section.id }} {
      --topSpace:{{ section.settings.top_space_desktop }}px;
      --bottomSpace:{{ section.settings.bottom_space_desktop }}px;
    }
+
+  #shopify-section-{{ section.id }} .tt-redirect-note {
+    opacity: .75;
+    margin-top: .5rem;
+  }
+
+  #shopify-section-{{ section.id }} .tt-stay-btn {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: .9rem;
+    text-decoration: underline;
+    opacity: .7;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .tt-stay-btn:hover { opacity: 1; }
 
    @media only screen and (max-width:767px) {
      #shopify-section-{{ section.id }}.shopify-section{
@@ -45,6 +131,46 @@
       "id": "color_scheme",
       "default": "primary",
       "label": "t:common.global.color_scheme.label"
+    },
+    {
+      "type": "header",
+      "content": "Auto redirect"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_redirect",
+      "label": "Redirect visitors automatically",
+      "default": true,
+      "info": "Sends anyone who lands on a broken link to the page below."
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "Send them to",
+      "info": "Leave empty to use the homepage."
+    },
+    {
+      "type": "range",
+      "id": "redirect_delay",
+      "label": "Wait before redirecting",
+      "unit": "sec",
+      "default": 5,
+      "min": 0,
+      "max": 15,
+      "step": 1,
+      "info": "0 redirects instantly. 4-6 seconds is recommended."
+    },
+    {
+      "type": "text",
+      "id": "redirect_message",
+      "label": "Countdown message",
+      "default": "Taking you back to the homepage in"
+    },
+    {
+      "type": "text",
+      "id": "stay_label",
+      "label": "Cancel link text",
+      "default": "Stay on this page"
     },
     {
       "type": "header",
