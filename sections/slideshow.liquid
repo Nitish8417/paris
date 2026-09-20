@@ -18,13 +18,7 @@
     endif
   -%}
   <div
-      /* Paris fix: keep the first slideshow button visible */
-  #slideshow-slide-{{ section.blocks.first.id }} .hero-media-btns,
-  #slideshow-slide-{{ section.blocks.first.id }} .hero-media-shop {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-  }
+   
 
     class="hero-media-inner slider-wrapper{% if section.settings.controls == 'number' %} slider-controls-number{% endif %}"
 
@@ -43,10 +37,11 @@
   >
     {% for block in section.blocks %}
       <div
-        id="slideshow-slide-{{ block.id }}"
-        class="hero-media-card hero-media-card-{{ section.id }} {{ section.settings.desktop_height }} {{ section.settings.mobile_height }} animated-text"
-        {{ block.shopify_attributes }}
-      >
+      <div
+  id="slideshow-slide-{{ block.id }}"
+  class="hero-media-card hero-media-card-{{ section.id }} {{ section.settings.desktop_height }} {{ section.settings.mobile_height }}{% unless forloop.first %} animated-text{% endunless %}"
+  {{ block.shopify_attributes }}
+>
         <div class="hero-media-content-wrapper">
           {%- if block.settings.slider_video != blank -%}
             <div class="hero-media-img">
