@@ -1,4 +1,4 @@
-<!-- ============ TT QUICK BUY + CART BUMP (additive, safe to delete) ============ -->
+<!-- ============ TT QUICK BUY + CART COUNT (additive, safe to delete) ============ -->
 <style id="tt-quick-buy-css">
   /* ---------- Quick Buy overlay ---------- */
   .tt-media { position: relative; }
@@ -40,12 +40,40 @@
 
   .tt-quick-buy:hover { background: #111; color: #fff; border-color: #111; }
   .tt-quick-buy[disabled] { opacity: .65; cursor: wait; }
-  .tt-quick-buy.is-done { background: #1a7f4b; border-color: #1a7f4b; color: #fff; }
+  .tt-quick-buy.is-done  { background: #1a7f4b; border-color: #1a7f4b; color: #fff; }
   .tt-quick-buy.is-error { background: #c62828; border-color: #c62828; color: #fff; }
 
   @media (hover: none) { .tt-quick-buy { display: none; } }
 
-  /* ---------- Cart icon wiggle ---------- */
+  /* ---------- Cart count badge (created by JS if missing) ---------- */
+  .tt-cart-anchor { position: relative; overflow: visible; }
+
+  .tt-cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  .tt-cart-badge[hidden] { display: none; }
+
+  /* ---------- Animations ---------- */
   @keyframes tt-wiggle {
     0%   { transform: scale(1)    rotate(0deg); }
     12%  { transform: scale(1.22) rotate(-14deg); }
@@ -63,24 +91,19 @@
     will-change: transform;
   }
 
-  /* ---------- Count badge pop ---------- */
   @keyframes tt-pop {
     0%   { transform: scale(1); }
-    35%  { transform: scale(1.55); }
-    60%  { transform: scale(.88); }
-    80%  { transform: scale(1.12); }
+    35%  { transform: scale(1.6); }
+    60%  { transform: scale(.85); }
+    80%  { transform: scale(1.15); }
     100% { transform: scale(1); }
   }
 
-  .tt-count-pop {
-    animation: tt-pop .55s cubic-bezier(.34, 1.56, .64, 1) both;
-    display: inline-block;
-  }
+  .tt-count-pop { animation: tt-pop .55s cubic-bezier(.34, 1.56, .64, 1) both; }
 
-  /* ---------- Floating +1 ---------- */
   @keyframes tt-float {
-    0%   { opacity: 0; transform: translate(-50%, 4px) scale(.7); }
-    20%  { opacity: 1; transform: translate(-50%, -6px) scale(1.1); }
+    0%   { opacity: 0; transform: translate(-50%, 4px)   scale(.7); }
+    20%  { opacity: 1; transform: translate(-50%, -6px)  scale(1.1); }
     100% { opacity: 0; transform: translate(-50%, -34px) scale(.95); }
   }
 
@@ -112,13 +135,16 @@
   var CONFIG = {
     label:       'QUICK BUY',
     chooseLabel: 'CHOOSE OPTIONS',
+    makeBadge:   true,   // create the number bubble on the cart icon
+    hideAtZero:  true,   // hide the bubble when the cart is empty
     openDrawer:  true,   // slide the mini-cart open after adding
-    wiggle:      true,   // animate the header cart icon
-    floatBadge:  true,   // the little +1 that drifts up
+    wiggle:      true,
+    floatBadge:  true,
     debug:       true    // set false once you're happy
   };
 
-  var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+  var ROOT  = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+  var SEED  = {{ cart.item_count | default: 0 }};
   var queued = false;
 
   function log() {
@@ -127,10 +153,153 @@
     }
   }
 
+  /* ---------------- cart icon ---------------- */
+
+  function cartIcon() {
+    var header = document.querySelector('header, .header, [class*="site-header"], [class*="header-"]') || document;
+    var sels = [
+      '[data-sidedrawer-open="minicart"]',
+      'a[href="#minicart"]',
+      '[data-cart-icon]',
+      '.cart-icon',
+      '.header-cart',
+      '.site-header__cart',
+      'a[href$="/cart"]',
+      'a[href*="/cart"]'
+    ];
+    for (var i = 0; i < sels.length; i++) {
+      var el = header.querySelector(sels[i]);
+      if (el) return el;
+    }
+    return document.querySelector('a[href*="/cart"]');
+  }
+
+  function ensureBadge() {
+    if (!CONFIG.makeBadge) return null;
+
+    var existing = document.querySelector('.tt-cart-badge');
+    if (existing) return existing;
+
+    var icon = cartIcon();
+    if (!icon) { log('cart icon not found — badge not created'); return null; }
+
+    icon.classList.add('tt-cart-anchor');
+
+    var badge = document.createElement('span');
+    badge.className = 'tt-cart-badge';
+    badge.setAttribute('aria-hidden', 'true');
+    badge.textContent = '0';
+    icon.appendChild(badge);
+
+    log('badge created on', icon.tagName, icon.className || icon.getAttribute('href'));
+    return badge;
+  }
+
+  /* ---------------- painting the count ---------------- */
+
+  function paintCount(count, animate) {
+    count = Number(count) || 0;
+
+    // 1. our own badge
+    var badge = ensureBadge();
+    if (badge) {
+      badge.textContent = count > 99 ? '99+' : String(count);
+      badge.hidden = (CONFIG.hideAtZero && count === 0);
+      if (animate && !badge.hidden) {
+        badge.classList.remove('tt-count-pop');
+        void badge.offsetWidth;
+        badge.classList.add('tt-count-pop');
+        setTimeout(function () { badge.classList.remove('tt-count-pop'); }, 600);
+      }
+    }
+
+    // 2. any count the theme already renders (drawer heading, etc.)
+    document.querySelectorAll(
+      '#cartDrawer-count, .cart-total-count, [data-cart-count], ' +
+      '.cart-count, .cart-count-bubble, [class*="cart-item-count"]'
+    ).forEach(function (el) {
+      if (el.classList.contains('tt-cart-badge')) return;
+      if (el.hasAttribute('data-cart-count')) el.setAttribute('data-cart-count', count);
+
+      var txt = (el.textContent || '').trim();
+      if (/^\(?\s*\d+\s*\)?$/.test(txt)) {
+        el.textContent = txt.indexOf('(') > -1 ? '(' + count + ')' : String(count);
+      }
+    });
+
+    // 3. accessible label on the icon itself
+    var icon = cartIcon();
+    if (icon) icon.setAttribute('aria-label', 'Cart, ' + count + ' item' + (count === 1 ? '' : 's'));
+
+    log('count →', count);
+  }
+
+  function syncCount(animate) {
+    return fetch(ROOT + 'cart.js', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.json(); })
+      .then(function (c) { paintCount(c.item_count, animate); return c.item_count; })
+      .catch(function (e) { log('cart.js failed', e); });
+  }
+
+  /* ---------------- animations ---------------- */
+
+  function wiggle() {
+    if (!CONFIG.wiggle) return null;
+    var icon = cartIcon();
+    if (!icon) return null;
+    icon.classList.remove('tt-cart-wiggle');
+    void icon.offsetWidth;
+    icon.classList.add('tt-cart-wiggle');
+    setTimeout(function () { icon.classList.remove('tt-cart-wiggle'); }, 800);
+    return icon;
+  }
+
+  function floatBadge(icon) {
+    if (!CONFIG.floatBadge || !icon) return;
+    var r = icon.getBoundingClientRect();
+    var b = document.createElement('span');
+    b.className = 'tt-float-badge';
+    b.textContent = '+1';
+    b.style.left = (r.left + r.width / 2) + 'px';
+    b.style.top  = (r.top - 6) + 'px';
+    document.body.appendChild(b);
+    setTimeout(function () { b.remove(); }, 1200);
+  }
+
+  /* ---------------- drawer ---------------- */
+
+  function refreshDrawer() {
+    return fetch(ROOT + '?section_id=mini-cart')
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        var doc   = new DOMParser().parseFromString(html, 'text/html');
+        var fresh = doc.querySelector('cart-drawer');
+        var live  = document.querySelector('cart-drawer');
+        if (fresh && live) live.innerHTML = fresh.innerHTML;
+      })
+      .catch(function (e) { log('drawer refresh failed', e); });
+  }
+
+  function showDrawer() {
+    if (!CONFIG.openDrawer) return;
+
+    var trigger = document.querySelector(
+      '[data-sidedrawer-open="minicart"], [data-sideDrawer-open], ' +
+      'a[href="#minicart"], [data-cart-drawer-open]'
+    );
+    if (trigger) { trigger.click(); return; }
+
+    var drawer = document.querySelector('cart-drawer#minicart, cart-drawer');
+    if (!drawer) { log('no cart-drawer — is the drawer enabled in theme settings?'); return; }
+
+    if (typeof drawer.open === 'function') { drawer.open(); return; }
+
+    drawer.classList.add('is-open', 'active', 'open', 'side-drawer-open');
+    document.body.classList.add('side-drawer-active', 'drawer-open', 'overlay-active');
+  }
+
   /* ---------------- card discovery ---------------- */
 
-  // Climb from the product link, keeping the biggest ancestor
-  // that still wraps exactly one product.
   function findCard(link) {
     var el = link.parentElement, best = null, depth = 0;
     while (el && el !== document.body && depth < 10) {
@@ -182,93 +351,6 @@
     ).length > 1;
   }
 
-  /* ---------------- cart icon + count ---------------- */
-
-  function cartIcon() {
-    var header = document.querySelector('header, .header, [class*="site-header"]') || document;
-    return header.querySelector(
-      '[data-cart-icon], .cart-icon, .header-cart, .site-header__cart, ' +
-      'a[href$="/cart"], a[href*="/cart"], [data-sidedrawer-open="minicart"], a[href="#minicart"]'
-    );
-  }
-
-  function wiggle() {
-    if (!CONFIG.wiggle) return null;
-    var icon = cartIcon();
-    if (!icon) { log('cart icon not found'); return null; }
-    icon.classList.remove('tt-cart-wiggle');
-    void icon.offsetWidth;            // restart the animation
-    icon.classList.add('tt-cart-wiggle');
-    setTimeout(function () { icon.classList.remove('tt-cart-wiggle'); }, 800);
-    return icon;
-  }
-
-  function floatBadge(icon) {
-    if (!CONFIG.floatBadge || !icon) return;
-    var r = icon.getBoundingClientRect();
-    var b = document.createElement('span');
-    b.className = 'tt-float-badge';
-    b.textContent = '+1';
-    b.style.left = (r.left + r.width / 2) + 'px';
-    b.style.top  = (r.top - 6) + 'px';
-    document.body.appendChild(b);
-    setTimeout(function () { b.remove(); }, 1200);
-  }
-
-  function paintCount(count) {
-    var targets = document.querySelectorAll(
-      '#cartDrawer-count, .cart-total-count, [data-cart-count], ' +
-      '.cart-count, .cart-count-bubble, [class*="cart-item-count"]'
-    );
-
-    targets.forEach(function (el) {
-      if (el.hasAttribute('data-cart-count')) el.setAttribute('data-cart-count', count);
-
-      var txt = (el.textContent || '').trim();
-      if (/^\(?\s*\d+\s*\)?$/.test(txt)) {
-        el.textContent = txt.indexOf('(') > -1 ? '(' + count + ')' : String(count);
-        el.classList.remove('tt-count-pop');
-        void el.offsetWidth;
-        el.classList.add('tt-count-pop');
-        setTimeout(function () { el.classList.remove('tt-count-pop'); }, 600);
-      }
-    });
-
-    log('count →', count, '| elements touched:', targets.length);
-  }
-
-  /* ---------------- drawer ---------------- */
-
-  function refreshDrawer() {
-    return fetch(ROOT + '?section_id=mini-cart')
-      .then(function (r) { return r.text(); })
-      .then(function (html) {
-        var doc   = new DOMParser().parseFromString(html, 'text/html');
-        var fresh = doc.querySelector('cart-drawer');
-        var live  = document.querySelector('cart-drawer');
-        if (fresh && live) live.innerHTML = fresh.innerHTML;
-      })
-      .catch(function (e) { log('drawer refresh failed', e); });
-  }
-
-  function showDrawer() {
-    if (!CONFIG.openDrawer) return;
-
-    var trigger = document.querySelector(
-      '[data-sidedrawer-open="minicart"], [data-sideDrawer-open], ' +
-      'a[href="#minicart"], [data-cart-drawer-open]'
-    );
-    if (trigger) { trigger.click(); return; }
-
-    var drawer = document.querySelector('cart-drawer#minicart, cart-drawer');
-    if (!drawer) { log('no cart-drawer in DOM — is the drawer enabled in theme settings?'); return; }
-
-    if (typeof drawer.open === 'function') { drawer.open(); return; }
-
-    drawer.classList.add('is-open', 'active', 'open', 'side-drawer-open');
-    document.body.classList.add('side-drawer-active', 'drawer-open', 'overlay-active');
-  }
-
   /* ---------------- add to cart ---------------- */
 
   function reset(btn, label) {
@@ -302,17 +384,12 @@
         var icon = wiggle();
         floatBadge(icon);
 
-        return fetch(ROOT + 'cart.js')
-          .then(function (r) { return r.json(); })
-          .then(function (cart) {
-            paintCount(cart.item_count);
-            return refreshDrawer();
-          })
-          .then(function () {
-            paintCount(null === null ? undefined : undefined); // no-op guard
-            showDrawer();
-            reset(btn, label);
-          });
+        return syncCount(true).then(function () {
+          return refreshDrawer();
+        }).then(function () {
+          showDrawer();
+          reset(btn, label);
+        });
       })
       .catch(function (e) {
         log('add failed', e);
@@ -361,6 +438,7 @@
     var links = document.querySelectorAll('a[href*="/products/"]');
     var n = 0;
     links.forEach(function (l) { if (enhance(l)) n++; });
+    ensureBadge();
     log('product links:', links.length, '| cards wired:', n);
   }
 
@@ -370,23 +448,26 @@
     setTimeout(scan, 120);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scan);
-  } else {
+  function boot() {
+    paintCount(SEED, false);   // instant, from Liquid
     scan();
+    syncCount(false);          // then verify against the real cart
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
   window.addEventListener('load', queue);
+  window.addEventListener('pageshow', function () { syncCount(false); });  // back button
   new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true });
 
-  // Also bump the icon when the theme's own Add to cart is used
-  ['cart:refresh', 'cart:updated', 'cart:build'].forEach(function (evt) {
-    document.addEventListener(evt, function () {
-      fetch(ROOT + 'cart.js')
-        .then(function (r) { return r.json(); })
-        .then(function (c) { paintCount(c.item_count); wiggle(); })
-        .catch(function () {});
-    });
+  // Keep the badge honest when the theme's own buttons are used
+  ['cart:refresh', 'cart:updated', 'cart:build', 'ajaxProduct:added'].forEach(function (evt) {
+    document.addEventListener(evt, function () { syncCount(true); wiggle(); });
   });
 })();
 </script>
-<!-- ============ END TT QUICK BUY + CART BUMP ============ -->
+<!-- ============ END TT QUICK BUY + CART COUNT ============ -->
