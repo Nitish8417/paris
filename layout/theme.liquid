@@ -920,11 +920,9 @@
 
   /* ---------------- wiring ---------------- */
   var SKIP_ZONES = '.section-hero-banner, .hero-media-wrapper, .hero-media-card, ' +
-                   '.hero-media-content-wrapper, [class*="hero"], [class*="banner"], ' +
-                   '[class*="slideshow"], [class*="marquee"], [class*="megamenu"], ' +
-                   '[class*="submenu"], [class*="collection-card"], ' +
+                   '.hero-media-content-wrapper, .hero-media-img, ' +
+                   '[class*="marquee"], [class*="megamenu"], [class*="submenu"], ' +
                    'header, footer, cart-drawer, .side-drawer-panel';
-
   function looksLikeProductCard(card) {
     // Every real product card shows a price. Banners and menu tiles never do.
     if (card.querySelector('[class*="price"], .money, .item-price')) return true;
