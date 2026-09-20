@@ -37,11 +37,10 @@
   >
     {% for block in section.blocks %}
       <div
-      <div
-  id="slideshow-slide-{{ block.id }}"
-  class="hero-media-card hero-media-card-{{ section.id }} {{ section.settings.desktop_height }} {{ section.settings.mobile_height }}{% unless forloop.first %} animated-text{% endunless %}"
-  {{ block.shopify_attributes }}
->
+        id="slideshow-slide-{{ block.id }}"
+        class="hero-media-card hero-media-card-{{ section.id }} {{ section.settings.desktop_height }} {{ section.settings.mobile_height }} animated-text"
+        {{ block.shopify_attributes }}
+      >
         <div class="hero-media-content-wrapper">
           {%- if block.settings.slider_video != blank -%}
             <div class="hero-media-img">
