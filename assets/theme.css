@@ -5234,3 +5234,11 @@ figure.scaner-image {
     padding-right: 12px !important;
   }
 
+/* Keep Paris slideshow buttons visible after slider initialization */
+.hero-media-card .hero-media-cont-inner .hero-media-btns,
+.hero-media-card.is-selected .hero-media-cont-inner .hero-media-btns {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
