@@ -24,7 +24,7 @@
             "font_family": "heading",
             "description": "",
             "description_size": "textMedium",
-            "content_position": "down-end",
+            "content_position": "mid-center",
             "content_alignment": "left",
             "content_width": "medium",
             "mobile_content_position": "down-end",
