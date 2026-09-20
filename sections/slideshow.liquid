@@ -18,6 +18,14 @@
     endif
   -%}
   <div
+      /* Paris fix: keep the first slideshow button visible */
+  #slideshow-slide-{{ section.blocks.first.id }} .hero-media-btns,
+  #slideshow-slide-{{ section.blocks.first.id }} .hero-media-shop {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
     class="hero-media-inner slider-wrapper{% if section.settings.controls == 'number' %} slider-controls-number{% endif %}"
 
     data-flickity-slider
