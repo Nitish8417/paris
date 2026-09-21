@@ -16,7 +16,13 @@
       {% endfor %}
      {% endif %}
 {% endcapture %}
+{% liquid
+  assign logo_scroll_speed = section.settings.scrolling_speed
 
+  if section.id == 'template--22738416402650__logo_list_9UqKFM'
+    assign logo_scroll_speed = 300
+  endif
+%}
     <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
     <div class="{{ settings.layout_width }}">
         {% if section.settings.heading != blank %}
@@ -25,7 +31,7 @@
       <div class="multi-logo-wrapper logo-list-shape-{{ section.settings.logo_shape }} {% if section.settings.swipe_enable_mobile %} swipe-mobile-true{% endif %} {% if section.settings.layout_type == 'marquee' %} marquee-inner-card {{ section.settings.direction }}-direction marquee-item-gap{% else %} logo-stacked{% endif %}" 
           {% if section.settings.layout_type == 'marquee' %}
              data-scrolling-content 
-            data-scrolling-speed="{{ section.settings.scrolling_speed }}"
+            data-scrolling-speed="{{ logo_scroll_speed }}"
           {% endif %}>
              {% if section.settings.layout_type == 'grid' %}
                 {{ logolist }}
