@@ -1344,7 +1344,7 @@
     show:     10,
     decimals: 3,
     suffix:   ' KD',
-    debug:    true
+    debug:    false
   };
 
   var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
@@ -1414,11 +1414,29 @@
     return a;
   }
 
+  function anchorPoint() {
+    // 1. Right after the related products section
+    var rel = document.querySelector(
+      'product-recommendations, .product-recommendations, [class*="related-product"], ' +
+      '[class*="product-recommend"], [id*="related"], [id*="recommend"]'
+    );
+    if (rel) {
+      var sec = rel.closest('.shopify-section') || rel;
+      return { parent: sec.parentNode, before: sec.nextSibling };
+    }
+
+    // 2. Otherwise, the end of the main content area
+    var main = document.getElementById('MainContent') || document.querySelector('main');
+    if (main) return { parent: main, before: null };
+
+    return null;
+  }
+
   function mount(products) {
     if (!products.length) { log('nothing to show'); return; }
 
-    var host = document.querySelector('footer, .site-footer, [class*="footer"]');
-    if (!host) { log('no footer found'); return; }
+    var spot = anchorPoint();
+    if (!spot) { log('no place to mount'); return; }
 
     var old = document.querySelector('.tt-rv');
     if (old) old.remove();
@@ -1440,7 +1458,7 @@
       wrap.remove();
     });
 
-    host.parentNode.insertBefore(wrap, host);
+    spot.parent.insertBefore(wrap, spot.before);
     log('mounted', products.length, 'products');
   }
 
