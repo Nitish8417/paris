@@ -936,6 +936,54 @@
         "bottom_space_mobile": 40
       }
     },
+    "parallax_hmHXrH": {
+      "type": "parallax",
+      "blocks": {
+        "heading_teyNmD": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Anker",
+            "heading_size": "h2",
+            "heading_size_mobile": "h3_mobile",
+            "heading_style": "solid"
+          }
+        },
+        "text_TGWW9Y": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Modular design meets dynamic light. Transform your space with intuitive control and endless possibilities</p>"
+          }
+        },
+        "button_TbErWB": {
+          "type": "button",
+          "settings": {
+            "text": "View Collection",
+            "link": "shopify://collections/ugreen",
+            "size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_teyNmD",
+        "text_TGWW9Y",
+        "button_TbErWB"
+      ],
+      "settings": {
+        "video": "shopify://files/videos/b4888d5fe94d4f05a8035a246ff63b7f.HD-1080p-7.2Mbps-61809639.mp4",
+        "content_width": "small",
+        "desktop_height": "slider-small",
+        "text_position": "down-center",
+        "text_alignment": "center",
+        "mobile_height": "mobile-slider-small",
+        "text_position_mobile": "mid-center",
+        "text_alignment_mobile": "center",
+        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
+        "bg_color_opacity": "#000000",
+        "overlay_opacity": 64
+      }
+    },
     "logo_list_9UqKFM": {
       "type": "logo-list",
       "blocks": {
@@ -1251,6 +1299,7 @@
     "media_grid_rHNQbG",
     "featured_product_9gXb4k",
     "banner_with_text_8QkUYa",
+    "parallax_hmHXrH",
     "logo_list_9UqKFM",
     "rich_text_yi96Lj",
     "1788689024b5e5f99c",
