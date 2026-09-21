@@ -1344,11 +1344,12 @@
     show:     10,
     decimals: 3,
     suffix:   ' KD',
-    debug:    false
+    debug:    true
   };
 
   var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
   var BASE = ROOT.replace(/\/$/, '');
+  var RELATED_TEXT = /you may also like|related|similar|recommended|customers also|also bought|pairs well|frequently bought/i;
 
   function log() {
     if (CONFIG.debug && window.console) {
@@ -1377,7 +1378,6 @@
   function track() {
     var handle = currentHandle();
     if (!handle) return;
-
     var list = read().filter(function (h) { return h !== handle; });
     list.unshift(handle);
     write(list.slice(0, CONFIG.max));
@@ -1414,29 +1414,85 @@
     return a;
   }
 
-  function anchorPoint() {
-    // 1. Right after the related products section
-    var rel = document.querySelector(
+  /* ---------- find the related products section ---------- */
+
+  function mainEl() {
+    return document.getElementById('MainContent') || document.querySelector('main');
+  }
+
+  function sectionsIn(main) {
+    return [].filter.call(main.children, function (el) {
+      return el.classList.contains('shopify-section');
+    });
+  }
+
+  function relatedSection() {
+    var main = mainEl();
+    if (!main) return null;
+
+    // 1. Known tags / classes
+    var known = main.querySelector(
       'product-recommendations, .product-recommendations, [class*="related-product"], ' +
-      '[class*="product-recommend"], [id*="related"], [id*="recommend"]'
+      '[class*="product-recommend"], [class*="recommendation"], [id*="related"], [id*="recommend"]'
     );
-    if (rel) {
-      var sec = rel.closest('.shopify-section') || rel;
-      return { parent: sec.parentNode, before: sec.nextSibling };
+    if (known) {
+      var ks = known.closest('.shopify-section');
+      if (ks && ks.parentNode === main) return ks;
     }
 
-    // 2. Otherwise, the end of the main content area
-    var main = document.getElementById('MainContent') || document.querySelector('main');
-    if (main) return { parent: main, before: null };
+    var secs = sectionsIn(main);
+    var here = currentHandle();
+
+    // 2. The last section on the page that shows OTHER products
+    for (var i = secs.length - 1; i > 0; i--) {
+      var links = secs[i].querySelectorAll('a[href*="/products/"]');
+      for (var j = 0; j < links.length; j++) {
+        if (!here || links[j].pathname.indexOf('/products/' + here) === -1) return secs[i];
+      }
+    }
+
+    // 3. A section whose heading reads like "You may also like"
+    for (var k = 1; k < secs.length; k++) {
+      var h = secs[k].querySelector('h2, h3, .title, [class*="heading"]');
+      if (h && RELATED_TEXT.test(h.textContent || '')) return secs[k];
+    }
 
     return null;
   }
 
+  function place(wrap) {
+    var main = mainEl();
+    if (!main) return;
+
+    var rel = relatedSection();
+    if (rel) {
+      if (rel.nextElementSibling !== wrap) {
+        rel.parentNode.insertBefore(wrap, rel.nextSibling);
+        log('placed after related section:', rel.id || rel.className);
+      }
+    } else if (wrap.parentNode !== main || main.lastElementChild !== wrap) {
+      main.appendChild(wrap);
+      log('no related section found — placed at end of page content');
+    }
+  }
+
+  function watch(wrap) {
+    var main = mainEl();
+    if (!main || !window.MutationObserver) return;
+
+    var pending = false;
+    var mo = new MutationObserver(function () {
+      if (pending) return;
+      pending = true;
+      setTimeout(function () { pending = false; place(wrap); }, 150);
+    });
+
+    mo.observe(main, { childList: true, subtree: true });
+    setTimeout(function () { mo.disconnect(); }, 12000);
+  }
+
   function mount(products) {
     if (!products.length) { log('nothing to show'); return; }
-
-    var spot = anchorPoint();
-    if (!spot) { log('no place to mount'); return; }
 
     var old = document.querySelector('.tt-rv');
     if (old) old.remove();
@@ -1458,7 +1514,8 @@
       wrap.remove();
     });
 
-    spot.parent.insertBefore(wrap, spot.before);
+    place(wrap);
+    watch(wrap);
     log('mounted', products.length, 'products');
   }
 
