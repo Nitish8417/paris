@@ -1536,40 +1536,19 @@
 <!-- ============ TT CLICKABLE HERO SLIDES ============ -->
 <style id="tt-hero-css">
   .tt-hero-slide { cursor: pointer; }
+  .tt-hero-hide { display: none !important; }
 
-  .tt-hero-btn {
-    position: absolute;
+  /* Only used if no other banner button can be copied */
+  .tt-hero-fallback {
     left: 4%;
     bottom: 10%;
-    z-index: 6;
-    display: inline-block;
-    padding: 16px 38px;
-    border-radius: 4px;
+    padding: 16px 36px;
+    border-radius: 6px;
     background: #111;
     color: #fff !important;
     font-family: inherit;
     font-size: 1.05rem;
-    font-weight: 500;
-    letter-spacing: .03em;
-    line-height: 1.2;
     text-decoration: none !important;
-    box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    transition: transform .2s ease, background .2s ease;
-  }
-
-  .tt-hero-btn:hover { background: #000; transform: translateY(-2px); }
-
-  .tt-hero-hide { display: none !important; }
-
-  @media (max-width: 767px) {
-    .tt-hero-btn {
-      left: 50%;
-      bottom: 8%;
-      padding: 12px 28px;
-      font-size: .95rem;
-      transform: translateX(-50%);
-    }
-    .tt-hero-btn:hover { transform: translateX(-50%); }
   }
 </style>
 
@@ -1578,65 +1557,127 @@
   'use strict';
 
   var CONFIG = {
-    label: 'Shop Now',
-    // Slides whose link contains any of these ALWAYS get the Techty button
-    alwaysAdd: ['/collections/promate']
+    // Banners whose link contains any of these get a copied Shop Now button
+    forceButton: ['/collections/promate']
   };
 
-  function slides() {
-    var list = document.querySelectorAll('.section-hero-banner .hero-media-card');
-    if (!list.length) list = document.querySelectorAll('.section-hero-banner .flickity-slider > *');
-    return [].slice.call(list);
+  var COPY = [
+    'backgroundColor','color','fontFamily','fontSize','fontWeight','fontStyle',
+    'letterSpacing','lineHeight','textTransform','textAlign','whiteSpace',
+    'paddingTop','paddingRight','paddingBottom','paddingLeft',
+    'borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth',
+    'borderTopStyle','borderRightStyle','borderBottomStyle','borderLeftStyle',
+    'borderTopColor','borderRightColor','borderBottomColor','borderLeftColor',
+    'borderTopLeftRadius','borderTopRightRadius','borderBottomLeftRadius','borderBottomRightRadius',
+    'boxShadow','width','height','display','alignItems','justifyContent'
+  ];
+
+  function heroRoot() {
+    return document.querySelector('.section-hero-banner')
+        || document.querySelector('#MainContent > .shopify-section');
   }
 
-  function slideLink(slide) {
-    return slide.querySelector('a[href]:not([href="#"]):not([href=""]):not(.tt-hero-btn)');
+  // The slide = nearest ancestor of the link that holds an image and is banner-wide
+  function slideOf(link, root) {
+    var wide = root.getBoundingClientRect().width * 0.6;
+    var el = link.parentElement;
+    while (el && el !== root) {
+      if (el.querySelector('img') && el.getBoundingClientRect().width >= wide) return el;
+      el = el.parentElement;
+    }
+    return null;
   }
 
-  function reallyVisible(el, slide) {
+  function visibleIn(el, slide) {
     var node = el;
     while (node && node !== slide) {
       var cs = getComputedStyle(node);
       if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.1) return false;
       node = node.parentElement;
     }
-    var r = el.getBoundingClientRect();
-    var s = slide.getBoundingClientRect();
+    var r = el.getBoundingClientRect(), s = slide.getBoundingClientRect();
     if (r.width < 10 || r.height < 10) return false;
-    if (r.right < s.left || r.left > s.right || r.bottom < s.top || r.top > s.bottom) return false;
-    return true;
+    return !(r.right < s.left || r.left > s.right || r.bottom < s.top || r.top > s.bottom);
   }
 
-  function forced(href) {
-    return CONFIG.alwaysAdd.some(function (part) { return href.indexOf(part) > -1; });
+  function isForced(href) {
+    return CONFIG.forceButton.some(function (p) { return href.indexOf(p) > -1; });
   }
 
-  function fix() {
-    slides().forEach(function (slide) {
-      if (slide.dataset.ttHero) return;
-
-      var link = slideLink(slide);
-      if (!link) return;
-
-      slide.dataset.ttHero = '1';
-      slide.classList.add('tt-hero-slide');
-
-      var mustAdd = forced(link.href);
-      if (!mustAdd && reallyVisible(link, slide)) return;
-
-      if (getComputedStyle(slide).position === 'static') slide.style.position = 'relative';
-
-      if (mustAdd) link.classList.add('tt-hero-hide');
-
-      var btn = document.createElement('a');
-      btn.className = 'tt-hero-btn';
-      btn.href = link.href;
-      btn.textContent = CONFIG.label;
-      slide.appendChild(btn);
+  function heroLinks(root) {
+    return [].filter.call(root.querySelectorAll('a[href]'), function (a) {
+      var h = a.getAttribute('href') || '';
+      return h && h !== '#' && !a.classList.contains('tt-hero-copy');
     });
   }
 
-  /* ---------- click anywhere on a slide ---------- */
+  function findDonor(root) {
+    var links = heroLinks(root);
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      if (isForced(a.href)) continue;
+      if (!/shop/i.test(a.textContent || '')) continue;
+      var s = slideOf(a, root);
+      if (s && visibleIn(a, s)) return { link: a, slide: s };
+    }
+    return null;
+  }
+
+  function placeCopy(slide, href, donor) {
+    var btn = slide.querySelector('.tt-hero-copy');
+
+    if (!btn) {
+      btn = document.createElement('a');
+      btn.className = 'tt-hero-copy';
+      slide.appendChild(btn);
+    }
+
+    btn.href = href;
+    btn.style.position = 'absolute';
+    btn.style.zIndex = '6';
+    btn.style.textDecoration = 'none';
+    btn.style.boxSizing = 'border-box';
+
+    if (donor) {
+      btn.className = donor.link.className + ' tt-hero-copy';
+      btn.innerHTML = donor.link.innerHTML;
+
+      var cs = getComputedStyle(donor.link);
+      COPY.forEach(function (p) { btn.style[p] = cs[p]; });
+      if (btn.style.display === 'inline') btn.style.display = 'inline-block';
+
+      var r = donor.link.getBoundingClientRect();
+      var s = donor.slide.getBoundingClientRect();
+      btn.style.left = ((r.left - s.left) / s.width * 100) + '%';
+      btn.style.top  = ((r.top  - s.top)  / s.height * 100) + '%';
+      btn.style.bottom = 'auto';
+    } else {
+      btn.className = 'tt-hero-copy tt-hero-fallback';
+      btn.textContent = 'Shop Now';
+    }
+  }
+
+  function fix() {
+    var root = heroRoot();
+    if (!root) return;
+
+    var donor = findDonor(root);
+
+    heroLinks(root).forEach(function (link) {
+      var slide = slideOf(link, root);
+      if (!slide) return;
+
+      slide.classList.add('tt-hero-slide');
+      if (getComputedStyle(slide).position === 'static') slide.style.position = 'relative';
+
+      if (!isForced(link.href)) return;
+
+      link.classList.add('tt-hero-hide');
+      placeCopy(slide, link.href, donor);
+    });
+  }
+
+  /* ---------- click anywhere on a banner ---------- */
 
   var startX = 0, startY = 0;
 
@@ -1651,19 +1692,26 @@
     if (e.target.closest('a, button')) return;
     if (Math.abs(e.clientX - startX) > 10 || Math.abs(e.clientY - startY) > 10) return;
 
-    var link = slide.querySelector('.tt-hero-btn') || slideLink(slide);
+    var link = slide.querySelector('.tt-hero-copy') ||
+               slide.querySelector('a[href]:not([href="#"]):not(.tt-hero-hide)');
     if (link) window.location.href = link.href;
   });
 
-  /* ---------- run after the slider has finished setting up ---------- */
+  /* ---------- run once the slider has settled, and on resize ---------- */
 
   function run() {
-    setTimeout(fix, 600);
-    setTimeout(fix, 2000);
+    setTimeout(fix, 700);
+    setTimeout(fix, 2200);
   }
 
   if (document.readyState === 'complete') run();
   else window.addEventListener('load', run);
+
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(fix, 250);
+  });
 })();
 </script>
 <!-- ============ END TT CLICKABLE HERO SLIDES ============ -->
