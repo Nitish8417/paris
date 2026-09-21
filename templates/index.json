@@ -475,6 +475,7 @@
     },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
+      "custom_css": [],
       "settings": {
         "grid_image_size": "auto",
         "image_fit": "cover",
