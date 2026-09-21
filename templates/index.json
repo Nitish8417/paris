@@ -987,42 +987,6 @@
     "logo_list_9UqKFM": {
       "type": "logo-list",
       "blocks": {
-        "logo_3H3ban": {
-          "type": "logo",
-          "name": "Mowsil",
-          "settings": {
-            "image": "shopify://shop_images/logo-white.webp",
-            "image_link": "shopify://collections/mowsil",
-            "image_width": 50
-          }
-        },
-        "logo_d6VEGD": {
-          "type": "logo",
-          "name": "PROMiXX",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design_2.png",
-            "image_link": "shopify://collections/promixx",
-            "image_width": 50
-          }
-        },
-        "logo_ByMAw9": {
-          "type": "logo",
-          "name": "Ice Shaker",
-          "settings": {
-            "image": "shopify://shop_images/ice_shaker_logo_png_web_png.webp",
-            "image_link": "shopify://collections/ice-shaker",
-            "image_width": 50
-          }
-        },
-        "logo_kpcPNz": {
-          "type": "logo",
-          "name": "Vertux",
-          "settings": {
-            "image": "shopify://shop_images/logo-trim_1.png",
-            "image_link": "shopify://collections/vertux",
-            "image_width": 50
-          }
-        },
         "logo_q7b4Q7": {
           "type": "logo",
           "name": "Anker",
@@ -1038,15 +1002,6 @@
           "settings": {
             "image": "shopify://shop_images/Earldom_Logo.webp",
             "image_link": "shopify://collections/earldom",
-            "image_width": 50
-          }
-        },
-        "logo_fwDg4d": {
-          "type": "logo",
-          "name": "LDNIO",
-          "settings": {
-            "image": "shopify://shop_images/ldnio-logo-png_seeklogo-390292_57588bbf-c9c4-4e82-a398-0fc12b81ac23.png",
-            "image_link": "shopify://collections/ldnio",
             "image_width": 50
           }
         },
@@ -1068,13 +1023,13 @@
             "image_width": 100
           }
         },
-        "logo_UxBpr8": {
+        "logo_ByMAw9": {
           "type": "logo",
-          "name": "UGreen",
+          "name": "Ice Shaker",
           "settings": {
-            "image": "shopify://shop_images/Porodo_Logo_2_0858171e-99d2-43fc-9545-4fe156d19218.png",
-            "image_link": "shopify://collections/ugreen",
-            "image_width": 100
+            "image": "shopify://shop_images/ice_shaker_logo_png_web_png.webp",
+            "image_link": "shopify://collections/ice-shaker",
+            "image_width": 50
           }
         },
         "logo_qkMgmW": {
@@ -1084,6 +1039,15 @@
             "image": "shopify://shop_images/image_1_-min.png",
             "image_link": "shopify://collections/laifen",
             "image_width": 100
+          }
+        },
+        "logo_fwDg4d": {
+          "type": "logo",
+          "name": "LDNIO",
+          "settings": {
+            "image": "shopify://shop_images/ldnio-logo-png_seeklogo-390292_57588bbf-c9c4-4e82-a398-0fc12b81ac23.png",
+            "image_link": "shopify://collections/ldnio",
+            "image_width": 50
           }
         },
         "logo_Nc4nTQ": {
@@ -1102,6 +1066,15 @@
             "image": "shopify://shop_images/6165e211a7b8465af945cbb7_monster-web.webp",
             "image_link": "shopify://collections/monster",
             "image_width": 100
+          }
+        },
+        "logo_3H3ban": {
+          "type": "logo",
+          "name": "Mowsil",
+          "settings": {
+            "image": "shopify://shop_images/logo-white.webp",
+            "image_link": "shopify://collections/mowsil",
+            "image_width": 50
           }
         },
         "logo_hPk9F8": {
@@ -1129,6 +1102,15 @@
             "image": "shopify://shop_images/Logos_3.png",
             "image_link": "shopify://collections/powerology",
             "image_width": 100
+          }
+        },
+        "logo_d6VEGD": {
+          "type": "logo",
+          "name": "PROMiXX",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_2.png",
+            "image_link": "shopify://collections/promixx",
+            "image_width": 50
           }
         },
         "logo_jHw9B8": {
@@ -1159,6 +1141,24 @@
             "image_width": 100
           }
         },
+        "logo_UxBpr8": {
+          "type": "logo",
+          "name": "UGreen",
+          "settings": {
+            "image": "shopify://shop_images/Porodo_Logo_2_0858171e-99d2-43fc-9545-4fe156d19218.png",
+            "image_link": "shopify://collections/ugreen",
+            "image_width": 100
+          }
+        },
+        "logo_kpcPNz": {
+          "type": "logo",
+          "name": "Vertux",
+          "settings": {
+            "image": "shopify://shop_images/logo-trim_1.png",
+            "image_link": "shopify://collections/vertux",
+            "image_width": 50
+          }
+        },
         "logo_zmMmwN": {
           "type": "logo",
           "name": "Xiaomi",
@@ -1170,25 +1170,25 @@
         }
       },
       "block_order": [
-        "logo_3H3ban",
-        "logo_d6VEGD",
-        "logo_ByMAw9",
-        "logo_kpcPNz",
         "logo_q7b4Q7",
         "logo_NPhtfE",
-        "logo_fwDg4d",
         "logo_mEibRg",
         "logo_dw9EbJ",
-        "logo_UxBpr8",
+        "logo_ByMAw9",
         "logo_qkMgmW",
+        "logo_fwDg4d",
         "logo_Nc4nTQ",
         "logo_UAYRnW",
+        "logo_3H3ban",
         "logo_hPk9F8",
         "logo_NN4MAC",
         "logo_EbRWaQ",
+        "logo_d6VEGD",
         "logo_jHw9B8",
         "logo_7ckM8x",
         "logo_496tFR",
+        "logo_UxBpr8",
+        "logo_kpcPNz",
         "logo_zmMmwN"
       ],
       "settings": {
@@ -1204,7 +1204,7 @@
         "layout_type": "marquee",
         "scrolling_speed": 100,
         "direction": "rtl",
-        "column_spacing": 62,
+        "column_spacing": 20,
         "heading": "Brands",
         "heading_size": "h2",
         "heading_size_mobile": "h3_mobile",
