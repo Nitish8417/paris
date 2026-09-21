@@ -1535,15 +1535,109 @@
 <!-- ============ END TT ADD TO CART STAYS ON PAGE ============ -->
 <!-- ============ TT CLICKABLE HERO SLIDES ============ -->
 <style id="tt-hero-css">
-  .section-hero-banner .hero-media-card,
-  .section-hero-banner .flickity-slider > * { cursor: pointer; }
+  .tt-hero-slide { cursor: pointer; }
+
+  .tt-hero-btn {
+    position: absolute;
+    left: 4%;
+    bottom: 10%;
+    z-index: 6;
+    display: inline-block;
+    padding: 16px 38px;
+    border-radius: 4px;
+    background: #111;
+    color: #fff !important;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: .03em;
+    line-height: 1.2;
+    text-decoration: none !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    transition: transform .2s ease, background .2s ease;
+  }
+
+  .tt-hero-btn:hover { background: #000; transform: translateY(-2px); }
+
+  .tt-hero-hide { display: none !important; }
+
+  @media (max-width: 767px) {
+    .tt-hero-btn {
+      left: 50%;
+      bottom: 8%;
+      padding: 12px 28px;
+      font-size: .95rem;
+      transform: translateX(-50%);
+    }
+    .tt-hero-btn:hover { transform: translateX(-50%); }
+  }
 </style>
 
 <script id="tt-hero">
 (function () {
   'use strict';
 
-  var SLIDE = '.section-hero-banner .hero-media-card, .section-hero-banner .flickity-slider > *';
+  var CONFIG = {
+    label: 'Shop Now',
+    // Slides whose link contains any of these ALWAYS get the Techty button
+    alwaysAdd: ['/collections/promate']
+  };
+
+  function slides() {
+    var list = document.querySelectorAll('.section-hero-banner .hero-media-card');
+    if (!list.length) list = document.querySelectorAll('.section-hero-banner .flickity-slider > *');
+    return [].slice.call(list);
+  }
+
+  function slideLink(slide) {
+    return slide.querySelector('a[href]:not([href="#"]):not([href=""]):not(.tt-hero-btn)');
+  }
+
+  function reallyVisible(el, slide) {
+    var node = el;
+    while (node && node !== slide) {
+      var cs = getComputedStyle(node);
+      if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.1) return false;
+      node = node.parentElement;
+    }
+    var r = el.getBoundingClientRect();
+    var s = slide.getBoundingClientRect();
+    if (r.width < 10 || r.height < 10) return false;
+    if (r.right < s.left || r.left > s.right || r.bottom < s.top || r.top > s.bottom) return false;
+    return true;
+  }
+
+  function forced(href) {
+    return CONFIG.alwaysAdd.some(function (part) { return href.indexOf(part) > -1; });
+  }
+
+  function fix() {
+    slides().forEach(function (slide) {
+      if (slide.dataset.ttHero) return;
+
+      var link = slideLink(slide);
+      if (!link) return;
+
+      slide.dataset.ttHero = '1';
+      slide.classList.add('tt-hero-slide');
+
+      var mustAdd = forced(link.href);
+      if (!mustAdd && reallyVisible(link, slide)) return;
+
+      if (getComputedStyle(slide).position === 'static') slide.style.position = 'relative';
+
+      if (mustAdd) link.classList.add('tt-hero-hide');
+
+      var btn = document.createElement('a');
+      btn.className = 'tt-hero-btn';
+      btn.href = link.href;
+      btn.textContent = CONFIG.label;
+      slide.appendChild(btn);
+    });
+  }
+
+  /* ---------- click anywhere on a slide ---------- */
+
   var startX = 0, startY = 0;
 
   document.addEventListener('pointerdown', function (e) {
@@ -1552,20 +1646,24 @@
   }, true);
 
   document.addEventListener('click', function (e) {
-    var slide = e.target.closest(SLIDE);
+    var slide = e.target.closest('.tt-hero-slide');
     if (!slide) return;
-
-    // Real buttons, links and slider arrows keep working as normal
     if (e.target.closest('a, button')) return;
-
-    // Ignore swipes/drags
     if (Math.abs(e.clientX - startX) > 10 || Math.abs(e.clientY - startY) > 10) return;
 
-    var link = slide.querySelector('a[href]:not([href="#"]):not([href=""])');
-    if (!link) return;
-
-    window.location.href = link.href;
+    var link = slide.querySelector('.tt-hero-btn') || slideLink(slide);
+    if (link) window.location.href = link.href;
   });
+
+  /* ---------- run after the slider has finished setting up ---------- */
+
+  function run() {
+    setTimeout(fix, 600);
+    setTimeout(fix, 2000);
+  }
+
+  if (document.readyState === 'complete') run();
+  else window.addEventListener('load', run);
 })();
 </script>
 <!-- ============ END TT CLICKABLE HERO SLIDES ============ -->
