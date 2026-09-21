@@ -1206,7 +1206,6 @@
     margin: 56px auto;
     padding: 0 20px;
   }
-
   .tt-rv__head {
     display: flex;
     align-items: baseline;
@@ -1214,14 +1213,12 @@
     gap: 16px;
     margin-bottom: 20px;
   }
-
   .tt-rv__title {
     margin: 0;
     font-size: clamp(20px, 2.4vw, 30px);
     font-weight: 700;
     line-height: 1.2;
   }
-
   .tt-rv__clear {
     padding: 0;
     border: 0;
@@ -1234,9 +1231,7 @@
     cursor: pointer;
     white-space: nowrap;
   }
-
   .tt-rv__clear:hover { opacity: 1; }
-
   .tt-rv__track {
     display: grid;
     grid-auto-flow: column;
@@ -1248,13 +1243,8 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
   }
-
   .tt-rv__track::-webkit-scrollbar { height: 4px; }
-  .tt-rv__track::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,.18);
-    border-radius: 4px;
-  }
-
+  .tt-rv__track::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 4px; }
   @media (min-width: 990px) {
     .tt-rv__track {
       grid-auto-flow: row;
@@ -1263,7 +1253,6 @@
     }
     .tt-rv__item:nth-child(n+6) { display: none; }
   }
-
   .tt-rv__item {
     display: flex;
     flex-direction: column;
@@ -1271,7 +1260,6 @@
     text-decoration: none;
     color: inherit;
   }
-
   .tt-rv__media {
     position: relative;
     aspect-ratio: 1 / 1;
@@ -1281,7 +1269,6 @@
     overflow: hidden;
     background: #fff;
   }
-
   .tt-rv__media img {
     width: 100%;
     height: 100%;
@@ -1291,9 +1278,7 @@
     box-sizing: border-box;
     transition: transform .3s ease;
   }
-
   .tt-rv__item:hover .tt-rv__media img { transform: scale(1.04); }
-
   .tt-rv__badge {
     position: absolute;
     top: 10px;
@@ -1307,7 +1292,6 @@
     letter-spacing: .04em;
     text-transform: uppercase;
   }
-
   .tt-rv__name {
     margin: 0 0 6px;
     font-size: .9rem;
@@ -1318,12 +1302,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
-  .tt-rv__price {
-    font-size: .95rem;
-    font-weight: 700;
-  }
-
+  .tt-rv__price { font-size: .95rem; font-weight: 700; }
   .tt-rv__was {
     margin-inline-start: 7px;
     font-size: .82rem;
@@ -1349,7 +1328,11 @@
 
   var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
   var BASE = ROOT.replace(/\/$/, '');
-  var RELATED_TEXT = /you may also like|related|similar|recommended|customers also|also bought|pairs well|frequently bought/i;
+
+  // Places that contain product links but are NOT the related section
+  var IGNORE = 'header, footer, nav, cart-drawer, .side-drawer-panel, #minicart, ' +
+               '[class*="quick-view"], [class*="megamenu"], [class*="submenu"], ' +
+               '[class*="breadcrumb"], .tt-rv';
 
   function log() {
     if (CONFIG.debug && window.console) {
@@ -1366,8 +1349,7 @@
   }
 
   function write(list) {
-    try { localStorage.setItem(CONFIG.key, JSON.stringify(list)); }
-    catch (e) { log('storage write failed'); }
+    try { localStorage.setItem(CONFIG.key, JSON.stringify(list)); } catch (e) {}
   }
 
   function currentHandle() {
@@ -1381,7 +1363,6 @@
     var list = read().filter(function (h) { return h !== handle; });
     list.unshift(handle);
     write(list.slice(0, CONFIG.max));
-    log('tracked', handle);
   }
 
   function money(cents) {
@@ -1414,85 +1395,56 @@
     return a;
   }
 
-  /* ---------- find the related products section ---------- */
-
-  function mainEl() {
-    return document.getElementById('MainContent') || document.querySelector('main');
-  }
-
-  function sectionsIn(main) {
-    return [].filter.call(main.children, function (el) {
-      return el.classList.contains('shopify-section');
-    });
-  }
+  /* ---------- placement: after the LAST block of other products ---------- */
 
   function relatedSection() {
-    var main = mainEl();
-    if (!main) return null;
+    var here  = currentHandle();
+    var links = document.querySelectorAll('a[href*="/products/"]');
+    var last  = null;
 
-    // 1. Known tags / classes
-    var known = main.querySelector(
-      'product-recommendations, .product-recommendations, [class*="related-product"], ' +
-      '[class*="product-recommend"], [class*="recommendation"], [id*="related"], [id*="recommend"]'
-    );
-    if (known) {
-      var ks = known.closest('.shopify-section');
-      if (ks && ks.parentNode === main) return ks;
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      if (a.closest(IGNORE)) continue;
+      if (here && a.pathname.indexOf('/products/' + here) > -1) continue;
+      last = a;
     }
 
-    var secs = sectionsIn(main);
-    var here = currentHandle();
-
-    // 2. The last section on the page that shows OTHER products
-    for (var i = secs.length - 1; i > 0; i--) {
-      var links = secs[i].querySelectorAll('a[href*="/products/"]');
-      for (var j = 0; j < links.length; j++) {
-        if (!here || links[j].pathname.indexOf('/products/' + here) === -1) return secs[i];
-      }
-    }
-
-    // 3. A section whose heading reads like "You may also like"
-    for (var k = 1; k < secs.length; k++) {
-      var h = secs[k].querySelector('h2, h3, .title, [class*="heading"]');
-      if (h && RELATED_TEXT.test(h.textContent || '')) return secs[k];
-    }
-
-    return null;
+    if (!last) return null;
+    return last.closest('.shopify-section') || null;
   }
 
   function place(wrap) {
-    var main = mainEl();
-    if (!main) return;
-
     var rel = relatedSection();
-    if (rel) {
+
+    if (rel && rel.parentNode) {
       if (rel.nextElementSibling !== wrap) {
         rel.parentNode.insertBefore(wrap, rel.nextSibling);
-        log('placed after related section:', rel.id || rel.className);
+        log('placed after:', rel.id || rel.className);
       }
-    } else if (wrap.parentNode !== main || main.lastElementChild !== wrap) {
+      return;
+    }
+
+    var main = document.getElementById('MainContent') || document.querySelector('main');
+    if (main && main.lastElementChild !== wrap) {
       main.appendChild(wrap);
-      log('no related section found — placed at end of page content');
+      log('no related block yet — placed at end of main');
     }
   }
 
   function watch(wrap) {
-    var main = mainEl();
-    if (!main || !window.MutationObserver) return;
-
+    if (!window.MutationObserver) return;
     var pending = false;
     var mo = new MutationObserver(function () {
       if (pending) return;
       pending = true;
-      setTimeout(function () { pending = false; place(wrap); }, 150);
+      setTimeout(function () { pending = false; place(wrap); }, 200);
     });
-
-    mo.observe(main, { childList: true, subtree: true });
-    setTimeout(function () { mo.disconnect(); }, 12000);
+    mo.observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { mo.disconnect(); }, 15000);
   }
 
   function mount(products) {
-    if (!products.length) { log('nothing to show'); return; }
+    if (!products.length) return;
 
     var old = document.querySelector('.tt-rv');
     if (old) old.remove();
@@ -1516,13 +1468,11 @@
 
     place(wrap);
     watch(wrap);
-    log('mounted', products.length, 'products');
   }
 
   function load() {
     var here = currentHandle();
     var list = read().filter(function (h) { return h !== here; }).slice(0, CONFIG.show);
-    log('in history:', list.length);
     if (!list.length) return;
 
     Promise.all(list.map(function (h) {
@@ -1541,10 +1491,7 @@
     });
   }
 
-  function start() {
-    track();
-    load();
-  }
+  function start() { track(); load(); }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);
