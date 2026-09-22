@@ -17,46 +17,41 @@
      {% endif %}
 {% endcapture %}
 {%- comment -%}
-  TECHTY FIX: speed now comes only from the editor slider
-  (Customize > this section > Scrolling speed). Higher = slower.
+  TECHTY FIX: the scrolling animation is now built into this file (pure CSS),
+  so the speed is exactly what you set:
+  "Scrolling speed" = seconds for ONE full loop of your logos. Higher = slower.
 {%- endcomment -%}
 {% liquid
-  assign logo_scroll_speed = section.settings.scrolling_speed
+  assign mq_seconds = section.settings.scrolling_speed
+  assign mq_copies = 2
+  if section.blocks.size < 8
+    assign mq_copies = 4
+  endif
+  if section.blocks.size <= 3
+    assign mq_copies = 8
+  endif
 %}
     <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
     <div class="{{ settings.layout_width }}">
         {% if section.settings.heading != blank %}
           <h2 class="{{ section.settings.heading_size }} {{ section.settings.heading_size_mobile }} align-{{ section.settings.heading_alignment }}">{{ section.settings.heading }}</h2>
         {% endif %}
-      <div class="multi-logo-wrapper logo-list-shape-{{ section.settings.logo_shape }} {% if section.settings.swipe_enable_mobile %} swipe-mobile-true{% endif %} {% if section.settings.layout_type == 'marquee' %} marquee-inner-card {{ section.settings.direction }}-direction marquee-item-gap{% else %} logo-stacked{% endif %}" 
-          {% if section.settings.layout_type == 'marquee' %}
-             data-scrolling-content 
-            data-scrolling-speed="{{ logo_scroll_speed }}"
-          {% endif %}>
-             {% if section.settings.layout_type == 'grid' %}
-                {{ logolist }}
-              {% else %}
-                {% liquid
-                  if section.settings.layout_type == 'marquee'
-                    assign limit = 4
-                    if section.blocks.size <= 3
-                      assign limit = 10
-                    endif
-                  else
-                    assign limit = 1
-                  endif
-                %}
-                <div class="marquee-inner-item">
-                  {% for i in (1..limit) %}
-                    {% if section.settings.layout_type == 'marquee' %}
-                        <div data-scrolling-item>
-                          {{ logolist }}
-                        </div>
-                    {% endif %}
-                  {% endfor %}
-                 </div>
-              {% endif %}
+
+        {% if section.settings.layout_type == 'grid' %}
+          <div class="multi-logo-wrapper logo-list-shape-{{ section.settings.logo_shape }} {% if section.settings.swipe_enable_mobile %} swipe-mobile-true{% endif %} logo-stacked">
+            {{ logolist }}
           </div>
+        {% else %}
+          <div class="multi-logo-wrapper logo-list-shape-{{ section.settings.logo_shape }} tt-mq tt-mq--{{ section.settings.direction }}" style="--tt-mq-duration: {{ mq_seconds }}s; --tt-mq-copies: {{ mq_copies }};">
+            <div class="tt-mq__track">
+              {% for i in (1..mq_copies) %}
+                <div class="tt-mq__set"{% if i > 1 %} aria-hidden="true" inert{% endif %}>
+                  {{ logolist }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
       </div>
   </div>
 
@@ -91,10 +86,6 @@
     padding-right: var(--logosSpace);
   }
 
-  #shopify-section-{{ section.id }} .logo-list-shape-circle .marquee-inner-item > [data-scrolling-item] {
-    gap: 10px;
-  }
-
   #shopify-section-{{ section.id }} .multi-logo-block.logo-shape-circle {
     width: var(--logoCircleSize);
     height: var(--logoCircleSize);
@@ -113,12 +104,64 @@
   #shopify-section-{{ section.id }} .multi-logo-block.logo-shape-square {
     border-radius: 0;
   }
-  
+
+  /* ===== TECHTY MARQUEE (smooth, speed = seconds per loop) ===== */
+  #shopify-section-{{ section.id }} .tt-mq {
+    position: relative;
+    overflow: hidden;
+    direction: ltr;
+    padding-block: 6px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  #shopify-section-{{ section.id }} .tt-mq__track {
+    display: flex;
+    width: max-content;
+    animation: tt-mq-{{ section.id | handleize }} var(--tt-mq-duration) linear infinite;
+    will-change: transform;
+  }
+  #shopify-section-{{ section.id }} .tt-mq--rtl .tt-mq__track { animation-direction: reverse; }
+  #shopify-section-{{ section.id }} .tt-mq:hover .tt-mq__track { animation-play-state: paused; }
+  #shopify-section-{{ section.id }} .tt-mq__set {
+    display: flex;
+    flex: none;
+    align-items: center;
+  }
+  #shopify-section-{{ section.id }} .tt-mq .multi-logo-item {
+    flex: none;
+    width: auto;
+    max-width: none;
+    padding-right: var(--logosSpace);
+  }
+  #shopify-section-{{ section.id }} .tt-mq .multi-logo-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #shopify-section-{{ section.id }} .tt-mq .multi-logo-block:not(.logo-shape-circle) {
+    width: 170px;
+    height: 90px;
+    padding: 14px;
+  }
+  @keyframes tt-mq-{{ section.id | handleize }} {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-100% / var(--tt-mq-copies))); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .tt-mq { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    #shopify-section-{{ section.id }} .tt-mq__track { animation: none; }
+  }
+
   @media only screen and (max-width:767px) {
     #shopify-section-{{ section.id }}.shopify-section{
       --topSpace:{{ section.settings.top_space_mobile }}px;
       --bottomSpace:{{ section.settings.bottom_space_mobile }}px;
       --logoCircleSize: {{ section.settings.circle_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .tt-mq .multi-logo-block:not(.logo-shape-circle) {
+      width: 128px;
+      height: 70px;
+      padding: 10px;
     }
   }
 </style>
@@ -165,8 +208,8 @@
         "max": 500,
         "step": 5,
         "unit": "s",
-        "default": 300,
-        "info": "Higher value = slower scroll. 250–300 feels natural."
+        "default": 60,
+        "info": "Seconds for one full loop of your logos. Higher = slower. 50–80 feels natural."
       },
       {
         "type": "select", "id": "direction", "label": "t:common.direction.label", "default": "ltr",
