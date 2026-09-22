@@ -1146,7 +1146,7 @@
           "type": "logo",
           "name": "UGreen",
           "settings": {
-            "image": "shopify://shop_images/Porodo_Logo_2_0858171e-99d2-43fc-9545-4fe156d19218.png",
+            "image": "shopify://shop_images/RavPower_3.png",
             "image_link": "shopify://collections/ugreen",
             "image_width": 100
           }
@@ -1204,7 +1204,7 @@
         "show_card_background": true,
         "show_card_border": true,
         "layout_type": "marquee",
-        "scrolling_speed": 100,
+        "scrolling_speed": 74,
         "direction": "rtl",
         "column_spacing": 58,
         "heading": "Brands",
