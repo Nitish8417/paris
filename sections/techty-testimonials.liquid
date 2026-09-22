@@ -1,0 +1,397 @@
+{%- comment -%}
+  TECHTY — CUSTOMER TESTIMONIALS
+  • Renders ONLY on the homepage (checked in code + locked in schema).
+  • Pure Liquid/HTML/CSS. No apps, no JavaScript.
+  • Every card is an editable block: Customize > this section > click a card.
+  • Ships with SAMPLE copy. Replace with real customer words before going live.
+{%- endcomment -%}
+{%- if template.name == 'index' -%}
+{%- liquid
+  assign ar = false
+  if request.locale.iso_code == 'ar'
+    assign ar = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .tt-testi {
+    --tq-ink: var(--tt-ink, #14213D);
+    --tq-blue: var(--tt-blue, #2F5BFF);
+    --tq-star: #F5B400;
+    --tq-surface: var(--tt-surface, #F2F4F8);
+    --tq-line: var(--tt-line, #E1E5EE);
+    --tq-text: var(--tt-text, #1B2230);
+    --tq-muted: var(--tt-muted, #5B6478);
+    --tq-cols: {{ section.settings.columns }};
+    padding-top: {{ section.settings.pad_top }}px;
+    padding-bottom: {{ section.settings.pad_bottom }}px;
+    background: {% if section.settings.surface %}var(--tq-surface){% else %}transparent{% endif %};
+    font-family: var(--tt-font, inherit);
+    color: var(--tq-text);
+  }
+  [dir="rtl"] #shopify-section-{{ section.id }} .tt-testi { font-family: var(--tt-font-ar, inherit); }
+  .tt-testi *, .tt-testi *::before, .tt-testi *::after { box-sizing: border-box; }
+  .tt-testi__wrap { max-width: {{ section.settings.width }}; margin-inline: auto; padding-inline: 16px; }
+  @media (min-width: 990px) { .tt-testi__wrap { padding-inline: 32px; } }
+
+  /* Head */
+  .tt-testi__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; margin-bottom: 28px; }
+  .tt-testi__eyebrow { display: inline-block; margin: 0 0 10px; color: var(--tq-blue); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .tt-testi__title { margin: 0; padding: 0; background: none; color: var(--tq-ink); font-family: inherit; font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+  @media (min-width: 990px) { .tt-testi__title { font-size: 34px; } }
+  .tt-testi__sub { max-width: 52ch; margin: 8px 0 0; color: var(--tq-muted); font-size: 15px; line-height: 1.55; }
+  .tt-testi__cta { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border: 1.5px solid var(--tq-ink); border-radius: 999px; color: var(--tq-ink); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background-color .2s, color .2s; }
+  .tt-testi__cta:hover { background: var(--tq-ink); color: #fff; }
+  .tt-testi__cta svg { width: 18px; height: 18px; }
+
+  /* Actions (button + arrows) */
+  .tt-testi__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .tt-testi__nav { display: flex; gap: 8px; }
+  .tt-testi__arrow { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1.5px solid var(--tq-line); border-radius: 50%; background: #fff; color: var(--tq-ink); cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+  .tt-testi__arrow:hover { background: var(--tq-ink); border-color: var(--tq-ink); color: #fff; }
+  .tt-testi__arrow svg { width: 18px; height: 18px; }
+  [dir="rtl"] .tt-testi__arrow svg { transform: scaleX(-1); }
+
+  /* Infinite carousel track */
+  .tt-testi__grid { --tq-view: 1.12; --tq-gap: 14px; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - (var(--tq-view) - 1) * var(--tq-gap)) / var(--tq-view)); gap: var(--tq-gap); margin: 0; padding: 8px 2px 18px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .tt-testi__grid::-webkit-scrollbar { display: none; }
+  .tt-testi__grid > li { min-width: 0; scroll-snap-align: start; }
+  @media (min-width: 750px) { .tt-testi__grid { --tq-view: 2; --tq-gap: 18px; } }
+  @media (min-width: 990px) { .tt-testi__grid { --tq-view: var(--tq-cols); --tq-gap: 20px; } }
+
+  .tt-testi__card { position: relative; display: flex; flex-direction: column; gap: 14px; height: 100%; padding: 24px 22px 20px; border: 1px solid var(--tq-line); border-radius: 18px; background: #fff; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  @media (hover: hover) {
+    .tt-testi__card:hover { transform: translateY(-4px); border-color: rgba(47,91,255,.35); box-shadow: 0 18px 40px rgba(20,33,61,.10); }
+  }
+  .tt-testi__mark { position: absolute; top: 18px; inset-inline-end: 20px; width: 34px; height: 34px; color: var(--tq-blue); opacity: .12; }
+  .tt-testi__stars { display: flex; gap: 3px; margin: 0; padding: 0; list-style: none; color: var(--tq-star); }
+  .tt-testi__stars svg { display: block; width: 16px; height: 16px; }
+  .tt-testi__quote { flex: 1; margin: 0; color: var(--tq-text); font-size: 15px; line-height: 1.65; }
+  .tt-testi__quote p { margin: 0; }
+
+  .tt-testi__foot { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--tq-line); }
+  .tt-testi__avatar { display: grid; place-items: center; flex: none; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--tq-ink), var(--tq-blue)); color: #fff; font-size: 16px; font-weight: 700; text-transform: uppercase; }
+  .tt-testi__who { min-width: 0; flex: 1; }
+  .tt-testi__name { display: block; color: var(--tq-ink); font-size: 14.5px; font-weight: 700; line-height: 1.3; }
+  .tt-testi__role { display: block; color: var(--tq-muted); font-size: 12.5px; line-height: 1.3; }
+  .tt-testi__tag { display: inline-flex; align-items: center; gap: 4px; flex: none; max-width: 48%; padding: 6px 10px; border-radius: 999px; background: var(--tq-surface); color: var(--tq-ink); font-size: 12px; font-weight: 600; line-height: 1.2; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: background-color .2s, color .2s; }
+  a.tt-testi__tag:hover { background: var(--tq-blue); color: #fff; }
+  {%- if section.settings.surface -%}
+    .tt-testi__tag { background: #EEF2FA; }
+  {%- endif -%}
+
+  .tt-testi__editor-note { margin: 0 0 18px; padding: 10px 14px; border: 1px dashed #F59E0B; border-radius: 10px; background: #FFFBEB; color: #92400E; font-size: 13px; }
+
+  @media (prefers-reduced-motion: reduce) { .tt-testi__card { transition: none; } .tt-testi__card:hover { transform: none; } }
+</style>
+
+<section class="tt-testi" id="TtTesti-{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" aria-roledescription="carousel" aria-labelledby="TtTestiTitle-{{ section.id }}">
+  <div class="tt-testi__wrap">
+
+    {%- if request.design_mode and section.settings.show_editor_note -%}
+      <p class="tt-testi__editor-note">Only visible in the theme editor: these cards contain sample copy. Replace them with real customer feedback before publishing, then untick “Show sample-copy reminder”.</p>
+    {%- endif -%}
+
+    <div class="tt-testi__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="tt-testi__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="tt-testi__title" id="TtTestiTitle-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- if section.settings.subheading != blank -%}<p class="tt-testi__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+      </div>
+      <div class="tt-testi__actions">
+      {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+        <a class="tt-testi__cta" href="{{ section.settings.cta_link | escape }}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>
+          {{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+        <div class="tt-testi__nav" data-tq-nav>
+          <button type="button" class="tt-testi__arrow" data-tq-prev aria-label="{% if ar %}السابق{% else %}Previous testimonial{% endif %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+          <button type="button" class="tt-testi__arrow" data-tq-next aria-label="{% if ar %}التالي{% else %}Next testimonial{% endif %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <ul class="tt-testi__grid" role="list" data-tq-track>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.quote != blank -%}
+          <li {{ block.shopify_attributes }}>
+            <figure class="tt-testi__card" style="margin:0;">
+              <svg class="tt-testi__mark" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M13 7H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4c0 3-1.5 5-4.5 5.5V27C11 26.3 15 22.5 15 15V9a2 2 0 0 0-2-2zm15 0h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4c0 3-1.5 5-4.5 5.5V27C26 26.3 30 22.5 30 15V9a2 2 0 0 0-2-2z"/></svg>
+
+              {%- if section.settings.show_stars and block.settings.rating > 0 -%}
+                <ul class="tt-testi__stars" role="img" aria-label="{{ block.settings.rating }} {% if ar %}من 5 نجوم{% else %}out of 5 stars{% endif %}">
+                  {%- for i in (1..block.settings.rating) -%}
+                    <li><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9z"/></svg></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+              <blockquote class="tt-testi__quote" style="margin:0;"><p>{{ block.settings.quote }}</p></blockquote>
+
+              <figcaption class="tt-testi__foot">
+                <span class="tt-testi__avatar" aria-hidden="true">{{ block.settings.name | strip | slice: 0 }}</span>
+                <span class="tt-testi__who">
+                  <span class="tt-testi__name">{{ block.settings.name }}</span>
+                  {%- if block.settings.role != blank -%}<span class="tt-testi__role">{{ block.settings.role }}</span>{%- endif -%}
+                </span>
+                {%- if block.settings.tag != blank -%}
+                  {%- if block.settings.tag_link != blank -%}
+                    <a class="tt-testi__tag" href="{{ block.settings.tag_link | escape }}">{{ block.settings.tag }}</a>
+                  {%- else -%}
+                    <span class="tt-testi__tag">{{ block.settings.tag }}</span>
+                  {%- endif -%}
+                {%- endif -%}
+              </figcaption>
+            </figure>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var root = document.getElementById('TtTesti-{{ section.id }}');
+    if (!root || root.dataset.tqReady) return;
+    root.dataset.tqReady = '1';
+
+    var track = root.querySelector('[data-tq-track]');
+    var nav = root.querySelector('[data-tq-nav]');
+    var prev = root.querySelector('[data-tq-prev]');
+    var next = root.querySelector('[data-tq-next]');
+    if (!track) return;
+
+    var items = [].slice.call(track.children);
+    var n = items.length;
+    var rtl = getComputedStyle(track).direction === 'rtl';
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var delay = (parseInt(root.getAttribute('data-autoplay'), 10) || 0) * 1000;
+
+    function getPos() { return Math.abs(track.scrollLeft); }
+    function setPos(v) {
+      track.style.scrollSnapType = 'none';
+      track.scrollLeft = rtl ? -v : v;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { track.style.scrollSnapType = ''; }); });
+    }
+
+    /* Not enough cards to scroll? Hide arrows, no loop. */
+    if (n < 2 || track.scrollWidth <= track.clientWidth + 4) { if (nav) nav.hidden = true; return; }
+
+    /* Endless loop: a copy of every card before and after the real ones.
+       When you reach a copy, we silently jump to the matching real card. */
+    function makeClone(el) {
+      var c = el.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      c.setAttribute('inert', '');
+      [].slice.call(c.attributes).forEach(function (a) { if (a.name.indexOf('data-shopify') === 0) c.removeAttribute(a.name); });
+      c.querySelectorAll('[id]').forEach(function (x) { x.removeAttribute('id'); });
+      return c;
+    }
+    var before = document.createDocumentFragment();
+    var after = document.createDocumentFragment();
+    items.forEach(function (el) { before.appendChild(makeClone(el)); after.appendChild(makeClone(el)); });
+    track.insertBefore(before, track.firstChild);
+    track.appendChild(after);
+
+    var setW = 0, step = 0;
+    function measure() {
+      var a = items[0].getBoundingClientRect();
+      var b = track.children[n * 2].getBoundingClientRect();
+      var c = items[1].getBoundingClientRect();
+      setW = Math.abs(b.left - a.left);
+      step = Math.abs(c.left - a.left);
+    }
+    function normalize() {
+      var p = getPos();
+      if (p < setW - step / 2) setPos(p + setW);
+      else if (p >= 2 * setW - step / 2) setPos(p - setW);
+    }
+    function go(d) {
+      normalize();
+      track.scrollBy({ left: d * step * (rtl ? -1 : 1), behavior: reduce ? 'auto' : 'smooth' });
+    }
+
+    measure();
+    setPos(setW);
+
+    var endTimer;
+    if ('onscrollend' in window) {
+      track.addEventListener('scrollend', normalize);
+    } else {
+      track.addEventListener('scroll', function () { clearTimeout(endTimer); endTimer = setTimeout(normalize, 150); }, { passive: true });
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        var i = step ? Math.round((getPos() - setW) / step) : 0;
+        measure();
+        setPos(setW + (((i % n) + n) % n) * step);
+      }, 150);
+    });
+
+    /* Auto-slide (pauses on hover, touch, keyboard focus, hidden tab) */
+    var timer = null, paused = false, resumeTimer;
+    function play() {
+      if (!delay || reduce) return;
+      clearInterval(timer);
+      timer = setInterval(function () { if (!paused && !document.hidden) go(1); }, delay);
+    }
+    root.addEventListener('mouseenter', function () { paused = true; });
+    root.addEventListener('mouseleave', function () { paused = false; });
+    root.addEventListener('focusin', function () { paused = true; });
+    root.addEventListener('focusout', function () { paused = false; });
+    track.addEventListener('touchstart', function () { paused = true; clearTimeout(resumeTimer); }, { passive: true });
+    track.addEventListener('touchend', function () { resumeTimer = setTimeout(function () { paused = false; }, 4000); }, { passive: true });
+
+    if (prev) prev.addEventListener('click', function () { go(-1); play(); });
+    if (next) next.addEventListener('click', function () { go(1); play(); });
+    play();
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Techty testimonials",
+  "tag": "div",
+  "class": "section-techty-testimonials",
+  "enabled_on": { "templates": ["index"] },
+  "settings": [
+    { "type": "checkbox", "id": "show_editor_note", "label": "Show sample-copy reminder (editor only)", "default": true, "info": "Customers never see this. Untick once real reviews are in." },
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Customer stories" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What our customers say" },
+    { "type": "text", "id": "subheading", "label": "Supporting line", "default": "Real experiences from people who shop Techty across Kuwait." },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Share your experience" },
+    { "type": "text", "id": "cta_link", "label": "Button link", "default": "https://wa.me/96522280345", "info": "Paste any link. WhatsApp is the easiest way to collect real reviews." },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns", "label": "Cards visible (desktop)", "min": 2, "max": 4, "step": 1, "default": 3 },
+    {
+      "type": "select", "id": "width", "label": "Width", "default": "1600px",
+      "options": [
+        { "value": "1320px", "label": "Standard" },
+        { "value": "1600px", "label": "Wide" }
+      ]
+    },
+    { "type": "range", "id": "autoplay", "label": "Auto-slide every", "min": 0, "max": 10, "step": 1, "unit": "s", "default": 5, "info": "0 turns auto-slide off. Arrows always loop endlessly." },
+    { "type": "checkbox", "id": "show_stars", "label": "Show star ratings", "default": true },
+    { "type": "checkbox", "id": "surface", "label": "Soft grey background", "default": true },
+    { "type": "range", "id": "pad_top", "label": "Top spacing", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "pad_bottom", "label": "Bottom spacing", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "What they said" },
+        { "type": "text", "id": "name", "label": "Customer name", "info": "First name + last initial reads most natural" },
+        { "type": "text", "id": "role", "label": "Descriptor", "info": "e.g. Techty customer, Content creator" },
+        { "type": "range", "id": "rating", "label": "Stars", "min": 0, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "tag", "label": "Product tag (optional)", "info": "Small chip, e.g. Power banks" },
+        { "type": "text", "id": "tag_link", "label": "Product tag link", "info": "e.g. /collections/power-banks" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Techty testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "It's rare to find one place in Kuwait that has the charger, the speaker and the gift all in the same order. Everything I needed was on Techty, and it all arrived together.",
+            "name": "Abdullah K.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Shop all",
+            "tag_link": "/collections/all"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I messaged them on WhatsApp to check which charger actually suits my laptop. Quick, straight answer, and they didn't push me toward the most expensive one.",
+            "name": "Noura A.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Chargers",
+            "tag_link": "/collections/chargers-adapters"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Bought the GRIT Apex for my evening walks. Having two straps in the box was a nice touch — sporty one for the gym, the other for work.",
+            "name": "Fahad M.",
+            "role": "Wearables customer",
+            "rating": 5,
+            "tag": "Smart watches",
+            "tag_link": "/collections/smart-watches-fitness-trackers"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The Xiaomi magnetic power bank with the built-in cable basically lives in my bag now. No more hunting for a cable at the airport.",
+            "name": "Mariam S.",
+            "role": "Frequent traveller",
+            "rating": 5,
+            "tag": "Power banks",
+            "tag_link": "/collections/power-banks"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Wanted Soundcore earbuds that are good for calls while driving. Voice comes through clearly and they're comfortable enough to forget I'm wearing them.",
+            "name": "Dana R.",
+            "role": "Audio customer",
+            "rating": 5,
+            "tag": "Earbuds",
+            "tag_link": "/collections/earbuds-headphones"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Got a Neewer light kit and the KM18 lavalier mic for my home setup. Took about ten minutes to get running and my videos look like a different channel.",
+            "name": "Hessa J.",
+            "role": "Content creator",
+            "rating": 5,
+            "tag": "Creator kit",
+            "tag_link": "/collections/content-creator-kit"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The gaming section is well picked rather than endless. Grabbed a new controller and a couple of cables for my setup, and everything matched the description exactly.",
+            "name": "Yousef H.",
+            "role": "Gaming customer",
+            "rating": 5,
+            "tag": "Gaming gear",
+            "tag_link": "/collections/gaming-controllers-gear"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Ordered a travel adapter two days before a trip and it made it in time. I also swapped a cable that didn't fit my phone — the exchange was easy and free.",
+            "name": "Omar T.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Travel",
+            "tag_link": "/collections/travel"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
