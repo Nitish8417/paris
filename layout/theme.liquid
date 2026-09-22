@@ -1174,12 +1174,26 @@
 <!-- ============ END TT CLICKABLE HERO SLIDES ============ -->
 <!-- ============ TT HIDE QUICK BUY ============ -->
 <style>
-  .tt-quick-buy,
-  .quick-buy,
-  .quick-add,
-  [data-quick-buy],
-  [data-quick-add] {
-    display: none !important;
-  }
+  .tt-quick-buy, .quick-buy, .quick-add, [data-quick-buy], [data-quick-add],
+  .tt-quickbuy-hidden { display: none !important; }
 </style>
+<script>
+  (function () {
+    function hideQuickBuy() {
+      document.querySelectorAll('button, a, span, div, [role="button"]').forEach(function (el) {
+        if (el.children.length > 2) return;
+        if (/^\s*quick\s*buy\s*$/i.test(el.textContent || '')) {
+          var target = el.closest('button, a, [role="button"]') || el;
+          target.classList.add('tt-quickbuy-hidden');
+        }
+      });
+    }
+    hideQuickBuy();
+    document.addEventListener('DOMContentLoaded', hideQuickBuy);
+    new MutationObserver(function () {
+      clearTimeout(window.__ttqb);
+      window.__ttqb = setTimeout(hideQuickBuy, 150);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+</script>
 <!-- ============ END TT HIDE QUICK BUY ============ -->
