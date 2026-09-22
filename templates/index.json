@@ -1195,9 +1195,9 @@
       "custom_css": [],
       "settings": {
         "logo_shape": "circle",
-        "circle_size": 132,
+        "circle_size": 140,
         "circle_size_mobile": 88,
-        "circle_padding": 20,
+        "circle_padding": 18,
         "corner_radius": 30,
         "images_height": true,
         "swipe_enable_mobile": true,
