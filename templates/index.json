@@ -1212,7 +1212,7 @@
         "heading_size_mobile": "h3_mobile",
         "heading_alignment": "center",
         "color_scheme": "scheme-10d07f3f-8a29-4d3b-a1e9-97a250b6a1a9",
-        "background": "#2A252E",
+        "background": "#2a252e",
         "border": "#7c7cee",
         "top_space_desktop": 50,
         "bottom_space_desktop": 50,
@@ -1281,6 +1281,125 @@
     "1789460615dc3216fc": {
       "type": "_blocks",
       "settings": {}
+    },
+    "techty_testimonials_Lx4FRc": {
+      "type": "techty-testimonials",
+      "blocks": {
+        "testimonial_8erYMb": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "It's rare to find one place in Kuwait that has the charger, the speaker and the gift all in the same order. Everything I needed was on Techty, and it all arrived together.",
+            "name": "Abdullah K.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Shop all",
+            "tag_link": "/collections/all"
+          }
+        },
+        "testimonial_pF4qfa": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I messaged them on WhatsApp to check which charger actually suits my laptop. Quick, straight answer, and they didn't push me toward the most expensive one.",
+            "name": "Noura A.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Chargers",
+            "tag_link": "/collections/chargers-adapters"
+          }
+        },
+        "testimonial_4NwLy4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Bought the GRIT apex for my evening walks. Having two straps in the box was a nice touch sporty one for the gym, the other for work.",
+            "name": "Fahad M.",
+            "role": "Wearables customer",
+            "rating": 5,
+            "tag": "Smart watches",
+            "tag_link": "/collections/smart-watches-fitness-trackers"
+          }
+        },
+        "testimonial_KFDV7j": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The Xiaomi magnetic power bank with the very nice cable 👍 👍",
+            "name": "Mariam S.",
+            "role": "Frequent traveller",
+            "rating": 5,
+            "tag": "Power banks",
+            "tag_link": "/collections/power-banks"
+          }
+        },
+        "testimonial_ccQjCt": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Wanted Soundcore earbuds that are good for calls while driving. Voice comes through clearly and they're comfortable enough to forget I'm wearing them.",
+            "name": "Dana R.",
+            "role": "Audio customer",
+            "rating": 5,
+            "tag": "Earbuds",
+            "tag_link": "/collections/earbuds-headphones"
+          }
+        },
+        "testimonial_taRzmU": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Got a Neewer light kit and the KM18 lavalier mic for my home setup. Took about ten minutes to get running and my videos look like a different channel.",
+            "name": "Hessa J.",
+            "role": "Content creator",
+            "rating": 5,
+            "tag": "Creator kit",
+            "tag_link": "/collections/content-creator-kit"
+          }
+        },
+        "testimonial_z49pB3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The gaming section is well picked rather than endless. Grabbed a new controller and a couple of cables for my setup, and everything matched the description exactly.",
+            "name": "Yousef H.",
+            "role": "Gaming customer",
+            "rating": 5,
+            "tag": "Gaming gear",
+            "tag_link": "/collections/gaming-controllers-gear"
+          }
+        },
+        "testimonial_nMeG7J": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Ordered a travel adapter two days before a trip and it made it in time. I also swapped a cable that didn't fit my phone the exchange was easy and free.",
+            "name": "Omar T.",
+            "role": "Techty customer",
+            "rating": 4,
+            "tag": "Travel",
+            "tag_link": "/collections/travel"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_8erYMb",
+        "testimonial_pF4qfa",
+        "testimonial_4NwLy4",
+        "testimonial_KFDV7j",
+        "testimonial_ccQjCt",
+        "testimonial_taRzmU",
+        "testimonial_z49pB3",
+        "testimonial_nMeG7J"
+      ],
+      "name": "Techty testimonials",
+      "settings": {
+        "show_editor_note": false,
+        "eyebrow": "Customer stories",
+        "heading": "What our customers say",
+        "subheading": "Real experiences from people who shop Techty across Kuwait.",
+        "cta_label": "Share your experience",
+        "cta_link": "https://wa.me/96522280345",
+        "columns": 3,
+        "width": "1600px",
+        "autoplay": 5,
+        "show_stars": true,
+        "surface": true,
+        "pad_top": 56,
+        "pad_bottom": 56
+      }
     }
   },
   "order": [
@@ -1305,6 +1424,7 @@
     "logo_list_9UqKFM",
     "rich_text_yi96Lj",
     "1788689024b5e5f99c",
-    "1789460615dc3216fc"
+    "1789460615dc3216fc",
+    "techty_testimonials_Lx4FRc"
   ]
 }
