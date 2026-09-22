@@ -142,6 +142,7 @@
         },
         "slide_X4Wh74": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image_desktop": "shopify://shop_images/techty_banner_b2s.jpg",
             "image_mobile": "shopify://shop_images/banner_b2s.webp",
