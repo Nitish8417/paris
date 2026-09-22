@@ -299,7 +299,7 @@
         "interval": 5,
         "btn_text": "View All",
         "btn_link": "",
-        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
+        "color_scheme": "primary",
         "frame_color": "#f4f1ff",
         "divider_color": "#000041",
         "arrow_bg": "#000000",
