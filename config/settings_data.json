@@ -191,7 +191,7 @@
         "settings": {
           "bg_color": "#000000",
           "alternate_bg_color": "#ffffff",
-          "heading_color": "#000000",
+          "heading_color": "#F4F1FF",
           "text_color": "#ffffff",
           "btn_bg_color": "#000000",
           "btn_text_color": "#ffffff",
