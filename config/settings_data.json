@@ -237,7 +237,7 @@
           "btn_hover_color": "#dfdfdf",
           "btn_hovertext_color": "#ffffff",
           "btn_hover_border_color": "#dfdfdf",
-          "border_color": "#B3B4E9",
+          "border_color": "#b3b4e9",
           "link_color": "#01cecf",
           "input_bg": "#ffffff",
           "input_border": "#d6d6d6",
@@ -1156,7 +1156,8 @@
       ".minicart .checkout-btns {display: block;}",
       ".quest-icon-box {display: none;}",
       "body.template-product .product-form__input input[type=\"radio\"] + label,body.template-product .product-form__input select,body.template-product .product-form__input .select__select,body.template-product .variant-picker input[type=\"radio\"] + label,body.template-product .variant-picker select {font-size: 18px !important; min-height: 52px !important; padding: 14px 20px !important;}",
-      "body.template-product .product-form__input input[type=\"radio\"] + label,body.template-product .variant-picker input[type=\"radio\"] + label {display: inline-flex; align-items: center; justify-content: center;}"
+      "body.template-product .product-form__input input[type=\"radio\"] + label,body.template-product .variant-picker input[type=\"radio\"] + label {display: inline-flex; align-items: center; justify-content: center;}",
+      "/* Hide Quick Buy on product cards */.quick-buy,.quick-add,.quick-shop,.quickbuy-btn,[data-quick-buy],[data-quick-add],.product-card .quick-add-btn {display: none !important;}"
     ]
   }
 }
