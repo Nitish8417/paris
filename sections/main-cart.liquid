@@ -493,61 +493,28 @@
                   </button>
                 </noscript>
 
+                {%- comment -%} ===== DELIVERY AREA (FIXED: no jQuery, checkout never gets stuck) ===== {%- endcomment -%}
                 {% if section.settings.cityLabel != blank %}
+                  {%- assign saved_area = cart.attributes['Delivery Area'] -%}
+                  {%- assign citylists = section.settings.citylist | newline_to_br | remove: '/>' | split: '<br' -%}
                   <div class="cityInput">
-                    {% assign citylist = section.settings.citylist | newline_to_br | remove: '/>' %}
-                    {% assign citylists = citylist | split: '<br' %}
                     <div class="form-field">
-                      {% comment %} <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label> {% endcomment %}
-                      <select
-                        id="arealist"
-                        name="checkout[shipping_address][city]" 
-                        class="form-input-field select-box"
-                      >
-                        <option selected value="" disabled>{{ section.settings.optionPreview }}</option>
-                        {% for i in citylists %}
-                          <option value="{{ i | strip }}">{{ i | strip }}</option>
-                        {% endfor %}
+                      <label for="arealist" class="hidden">{{ section.settings.cityLabel }}</label>
+                      <select id="arealist" class="form-input-field" data-area-select>
+                        <option value="" disabled {% if saved_area == blank %}selected{% endif %}>
+                          {{- section.settings.optionPreview -}}
+                        </option>
+                        {%- for i in citylists -%}
+                          {%- assign area = i | strip -%}
+                          {%- if area != blank -%}
+                            <option value="{{ area | escape }}" {% if area == saved_area %}selected{% endif %}>
+                              {{- area -}}
+                            </option>
+                          {%- endif -%}
+                        {%- endfor -%}
                       </select>
                     </div>
-                    {% comment %} <div class="form__input-wrapper form__input-wrapper--labelled">
-                      <div class="select-wrapper select-wrapper--primary is-filled">
-                        <svg focusable="false" class="{{ icon_class }}" viewBox="0 0 12 8" role="presentation">
-                          <path stroke="currentColor" stroke-width="2" d="M10 2L6 6 2 2" fill="none" stroke-linecap="square"></path>
-                        </svg>
-                        <select class="" name="checkout[shipping_address][city]" id="arealist">
-                          <option selected value="" disabled>{{ section.settings.optionPreview }}</option>
-                          {% for i in citylists %}
-                            <option value="{{ i | strip }}">{{ i | strip }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                      <label for="arealist" class="form__floating-label">{{ section.settings.cityLabel }}</label>
-                    </div> {% endcomment %}
-                    <!-- <small>{{ section.settings.citylistwarning }}</small> -->
                   </div>
-                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-                  <script>
-                    $(document).ready(function(){
-                      function areachange() {
-                        console.log($('#arealist').val(),'ssss')
-                        if($('#arealist').val()=='' || $('#arealist').val() == null) {
-                          $('[name="checkout"]').attr('disabled','disabled');
-                          $('#arealist').addClass('warnselectCity');
-                          $('<p class="redwarnig">{{ section.settings.cityselecterror }}</p>').insertAfter('[name="checkout"]');
-                        } else {
-                          $('[name="checkout"]').removeAttr('disabled');
-                          $('.redwarnig').remove();
-                          $('#arealist').removeClass('warnselectCity');
-                        }
-                      }
-                      areachange();
-                      $('body').on('change','#arealist', function(){
-                        areachange();
-                        $('.cart-form').attr('action','/cart?step=contact_information&checkout[shipping_address][city]='+$(this).val());
-                      })
-                    });
-                  </script>
                 {% endif %}
                 <button
                   type="submit"
@@ -555,11 +522,7 @@
                   id="checkout"
                   form="cart"
                   class="btn btn-medium btn-w100 checkout"
-                  {% if section.settings.cityLabel != blank %}
-                    disabled="disabled" aria-disabled="true"
-                  {% endif %}
                   {% if cart_has_oos %}disabled aria-disabled="true"{% endif %}
-                  
                 >
                   <span>
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -609,6 +572,92 @@
     shippingProgressBar(`{{cart.total_price}}`);
   });
 </script>
+<script>
+  /* ===== Delivery area + checkout (FIXED) ===== */
+  (function () {
+    if (window.__deliveryAreaBound) return; // bind once, keeps working after cart refreshes
+    window.__deliveryAreaBound = true;
+
+    var ATTR = 'Delivery Area';
+    var ROOT = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
+
+    function post(url, data) {
+      return fetch(ROOT + url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    }
+
+    // 1. Shield the dropdown: no other theme script can react to it (this stops the jump to product pages)
+    ['pointerdown', 'mousedown', 'touchstart', 'touchend', 'mouseup', 'click', 'input', 'change'].forEach(function (type) {
+      window.addEventListener(type, function (e) {
+        var sel = e.target && e.target.closest && e.target.closest('[data-area-select]');
+        if (!sel) return;
+        e.stopImmediatePropagation(); // dropdown still opens normally
+        if (type === 'change') {
+          var attrs = {};
+          attrs[ATTR] = sel.value;
+          post('cart/update.js', { attributes: attrs }).catch(function () {});
+        }
+      }, true);
+    });
+
+    // 2. Checkout ALWAYS works: with an area it is pre-filled, without one it goes to normal checkout
+    window.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('button[name="checkout"]');
+      if (!btn || btn.disabled) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      var box = btn.closest('[data-cart-checkout-buttons]') || document;
+      var sel = box.querySelector('[data-area-select]');
+      var area = sel ? sel.value : '';
+      btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
+
+      var update = { attributes: {} };
+      update.attributes[ATTR] = area;
+      var note = document.getElementById('main-cart-note');
+      if (note) update.note = note.value;
+
+      post('cart/update.js', update)
+        .then(function (r) { return r.json(); })
+        .then(function (cart) {
+          var items = cart.items || [];
+          var needsNormalCheckout = !area || !items.length || items.some(function (i) {
+            var hasProps = i.properties && Object.keys(i.properties).some(function (k) { return i.properties[k]; });
+            return hasProps || i.selling_plan_allocation;
+          });
+          if (needsNormalCheckout) { window.location.href = ROOT + 'checkout'; return; }
+
+          var lines = items.map(function (i) { return i.variant_id + ':' + i.quantity; }).join(',');
+          var p = [
+            'checkout[shipping_address][country]=KW',
+            'checkout[shipping_address][city]=' + encodeURIComponent(area),
+            'attributes[' + encodeURIComponent(ATTR) + ']=' + encodeURIComponent(area)
+          ];
+          var codes = (cart.discount_codes || [])
+            .filter(function (d) { return d.applicable; })
+            .map(function (d) { return d.code; });
+          if (codes.length) p.push('discount=' + encodeURIComponent(codes.join(',')));
+          if (cart.note) p.push('note=' + encodeURIComponent(cart.note));
+          if (window.Shopify && Shopify.locale) p.push('locale=' + encodeURIComponent(Shopify.locale));
+
+          window.location.href = '/cart/' + lines + '?' + p.join('&');
+        })
+        .catch(function () { window.location.href = ROOT + 'checkout'; });
+    }, true);
+
+    // 3. If the customer comes back from checkout, unlock the button again
+    window.addEventListener('pageshow', function () {
+      document.querySelectorAll('button[name="checkout"][aria-busy]').forEach(function (b) {
+        b.disabled = false;
+        b.removeAttribute('aria-busy');
+      });
+    });
+  })();
+</script>
 <style>
    #shopify-section-{{ section.id }} {
     --topSpace:{{ section.settings.top_space_desktop }}px;
@@ -622,6 +671,12 @@
     }
 
   }
+  /* Delivery area */
+  .cityInput { margin-bottom: 12px; }
+  .cityInput #arealist { width: 100%; min-height: 50px; font-size: 16px; }
+  .cityInput #arealist.warnselectCity { border-color: #c62828; }
+  .cityInput .redwarnig { color: #c62828; font-size: 13px; margin: 6px 0 0; }
+  .cityInput [data-area-error][hidden] { display: none !important; }
 </style>
 {% schema %}
 {
