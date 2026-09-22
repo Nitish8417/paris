@@ -1204,7 +1204,7 @@
         "show_card_background": true,
         "show_card_border": true,
         "layout_type": "marquee",
-        "scrolling_speed": 100,
+        "scrolling_speed": 370,
         "direction": "rtl",
         "column_spacing": 58,
         "heading": "Brands You Trust",
