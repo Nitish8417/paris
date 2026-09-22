@@ -1206,7 +1206,7 @@
         "layout_type": "marquee",
         "scrolling_speed": 100,
         "direction": "rtl",
-        "column_spacing": 42,
+        "column_spacing": 58,
         "heading": "Brands",
         "heading_size": "h2",
         "heading_size_mobile": "h3_mobile",
