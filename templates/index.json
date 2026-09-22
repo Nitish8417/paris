@@ -700,7 +700,7 @@
         "button_PQrVp6": {
           "type": "button",
           "settings": {
-            "text": "View Collection",
+            "text": "Anker Collection",
             "link": "shopify://collections/anker",
             "size": "medium"
           }
