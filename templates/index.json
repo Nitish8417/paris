@@ -798,7 +798,7 @@
         "inner_width": 1200,
         "side_padding": 20,
         "side_padding_mobile": 16,
-        "color_scheme": "tertiary",
+        "color_scheme": "primary",
         "image_height": 340,
         "image_height_mobile": 240,
         "grid_row_gap": 10,
@@ -1192,6 +1192,7 @@
         "logo_kpcPNz",
         "logo_zmMmwN"
       ],
+      "custom_css": [],
       "settings": {
         "logo_shape": "circle",
         "circle_size": 132,
@@ -1203,7 +1204,7 @@
         "show_card_background": true,
         "show_card_border": true,
         "layout_type": "marquee",
-        "scrolling_speed": 77,
+        "scrolling_speed": 20,
         "direction": "rtl",
         "column_spacing": 42,
         "heading": "Brands",
