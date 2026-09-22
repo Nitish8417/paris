@@ -27,7 +27,7 @@
   %}
 
   {% if collectionImageStatus or contentStatus %}
-    <div class="{{ settings.layout_width }}">
+    <div class="collection-banner-full-width">
       <div
         class="collection-split-banner height-{{ section.settings.banner_height_desktop }} mobile-height-{{ section.settings.banner_height_mobile }}{% if collectionImageStatus == false %} collection-split-banner--no-image{% endif %}{% if contentStatus == false %} collection-split-banner--no-content{% endif %}"
       >
@@ -96,14 +96,19 @@
   #shopify-section-{{ section.id }} .collection-split-banner-section {
     padding: 20px 0 0;
   }
-
+#shopify-section-{{ section.id }} .collection-banner-full-width {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
   #shopify-section-{{ section.id }} .collection-split-banner {
     display: grid;
     grid-template-columns: minmax(280px, 0.4fr) minmax(0, 0.6fr);
     align-items: stretch;
     width: 100%;
     overflow: hidden;
-    border-radius: 28px;
+    border-radius: 0;
     background: var(--bodyColor);
     color: var(--mainHeadingColor);
     height: auto !important;
