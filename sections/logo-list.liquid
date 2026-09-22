@@ -16,12 +16,12 @@
       {% endfor %}
      {% endif %}
 {% endcapture %}
+{%- comment -%}
+  TECHTY FIX: speed now comes only from the editor slider
+  (Customize > this section > Scrolling speed). Higher = slower.
+{%- endcomment -%}
 {% liquid
   assign logo_scroll_speed = section.settings.scrolling_speed
-
-  if section.id == 'template--22738416402650__logo_list_9UqKFM'
-    assign logo_scroll_speed = 300
-  endif
 %}
     <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
     <div class="{{ settings.layout_width }}">
@@ -132,318 +132,92 @@
   },
   "max_blocks": 30,
   "settings": [
+      { "type": "header", "content": "Logo shape" },
       {
-        "type": "header",
-        "content": "Logo shape"
+        "type": "select", "id": "logo_shape", "label": "Logo shape", "default": "circle",
+        "options": [
+          { "value": "circle", "label": "Circle" },
+          { "value": "rounded", "label": "Rounded" },
+          { "value": "square", "label": "Square" }
+        ]
+      },
+      { "type": "range", "id": "circle_size", "label": "Circle size (desktop)", "min": 60, "max": 160, "step": 4, "unit": "px", "default": 112, "info": "Used when Logo shape is Circle" },
+      { "type": "range", "id": "circle_size_mobile", "label": "Circle size (mobile)", "min": 48, "max": 120, "step": 4, "unit": "px", "default": 80 },
+      { "type": "range", "id": "circle_padding", "label": "Circle inner padding", "min": 4, "max": 32, "step": 2, "unit": "px", "default": 16 },
+      { "type": "range", "id": "corner_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12, "info": "Used when Logo shape is Rounded" },
+      { "type": "checkbox", "id": "images_height", "label": "t:sections.logo_list.settings.images_height.label", "default": false },
+      { "type": "checkbox", "id": "swipe_enable_mobile", "label": "t:sections.logo_list.settings.swipe_enable_mobile.label", "default": true },
+      { "type": "checkbox", "id": "show_card_background", "label": "t:sections.logo_list.settings.show_card_background.label", "default": true },
+      { "type": "checkbox", "id": "show_card_border", "label": "t:sections.logo_list.settings.show_card_border.label", "default": true },
+      {
+        "type": "select", "id": "layout_type", "label": "t:sections.logo_list.settings.layout_type.label", "default": "marquee",
+        "options": [
+          { "value": "grid", "label": "t:sections.logo_list.settings.layout_type.options.carousel.label" },
+          { "value": "marquee", "label": "t:sections.logo_list.settings.layout_type.options.marquee.label" }
+        ]
+      },
+      { "type": "header", "content": "t:common.header.marquee.content" },
+      {
+        "type": "range",
+        "id": "scrolling_speed",
+        "label": "t:sections.logo_list.settings.scrolling_speed.label",
+        "min": 10,
+        "max": 500,
+        "step": 5,
+        "unit": "s",
+        "default": 300,
+        "info": "Higher value = slower scroll. 250–300 feels natural."
       },
       {
-        "type": "select",
-        "id": "logo_shape",
-        "label": "Logo shape",
-        "default": "circle",
+        "type": "select", "id": "direction", "label": "t:common.direction.label", "default": "ltr",
         "options": [
-          {
-            "value": "circle",
-            "label": "Circle"
-          },
-          {
-            "value": "rounded",
-            "label": "Rounded"
-          },
-          {
-            "value": "square",
-            "label": "Square"
-          }
+          { "value": "ltr", "label": "t:common.direction.options.ltr.label" },
+          { "value": "rtl", "label": "t:common.direction.options.rtl.label" }
+        ]
+      },
+      { "type": "header", "content": "t:common.header.grid.content" },
+      { "type": "range", "id": "column_spacing", "label": "t:sections.logo_list.settings.column_spacing.label", "min": 0, "max": 100, "unit": "px", "step": 2, "default": 40 },
+      { "type": "header", "content": "t:common.header.content.content" },
+      { "type": "inline_richtext", "id": "heading", "label": "t:common.global.heading.label", "default": "Logo list" },
+      {
+        "type": "select", "id": "heading_size", "default": "h2", "label": "t:common.heading_size.desktop_label",
+        "options": [
+          { "value": "h1", "label": "t:common.heading_size.options.extra_large.label" },
+          { "value": "h2", "label": "t:common.heading_size.options.large.label" },
+          { "value": "h3", "label": "t:common.heading_size.options.medium.label" },
+          { "value": "h4", "label": "t:common.heading_size.options.small.label" },
+          { "value": "h5", "label": "t:common.heading_size.options.extra_small.label" }
         ]
       },
       {
-        "type": "range",
-        "id": "circle_size",
-        "label": "Circle size (desktop)",
-        "min": 60,
-        "max": 160,
-        "step": 4,
-        "unit": "px",
-        "default": 112,
-        "info": "Used when Logo shape is Circle"
+        "type": "select", "id": "heading_size_mobile", "default": "h3_mobile", "label": "t:common.heading_size.mobile_label",
+        "options": [
+          { "value": "h1_mobile", "label": "t:common.heading_size.options.extra_large.label" },
+          { "value": "h2_mobile", "label": "t:common.heading_size.options.large.label" },
+          { "value": "h3_mobile", "label": "t:common.heading_size.options.medium.label" },
+          { "value": "h4_mobile", "label": "t:common.heading_size.options.small.label" },
+          { "value": "h5_mobile", "label": "t:common.heading_size.options.extra_small.label" }
+        ]
       },
-      {
-        "type": "range",
-        "id": "circle_size_mobile",
-        "label": "Circle size (mobile)",
-        "min": 48,
-        "max": 120,
-        "step": 4,
-        "unit": "px",
-        "default": 80
-      },
-      {
-        "type": "range",
-        "id": "circle_padding",
-        "label": "Circle inner padding",
-        "min": 4,
-        "max": 32,
-        "step": 2,
-        "unit": "px",
-        "default": 16
-      },
-      {
-        "type": "range",
-        "id": "corner_radius",
-        "label": "Corner radius",
-        "min": 0,
-        "max": 40,
-        "step": 2,
-        "unit": "px",
-        "default": 12,
-        "info": "Used when Logo shape is Rounded"
-      },
-      {
-        "type": "checkbox",
-        "id": "images_height",
-        "label": "t:sections.logo_list.settings.images_height.label",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "swipe_enable_mobile",
-        "label": "t:sections.logo_list.settings.swipe_enable_mobile.label",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "show_card_background",
-        "label": "t:sections.logo_list.settings.show_card_background.label",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "show_card_border",
-        "label": "t:sections.logo_list.settings.show_card_border.label",
-        "default": true
-      },
-     {
-      "type": "select",
-      "id": "layout_type",
-      "label": "t:sections.logo_list.settings.layout_type.label",
-      "default": "marquee",
-      "options": [
-        {
-          "value": "grid",
-          "label": "t:sections.logo_list.settings.layout_type.options.carousel.label"
-        },
-        {
-          "value": "marquee",
-          "label": "t:sections.logo_list.settings.layout_type.options.marquee.label"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "t:common.header.marquee.content"
-    },
-    {
-      "type": "range",
-      "id": "scrolling_speed",
-      "label": "t:sections.logo_list.settings.scrolling_speed.label",
-      "min": 1,
-      "max": 100,
-      "unit": "s",
-      "default": 70,
-      "info": "Higher value = slower scroll"
-    },
-    {
-      "type": "select",
-      "id": "direction",
-      "label": "t:common.direction.label",
-      "default": "ltr",
-      "options": [
-        {
-          "value": "ltr",
-          "label": "t:common.direction.options.ltr.label"
-        },
-        {
-          "value": "rtl",
-          "label": "t:common.direction.options.rtl.label"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "t:common.header.grid.content"
-    },
-    {
-      "type": "range",
-      "id": "column_spacing",
-      "label": "t:sections.logo_list.settings.column_spacing.label",
-      "min": 0,
-      "max": 100,
-      "unit": "px",
-      "step": 2,
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "t:common.header.content.content"
-    },
-    {
-          "type": "inline_richtext",
-          "id": "heading",
-          "label": "t:common.global.heading.label",
-          "default": "Logo list"
-      },
-      {
-          "type": "select",
-          "id": "heading_size",
-          "default": "h2",
-         "label": "t:common.heading_size.desktop_label",
-          "options": [
-          {
-            "value": "h1",
-              "label": "t:common.heading_size.options.extra_large.label"
-            },
-            {
-              "value": "h2",
-              "label": "t:common.heading_size.options.large.label"
-            },
-            {
-              "value": "h3",
-              "label": "t:common.heading_size.options.medium.label"
-            },
-            {
-              "value": "h4",
-              "label": "t:common.heading_size.options.small.label"
-            },
-            {
-              "value": "h5",
-              "label": "t:common.heading_size.options.extra_small.label"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "heading_size_mobile",
-          "default": "h3_mobile",
-          "label": "t:common.heading_size.mobile_label",
-          "options": [
-                  {
-            "value": "h1_mobile",
-            "label": "t:common.heading_size.options.extra_large.label"
-            },
-            {
-              "value": "h2_mobile",
-              "label": "t:common.heading_size.options.large.label"
-            },
-            {
-              "value": "h3_mobile",
-              "label": "t:common.heading_size.options.medium.label"
-            },
-            {
-              "value": "h4_mobile",
-              "label": "t:common.heading_size.options.small.label"
-            },
-            {
-              "value": "h5_mobile",
-              "label": "t:common.heading_size.options.extra_small.label"
-            }
-          ]
-        },
-      {
-      "type": "text_alignment",
-      "id": "heading_alignment",
-      "label": "t:common.global.heading_alignment.label",
-      "default": "left"
-    },
-    {
-      "type": "header",
-      "content": "t:common.header.colors.content"
-    },
-    {
-        "type": "color_scheme",
-        "id": "color_scheme",
-        "default": "secondary",
-      "label": "t:common.global.color_scheme.label"
-    },
-    {
-      "type":"color",
-      "id":"background",
-      "label":"t:common.global.background.label",
-      "default":"#FFFFFF"
-    },
-     {
-      "type":"color",
-      "id":"border",
-      "label":"t:common.global.border.label",
-      "default":"#E6E6E6"
-    },
-    {
-      "type": "header",
-      "content": "t:common.header.section_spacing.content"
-    },
-    {
-      "type": "range",
-      "id": "top_space_desktop",
-     "label": "t:common.section_spacing.top_space_desktop.label",
-      "default": 80,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "bottom_space_desktop",
-     "label": "t:common.section_spacing.bottom_space_desktop.label",
-      "default": 80,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "top_space_mobile",
-      "label": "t:common.section_spacing.top_space_mobile.label",
-      "default": 40,
-      "min": 0,
-      "max": 100,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "bottom_space_mobile",
-      "label": "t:common.section_spacing.bottom_space_mobile.label",
-      "default": 40,
-      "min": 0,
-      "max": 100,
-      "step": 5
-    }
+      { "type": "text_alignment", "id": "heading_alignment", "label": "t:common.global.heading_alignment.label", "default": "left" },
+      { "type": "header", "content": "t:common.header.colors.content" },
+      { "type": "color_scheme", "id": "color_scheme", "default": "secondary", "label": "t:common.global.color_scheme.label" },
+      { "type": "color", "id": "background", "label": "t:common.global.background.label", "default": "#FFFFFF" },
+      { "type": "color", "id": "border", "label": "t:common.global.border.label", "default": "#E6E6E6" },
+      { "type": "header", "content": "t:common.header.section_spacing.content" },
+      { "type": "range", "id": "top_space_desktop", "label": "t:common.section_spacing.top_space_desktop.label", "default": 80, "min": 0, "max": 150, "step": 5 },
+      { "type": "range", "id": "bottom_space_desktop", "label": "t:common.section_spacing.bottom_space_desktop.label", "default": 80, "min": 0, "max": 150, "step": 5 },
+      { "type": "range", "id": "top_space_mobile", "label": "t:common.section_spacing.top_space_mobile.label", "default": 40, "min": 0, "max": 100, "step": 5 },
+      { "type": "range", "id": "bottom_space_mobile", "label": "t:common.section_spacing.bottom_space_mobile.label", "default": 40, "min": 0, "max": 100, "step": 5 }
   ],
   "blocks": [
     {
       "type": "logo",
       "name": "t:sections.logo_list.blocks.name",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "t:common.global.image.label"
-        },
-        {
-          "type": "url",
-          "id": "image_link",
-          "label": "t:common.global.link.label"
-
-        },
-        {
-          "type": "range",
-          "id": "image_width",
-          "label": "t:sections.logo_list.blocks.settings.image_width.label",
-          "default": 50,
-          "min": 50,
-          "max": 100,
-          "unit": "%",
-          "step": 5
-        }
-      
+        { "type": "image_picker", "id": "image", "label": "t:common.global.image.label" },
+        { "type": "url", "id": "image_link", "label": "t:common.global.link.label" },
+        { "type": "range", "id": "image_width", "label": "t:sections.logo_list.blocks.settings.image_width.label", "default": 50, "min": 50, "max": 100, "unit": "%", "step": 5 }
       ]
     }
   ],
@@ -451,22 +225,7 @@
     {
       "name": "t:sections.logo_list.presets.name",
       "blocks": [
-         {
-          "type": "logo"
-        },
-        {
-          "type": "logo"
-        },
-        {
-          "type": "logo"
-        },
-        {
-          "type": "logo"
-        },
-        {
-          "type": "logo"
-        }
-       
+        { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }
       ]
     }
   ]
