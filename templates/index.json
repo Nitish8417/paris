@@ -476,38 +476,6 @@
     },
     "blocks_z86jMh": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_50a7b2a_8QwgPJ": {
-          "type": "ai_gen_block_50a7b2a",
-          "settings": {
-            "layout": "slider",
-            "columns": 2,
-            "desktop_width_percent": 100,
-            "gap": 0,
-            "aspect_ratio": "16 / 9",
-            "background_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 35,
-            "heading_font": "inter_n7",
-            "text_color": "#FFFFFF",
-            "button_color": "#FFFFFF",
-            "button_text_color": "#000000",
-            "button_radius": 4,
-            "video_1_url": "https://www.youtube.com/watch?v=fKCacr2yZRw",
-            "video_1_autoplay": true,
-            "video_1_muted": true,
-            "video_1_heading": "",
-            "video_1_subheading": "",
-            "video_1_button_label": "",
-            "video_1_button_link": "",
-            "additional_videos": "https://www.youtube.com/watch?v=fKCacr2yZRw\nhttps://www.youtube.com/watch?v=5gS4jLTvVIU"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_50a7b2a_8QwgPJ"
-      ],
       "name": "Multi-video banner",
       "settings": {}
     },
@@ -585,13 +553,13 @@
         "heading": "Built For You!",
         "subheading": "Pick the setup that's yours.",
         "align": "center",
-        "heading_color": "#14213D",
-        "section_bg": "#FFFFFF",
+        "heading_color": "#14213d",
+        "section_bg": "#ffffff",
         "columns": 3,
         "ratio": "1 / 1",
         "radius": 8,
-        "text_color": "#FFFFFF",
-        "overlay_color": "#0B1B3F",
+        "text_color": "#ffffff",
+        "overlay_color": "#0b1b3f",
         "overlay_opacity": 35,
         "width": "1600px",
         "pad_top": 60,
@@ -1520,8 +1488,8 @@
             "overlay_color": "#000000",
             "overlay_opacity": 35,
             "heading_font": "inter_n7",
-            "text_color": "#FFFFFF",
-            "button_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "button_color": "#ffffff",
             "button_text_color": "#000000",
             "button_radius": 4,
             "video_1_url": "",
