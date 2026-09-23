@@ -474,10 +474,80 @@
         "bottom_space_mobile": 0
       }
     },
-    "blocks_z86jMh": {
-      "type": "_blocks",
-      "name": "Multi-video banner",
-      "settings": {}
+    "multi_video_banner_V36t8C": {
+      "type": "multi-video-banner",
+      "blocks": {
+        "video_cKiDxY": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=fKCacr2yZRw",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "content_h": "left",
+            "content_v": "bottom",
+            "text_color": "#ffffff"
+          }
+        },
+        "video_paE9TB": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=ZT4Q3MoxT4o",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "content_h": "left",
+            "content_v": "bottom",
+            "text_color": "#ffffff"
+          }
+        },
+        "video_nfCJwV": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=5gS4jLTvVIU",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "content_h": "left",
+            "content_v": "bottom",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "video_cKiDxY",
+        "video_paE9TB",
+        "video_nfCJwV"
+      ],
+      "name": "YouTube video banner",
+      "settings": {
+        "display_mode": "slider",
+        "inner_width": "custom",
+        "custom_max_width": 1400,
+        "side_padding_desktop": 0,
+        "side_padding_mobile": 0,
+        "color_scheme": "",
+        "height_desktop": "large",
+        "height_mobile": "portrait",
+        "column_spacing": 16,
+        "mobile_columns": "1",
+        "video_zoom": 115,
+        "overlay_opacity": 15,
+        "corner_radius": 0,
+        "autoplay_speed": 8,
+        "show_arrows": true,
+        "arrow_position": "sides",
+        "arrow_size": 44,
+        "arrows_mobile": true,
+        "show_dots": true,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
     },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
@@ -1518,7 +1588,7 @@
     "scroll_text_FDt3Dp",
     "rich_text_PYtGrV",
     "video_banner_qRTiMr",
-    "blocks_z86jMh",
+    "multi_video_banner_V36t8C",
     "featured_collection_7WcCJR",
     "techty_explore_cards_Hzdn7x",
     "countdown_FnRx7j",
