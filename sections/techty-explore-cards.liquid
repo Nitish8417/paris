@@ -1,0 +1,184 @@
+{%- comment -%}
+  TECHTY — EXPLORE CARDS
+  Tall image cards (title + one line + "Learn more") that open a collection.
+  Add as many cards as you like. Works on any page.
+  Recommended image size: 900 x 1200 px (tall).
+{%- endcomment -%}
+{%- liquid
+  assign ar = false
+  if request.locale.iso_code == 'ar'
+    assign ar = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .tt-fields {
+    --tf-cols: {{ section.settings.columns }};
+    --tf-ratio: {{ section.settings.ratio }};
+    --tf-radius: {{ section.settings.radius }}px;
+    --tf-text: {{ section.settings.text_color }};
+    --tf-shade: {{ section.settings.overlay_color }};
+    --tf-shade-o: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    padding-top: {{ section.settings.pad_top }}px;
+    padding-bottom: {{ section.settings.pad_bottom }}px;
+    background: {{ section.settings.section_bg }};
+    font-family: var(--tt-font, inherit);
+  }
+  [dir="rtl"] #shopify-section-{{ section.id }} .tt-fields { font-family: var(--tt-font-ar, inherit); }
+  .tt-fields *, .tt-fields *::before { box-sizing: border-box; }
+  .tt-fields__wrap { max-width: {{ section.settings.width }}; margin-inline: auto; padding-inline: 16px; }
+  @media (min-width: 990px) { .tt-fields__wrap { padding-inline: 32px; } }
+
+  .tt-fields__title { margin: 0 0 8px; padding: 0; background: none; color: {{ section.settings.heading_color }}; font-family: inherit; font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; text-align: {{ section.settings.align }}; }
+  @media (min-width: 990px) { .tt-fields__title { font-size: 36px; } }
+  .tt-fields__sub { max-width: 60ch; margin: 0 auto 26px; color: {{ section.settings.heading_color }}; opacity: .7; font-size: 15px; line-height: 1.55; text-align: {{ section.settings.align }}; }
+  .tt-fields__title + .tt-fields__grid { margin-top: 26px; }
+
+  .tt-fields__grid { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 14px; margin: 0; padding: 0 2px 10px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .tt-fields__grid::-webkit-scrollbar { display: none; }
+  .tt-fields__grid > li { scroll-snap-align: start; min-width: 0; }
+  @media (min-width: 750px) { .tt-fields__grid { grid-auto-columns: 48%; gap: 18px; } }
+  @media (min-width: 990px) { .tt-fields__grid { grid-auto-flow: row; grid-template-columns: repeat(var(--tf-cols), minmax(0, 1fr)); gap: 22px; overflow: visible; padding: 0; } }
+
+  .tt-fields__card { position: relative; display: block; aspect-ratio: var(--tf-ratio); overflow: hidden; border-radius: var(--tf-radius); background: #0E1726; color: var(--tf-text); text-decoration: none; }
+  .tt-fields__media { position: absolute; inset: 0; }
+  .tt-fields__media img, .tt-fields__media svg { display: block; width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important; object-fit: cover !important; transition: transform .6s ease; }
+  .tt-fields__card:hover .tt-fields__media img { transform: scale(1.05); }
+  .tt-fields__shade { position: absolute; inset: 0; background: linear-gradient(to bottom, var(--tf-shade) 0%, transparent 55%); opacity: var(--tf-shade-o); }
+  .tt-fields__body { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 28px 22px; text-align: center; }
+  .tt-fields__name { margin: 0; padding: 0; background: none; color: var(--tf-text); font-family: inherit; font-size: 24px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+  @media (min-width: 990px) { .tt-fields__name { font-size: 30px; } }
+  .tt-fields__line { margin: 0; max-width: 26ch; color: var(--tf-text); opacity: .92; font-size: 15px; line-height: 1.4; }
+  .tt-fields__more { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; color: var(--tf-text); font-size: 15px; font-weight: 500; }
+  .tt-fields__more svg { width: 15px; height: 15px; transition: transform .2s ease; }
+  [dir="rtl"] .tt-fields__more svg { transform: scaleX(-1); }
+  .tt-fields__card:hover .tt-fields__more svg { transform: translateX(3px); }
+  [dir="rtl"] .tt-fields__card:hover .tt-fields__more svg { transform: scaleX(-1) translateX(3px); }
+  .tt-fields__card:hover .tt-fields__more { text-decoration: underline; text-underline-offset: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tt-fields__media img, .tt-fields__more svg { transition: none !important; }
+    .tt-fields__card:hover .tt-fields__media img { transform: none; }
+  }
+</style>
+
+<section class="tt-fields">
+  <div class="tt-fields__wrap">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="tt-fields__title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="tt-fields__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    <ul class="tt-fields__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign coll = block.settings.collection
+          assign url = block.settings.link
+          if url == blank and coll != blank
+            assign url = coll.url
+          endif
+          assign img = block.settings.image
+          if img == blank and coll != blank
+            assign img = coll.featured_image
+          endif
+          assign name = block.settings.heading
+          if name == blank and coll != blank
+            assign name = coll.title
+          endif
+        -%}
+        <li {{ block.shopify_attributes }}>
+          <a class="tt-fields__card" href="{{ url | default: '#' }}">
+            <span class="tt-fields__media">
+              {%- if img != blank -%}
+                {{ img | image_url: width: 900 | image_tag: loading: 'lazy', widths: '450, 675, 900', sizes: '(min-width: 990px) 33vw, 78vw', alt: name }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag }}
+              {%- endif -%}
+            </span>
+            <span class="tt-fields__shade"></span>
+            <span class="tt-fields__body">
+              <span class="tt-fields__name">{{ name | default: 'Card title' }}</span>
+              {%- if block.settings.text != blank -%}
+                <span class="tt-fields__line">{{ block.settings.text }}</span>
+              {%- endif -%}
+              {%- if block.settings.link_label != blank -%}
+                <span class="tt-fields__more">
+                  {{ block.settings.link_label }}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+                </span>
+              {%- endif -%}
+            </span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Techty explore cards",
+  "tag": "section",
+  "class": "section-techty-fields",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Explore Techty by what you do" },
+    { "type": "text", "id": "subheading", "label": "Supporting line" },
+    { "type": "text_alignment", "id": "align", "label": "Heading alignment", "default": "center" },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#14213D" },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "header", "content": "Cards" },
+    { "type": "range", "id": "columns", "label": "Cards per row (desktop)", "min": 2, "max": 4, "step": 1, "default": 3 },
+    {
+      "type": "select", "id": "ratio", "label": "Card shape", "default": "3 / 4",
+      "options": [
+        { "value": "3 / 4", "label": "Tall (900 x 1200)" },
+        { "value": "4 / 5", "label": "Portrait (900 x 1125)" },
+        { "value": "1 / 1", "label": "Square (900 x 900)" },
+        { "value": "4 / 3", "label": "Landscape (1200 x 900)" }
+      ]
+    },
+    { "type": "range", "id": "radius", "label": "Corner roundness", "min": 0, "max": 28, "step": 2, "unit": "px", "default": 8 },
+    { "type": "color", "id": "text_color", "label": "Card text color", "default": "#FFFFFF" },
+    { "type": "color", "id": "overlay_color", "label": "Shade behind text", "default": "#0B1B3F" },
+    { "type": "range", "id": "overlay_opacity", "label": "Shade strength", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 35, "info": "Keeps titles readable on busy photos" },
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "select", "id": "width", "label": "Width", "default": "1600px",
+      "options": [
+        { "value": "1320px", "label": "Standard" },
+        { "value": "1600px", "label": "Wide" },
+        { "value": "100%", "label": "Full screen" }
+      ]
+    },
+    { "type": "range", "id": "pad_top", "label": "Top spacing", "min": 0, "max": 120, "step": 5, "unit": "px", "default": 60 },
+    { "type": "range", "id": "pad_bottom", "label": "Bottom spacing", "min": 0, "max": 120, "step": 5, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection", "info": "The card opens this collection" },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "900 x 1200 px. Leave empty to use the collection image." },
+        { "type": "text", "id": "heading", "label": "Title", "info": "Leave empty to use the collection name" },
+        { "type": "text", "id": "text", "label": "One line under the title" },
+        { "type": "text", "id": "link_label", "label": "Link text", "default": "Learn more" },
+        { "type": "text", "id": "link", "label": "Custom link (optional)", "info": "Overrides the collection, e.g. /pages/gaming" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Techty explore cards",
+      "blocks": [
+        { "type": "card", "settings": { "heading": "Content Creation", "text": "Cameras, lights and mics for creators", "link_label": "Learn more" } },
+        { "type": "card", "settings": { "heading": "Gaming", "text": "Controllers, audio and setup gear", "link_label": "Learn more" } },
+        { "type": "card", "settings": { "heading": "Everyday Carry", "text": "Charging and audio that travels with you", "link_label": "Learn more" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
