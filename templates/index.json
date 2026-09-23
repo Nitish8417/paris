@@ -474,6 +474,43 @@
         "bottom_space_mobile": 0
       }
     },
+    "blocks_z86jMh": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_50a7b2a_8QwgPJ": {
+          "type": "ai_gen_block_50a7b2a",
+          "settings": {
+            "layout": "slider",
+            "columns": 2,
+            "desktop_width_percent": 100,
+            "gap": 0,
+            "aspect_ratio": "16 / 9",
+            "background_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 35,
+            "heading_font": "inter_n7",
+            "text_color": "#FFFFFF",
+            "button_color": "#FFFFFF",
+            "button_text_color": "#000000",
+            "button_radius": 4,
+            "video_1_url": "https://www.youtube.com/watch?v=fKCacr2yZRw",
+            "video_1_autoplay": true,
+            "video_1_muted": true,
+            "video_1_heading": "",
+            "video_1_subheading": "",
+            "video_1_button_label": "",
+            "video_1_button_link": "",
+            "additional_videos": "https://www.youtube.com/watch?v=fKCacr2yZRw\nhttps://www.youtube.com/watch?v=5gS4jLTvVIU"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_50a7b2a_8QwgPJ"
+      ],
+      "name": "Multi-video banner",
+      "settings": {}
+    },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
       "custom_css": [],
@@ -519,7 +556,7 @@
           "type": "card",
           "settings": {
             "collection": "content-creator-kit",
-            "image": "shopify://shop_images/dji_2.png",
+            "image": "shopify://shop_images/dji_4.png",
             "heading": "Content Creation",
             "text": "From phone setup to full studio.",
             "link_label": "Learn more",
@@ -826,8 +863,8 @@
         "grid_xMKMWz": {
           "type": "grid",
           "settings": {
-            "media_image": "shopify://shop_images/eufy_2.png",
-            "media_image_mobile": "shopify://shop_images/eufy_2.png",
+            "media_image": "shopify://shop_images/monster_sspeaker.png",
+            "media_image_mobile": "shopify://shop_images/monster_sspeaker.png",
             "heading": "Speakers",
             "heading_size": "h4",
             "heading_size_mobile": "h4_mobile",
@@ -1467,6 +1504,42 @@
         "pad_top": 56,
         "pad_bottom": 56
       }
+    },
+    "179015593426bc3e60": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_50a7b2a_aPtPnF": {
+          "type": "ai_gen_block_50a7b2a",
+          "settings": {
+            "layout": "grid",
+            "columns": 2,
+            "desktop_width_percent": 100,
+            "gap": 0,
+            "aspect_ratio": "16 / 9",
+            "background_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 35,
+            "heading_font": "inter_n7",
+            "text_color": "#FFFFFF",
+            "button_color": "#FFFFFF",
+            "button_text_color": "#000000",
+            "button_radius": 4,
+            "video_1_url": "",
+            "video_1_autoplay": true,
+            "video_1_muted": true,
+            "video_1_heading": "",
+            "video_1_subheading": "",
+            "video_1_button_label": "",
+            "video_1_button_link": "",
+            "additional_videos": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_50a7b2a_aPtPnF"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1477,6 +1550,7 @@
     "scroll_text_FDt3Dp",
     "rich_text_PYtGrV",
     "video_banner_qRTiMr",
+    "blocks_z86jMh",
     "featured_collection_7WcCJR",
     "techty_explore_cards_Hzdn7x",
     "countdown_FnRx7j",
@@ -1492,6 +1566,7 @@
     "rich_text_yi96Lj",
     "1788689024b5e5f99c",
     "1789460615dc3216fc",
-    "techty_testimonials_Lx4FRc"
+    "techty_testimonials_Lx4FRc",
+    "179015593426bc3e60"
   ]
 }
