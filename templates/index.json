@@ -477,14 +477,14 @@
     "multi_video_banner_V36t8C": {
       "type": "multi-video-banner",
       "blocks": {
-        "video_cKiDxY": {
+        "video_nfCJwV": {
           "type": "video",
           "settings": {
-            "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
+            "video": "https://www.youtube.com/watch?v=EbebFc9PHcU",
             "heading": "",
             "text": "",
             "button_label": "",
-            "button_link": "https://techty.com/products/soundcore-a30-smart-anc-sleep-earbuds?variant=48611858383066&_pos=1&_sid=eb57bcaca&_ss=r",
+            "button_link": "https://techty.com/products/dji-osmo-pocket-4-standard-combo?variant=48537522471130",
             "content_h": "left",
             "content_v": "bottom",
             "text_color": "#ffffff"
@@ -503,14 +503,14 @@
             "text_color": "#ffffff"
           }
         },
-        "video_nfCJwV": {
+        "video_cKiDxY": {
           "type": "video",
           "settings": {
-            "video": "https://www.youtube.com/watch?v=5gS4jLTvVIU",
+            "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
             "heading": "",
             "text": "",
             "button_label": "",
-            "button_link": "",
+            "button_link": "https://techty.com/products/soundcore-a30-smart-anc-sleep-earbuds?variant=48611858383066&_pos=1&_sid=eb57bcaca&_ss=r",
             "content_h": "left",
             "content_v": "bottom",
             "text_color": "#ffffff"
@@ -518,9 +518,9 @@
         }
       },
       "block_order": [
-        "video_cKiDxY",
+        "video_nfCJwV",
         "video_paE9TB",
-        "video_nfCJwV"
+        "video_cKiDxY"
       ],
       "name": "YouTube video banner",
       "settings": {
@@ -1391,10 +1391,10 @@
         "text_position": "center",
         "text_alignment": "center",
         "color_scheme": "",
-        "top_space_desktop": 55,
-        "bottom_space_desktop": 35,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
+        "top_space_desktop": 5,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 20
       }
     },
     "1788689024b5e5f99c": {
@@ -1539,8 +1539,8 @@
         "autoplay": 5,
         "show_stars": true,
         "surface": true,
-        "pad_top": 56,
-        "pad_bottom": 56
+        "pad_top": 8,
+        "pad_bottom": 44
       }
     },
     "179015593426bc3e60": {
