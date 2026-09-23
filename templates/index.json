@@ -480,11 +480,11 @@
         "video_cKiDxY": {
           "type": "video",
           "settings": {
-            "video": "https://www.youtube.com/watch?v=fKCacr2yZRw",
+            "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
             "heading": "",
             "text": "",
             "button_label": "",
-            "button_link": "",
+            "button_link": "shopify://collections/soundcore",
             "content_h": "left",
             "content_v": "bottom",
             "text_color": "#ffffff"
@@ -1391,7 +1391,7 @@
         "text_position": "center",
         "text_alignment": "center",
         "color_scheme": "",
-        "top_space_desktop": 90,
+        "top_space_desktop": 55,
         "bottom_space_desktop": 35,
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
