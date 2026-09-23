@@ -510,7 +510,7 @@
             "collection": "travel",
             "image": "shopify://shop_images/Untitled_design_dfc5b098-3e16-4fe6-a82b-39ceeb09023a.png",
             "heading": "Travel",
-            "text": "Cameras, lights and mics for creators",
+            "text": "For long flights and longer layovers.",
             "link_label": "Learn more",
             "link": ""
           }
@@ -518,9 +518,10 @@
         "card_WinF4i": {
           "type": "card",
           "settings": {
-            "collection": "",
-            "heading": "Gaming",
-            "text": "Controllers, audio and setup gear",
+            "collection": "content-creator-kit",
+            "image": "shopify://shop_images/dji_2.png",
+            "heading": "Content Creation",
+            "text": "From phone setup to full studio.",
             "link_label": "Learn more",
             "link": ""
           }
@@ -528,9 +529,10 @@
         "card_QPBVG3": {
           "type": "card",
           "settings": {
-            "collection": "",
-            "heading": "Everyday Carry",
-            "text": "Charging and audio that travels with you",
+            "collection": "gadgets-for-women",
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_12_10_42_PM.png",
+            "heading": "Gadgets for Women",
+            "text": "Because she deserve the best.",
             "link_label": "Learn more",
             "link": ""
           }
