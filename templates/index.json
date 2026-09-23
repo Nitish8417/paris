@@ -898,8 +898,8 @@
         "grid_xMKMWz"
       ],
       "settings": {
-        "width_type": "full",
-        "inner_width": 900,
+        "width_type": "custom",
+        "inner_width": 1300,
         "side_padding": 20,
         "side_padding_mobile": 16,
         "color_scheme": "primary",
