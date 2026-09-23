@@ -291,7 +291,7 @@
         "heading_alignment": "left",
         "columns_desktop": 4,
         "columns_mobile": 1,
-        "card_height": 200,
+        "card_height": 280,
         "enable_slider": true,
         "infinite": true,
         "show_arrows": false,
@@ -304,10 +304,10 @@
         "divider_color": "#000041",
         "arrow_bg": "#000000",
         "arrow_color": "#f4f1ff",
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 30,
+        "top_space_desktop": 35,
+        "bottom_space_desktop": 35,
         "top_space_mobile": 25,
-        "bottom_space_mobile": 25
+        "bottom_space_mobile": 40
       }
     },
     "scroll_text_experiment_VPBaMd": {
@@ -488,7 +488,7 @@
         "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
         "enable_collection_title": false,
-        "collection": "headphones",
+        "collection": "earbuds-headphones",
         "products_style": true,
         "products_to_show": 10,
         "columns_desktop": 4,
@@ -499,6 +499,66 @@
         "bottom_space_desktop": 80,
         "top_space_mobile": 25,
         "bottom_space_mobile": 25
+      }
+    },
+    "techty_explore_cards_Hzdn7x": {
+      "type": "techty-explore-cards",
+      "blocks": {
+        "card_eGf9mH": {
+          "type": "card",
+          "settings": {
+            "collection": "travel",
+            "image": "shopify://shop_images/Untitled_design_dfc5b098-3e16-4fe6-a82b-39ceeb09023a.png",
+            "heading": "Travel",
+            "text": "For long flights and longer layovers.",
+            "link_label": "Learn more",
+            "link": ""
+          }
+        },
+        "card_WinF4i": {
+          "type": "card",
+          "settings": {
+            "collection": "content-creator-kit",
+            "image": "shopify://shop_images/dji_2.png",
+            "heading": "Content Creation",
+            "text": "From phone setup to full studio.",
+            "link_label": "Learn more",
+            "link": ""
+          }
+        },
+        "card_QPBVG3": {
+          "type": "card",
+          "settings": {
+            "collection": "gadgets-for-women",
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_12_10_42_PM.png",
+            "heading": "Gadgets for Women",
+            "text": "Because she deserve the best.",
+            "link_label": "Learn more",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_eGf9mH",
+        "card_WinF4i",
+        "card_QPBVG3"
+      ],
+      "name": "Techty explore cards",
+      "settings": {
+        "heading": "Built For You!",
+        "subheading": "Pick the setup that's yours.",
+        "align": "center",
+        "heading_color": "#14213D",
+        "section_bg": "#FFFFFF",
+        "columns": 3,
+        "ratio": "1 / 1",
+        "radius": 8,
+        "text_color": "#FFFFFF",
+        "overlay_color": "#0B1B3F",
+        "overlay_opacity": 35,
+        "width": "1600px",
+        "pad_top": 60,
+        "pad_bottom": 60
       }
     },
     "countdown_FnRx7j": {
@@ -547,61 +607,6 @@
         "bottom_space_desktop": 50,
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
-      }
-    },
-    "images_carousel_teCLtB": {
-      "type": "images-carousel",
-      "blocks": {
-        "image_teqLL4": {
-          "type": "image",
-          "settings": {
-            "collection": "headphones",
-            "heading": "Headphones",
-            "image": "shopify://shop_images/HOCOTK0616-5.jpg"
-          }
-        },
-        "image_x4aXQd": {
-          "type": "image",
-          "settings": {
-            "collection": "fitness-trackers",
-            "heading": "",
-            "image": "shopify://shop_images/14de930a2da2e58eac8db03155f7efa4.webp"
-          }
-        },
-        "image_k6DECP": {
-          "type": "image",
-          "settings": {
-            "collection": "travel",
-            "heading": "",
-            "image": "shopify://shop_images/Powerology-Dual-Protocol-Portable-SSD-512GB-Up-to-480MBs-External-SSD-Solid-State-Drive-Ssd-Powerology-Star-Light-Kuwait-3.webp"
-          }
-        },
-        "image_a6KwMQ": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "collection": "",
-            "heading": "Heading"
-          }
-        }
-      },
-      "block_order": [
-        "image_teqLL4",
-        "image_x4aXQd",
-        "image_k6DECP",
-        "image_a6KwMQ"
-      ],
-      "settings": {
-        "heading": "",
-        "heading_size": "h3",
-        "heading_size_mobile": "h3_mobile",
-        "heading_alignment": "left",
-        "height": "medium-img",
-        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 50,
-        "top_space_mobile": 25,
-        "bottom_space_mobile": 25
       }
     },
     "featured_collection_w89H83": {
@@ -1212,7 +1217,7 @@
         "heading_size_mobile": "h3_mobile",
         "heading_alignment": "center",
         "color_scheme": "scheme-10d07f3f-8a29-4d3b-a1e9-97a250b6a1a9",
-        "background": "#2A252E",
+        "background": "#2a252e",
         "border": "#7c7cee",
         "top_space_desktop": 50,
         "bottom_space_desktop": 50,
@@ -1281,6 +1286,125 @@
     "1789460615dc3216fc": {
       "type": "_blocks",
       "settings": {}
+    },
+    "techty_testimonials_Lx4FRc": {
+      "type": "techty-testimonials",
+      "blocks": {
+        "testimonial_8erYMb": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "It's rare to find one place in Kuwait that has the charger, the speaker and the gift all in the same order. Everything I needed was on Techty, and it all arrived together.",
+            "name": "Abdullah K.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Shop all",
+            "tag_link": "/collections/all"
+          }
+        },
+        "testimonial_pF4qfa": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I messaged them on WhatsApp to check which charger actually suits my laptop. Quick, straight answer, and they didn't push me toward the most expensive one.",
+            "name": "Noura A.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Chargers",
+            "tag_link": "/collections/chargers-adapters"
+          }
+        },
+        "testimonial_4NwLy4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Bought the GRIT apex for my evening walks. Having two straps in the box was a nice touch sporty one for the gym, the other for work.",
+            "name": "Fahad M.",
+            "role": "Wearables customer",
+            "rating": 5,
+            "tag": "Smart watches",
+            "tag_link": "/collections/smart-watches-fitness-trackers"
+          }
+        },
+        "testimonial_KFDV7j": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The Xiaomi magnetic power bank with the very nice cable 👍 👍",
+            "name": "Mariam S.",
+            "role": "Frequent traveller",
+            "rating": 5,
+            "tag": "Power banks",
+            "tag_link": "/collections/power-banks"
+          }
+        },
+        "testimonial_ccQjCt": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Wanted Soundcore earbuds that are good for calls while driving. Voice comes through clearly and they're comfortable enough to forget I'm wearing them.",
+            "name": "Dana R.",
+            "role": "Audio customer",
+            "rating": 5,
+            "tag": "Earbuds",
+            "tag_link": "/collections/earbuds-headphones"
+          }
+        },
+        "testimonial_taRzmU": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Got a Neewer light kit and the KM18 lavalier mic for my home setup. Took about ten minutes to get running and my videos look like a different channel.",
+            "name": "Hessa J.",
+            "role": "Content creator",
+            "rating": 5,
+            "tag": "Creator kit",
+            "tag_link": "/collections/content-creator-kit"
+          }
+        },
+        "testimonial_z49pB3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The gaming section is well picked rather than endless. Grabbed a new controller and a couple of cables for my setup, and everything matched the description exactly.",
+            "name": "Yousef H.",
+            "role": "Gaming customer",
+            "rating": 5,
+            "tag": "Gaming gear",
+            "tag_link": "/collections/gaming-controllers-gear"
+          }
+        },
+        "testimonial_nMeG7J": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Ordered a travel adapter two days before a trip and it made it in time. I also swapped a cable that didn't fit my phone the exchange was easy and free.",
+            "name": "Omar T.",
+            "role": "Techty customer",
+            "rating": 4,
+            "tag": "Travel",
+            "tag_link": "/collections/travel"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_8erYMb",
+        "testimonial_pF4qfa",
+        "testimonial_4NwLy4",
+        "testimonial_KFDV7j",
+        "testimonial_ccQjCt",
+        "testimonial_taRzmU",
+        "testimonial_z49pB3",
+        "testimonial_nMeG7J"
+      ],
+      "name": "Techty testimonials",
+      "settings": {
+        "show_editor_note": false,
+        "eyebrow": "Customer stories",
+        "heading": "What our customers say",
+        "subheading": "Real experiences from people who shop Techty across Kuwait.",
+        "cta_label": "Share your experience",
+        "cta_link": "https://wa.me/96522280345",
+        "columns": 3,
+        "width": "1600px",
+        "autoplay": 5,
+        "show_stars": true,
+        "surface": true,
+        "pad_top": 56,
+        "pad_bottom": 56
+      }
     }
   },
   "order": [
@@ -1292,9 +1416,9 @@
     "rich_text_PYtGrV",
     "video_banner_qRTiMr",
     "featured_collection_7WcCJR",
+    "techty_explore_cards_Hzdn7x",
     "countdown_FnRx7j",
     "scrolling_text_Lf6697",
-    "images_carousel_teCLtB",
     "featured_collection_w89H83",
     "collection_tabs_FXXzEb",
     "parallax_4KzCAA",
@@ -1305,6 +1429,7 @@
     "logo_list_9UqKFM",
     "rich_text_yi96Lj",
     "1788689024b5e5f99c",
-    "1789460615dc3216fc"
+    "1789460615dc3216fc",
+    "techty_testimonials_Lx4FRc"
   ]
 }
