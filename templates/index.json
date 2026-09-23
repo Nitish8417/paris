@@ -310,81 +310,6 @@
         "bottom_space_mobile": 40
       }
     },
-    "multi_video_banner_V36t8C": {
-      "type": "multi-video-banner",
-      "blocks": {
-        "video_nfCJwV": {
-          "type": "video",
-          "settings": {
-            "video": "https://www.youtube.com/watch?v=EbebFc9PHcU",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "button_link": "https://techty.com/products/dji-osmo-pocket-4-standard-combo?variant=48537522471130",
-            "content_h": "left",
-            "content_v": "bottom",
-            "text_color": "#ffffff"
-          }
-        },
-        "video_paE9TB": {
-          "type": "video",
-          "settings": {
-            "video": "https://www.youtube.com/watch?v=942XCi2OqAY",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "button_link": "https://techty.com/products/nebula-projector-cosmos-laser-4k?variant=48239587393754&_pos=3&_psq=nebula+capsule+cosmos&_psid=bcf250f90&_ss=e",
-            "content_h": "left",
-            "content_v": "bottom",
-            "text_color": "#ffffff"
-          }
-        },
-        "video_cKiDxY": {
-          "type": "video",
-          "settings": {
-            "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "button_link": "https://techty.com/products/soundcore-a30-smart-anc-sleep-earbuds?variant=48611858383066&_pos=1&_sid=eb57bcaca&_ss=r",
-            "content_h": "left",
-            "content_v": "bottom",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "video_nfCJwV",
-        "video_paE9TB",
-        "video_cKiDxY"
-      ],
-      "name": "YouTube video banner",
-      "settings": {
-        "display_mode": "slider",
-        "inner_width": "custom",
-        "custom_max_width": 1400,
-        "side_padding_desktop": 0,
-        "side_padding_mobile": 0,
-        "color_scheme": "",
-        "height_desktop": "large",
-        "height_mobile": "portrait",
-        "column_spacing": 16,
-        "mobile_columns": "1",
-        "video_zoom": 115,
-        "overlay_opacity": 15,
-        "corner_radius": 0,
-        "autoplay_speed": 8,
-        "show_arrows": true,
-        "arrow_position": "sides",
-        "arrow_size": 44,
-        "arrows_mobile": true,
-        "show_dots": true,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0
-      }
-    },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
       "custom_css": [],
@@ -1079,10 +1004,85 @@
         "text_position": "center",
         "text_alignment": "center",
         "color_scheme": "",
-        "top_space_desktop": 5,
+        "top_space_desktop": 20,
         "bottom_space_desktop": 0,
         "top_space_mobile": 15,
         "bottom_space_mobile": 20
+      }
+    },
+    "multi_video_banner_V36t8C": {
+      "type": "multi-video-banner",
+      "blocks": {
+        "video_nfCJwV": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=EbebFc9PHcU",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "https://techty.com/products/dji-osmo-pocket-4-standard-combo?variant=48537522471130",
+            "content_h": "left",
+            "content_v": "bottom",
+            "text_color": "#ffffff"
+          }
+        },
+        "video_paE9TB": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=942XCi2OqAY",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "https://techty.com/products/nebula-projector-cosmos-laser-4k?variant=48239587393754&_pos=3&_psq=nebula+capsule+cosmos&_psid=bcf250f90&_ss=e",
+            "content_h": "left",
+            "content_v": "bottom",
+            "text_color": "#ffffff"
+          }
+        },
+        "video_cKiDxY": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "https://techty.com/products/soundcore-a30-smart-anc-sleep-earbuds?variant=48611858383066&_pos=1&_sid=eb57bcaca&_ss=r",
+            "content_h": "left",
+            "content_v": "bottom",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "video_nfCJwV",
+        "video_paE9TB",
+        "video_cKiDxY"
+      ],
+      "name": "YouTube video banner",
+      "settings": {
+        "display_mode": "slider",
+        "inner_width": "custom",
+        "custom_max_width": 1400,
+        "side_padding_desktop": 0,
+        "side_padding_mobile": 0,
+        "color_scheme": "",
+        "height_desktop": "large",
+        "height_mobile": "portrait",
+        "column_spacing": 16,
+        "mobile_columns": "1",
+        "video_zoom": 115,
+        "overlay_opacity": 15,
+        "corner_radius": 0,
+        "autoplay_speed": 8,
+        "show_arrows": true,
+        "arrow_position": "sides",
+        "arrow_size": 44,
+        "arrows_mobile": true,
+        "show_dots": true,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
       }
     },
     "1789460615dc3216fc": {
@@ -1204,7 +1204,7 @@
         "autoplay": 5,
         "show_stars": true,
         "surface": true,
-        "pad_top": 8,
+        "pad_top": 20,
         "pad_bottom": 44
       }
     },
@@ -1248,7 +1248,6 @@
   "order": [
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
-    "multi_video_banner_V36t8C",
     "featured_collection_7WcCJR",
     "techty_explore_cards_Hzdn7x",
     "featured_collection_w89H83",
@@ -1258,6 +1257,7 @@
     "parallax_hmHXrH",
     "logo_list_9UqKFM",
     "rich_text_yi96Lj",
+    "multi_video_banner_V36t8C",
     "1789460615dc3216fc",
     "techty_testimonials_Lx4FRc",
     "179015593426bc3e60"
