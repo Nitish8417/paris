@@ -501,6 +501,64 @@
         "bottom_space_mobile": 25
       }
     },
+    "techty_explore_cards_Hzdn7x": {
+      "type": "techty-explore-cards",
+      "blocks": {
+        "card_eGf9mH": {
+          "type": "card",
+          "settings": {
+            "collection": "travel",
+            "image": "shopify://shop_images/Untitled_design_dfc5b098-3e16-4fe6-a82b-39ceeb09023a.png",
+            "heading": "Travel",
+            "text": "Cameras, lights and mics for creators",
+            "link_label": "Learn more",
+            "link": ""
+          }
+        },
+        "card_WinF4i": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Gaming",
+            "text": "Controllers, audio and setup gear",
+            "link_label": "Learn more",
+            "link": ""
+          }
+        },
+        "card_QPBVG3": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Everyday Carry",
+            "text": "Charging and audio that travels with you",
+            "link_label": "Learn more",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_eGf9mH",
+        "card_WinF4i",
+        "card_QPBVG3"
+      ],
+      "name": "Techty explore cards",
+      "settings": {
+        "heading": "Built For You",
+        "subheading": "Pick the setup that's yours.",
+        "align": "center",
+        "heading_color": "#14213D",
+        "section_bg": "#FFFFFF",
+        "columns": 3,
+        "ratio": "1 / 1",
+        "radius": 8,
+        "text_color": "#FFFFFF",
+        "overlay_color": "#0B1B3F",
+        "overlay_opacity": 35,
+        "width": "1600px",
+        "pad_top": 60,
+        "pad_bottom": 60
+      }
+    },
     "countdown_FnRx7j": {
       "type": "countdown",
       "disabled": true,
@@ -547,61 +605,6 @@
         "bottom_space_desktop": 50,
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
-      }
-    },
-    "images_carousel_teCLtB": {
-      "type": "images-carousel",
-      "blocks": {
-        "image_teqLL4": {
-          "type": "image",
-          "settings": {
-            "collection": "headphones",
-            "heading": "Headphones",
-            "image": "shopify://shop_images/HOCOTK0616-5.jpg"
-          }
-        },
-        "image_x4aXQd": {
-          "type": "image",
-          "settings": {
-            "collection": "fitness-trackers",
-            "heading": "",
-            "image": "shopify://shop_images/14de930a2da2e58eac8db03155f7efa4.webp"
-          }
-        },
-        "image_k6DECP": {
-          "type": "image",
-          "settings": {
-            "collection": "travel",
-            "heading": "",
-            "image": "shopify://shop_images/Powerology-Dual-Protocol-Portable-SSD-512GB-Up-to-480MBs-External-SSD-Solid-State-Drive-Ssd-Powerology-Star-Light-Kuwait-3.webp"
-          }
-        },
-        "image_a6KwMQ": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "collection": "",
-            "heading": "Heading"
-          }
-        }
-      },
-      "block_order": [
-        "image_teqLL4",
-        "image_x4aXQd",
-        "image_k6DECP",
-        "image_a6KwMQ"
-      ],
-      "settings": {
-        "heading": "",
-        "heading_size": "h3",
-        "heading_size_mobile": "h3_mobile",
-        "heading_alignment": "left",
-        "height": "medium-img",
-        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 50,
-        "top_space_mobile": 25,
-        "bottom_space_mobile": 25
       }
     },
     "featured_collection_w89H83": {
@@ -1411,9 +1414,9 @@
     "rich_text_PYtGrV",
     "video_banner_qRTiMr",
     "featured_collection_7WcCJR",
+    "techty_explore_cards_Hzdn7x",
     "countdown_FnRx7j",
     "scrolling_text_Lf6697",
-    "images_carousel_teCLtB",
     "featured_collection_w89H83",
     "collection_tabs_FXXzEb",
     "parallax_4KzCAA",
