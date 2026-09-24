@@ -332,6 +332,45 @@
         "bottom_space_mobile": 25
       }
     },
+    "1790250658af0c4015": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8ce77ed_N4zRkP": {
+          "type": "ai_gen_block_8ce77ed",
+          "settings": {
+            "benefit_1_label": "Secure and Flexible Payment Options",
+            "benefit_1_icon": "payment",
+            "benefit_2_label": "Genuine Products",
+            "benefit_2_icon": "shield",
+            "benefit_3_label": "1–2 Days Delivery",
+            "benefit_3_icon": "delivery",
+            "benefit_4_label": "Pre-order Available",
+            "benefit_4_icon": "calendar",
+            "desktop_width_percent": 100,
+            "item_gap": 45,
+            "vertical_padding": 15,
+            "mobile_padding": 20,
+            "background_color": "#E5E5F5",
+            "text_color": "#010133",
+            "icon_color": "#010133",
+            "icon_background": "#f4f1ff",
+            "icon_border": "#dcd6f5",
+            "icon_shadow": "#dcd6f5",
+            "accent_color": "#b9a7ff",
+            "icon_size": 40,
+            "mobile_icon_size": 32,
+            "text_size": 13,
+            "mobile_text_size": 12,
+            "letter_spacing": 0.5
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8ce77ed_N4zRkP"
+      ],
+      "settings": {}
+    },
     "techty_explore_cards_79rtPn": {
       "type": "techty-explore-cards",
       "blocks": {
@@ -390,6 +429,111 @@
         "width": "100%",
         "pad_top": 30,
         "pad_bottom": 35
+      }
+    },
+    "slideshow_qahq4a": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_tLUzmQ": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/maxresdefault_abaace70-5ae9-4481-9c3c-07a9af334acd.jpg",
+            "image_mobile": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
+            "subheading": "Add a tagline",
+            "heading": "Slide Heading",
+            "heading_size": "h2",
+            "heading_size_mobile": "h2_mobile",
+            "font_family": "heading",
+            "description": "Add descriptive text for your slide here.",
+            "description_size": "textMedium",
+            "content_position": "down-start",
+            "content_alignment": "left",
+            "content_width": "medium",
+            "mobile_content_position": "down-start",
+            "mobile_content_alignment": "left",
+            "btn_text_1": "Shop now",
+            "btn_link_1": "shopify://products/lefeet-p1-standard-modular-water-scooter",
+            "btn_size_1": "medium",
+            "btn_as_link_1": false,
+            "btn_text_2": "Shop now",
+            "btn_link_2": "shopify://collections/all",
+            "btn_size_2": "medium",
+            "btn_as_link_2": false,
+            "heading_color": "#FFFFFF",
+            "description_color": "#FFFFFF",
+            "text_Overlay": "#000000",
+            "text_overlay_opacity": 20,
+            "btn_bg_color_1": "#0B0E0D",
+            "btn_text_color_1": "#ffffff",
+            "btn_border_color_1": "#000000",
+            "btn_hover_bg_color_1": "#FFFFFF",
+            "btn_hover_text_color_1": "#000000",
+            "btn_hover_border_color_1": "#FFFFFF",
+            "btn_bg_color_2": "#000000",
+            "btn_text_color_2": "#FFFFFF",
+            "btn_border_color_2": "#000000",
+            "btn_hover_bg_color_2": "#FFFFFF",
+            "btn_hover_text_color_2": "#000000",
+            "btn_hover_border_color_2": "#FFFFFF"
+          }
+        },
+        "slide_RCyxnK": {
+          "type": "slide",
+          "settings": {
+            "subheading": "Add a tagline",
+            "heading": "Slide Heading",
+            "heading_size": "h2",
+            "heading_size_mobile": "h2_mobile",
+            "font_family": "heading",
+            "description": "Add descriptive text for your slide here.",
+            "description_size": "textMedium",
+            "content_position": "down-start",
+            "content_alignment": "left",
+            "content_width": "medium",
+            "mobile_content_position": "down-start",
+            "mobile_content_alignment": "left",
+            "btn_text_1": "Shop now",
+            "btn_link_1": "shopify://collections/all",
+            "btn_size_1": "medium",
+            "btn_as_link_1": false,
+            "btn_text_2": "Shop now",
+            "btn_link_2": "shopify://collections/all",
+            "btn_size_2": "medium",
+            "btn_as_link_2": false,
+            "heading_color": "#FFFFFF",
+            "description_color": "#FFFFFF",
+            "text_Overlay": "#000000",
+            "text_overlay_opacity": 20,
+            "btn_bg_color_1": "#0B0E0D",
+            "btn_text_color_1": "#ffffff",
+            "btn_border_color_1": "#000000",
+            "btn_hover_bg_color_1": "#FFFFFF",
+            "btn_hover_text_color_1": "#000000",
+            "btn_hover_border_color_1": "#FFFFFF",
+            "btn_bg_color_2": "#000000",
+            "btn_text_color_2": "#FFFFFF",
+            "btn_border_color_2": "#000000",
+            "btn_hover_bg_color_2": "#FFFFFF",
+            "btn_hover_text_color_2": "#000000",
+            "btn_hover_border_color_2": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "slide_tLUzmQ",
+        "slide_RCyxnK"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout_type": "container",
+        "desktop_height": "slider-custom",
+        "desktop_custom_height": 700,
+        "mobile_height": "mobile-slider-custom",
+        "mobile_custom_height": 500,
+        "rotate": false,
+        "interval": 5,
+        "transition": "swipe",
+        "controls": "arrows"
       }
     },
     "featured_collection_7WcCJR": {
@@ -519,45 +663,6 @@
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
       }
-    },
-    "1790250658af0c4015": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_8ce77ed_N4zRkP": {
-          "type": "ai_gen_block_8ce77ed",
-          "settings": {
-            "benefit_1_label": "Secure and Flexible Payment Options",
-            "benefit_1_icon": "payment",
-            "benefit_2_label": "Genuine Products",
-            "benefit_2_icon": "shield",
-            "benefit_3_label": "1–2 Days Delivery",
-            "benefit_3_icon": "delivery",
-            "benefit_4_label": "Pre-order Available",
-            "benefit_4_icon": "calendar",
-            "desktop_width_percent": 100,
-            "item_gap": 25,
-            "vertical_padding": 25,
-            "mobile_padding": 20,
-            "background_color": "#ffffff",
-            "text_color": "#010133",
-            "icon_color": "#010133",
-            "icon_background": "#f4f1ff",
-            "icon_border": "#dcd6f5",
-            "icon_shadow": "#dcd6f5",
-            "accent_color": "#b9a7ff",
-            "icon_size": 40,
-            "mobile_icon_size": 32,
-            "text_size": 13,
-            "mobile_text_size": 12,
-            "letter_spacing": 0.5
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_8ce77ed_N4zRkP"
-      ],
-      "settings": {}
     },
     "parallax_4KzCAA": {
       "type": "parallax",
@@ -1269,6 +1374,41 @@
         "top_space_mobile": 50,
         "bottom_space_mobile": 50
       }
+    },
+    "179025429037efe8ec": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3f77539_7pNnkm": {
+          "type": "ai_gen_block_3f77539",
+          "settings": {
+            "slide_1_image": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
+            "slide_1_caption": "",
+            "slide_2_caption": "",
+            "slide_3_caption": "",
+            "desktop_width_percent": 100,
+            "corner_radius": 34,
+            "shadow_softness": 22,
+            "shadow_offset": 10,
+            "shadow_opacity": 35,
+            "image_ratio": "16 / 9",
+            "background_color": "#ffffff",
+            "placeholder_color": "#f1f1f1",
+            "placeholder_text_color": "#333333",
+            "caption_background": "#000000",
+            "caption_text_color": "#ffffff",
+            "caption_radius": 8,
+            "control_background": "#ffffff",
+            "control_hover_background": "#f1f1f1",
+            "control_color": "#000000",
+            "dot_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3f77539_7pNnkm"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1277,6 +1417,7 @@
     "collection_carousel_ikXhD7",
     "1790250658af0c4015",
     "techty_explore_cards_79rtPn",
+    "slideshow_qahq4a",
     "featured_collection_7WcCJR",
     "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
@@ -1288,6 +1429,7 @@
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
-    "logo_list_9UqKFM"
+    "logo_list_9UqKFM",
+    "179025429037efe8ec"
   ]
 }

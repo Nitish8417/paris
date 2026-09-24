@@ -48,7 +48,7 @@
     "type_body_line_height": 1.6,
     "type_body_spacing": "0.5",
     "animation_enable": true,
-    "layout_width": "container",
+    "layout_width": "container-medium",
     "all_box_radius": "4",
     "all_product_grid_radius": "4",
     "all_button_radius": "4",
@@ -191,7 +191,7 @@
         "settings": {
           "bg_color": "#000000",
           "alternate_bg_color": "#ffffff",
-          "heading_color": "#F4F1FF",
+          "heading_color": "#f4f1ff",
           "text_color": "#ffffff",
           "btn_bg_color": "#000000",
           "btn_text_color": "#ffffff",
@@ -1157,7 +1157,7 @@
       ".quest-icon-box {display: none;}",
       "body.template-product .product-form__input input[type=\"radio\"] + label,body.template-product .product-form__input select,body.template-product .product-form__input .select__select,body.template-product .variant-picker input[type=\"radio\"] + label,body.template-product .variant-picker select {font-size: 18px !important; min-height: 52px !important; padding: 14px 20px !important;}",
       "body.template-product .product-form__input input[type=\"radio\"] + label,body.template-product .variant-picker input[type=\"radio\"] + label {display: inline-flex; align-items: center; justify-content: center;}",
-      "/* Hide Quick Buy on product cards */.quick-buy,.quick-add,.quick-shop,.quickbuy-btn,[data-quick-buy],[data-quick-add],.product-card .quick-add-btn {display: none !important;}"
+      " /* Hide Quick Buy on product cards */.quick-buy,.quick-add,.quick-shop,.quickbuy-btn,[data-quick-buy],[data-quick-add],.product-card .quick-add-btn {display: none !important;}"
     ]
   }
 }
