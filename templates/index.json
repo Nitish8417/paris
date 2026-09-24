@@ -337,60 +337,79 @@
         "bottom_space_mobile": 25
       }
     },
-    "images_carousel_teCLtB": {
-      "type": "images-carousel",
+    "blocks_T686Bq": {
+      "type": "_blocks",
       "blocks": {
-        "image_teqLL4": {
-          "type": "image",
+        "ai_gen_block_50a7b2a_VUL8hF": {
+          "type": "ai_gen_block_50a7b2a",
           "settings": {
-            "collection": "headphones",
-            "heading": "Headphones",
-            "image": "shopify://shop_images/HOCOTK0616-5.jpg"
-          }
-        },
-        "image_x4aXQd": {
-          "type": "image",
-          "settings": {
-            "collection": "fitness-trackers",
-            "heading": "",
-            "image": "shopify://shop_images/14de930a2da2e58eac8db03155f7efa4.webp"
-          }
-        },
-        "image_k6DECP": {
-          "type": "image",
-          "settings": {
-            "collection": "travel",
-            "heading": "",
-            "image": "shopify://shop_images/Powerology-Dual-Protocol-Portable-SSD-512GB-Up-to-480MBs-External-SSD-Solid-State-Drive-Ssd-Powerology-Star-Light-Kuwait-3.webp"
-          }
-        },
-        "image_a6KwMQ": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "collection": "",
-            "heading": "Heading"
-          }
+            "layout": "slider",
+            "columns": 2,
+            "desktop_width_percent": 100,
+            "gap": 0,
+            "aspect_ratio": "16 / 9",
+            "background_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 35,
+            "heading_font": "inter_n7",
+            "text_color": "#FFFFFF",
+            "button_color": "#FFFFFF",
+            "button_text_color": "#000000",
+            "button_radius": 4,
+            "video_1_url": "https://www.youtube.com/watch?v=942XCi2OqAY",
+            "video_1_autoplay": true,
+            "video_1_muted": true,
+            "video_1_heading": "",
+            "video_1_subheading": "",
+            "video_1_button_label": "",
+            "video_1_button_link": "",
+            "additional_videos": "https://www.youtube.com/watch?v=KBNDckehs6A"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "image_teqLL4",
-        "image_x4aXQd",
-        "image_k6DECP",
-        "image_a6KwMQ"
+        "ai_gen_block_50a7b2a_VUL8hF"
       ],
-      "settings": {
-        "heading": "",
-        "heading_size": "h3",
-        "heading_size_mobile": "h3_mobile",
-        "heading_alignment": "left",
-        "height": "medium-img",
-        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 50,
-        "top_space_mobile": 25,
-        "bottom_space_mobile": 25
-      }
+      "name": "Multi-video banner",
+      "settings": {}
+    },
+    "blocks_YUL9ai": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_50a7b2a_XkbnRQ": {
+          "type": "ai_gen_block_50a7b2a",
+          "settings": {
+            "layout": "grid",
+            "columns": 2,
+            "desktop_width_percent": 100,
+            "gap": 0,
+            "aspect_ratio": "16 / 9",
+            "background_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 35,
+            "heading_font": "inter_n7",
+            "text_color": "#FFFFFF",
+            "button_color": "#FFFFFF",
+            "button_text_color": "#000000",
+            "button_radius": 4,
+            "video_1_url": "",
+            "video_1_autoplay": true,
+            "video_1_muted": true,
+            "video_1_heading": "",
+            "video_1_subheading": "",
+            "video_1_button_label": "",
+            "video_1_button_link": "",
+            "additional_videos": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_50a7b2a_XkbnRQ"
+      ],
+      "name": "Multi-video banner",
+      "settings": {}
     },
     "featured_collection_w89H83": {
       "type": "featured-collection",
@@ -947,7 +966,7 @@
         "heading_size_mobile": "h3_mobile",
         "heading_alignment": "center",
         "color_scheme": "scheme-10d07f3f-8a29-4d3b-a1e9-97a250b6a1a9",
-        "background": "#2A252E",
+        "background": "#2a252e",
         "border": "#7c7cee",
         "top_space_desktop": 50,
         "bottom_space_desktop": 50,
@@ -999,7 +1018,8 @@
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
     "featured_collection_7WcCJR",
-    "images_carousel_teCLtB",
+    "blocks_T686Bq",
+    "blocks_YUL9ai",
     "featured_collection_w89H83",
     "collection_tabs_FXXzEb",
     "parallax_4KzCAA",
