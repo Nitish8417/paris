@@ -431,111 +431,6 @@
         "pad_bottom": 35
       }
     },
-    "slideshow_qahq4a": {
-      "type": "slideshow",
-      "blocks": {
-        "slide_tLUzmQ": {
-          "type": "slide",
-          "settings": {
-            "image_desktop": "shopify://shop_images/maxresdefault_abaace70-5ae9-4481-9c3c-07a9af334acd.jpg",
-            "image_mobile": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
-            "subheading": "Add a tagline",
-            "heading": "Slide Heading",
-            "heading_size": "h2",
-            "heading_size_mobile": "h2_mobile",
-            "font_family": "heading",
-            "description": "Add descriptive text for your slide here.",
-            "description_size": "textMedium",
-            "content_position": "down-start",
-            "content_alignment": "left",
-            "content_width": "medium",
-            "mobile_content_position": "down-start",
-            "mobile_content_alignment": "left",
-            "btn_text_1": "Shop now",
-            "btn_link_1": "shopify://products/lefeet-p1-standard-modular-water-scooter",
-            "btn_size_1": "medium",
-            "btn_as_link_1": false,
-            "btn_text_2": "Shop now",
-            "btn_link_2": "shopify://collections/all",
-            "btn_size_2": "medium",
-            "btn_as_link_2": false,
-            "heading_color": "#FFFFFF",
-            "description_color": "#FFFFFF",
-            "text_Overlay": "#000000",
-            "text_overlay_opacity": 20,
-            "btn_bg_color_1": "#0B0E0D",
-            "btn_text_color_1": "#ffffff",
-            "btn_border_color_1": "#000000",
-            "btn_hover_bg_color_1": "#FFFFFF",
-            "btn_hover_text_color_1": "#000000",
-            "btn_hover_border_color_1": "#FFFFFF",
-            "btn_bg_color_2": "#000000",
-            "btn_text_color_2": "#FFFFFF",
-            "btn_border_color_2": "#000000",
-            "btn_hover_bg_color_2": "#FFFFFF",
-            "btn_hover_text_color_2": "#000000",
-            "btn_hover_border_color_2": "#FFFFFF"
-          }
-        },
-        "slide_RCyxnK": {
-          "type": "slide",
-          "settings": {
-            "subheading": "Add a tagline",
-            "heading": "Slide Heading",
-            "heading_size": "h2",
-            "heading_size_mobile": "h2_mobile",
-            "font_family": "heading",
-            "description": "Add descriptive text for your slide here.",
-            "description_size": "textMedium",
-            "content_position": "down-start",
-            "content_alignment": "left",
-            "content_width": "medium",
-            "mobile_content_position": "down-start",
-            "mobile_content_alignment": "left",
-            "btn_text_1": "Shop now",
-            "btn_link_1": "shopify://collections/all",
-            "btn_size_1": "medium",
-            "btn_as_link_1": false,
-            "btn_text_2": "Shop now",
-            "btn_link_2": "shopify://collections/all",
-            "btn_size_2": "medium",
-            "btn_as_link_2": false,
-            "heading_color": "#FFFFFF",
-            "description_color": "#FFFFFF",
-            "text_Overlay": "#000000",
-            "text_overlay_opacity": 20,
-            "btn_bg_color_1": "#0B0E0D",
-            "btn_text_color_1": "#ffffff",
-            "btn_border_color_1": "#000000",
-            "btn_hover_bg_color_1": "#FFFFFF",
-            "btn_hover_text_color_1": "#000000",
-            "btn_hover_border_color_1": "#FFFFFF",
-            "btn_bg_color_2": "#000000",
-            "btn_text_color_2": "#FFFFFF",
-            "btn_border_color_2": "#000000",
-            "btn_hover_bg_color_2": "#FFFFFF",
-            "btn_hover_text_color_2": "#000000",
-            "btn_hover_border_color_2": "#FFFFFF"
-          }
-        }
-      },
-      "block_order": [
-        "slide_tLUzmQ",
-        "slide_RCyxnK"
-      ],
-      "name": "t:sections.slideshow.presets.name",
-      "settings": {
-        "layout_type": "container",
-        "desktop_height": "slider-custom",
-        "desktop_custom_height": 700,
-        "mobile_height": "mobile-slider-custom",
-        "mobile_custom_height": 500,
-        "rotate": false,
-        "interval": 5,
-        "transition": "swipe",
-        "controls": "arrows"
-      }
-    },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
       "custom_css": [],
@@ -1417,7 +1312,7 @@
     "collection_carousel_ikXhD7",
     "1790250658af0c4015",
     "techty_explore_cards_79rtPn",
-    "slideshow_qahq4a",
+    "179025429037efe8ec",
     "featured_collection_7WcCJR",
     "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
@@ -1429,7 +1324,6 @@
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
-    "logo_list_9UqKFM",
-    "179025429037efe8ec"
+    "logo_list_9UqKFM"
   ]
 }
