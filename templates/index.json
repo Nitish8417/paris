@@ -439,9 +439,10 @@
           "settings": {
             "slide_1_image": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
             "slide_1_caption": "",
+            "slide_2_image": "shopify://shop_images/asiwo-mako-electric-swimming-kickboard-yellow-swimmer-eboarders.jpg",
             "slide_2_caption": "",
             "slide_3_caption": "",
-            "desktop_width_percent": 90,
+            "desktop_width_percent": 95,
             "corner_radius": 34,
             "shadow_softness": 22,
             "shadow_offset": 10,

@@ -127,31 +127,291 @@
   }
 {% endstyle %}
 
-<ai-slideshow-{{ ai_gen_id }} class="ai-slideshow-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+<style>
+  .ai-slideshow-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    color: {{ block.settings.caption_text_color }};
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-slideshow-{{ ai_gen_id }} {
+      width: {{ block.settings.desktop_width_percent }}%;
+    }
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: {{ block.settings.image_ratio }};
+    background: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.corner_radius }}px;
+    box-shadow:
+      0 {{ block.settings.shadow_offset }}px
+      {{ block.settings.shadow_softness }}px
+      rgba(0, 0, 0, {{ block.settings.shadow_opacity | divided_by: 100.0 }});
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__slide {
+    position: relative;
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    overflow: hidden;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__link {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__placeholder {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    background: {{ block.settings.placeholder_color }};
+    color: {{ block.settings.placeholder_text_color }};
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__placeholder svg {
+    width: 40%;
+    max-width: 180px;
+    height: auto;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__caption {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    padding: 10px 14px;
+    overflow: hidden;
+    color: {{ block.settings.caption_text_color }};
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: {{ block.settings.caption_background }};
+    border-radius: {{ block.settings.caption_radius }}px;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__button {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    place-items: center;
+    color: {{ block.settings.control_color }};
+    cursor: pointer;
+    background: {{ block.settings.control_background }};
+    border: 0;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__button:hover {
+    background: {{ block.settings.control_hover_background }};
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__button--previous {
+    left: 16px;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__button--next {
+    right: 16px;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    cursor: pointer;
+    background: {{ block.settings.dot_color }};
+    border: 0;
+    border-radius: 50%;
+    opacity: 0.35;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .ai-slideshow-{{ ai_gen_id }}__dot:hover,
+  .ai-slideshow-{{ ai_gen_id }}__dot[aria-current="true"] {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-slideshow-{{ ai_gen_id }}__button {
+      width: 34px;
+      height: 34px;
+    }
+
+    .ai-slideshow-{{ ai_gen_id }}__button--previous {
+      left: 10px;
+    }
+
+    .ai-slideshow-{{ ai_gen_id }}__button--next {
+      right: 10px;
+    }
+
+    .ai-slideshow-{{ ai_gen_id }}__caption {
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<ai-slideshow-{{ ai_gen_id }}
+  class="ai-slideshow-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
   <div class="ai-slideshow-{{ ai_gen_id }}__viewport">
     <div class="ai-slideshow-{{ ai_gen_id }}__track" data-track>
       {% for i in (1..3) %}
         {% liquid
           assign image_key = 'slide_' | append: i | append: '_image'
           assign caption_key = 'slide_' | append: i | append: '_caption'
+          assign link_key = 'slide_' | append: i | append: '_link'
+
           assign image = block.settings[image_key]
           assign caption = block.settings[caption_key]
+          assign link = block.settings[link_key]
         %}
+
         <div class="ai-slideshow-{{ ai_gen_id }}__slide" data-slide>
-          {% if image != blank %}
-            <img class="ai-slideshow-{{ ai_gen_id }}__image" src="{{ image | image_url: width: 2400 }}" alt="{{ image.alt | escape }}" loading="lazy" width="{{ image.width }}" height="{{ image.height }}">
-          {% else %}
-            <div class="ai-slideshow-{{ ai_gen_id }}__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+          {% if link != blank %}
+            <a
+              href="{{ link }}"
+              class="ai-slideshow-{{ ai_gen_id }}__link"
+            >
           {% endif %}
-          {% if caption != blank %}<div class="ai-slideshow-{{ ai_gen_id }}__caption">{{ caption }}</div>{% endif %}
+
+          {% if image != blank %}
+            <img
+              class="ai-slideshow-{{ ai_gen_id }}__image"
+              src="{{ image | image_url: width: 2400 }}"
+              alt="{{ image.alt | escape }}"
+              loading="lazy"
+              width="{{ image.width }}"
+              height="{{ image.height }}"
+            >
+          {% else %}
+            <div class="ai-slideshow-{{ ai_gen_id }}__placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+
+          {% if caption != blank %}
+            <div class="ai-slideshow-{{ ai_gen_id }}__caption">
+              {{ caption | escape }}
+            </div>
+          {% endif %}
+
+          {% if link != blank %}
+            </a>
+          {% endif %}
         </div>
       {% endfor %}
     </div>
-    <button class="ai-slideshow-{{ ai_gen_id }}__button ai-slideshow-{{ ai_gen_id }}__button--previous" type="button" data-previous aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-    <button class="ai-slideshow-{{ ai_gen_id }}__button ai-slideshow-{{ ai_gen_id }}__button--next" type="button" data-next aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+
+    <button
+      class="ai-slideshow-{{ ai_gen_id }}__button ai-slideshow-{{ ai_gen_id }}__button--previous"
+      type="button"
+      data-previous
+      aria-label="Previous slide"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <button
+      class="ai-slideshow-{{ ai_gen_id }}__button ai-slideshow-{{ ai_gen_id }}__button--next"
+      type="button"
+      data-next
+      aria-label="Next slide"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path d="m9 18 6-6-6-6"/>
+      </svg>
+    </button>
   </div>
-  <div class="ai-slideshow-{{ ai_gen_id }}__dots" role="tablist" aria-label="Slideshow navigation">
-    {% for i in (1..3) %}<button class="ai-slideshow-{{ ai_gen_id }}__dot" type="button" data-dot="{{ forloop.index0 }}" role="tab" aria-label="Go to slide {{ i }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button>{% endfor %}
+
+  <div
+    class="ai-slideshow-{{ ai_gen_id }}__dots"
+    role="tablist"
+    aria-label="Slideshow navigation"
+  >
+    {% for i in (1..3) %}
+      <button
+        class="ai-slideshow-{{ ai_gen_id }}__dot"
+        type="button"
+        data-dot="{{ forloop.index0 }}"
+        role="tab"
+        aria-label="Go to slide {{ i }}"
+        aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+      ></button>
+    {% endfor %}
   </div>
 </ai-slideshow-{{ ai_gen_id }}>
 
@@ -162,28 +422,48 @@
         this.track = this.querySelector('[data-track]');
         this.slides = this.querySelectorAll('[data-slide]');
         this.dots = this.querySelectorAll('[data-dot]');
+        this.previousButton = this.querySelector('[data-previous]');
+        this.nextButton = this.querySelector('[data-next]');
         this.index = 0;
-        this.style.display = 'block';
-this.style.marginLeft = 'auto';
-this.style.marginRight = 'auto';
-this.style.textAlign = 'center';
 
-this.querySelectorAll('img').forEach((image) => {
-  image.style.display = 'block';
-  image.style.marginLeft = 'auto';
-  image.style.marginRight = 'auto';
-});
-        this.querySelector('[data-previous]').addEventListener('click', () => this.goTo(this.index - 1));
-        this.querySelector('[data-next]').addEventListener('click', () => this.goTo(this.index + 1));
-        this.dots.forEach((dot) => dot.addEventListener('click', () => this.goTo(Number(dot.dataset.dot))));
+        if (!this.track || !this.slides.length) {
+          return;
+        }
+
+        this.previousButton?.addEventListener('click', () => {
+          this.goTo(this.index - 1);
+        });
+
+        this.nextButton?.addEventListener('click', () => {
+          this.goTo(this.index + 1);
+        });
+
+        this.dots.forEach((dot) => {
+          dot.addEventListener('click', () => {
+            this.goTo(Number(dot.dataset.dot));
+          });
+        });
       }
+
       goTo(index) {
         this.index = (index + this.slides.length) % this.slides.length;
-        this.track.style.transform = `translateX(-${this.index * 100}%)`;
-        this.dots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', dotIndex === this.index ? 'true' : 'false'));
+
+        this.track.style.transform =
+          `translateX(-${this.index * 100}%)`;
+
+        this.dots.forEach((dot, dotIndex) => {
+          dot.setAttribute(
+            'aria-current',
+            dotIndex === this.index ? 'true' : 'false'
+          );
+        });
       }
     }
-    customElements.define('ai-slideshow-{{ ai_gen_id }}', AiSlideshow{{ ai_gen_id }});
+
+    customElements.define(
+      'ai-slideshow-{{ ai_gen_id }}',
+      AiSlideshow{{ ai_gen_id }}
+    );
   })();
 </script>
 
@@ -192,31 +472,150 @@ this.querySelectorAll('img').forEach((image) => {
   "name": "Rounded slideshow",
   "settings": [
     { "type": "header", "content": "Slides" },
+
     { "type": "image_picker", "id": "slide_1_image", "label": "Slide 1 image" },
     { "type": "text", "id": "slide_1_caption", "label": "Slide 1 caption" },
+    { "type": "url", "id": "slide_1_link", "label": "Slide 1 link" },
+
     { "type": "image_picker", "id": "slide_2_image", "label": "Slide 2 image" },
     { "type": "text", "id": "slide_2_caption", "label": "Slide 2 caption" },
+    { "type": "url", "id": "slide_2_link", "label": "Slide 2 link" },
+
     { "type": "image_picker", "id": "slide_3_image", "label": "Slide 3 image" },
     { "type": "text", "id": "slide_3_caption", "label": "Slide 3 caption" },
+    { "type": "url", "id": "slide_3_link", "label": "Slide 3 link" },
+
     { "type": "header", "content": "Appearance" },
-    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
-    { "type": "range", "id": "corner_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
-    { "type": "range", "id": "shadow_softness", "label": "Shadow softness", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 18 },
-    { "type": "range", "id": "shadow_offset", "label": "Shadow offset", "min": 0, "max": 20, "step": 2, "unit": "px", "default": 6 },
-    { "type": "range", "id": "shadow_opacity", "label": "Shadow strength", "min": 0, "max": 60, "step": 5, "unit": "%", "default": 15 },
-    { "type": "select", "id": "image_ratio", "label": "Image ratio", "options": [{ "value": "16 / 7", "label": "Wide" }, { "value": "16 / 9", "label": "Landscape" }, { "value": "4 / 3", "label": "Standard" }], "default": "16 / 9" },
-    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
-    { "type": "color", "id": "placeholder_color", "label": "Placeholder", "default": "#f1f1f1" },
-    { "type": "color", "id": "placeholder_text_color", "label": "Placeholder text", "default": "#333333" },
-    { "type": "color", "id": "caption_background", "label": "Caption background", "default": "#000000" },
-    { "type": "color", "id": "caption_text_color", "label": "Caption text", "default": "#ffffff" },
-    { "type": "range", "id": "caption_radius", "label": "Caption radius", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 8 },
-    { "type": "color", "id": "control_background", "label": "Control background", "default": "#ffffff" },
-    { "type": "color", "id": "control_hover_background", "label": "Control hover background", "default": "#f1f1f1" },
-    { "type": "color", "id": "control_color", "label": "Control color", "default": "#000000" },
-    { "type": "color", "id": "dot_color", "label": "Dot color", "default": "#000000" }
+
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "shadow_softness",
+      "label": "Shadow softness",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "shadow_offset",
+      "label": "Shadow offset",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "shadow_opacity",
+      "label": "Shadow strength",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "16 / 7", "label": "Wide" },
+        { "value": "16 / 9", "label": "Landscape" },
+        { "value": "4 / 3", "label": "Standard" }
+      ],
+      "default": "16 / 9"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_color",
+      "label": "Placeholder",
+      "default": "#f1f1f1"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_text_color",
+      "label": "Placeholder text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "caption_background",
+      "label": "Caption background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "caption_text_color",
+      "label": "Caption text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "caption_radius",
+      "label": "Caption radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "control_background",
+      "label": "Control background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "control_hover_background",
+      "label": "Control hover background",
+      "default": "#f1f1f1"
+    },
+    {
+      "type": "color",
+      "id": "control_color",
+      "label": "Control color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot color",
+      "default": "#000000"
+    }
   ],
-  "presets": [{ "name": "Rounded slideshow" }],
+  "presets": [
+    { "name": "Rounded slideshow" }
+  ],
   "tag": null,
   "class": "rounded-slideshow-block"
 }
