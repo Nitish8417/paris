@@ -9,6 +9,28 @@
  */
 {
   "sections": {
+    "blocks_qYUEmD": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_00cb3c0_epzHdf": {
+          "type": "ai_gen_block_00cb3c0",
+          "settings": {
+            "selection_message": "",
+            "message_font_size": 12,
+            "message_border_radius": 0,
+            "message_bg_color": "#F4F1FF",
+            "message_text_color": "#F4F1FF",
+            "message_border_color": "#F4F1FF"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_00cb3c0_epzHdf"
+      ],
+      "name": "Variant selection control",
+      "settings": {}
+    },
     "slideshow_AwDwyy": {
       "type": "slideshow",
       "blocks": {
@@ -286,7 +308,7 @@
       ],
       "settings": {
         "heading": "Techty Collections",
-        "heading_size": "h3",
+        "heading_size": "h4",
         "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
         "columns_desktop": 4,
@@ -316,31 +338,34 @@
         "card_9qmjWW": {
           "type": "card",
           "settings": {
-            "collection": "",
+            "collection": "travel",
+            "image": "shopify://shop_images/Untitled_design_dfc5b098-3e16-4fe6-a82b-39ceeb09023a.png",
             "heading": "Travel",
-            "text": "Cameras, lights and mics for creators",
-            "link_label": "Learn more",
-            "link": "collections/content-creator-kit"
+            "text": "For Wherever the Journey Takes You",
+            "link_label": "",
+            "link": "https://techty.com/collections/travel"
           }
         },
         "card_KVegFT": {
           "type": "card",
           "settings": {
-            "collection": "",
+            "collection": "content-creator-kit",
+            "image": "shopify://shop_images/dji_4.png",
             "heading": "Content Creation",
             "text": "From Phone Setup to Full Studio",
-            "link_label": "Learn more",
+            "link_label": "",
             "link": "https://techty.com/collections/content-creator-kit"
           }
         },
         "card_MtFzby": {
           "type": "card",
           "settings": {
-            "collection": "",
-            "heading": "Everyday Carry",
-            "text": "Charging and audio that travels with you",
-            "link_label": "Learn more",
-            "link": ""
+            "collection": "gadgets-for-women",
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_23_2026_12_10_42_PM.png",
+            "heading": "For the Women",
+            "text": "Because You Deserve the Best",
+            "link_label": "",
+            "link": "https://techty.com/collections/gadgets-for-women"
           }
         }
       },
@@ -354,17 +379,17 @@
         "heading": "Explore Techty by what you do",
         "subheading": "",
         "align": "center",
-        "heading_color": "#14213D",
-        "section_bg": "#FFFFFF",
+        "heading_color": "#14213d",
+        "section_bg": "#F4F1FF",
         "columns": 3,
         "ratio": "3 / 4",
         "radius": 8,
-        "text_color": "#FFFFFF",
-        "overlay_color": "#0B1B3F",
-        "overlay_opacity": 35,
-        "width": "1600px",
-        "pad_top": 60,
-        "pad_bottom": 60
+        "text_color": "#F4F1FF",
+        "overlay_color": "#0b1b3f",
+        "overlay_opacity": 45,
+        "width": "100%",
+        "pad_top": 30,
+        "pad_bottom": 35
       }
     },
     "featured_collection_7WcCJR": {
@@ -394,79 +419,80 @@
         "bottom_space_mobile": 25
       }
     },
-    "blocks_T686Bq": {
-      "type": "_blocks",
+    "multi_video_banner_XzJNrW": {
+      "type": "multi-video-banner",
       "blocks": {
-        "ai_gen_block_50a7b2a_VUL8hF": {
-          "type": "ai_gen_block_50a7b2a",
+        "video_gL3XGn": {
+          "type": "video",
           "settings": {
-            "layout": "slider",
-            "columns": 2,
-            "desktop_width_percent": 100,
-            "gap": 0,
-            "aspect_ratio": "16 / 9",
-            "background_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 35,
-            "heading_font": "inter_n7",
-            "text_color": "#FFFFFF",
-            "button_color": "#FFFFFF",
-            "button_text_color": "#000000",
-            "button_radius": 4,
-            "video_1_url": "https://www.youtube.com/watch?v=942XCi2OqAY",
-            "video_1_autoplay": true,
-            "video_1_muted": true,
-            "video_1_heading": "",
-            "video_1_subheading": "",
-            "video_1_button_label": "",
-            "video_1_button_link": "",
-            "additional_videos": "https://www.youtube.com/watch?v=KBNDckehs6A"
-          },
-          "blocks": {}
+            "video": "https://www.youtube.com/watch?v=LjCpEE2GQFo",
+            "heading": "DJI Osmo Action 6",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify://products/dji-osmo-action-6-adventure-combo",
+            "content_h": "left",
+            "content_v": "top",
+            "text_color": "#ffffff"
+          }
+        },
+        "video_KEqnBX": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
+            "heading": "Soundcore Sleep A30",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify://products/soundcore-a30-smart-anc-sleep-earbuds",
+            "content_h": "left",
+            "content_v": "top",
+            "text_color": "#ffffff"
+          }
+        },
+        "video_GKE9fH": {
+          "type": "video",
+          "settings": {
+            "video": "https://www.youtube.com/watch?v=942XCi2OqAY",
+            "heading": "Nebula Cosmos Laser",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify://products/nebula-projector-cosmos-laser-4k",
+            "content_h": "left",
+            "content_v": "top",
+            "text_color": "#ffffff"
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_50a7b2a_VUL8hF"
+        "video_gL3XGn",
+        "video_KEqnBX",
+        "video_GKE9fH"
       ],
-      "name": "Multi-video banner",
-      "settings": {}
-    },
-    "blocks_YUL9ai": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_50a7b2a_XkbnRQ": {
-          "type": "ai_gen_block_50a7b2a",
-          "settings": {
-            "layout": "grid",
-            "columns": 2,
-            "desktop_width_percent": 100,
-            "gap": 0,
-            "aspect_ratio": "16 / 9",
-            "background_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 35,
-            "heading_font": "inter_n7",
-            "text_color": "#FFFFFF",
-            "button_color": "#FFFFFF",
-            "button_text_color": "#000000",
-            "button_radius": 4,
-            "video_1_url": "",
-            "video_1_autoplay": true,
-            "video_1_muted": true,
-            "video_1_heading": "",
-            "video_1_subheading": "",
-            "video_1_button_label": "",
-            "video_1_button_link": "",
-            "additional_videos": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_50a7b2a_XkbnRQ"
-      ],
-      "name": "Multi-video banner",
-      "settings": {}
+      "name": "YouTube video banner",
+      "settings": {
+        "display_mode": "slider",
+        "inner_width": "full",
+        "custom_max_width": 1400,
+        "side_padding_desktop": 0,
+        "side_padding_mobile": 0,
+        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
+        "height_desktop": "large",
+        "height_mobile": "portrait",
+        "column_spacing": 16,
+        "mobile_columns": "1",
+        "video_zoom": 115,
+        "overlay_opacity": 15,
+        "corner_radius": 0,
+        "autoplay_speed": 8,
+        "show_arrows": true,
+        "arrow_position": "sides",
+        "arrow_size": 44,
+        "arrows_mobile": true,
+        "show_dots": true,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
     },
     "featured_collection_w89H83": {
       "type": "featured-collection",
@@ -685,9 +711,9 @@
         "grid_g8rmD9": {
           "type": "grid",
           "settings": {
-            "media_image": "shopify://shop_images/xiaomi_tv_0e22b115-2e19-4ef4-8ae3-24e658d3d048.png",
-            "media_image_mobile": "shopify://shop_images/xiaomi_tv_0e22b115-2e19-4ef4-8ae3-24e658d3d048.png",
-            "heading": "TV & Media",
+            "media_image": "shopify://shop_images/monster_sspeaker.png",
+            "media_image_mobile": "shopify://shop_images/monster_sspeaker.png",
+            "heading": "Speakers",
             "heading_size": "h4",
             "heading_size_mobile": "h5_mobile",
             "description": "",
@@ -698,7 +724,7 @@
             "content_alignment": "left",
             "content_width": "small",
             "btn_text": "Shop now",
-            "btn_link": "shopify://collections/tvs-home-theatres",
+            "btn_link": "shopify://collections/speakers",
             "btn_size": "medium",
             "heading_color": "#ffffff",
             "text_color": "#ffffff",
@@ -734,6 +760,67 @@
         "bottom_space_mobile": 25
       }
     },
+    "slideshow_hmng4R": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_yQz3Vz": {
+          "type": "slide",
+          "settings": {
+            "subheading": "Add a tagline",
+            "heading": "Slide Heading",
+            "heading_size": "h2",
+            "heading_size_mobile": "h2_mobile",
+            "font_family": "heading",
+            "description": "Add descriptive text for your slide here.",
+            "description_size": "textMedium",
+            "content_position": "down-start",
+            "content_alignment": "left",
+            "content_width": "medium",
+            "mobile_content_position": "down-start",
+            "mobile_content_alignment": "left",
+            "btn_text_1": "Shop now",
+            "btn_link_1": "shopify://collections/all",
+            "btn_size_1": "medium",
+            "btn_as_link_1": false,
+            "btn_text_2": "Shop now",
+            "btn_link_2": "shopify://collections/all",
+            "btn_size_2": "medium",
+            "btn_as_link_2": false,
+            "heading_color": "#FFFFFF",
+            "description_color": "#FFFFFF",
+            "text_Overlay": "#000000",
+            "text_overlay_opacity": 20,
+            "btn_bg_color_1": "#0B0E0D",
+            "btn_text_color_1": "#ffffff",
+            "btn_border_color_1": "#000000",
+            "btn_hover_bg_color_1": "#FFFFFF",
+            "btn_hover_text_color_1": "#000000",
+            "btn_hover_border_color_1": "#FFFFFF",
+            "btn_bg_color_2": "#000000",
+            "btn_text_color_2": "#FFFFFF",
+            "btn_border_color_2": "#000000",
+            "btn_hover_bg_color_2": "#FFFFFF",
+            "btn_hover_text_color_2": "#000000",
+            "btn_hover_border_color_2": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "slide_yQz3Vz"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout_type": "fullwidth",
+        "desktop_height": "slider-custom",
+        "desktop_custom_height": 700,
+        "mobile_height": "mobile-slider-custom",
+        "mobile_custom_height": 500,
+        "rotate": false,
+        "interval": 5,
+        "transition": "swipe",
+        "controls": "number"
+      }
+    },
     "featured_product_9gXb4k": {
       "type": "featured-product",
       "blocks": {
@@ -743,6 +830,7 @@
         },
         "review_rating_ienfgj": {
           "type": "review_rating",
+          "disabled": true,
           "settings": {}
         },
         "price_UGzrjk": {
@@ -1128,26 +1216,147 @@
         "bottom_space_mobile": 40
       }
     },
+    "techty_testimonials_hrDT7G": {
+      "type": "techty-testimonials",
+      "blocks": {
+        "testimonial_kWnBXP": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "It's rare to find one place in Kuwait that has the charger, the speaker and the gift all in the same order. Everything I needed was on Techty, and it all arrived together.",
+            "name": "Abdullah K.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Shop all",
+            "tag_link": "/collections/all"
+          }
+        },
+        "testimonial_p6Gfcd": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I messaged them on WhatsApp to check which charger actually suits my laptop. Quick, straight answer, and they didn't push me toward the most expensive one.",
+            "name": "Noura A.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Chargers",
+            "tag_link": "/collections/chargers-adapters"
+          }
+        },
+        "testimonial_6xWCYA": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Bought the GRIT Apex for my evening walks. Having two straps in the box was a nice touch — sporty one for the gym, the other for work.",
+            "name": "Fahad M.",
+            "role": "Wearables customer",
+            "rating": 5,
+            "tag": "Smart watches",
+            "tag_link": "/collections/smart-watches-fitness-trackers"
+          }
+        },
+        "testimonial_8MQWyg": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The Xiaomi magnetic power bank with the built-in cable basically lives in my bag now. No more hunting for a cable at the airport.",
+            "name": "Mariam S.",
+            "role": "Frequent traveller",
+            "rating": 5,
+            "tag": "Power banks",
+            "tag_link": "/collections/power-banks"
+          }
+        },
+        "testimonial_AGmQGX": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Wanted Soundcore earbuds that are good for calls while driving. Voice comes through clearly and they're comfortable enough to forget I'm wearing them.",
+            "name": "Dana R.",
+            "role": "Audio customer",
+            "rating": 5,
+            "tag": "Earbuds",
+            "tag_link": "/collections/earbuds-headphones"
+          }
+        },
+        "testimonial_hVzQD8": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Got a Neewer light kit and the KM18 lavalier mic for my home setup. Took about ten minutes to get running and my videos look like a different channel.",
+            "name": "Hessa J.",
+            "role": "Content creator",
+            "rating": 5,
+            "tag": "Creator kit",
+            "tag_link": "/collections/content-creator-kit"
+          }
+        },
+        "testimonial_TQg9iX": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The gaming section is well picked rather than endless. Grabbed a new controller and a couple of cables for my setup, and everything matched the description exactly.",
+            "name": "Yousef H.",
+            "role": "Gaming customer",
+            "rating": 5,
+            "tag": "Gaming gear",
+            "tag_link": "/collections/gaming-controllers-gear"
+          }
+        },
+        "testimonial_LVjeXL": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Ordered a travel adapter two days before a trip and it made it in time. I also swapped a cable that didn't fit my phone — the exchange was easy and free.",
+            "name": "Omar T.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Travel",
+            "tag_link": "/collections/travel"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_kWnBXP",
+        "testimonial_p6Gfcd",
+        "testimonial_6xWCYA",
+        "testimonial_8MQWyg",
+        "testimonial_AGmQGX",
+        "testimonial_hVzQD8",
+        "testimonial_TQg9iX",
+        "testimonial_LVjeXL"
+      ],
+      "name": "Techty testimonials",
+      "settings": {
+        "show_editor_note": true,
+        "eyebrow": "Customer stories",
+        "heading": "What our customers say",
+        "subheading": "Real experiences from people who shop Techty across Kuwait.",
+        "cta_label": "Share your experience",
+        "cta_link": "https://wa.me/96522280345",
+        "columns": 3,
+        "width": "1600px",
+        "autoplay": 5,
+        "show_stars": true,
+        "surface": true,
+        "pad_top": 56,
+        "pad_bottom": 56
+      }
+    },
     "1789460615dc3216fc": {
       "type": "_blocks",
       "settings": {}
     }
   },
   "order": [
+    "blocks_qYUEmD",
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
     "techty_explore_cards_79rtPn",
     "featured_collection_7WcCJR",
-    "blocks_T686Bq",
-    "blocks_YUL9ai",
+    "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
     "collection_tabs_FXXzEb",
     "parallax_4KzCAA",
     "media_grid_rHNQbG",
+    "slideshow_hmng4R",
     "featured_product_9gXb4k",
     "parallax_hmHXrH",
     "logo_list_9UqKFM",
     "rich_text_yi96Lj",
+    "techty_testimonials_hrDT7G",
     "1789460615dc3216fc"
   ]
 }

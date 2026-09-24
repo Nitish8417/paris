@@ -13,6 +13,7 @@
   "sections": {
     "age-verification-popup": {
       "type": "age-verification-popup",
+      "disabled": true,
       "settings": {
         "enable_age_verification": false,
         "age_verification_heading": "Confirm your age",
