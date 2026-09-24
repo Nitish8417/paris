@@ -762,52 +762,6 @@
     },
     "slideshow_hmng4R": {
       "type": "slideshow",
-      "blocks": {
-        "slide_yQz3Vz": {
-          "type": "slide",
-          "settings": {
-            "subheading": "Add a tagline",
-            "heading": "Slide Heading",
-            "heading_size": "h2",
-            "heading_size_mobile": "h2_mobile",
-            "font_family": "heading",
-            "description": "Add descriptive text for your slide here.",
-            "description_size": "textMedium",
-            "content_position": "down-start",
-            "content_alignment": "left",
-            "content_width": "medium",
-            "mobile_content_position": "down-start",
-            "mobile_content_alignment": "left",
-            "btn_text_1": "Shop now",
-            "btn_link_1": "shopify://collections/all",
-            "btn_size_1": "medium",
-            "btn_as_link_1": false,
-            "btn_text_2": "Shop now",
-            "btn_link_2": "shopify://collections/all",
-            "btn_size_2": "medium",
-            "btn_as_link_2": false,
-            "heading_color": "#FFFFFF",
-            "description_color": "#FFFFFF",
-            "text_Overlay": "#000000",
-            "text_overlay_opacity": 20,
-            "btn_bg_color_1": "#0B0E0D",
-            "btn_text_color_1": "#ffffff",
-            "btn_border_color_1": "#000000",
-            "btn_hover_bg_color_1": "#FFFFFF",
-            "btn_hover_text_color_1": "#000000",
-            "btn_hover_border_color_1": "#FFFFFF",
-            "btn_bg_color_2": "#000000",
-            "btn_text_color_2": "#FFFFFF",
-            "btn_border_color_2": "#000000",
-            "btn_hover_bg_color_2": "#FFFFFF",
-            "btn_hover_text_color_2": "#000000",
-            "btn_hover_border_color_2": "#FFFFFF"
-          }
-        }
-      },
-      "block_order": [
-        "slide_yQz3Vz"
-      ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
         "layout_type": "fullwidth",

@@ -103,7 +103,6 @@
         "description_47NbPA",
         "acd68ee6-98e3-4cb0-bb5c-ccad7d700379"
       ],
-      "disabled": true,
       "custom_css": [
         ".product-swatch-item input.swatch-option + .swatch-variant-color {width: 64px !important; height: 64px !important; min-width: 64px !important; min-height: 64px !important; border-radius: 50% !important; background-size: cover !important; background-position: center !important;}"
       ],
@@ -179,7 +178,6 @@
       "block_order": [
         "heading_76MdC9"
       ],
-      "disabled": true,
       "name": "t:sections.rich_text.presets.name",
       "settings": {
         "layout_type": true,
@@ -237,42 +235,6 @@
         "bottom_space_mobile": 25
       }
     },
-    "bfb023f6-71c9-4883-aa09-6bf3f790e033": {
-      "type": "scrolling-text",
-      "blocks": {
-        "template--21557854994751__bfb023f6-71c9-4883-aa09-6bf3f790e033-text-1": {
-          "type": "text",
-          "settings": {
-            "text": "TRENDY TECH, HANDPICKED FOR YOU.",
-            "color": "#000000",
-            "highlighted": "#000000",
-            "enable_text_gradient": false,
-            "textbackground": ""
-          }
-        }
-      },
-      "block_order": [
-        "template--21557854994751__bfb023f6-71c9-4883-aa09-6bf3f790e033-text-1"
-      ],
-      "disabled": true,
-      "settings": {
-        "height": "height-ratio-adapt",
-        "heading_font_size": 22,
-        "heading_font_size_mobile": 24,
-        "scrolling_speed": 50,
-        "scrolling_speed_mobile": 5,
-        "direction": "rtl",
-        "items_gap": 15,
-        "font_family": "heading",
-        "color_scheme": "scheme-774d6648-8f47-4a6e-94b8-04081478bf83",
-        "overlay_color": "#000000",
-        "overlay_opacity_image": 0,
-        "top_space_desktop": 75,
-        "bottom_space_desktop": 65,
-        "top_space_mobile": 10,
-        "bottom_space_mobile": 40
-      }
-    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -317,7 +279,6 @@
     "rich_text_A7hYrb",
     "rich_text_FQE4Qa",
     "collapsible_content_99hJfE",
-    "bfb023f6-71c9-4883-aa09-6bf3f790e033",
     "related-products",
     "contact_form_iMKqhm"
   ]
