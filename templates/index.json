@@ -520,53 +520,6 @@
         "bottom_space_mobile": 40
       }
     },
-    "collection_tabs_FXXzEb": {
-      "type": "collection-tabs",
-      "blocks": {
-        "collection_nLkkVR": {
-          "type": "collection",
-          "settings": {
-            "collection_heading": "",
-            "collection": "audio"
-          }
-        },
-        "collection_AXVxnM": {
-          "type": "collection",
-          "settings": {
-            "collection_heading": "",
-            "collection": ""
-          }
-        },
-        "collection_nWFUV8": {
-          "type": "collection",
-          "settings": {
-            "collection_heading": "",
-            "collection": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection_nLkkVR",
-        "collection_AXVxnM",
-        "collection_nWFUV8"
-      ],
-      "disabled": true,
-      "settings": {
-        "stacked_products": false,
-        "products_count": 12,
-        "grid_image_size": "auto",
-        "tab_alignment": "align-left",
-        "heading": "Indoor Garden",
-        "heading_size": "h3",
-        "heading_size_mobile": "h4_mobile",
-        "heading_alignment": "left",
-        "color_scheme": "primary",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 10,
-        "bottom_space_mobile": 40
-      }
-    },
     "parallax_4KzCAA": {
       "type": "parallax",
       "blocks": {
@@ -779,83 +732,6 @@
         "controls": "number"
       }
     },
-    "featured_product_9gXb4k": {
-      "type": "featured-product",
-      "blocks": {
-        "title_9XkVJG": {
-          "type": "title",
-          "settings": {}
-        },
-        "review_rating_ienfgj": {
-          "type": "review_rating",
-          "disabled": true,
-          "settings": {}
-        },
-        "price_UGzrjk": {
-          "type": "price",
-          "settings": {
-            "hide_shipping_content": false
-          }
-        },
-        "variant_PmMb7t": {
-          "type": "variant",
-          "settings": {}
-        },
-        "quantity_wy4Hrk": {
-          "type": "quantity",
-          "settings": {
-            "show_volume_pricing_tooltip": true
-          }
-        },
-        "button_jkgQqW": {
-          "type": "button",
-          "settings": {
-            "dynamic_checkout_btn": true,
-            "show_recipient_form": false
-          }
-        }
-      },
-      "block_order": [
-        "title_9XkVJG",
-        "review_rating_ienfgj",
-        "price_UGzrjk",
-        "variant_PmMb7t",
-        "quantity_wy4Hrk",
-        "button_jkgQqW"
-      ],
-      "name": "Trending",
-      "settings": {
-        "product": "grit-apex-smart-watch-with-2-straps",
-        "image_position": "left",
-        "heading": "Trending Item",
-        "heading_size": "h4",
-        "heading_size_mobile": "h4_mobile",
-        "heading_alignment": "left",
-        "width_type": "full",
-        "inner_width": 1220,
-        "side_padding": 20,
-        "side_padding_mobile": 16,
-        "main_image_height": 380,
-        "main_image_height_mobile": 280,
-        "thumb_size": 72,
-        "thumb_size_mobile": 56,
-        "image_radius": 8,
-        "enable_image_border": true,
-        "image_background_color": "#ffffff",
-        "image_border_color": "#585981",
-        "thumb_active_border_color": "#111111",
-        "card_padding": 28,
-        "card_padding_mobile": 16,
-        "card_background_color": "#ffffff",
-        "enable_card_border": false,
-        "card_border_color": "#eaeaea",
-        "color_scheme": "primary",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
-    },
     "parallax_hmHXrH": {
       "type": "parallax",
       "blocks": {
@@ -906,6 +782,22 @@
     },
     "17902391153e7e95f0": {
       "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f08f8ee_hYWc8M": {
+          "type": "ai_gen_block_f08f8ee",
+          "settings": {
+            "desktop_width_percent": 100,
+            "image_height": 600,
+            "thumbnail_size": 60,
+            "background_color": "#F4F1FF",
+            "border_color": "#000041"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f08f8ee_hYWc8M"
+      ],
       "settings": {}
     },
     "logo_list_9UqKFM": {
@@ -1143,6 +1035,33 @@
         "bottom_space_mobile": 50
       }
     },
+    "1790248145c253eeaf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5bed7a6_t74YTW": {
+          "type": "ai_gen_block_5bed7a6",
+          "settings": {
+            "product_1": "grit-apex-smart-watch-with-2-straps",
+            "product_2": "eufy-s1-pro-wearable-heated-breast-pump-with-charging-case",
+            "product_3": "anker-prime-a2683-200w-6-port-gan-charger",
+            "product_4": "asiwo-mako-electric-swimming-kickboard",
+            "product_5": "",
+            "product_6": "",
+            "width": 1150,
+            "image_width": 50,
+            "gap": 40,
+            "radius": 20,
+            "arrow_bg": "#000041",
+            "arrow_text": "#FFFFFF"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5bed7a6_t74YTW"
+      ],
+      "settings": {}
+    },
     "rich_text_yi96Lj": {
       "type": "rich-text",
       "blocks": {
@@ -1296,38 +1215,6 @@
         "pad_top": 56,
         "pad_bottom": 56
       }
-    },
-    "17902411156f39c5b1": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_3d8bb27_gPeLWa": {
-          "type": "ai_gen_block_3d8bb27",
-          "name": "Techty Featured Product Carousel",
-          "settings": {
-            "products": [
-              "grit-apex-smart-watch-with-2-straps",
-              "asiwo-mako-electric-swimming-kickboard",
-              "eufy-s1-pro-wearable-heated-breast-pump-with-charging-case",
-              "anker-a1638-nano-10k-45w-power-bank-with-retractable-cable"
-            ],
-            "add_label": "Add to cart",
-            "buy_label": "Buy it now",
-            "desktop_width_percent": 100,
-            "background_color": "#f4f1ff",
-            "image_background": "#ffffff",
-            "heading_color": "#010133",
-            "text_color": "#000041",
-            "button_color": "#000000",
-            "button_text_color": "#f4f1ff",
-            "border_color": "#d6d2e5"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_3d8bb27_gPeLWa"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -1338,17 +1225,15 @@
     "featured_collection_7WcCJR",
     "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
-    "collection_tabs_FXXzEb",
     "parallax_4KzCAA",
     "media_grid_rHNQbG",
     "179023889020b7b5a5",
     "slideshow_hmng4R",
-    "featured_product_9gXb4k",
     "parallax_hmHXrH",
     "17902391153e7e95f0",
     "logo_list_9UqKFM",
+    "1790248145c253eeaf",
     "rich_text_yi96Lj",
-    "techty_testimonials_hrDT7G",
-    "17902411156f39c5b1"
+    "techty_testimonials_hrDT7G"
   ]
 }
