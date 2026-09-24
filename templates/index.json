@@ -568,9 +568,9 @@
         "grid_jGATpY": {
           "type": "grid",
           "settings": {
-            "media_image": "shopify://shop_images/l1-2.webp",
-            "media_image_mobile": "shopify://shop_images/l1-2.webp",
-            "heading": "LED Lights",
+            "media_image": "shopify://shop_images/eufy_2_4858e8c9-d94c-4b66-b0b5-9706c6fdce27.png",
+            "media_image_mobile": "shopify://shop_images/eufy_2_4858e8c9-d94c-4b66-b0b5-9706c6fdce27.png",
+            "heading": "Security",
             "heading_size": "h4",
             "heading_size_mobile": "h5_mobile",
             "description": "",
@@ -581,7 +581,37 @@
             "content_alignment": "left",
             "content_width": "small",
             "btn_text": "Shop now",
-            "btn_link": "shopify://collections/led-lights",
+            "btn_link": "shopify://collections/home-security",
+            "btn_size": "medium",
+            "heading_color": "#ffffff",
+            "text_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_text_color": "#000000",
+            "btn_border_color": "#ffffff",
+            "btn_hover_color": "#000000",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_border_color": "#000000",
+            "overlay_background_color": "#000000",
+            "overlay_background_opacity": 0
+          }
+        },
+        "grid_tyr3VL": {
+          "type": "grid",
+          "settings": {
+            "media_image": "shopify://shop_images/xiaomi_tv_0e22b115-2e19-4ef4-8ae3-24e658d3d048.png",
+            "media_image_mobile": "shopify://shop_images/xiaomi_tv_0e22b115-2e19-4ef4-8ae3-24e658d3d048.png",
+            "heading": "TV & Media",
+            "heading_size": "h4",
+            "heading_size_mobile": "h5_mobile",
+            "description": "",
+            "description_size": "textBase",
+            "column": 2,
+            "row": 1,
+            "content_position": "down-start",
+            "content_alignment": "left",
+            "content_width": "small",
+            "btn_text": "Shop now",
+            "btn_link": "shopify://collections/tvs-home-theatres",
             "btn_size": "medium",
             "heading_color": "#ffffff",
             "text_color": "#ffffff",
@@ -598,11 +628,12 @@
       },
       "block_order": [
         "grid_3kfRYn",
-        "grid_jGATpY"
+        "grid_jGATpY",
+        "grid_tyr3VL"
       ],
       "settings": {
-        "width_type": "custom",
-        "inner_width": 1200,
+        "width_type": "theme",
+        "inner_width": 1300,
         "side_padding": 20,
         "side_padding_mobile": 16,
         "color_scheme": "primary",
