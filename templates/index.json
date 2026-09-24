@@ -310,6 +310,63 @@
         "bottom_space_mobile": 25
       }
     },
+    "techty_explore_cards_79rtPn": {
+      "type": "techty-explore-cards",
+      "blocks": {
+        "card_9qmjWW": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Travel",
+            "text": "Cameras, lights and mics for creators",
+            "link_label": "Learn more",
+            "link": "collections/content-creator-kit"
+          }
+        },
+        "card_KVegFT": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Content Creation",
+            "text": "From Phone Setup to Full Studio",
+            "link_label": "Learn more",
+            "link": "content-creator-kit"
+          }
+        },
+        "card_MtFzby": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Everyday Carry",
+            "text": "Charging and audio that travels with you",
+            "link_label": "Learn more",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_9qmjWW",
+        "card_KVegFT",
+        "card_MtFzby"
+      ],
+      "name": "Techty explore cards",
+      "settings": {
+        "heading": "Explore Techty by what you do",
+        "subheading": "",
+        "align": "center",
+        "heading_color": "#14213D",
+        "section_bg": "#FFFFFF",
+        "columns": 3,
+        "ratio": "3 / 4",
+        "radius": 8,
+        "text_color": "#FFFFFF",
+        "overlay_color": "#0B1B3F",
+        "overlay_opacity": 35,
+        "width": "1600px",
+        "pad_top": 60,
+        "pad_bottom": 60
+      }
+    },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
       "custom_css": [],
@@ -624,15 +681,46 @@
             "overlay_background_color": "#000000",
             "overlay_background_opacity": 0
           }
+        },
+        "grid_g8rmD9": {
+          "type": "grid",
+          "settings": {
+            "media_image": "shopify://shop_images/xiaomi_tv_0e22b115-2e19-4ef4-8ae3-24e658d3d048.png",
+            "media_image_mobile": "shopify://shop_images/xiaomi_tv_0e22b115-2e19-4ef4-8ae3-24e658d3d048.png",
+            "heading": "TV & Media",
+            "heading_size": "h4",
+            "heading_size_mobile": "h5_mobile",
+            "description": "",
+            "description_size": "textBase",
+            "column": 2,
+            "row": 1,
+            "content_position": "down-start",
+            "content_alignment": "left",
+            "content_width": "small",
+            "btn_text": "Shop now",
+            "btn_link": "shopify://collections/tvs-home-theatres",
+            "btn_size": "medium",
+            "heading_color": "#ffffff",
+            "text_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_text_color": "#000000",
+            "btn_border_color": "#ffffff",
+            "btn_hover_color": "#000000",
+            "btn_hover_text_color": "#ffffff",
+            "btn_hover_border_color": "#000000",
+            "overlay_background_color": "#000000",
+            "overlay_background_opacity": 0
+          }
         }
       },
       "block_order": [
         "grid_3kfRYn",
         "grid_jGATpY",
-        "grid_tyr3VL"
+        "grid_tyr3VL",
+        "grid_g8rmD9"
       ],
       "settings": {
-        "width_type": "theme",
+        "width_type": "custom",
         "inner_width": 1300,
         "side_padding": 20,
         "side_padding_mobile": 16,
@@ -1048,6 +1136,7 @@
   "order": [
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
+    "techty_explore_cards_79rtPn",
     "featured_collection_7WcCJR",
     "blocks_T686Bq",
     "blocks_YUL9ai",
