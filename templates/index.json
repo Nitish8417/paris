@@ -431,6 +431,41 @@
         "pad_bottom": 35
       }
     },
+    "179025429037efe8ec": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3f77539_7pNnkm": {
+          "type": "ai_gen_block_3f77539",
+          "settings": {
+            "slide_1_image": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
+            "slide_1_caption": "",
+            "slide_2_caption": "",
+            "slide_3_caption": "",
+            "desktop_width_percent": 90,
+            "corner_radius": 34,
+            "shadow_softness": 22,
+            "shadow_offset": 10,
+            "shadow_opacity": 35,
+            "image_ratio": "16 / 7",
+            "background_color": "#ffffff",
+            "placeholder_color": "#f1f1f1",
+            "placeholder_text_color": "#333333",
+            "caption_background": "#000000",
+            "caption_text_color": "#ffffff",
+            "caption_radius": 8,
+            "control_background": "#ffffff",
+            "control_hover_background": "#f1f1f1",
+            "control_color": "#000000",
+            "dot_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3f77539_7pNnkm"
+      ],
+      "settings": {}
+    },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
       "custom_css": [],
@@ -1269,41 +1304,6 @@
         "top_space_mobile": 50,
         "bottom_space_mobile": 50
       }
-    },
-    "179025429037efe8ec": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_3f77539_7pNnkm": {
-          "type": "ai_gen_block_3f77539",
-          "settings": {
-            "slide_1_image": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
-            "slide_1_caption": "",
-            "slide_2_caption": "",
-            "slide_3_caption": "",
-            "desktop_width_percent": 100,
-            "corner_radius": 34,
-            "shadow_softness": 22,
-            "shadow_offset": 10,
-            "shadow_opacity": 35,
-            "image_ratio": "16 / 9",
-            "background_color": "#ffffff",
-            "placeholder_color": "#f1f1f1",
-            "placeholder_text_color": "#333333",
-            "caption_background": "#000000",
-            "caption_text_color": "#ffffff",
-            "caption_radius": 8,
-            "control_background": "#ffffff",
-            "control_hover_background": "#f1f1f1",
-            "control_color": "#000000",
-            "dot_color": "#000000"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_3f77539_7pNnkm"
-      ],
-      "settings": {}
     }
   },
   "order": [
