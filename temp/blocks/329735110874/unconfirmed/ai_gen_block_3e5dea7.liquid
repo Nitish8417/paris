@@ -1,0 +1,163 @@
+{% doc %}
+  @prompt
+    Create a polished, responsive slideshow section for the storefront with rounded corners, a subtle adjustable soft shadow, centered presentation, image captions, previous and next controls, navigation dots, and three slide slots. Each slide must include an image and a destination setting that lets the merchant choose either a product or a collection. Clicking the slide image must open the selected product or collection page, never the image file itself. Keep the design clean and modern, preserve accessible labels and keyboard-friendly controls, and include easy-to-adjust settings for corner radius, shadow softness, image ratio, slideshow width, caption styling, controls, and colors.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-slideshow-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    color: {{ block.settings.caption_color }};
+  }
+  .ai-slideshow-{{ ai_gen_id }}__frame {
+    overflow: hidden;
+    position: relative;
+    border-radius: {{ block.settings.corner_radius }}px;
+    box-shadow: 0 4px {{ block.settings.shadow_softness }}px rgba(0, 0, 0, {{ block.settings.shadow_opacity | divided_by: 100.0 }});
+    background: {{ block.settings.control_background }};
+  }
+  .ai-slideshow-{{ ai_gen_id }}__slides { position: relative; }
+  .ai-slideshow-{{ ai_gen_id }}__slide { display: none; }
+  .ai-slideshow-{{ ai_gen_id }}__slide.is-active { display: block; }
+  .ai-slideshow-{{ ai_gen_id }}__link { display: block; color: inherit; text-decoration: none; }
+  .ai-slideshow-{{ ai_gen_id }}__media { position: relative; width: 100%; aspect-ratio: {{ block.settings.image_ratio }}; overflow: hidden; background: #f1f1f1; }
+  .ai-slideshow-{{ ai_gen_id }}__media img, .ai-slideshow-{{ ai_gen_id }}__media svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ai-slideshow-{{ ai_gen_id }}__placeholder { width: 100%; height: 100%; position: relative; }
+  .ai-slideshow-{{ ai_gen_id }}__empty { position: absolute; left: 12px; right: 12px; bottom: 12px; text-align: center; color: #333333; font-size: 14px; }
+  .ai-slideshow-{{ ai_gen_id }}__caption { padding: {{ block.settings.caption_padding }}px; text-align: {{ block.settings.caption_alignment }}; background: {{ block.settings.caption_background }}; color: {{ block.settings.caption_color }}; font-size: {{ block.settings.caption_size }}px; }
+  .ai-slideshow-{{ ai_gen_id }}__caption p { margin: 0; }
+  .ai-slideshow-{{ ai_gen_id }}__controls { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 12px; }
+  .ai-slideshow-{{ ai_gen_id }}__arrow { width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid {{ block.settings.control_color }}; border-radius: 50%; background: {{ block.settings.control_background }}; color: {{ block.settings.control_color }}; cursor: pointer; }
+  .ai-slideshow-{{ ai_gen_id }}__arrow:hover { background: {{ block.settings.control_color }}; color: {{ block.settings.control_background }}; }
+  .ai-slideshow-{{ ai_gen_id }}__arrow:focus-visible, .ai-slideshow-{{ ai_gen_id }}__dot:focus-visible { outline: 3px solid {{ block.settings.control_color }}; outline-offset: 3px; }
+  .ai-slideshow-{{ ai_gen_id }}__arrow svg { width: 18px; height: 18px; }
+  .ai-slideshow-{{ ai_gen_id }}__dots { display: flex; align-items: center; justify-content: center; gap: 9px; }
+  .ai-slideshow-{{ ai_gen_id }}__dot { width: 12px; height: 12px; padding: 0; border: 1px solid {{ block.settings.control_color }}; border-radius: 50%; background: transparent; cursor: pointer; }
+  .ai-slideshow-{{ ai_gen_id }}__dot[aria-current="true"] { background: {{ block.settings.control_color }}; }
+  @media screen and (max-width: 749px) { .ai-slideshow-{{ ai_gen_id }} { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .ai-slideshow-{{ ai_gen_id }}__slide { scroll-behavior: auto; } }
+{% endstyle %}
+
+<ai-storefront-slideshow-{{ ai_gen_id }} class="ai-slideshow-{{ ai_gen_id }}" {{ block.shopify_attributes }} aria-label="{{ block.settings.accessible_label | escape }}">
+  <div class="ai-slideshow-{{ ai_gen_id }}__frame">
+    <div class="ai-slideshow-{{ ai_gen_id }}__slides" aria-live="polite">
+      {% for i in (1..3) %}
+        {% liquid
+          assign image_key = 'slide_' | append: i | append: '_image'
+          assign product_key = 'slide_' | append: i | append: '_product'
+          assign collection_key = 'slide_' | append: i | append: '_collection'
+          assign caption_key = 'slide_' | append: i | append: '_caption'
+          assign slide_image = block.settings[image_key]
+          assign slide_product = block.settings[product_key]
+          assign slide_collection = block.settings[collection_key]
+          assign slide_caption = block.settings[caption_key]
+          assign slide_url = blank
+          if slide_product != blank
+            assign slide_url = slide_product.url
+          elsif slide_collection != blank
+            assign slide_url = slide_collection.url
+          endif
+        %}
+        <div class="ai-slideshow-{{ ai_gen_id }}__slide{% if forloop.first %} is-active{% endif %}" data-slide-index="{{ forloop.index0 }}" {% unless forloop.first %}hidden{% endunless %}>
+          {% if slide_url != blank %}<a class="ai-slideshow-{{ ai_gen_id }}__link" href="{{ slide_url }}" aria-label="{{ slide_caption | default: slide_product.title | default: slide_collection.title | escape }}">{% endif %}
+            <div class="ai-slideshow-{{ ai_gen_id }}__media">
+              {% if slide_image %}
+                <img src="{{ slide_image | image_url: width: 2000 }}" alt="{{ slide_image.alt | default: slide_caption | escape }}" loading="lazy" width="{{ slide_image.width }}" height="{{ slide_image.height }}">
+              {% else %}
+                <div class="ai-slideshow-{{ ai_gen_id }}__placeholder">{{ 'image' | placeholder_svg_tag }}<div class="ai-slideshow-{{ ai_gen_id }}__empty">Add an image and choose a product or collection for this slide.</div></div>
+              {% endif %}
+            </div>
+          {% if slide_url != blank %}</a>{% endif %}
+          {% if slide_caption != blank %}<div class="ai-slideshow-{{ ai_gen_id }}__caption">{{ slide_caption | escape }}</div>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="ai-slideshow-{{ ai_gen_id }}__controls">
+      <button class="ai-slideshow-{{ ai_gen_id }}__arrow" type="button" data-previous aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="ai-slideshow-{{ ai_gen_id }}__dots" role="group" aria-label="Choose a slide">
+        {% for i in (1..3) %}<button class="ai-slideshow-{{ ai_gen_id }}__dot" type="button" data-dot-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button>{% endfor %}
+      </div>
+      <button class="ai-slideshow-{{ ai_gen_id }}__arrow" type="button" data-next aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+  </div>
+</ai-storefront-slideshow-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    const tagName = 'ai-storefront-slideshow-{{ ai_gen_id }}';
+    if (customElements.get(tagName)) return;
+    class StorefrontSlideshow extends HTMLElement {
+      connectedCallback() {
+        this.slides = Array.from(this.querySelectorAll('[data-slide-index]'));
+        this.dots = Array.from(this.querySelectorAll('[data-dot-index]'));
+        this.current = 0;
+        this.addEventListener('click', (event) => {
+          const next = event.target.closest('[data-next]');
+          const previous = event.target.closest('[data-previous]');
+          const dot = event.target.closest('[data-dot-index]');
+          if (next) this.show(this.current + 1);
+          if (previous) this.show(this.current - 1);
+          if (dot) this.show(Number(dot.dataset.dotIndex));
+        });
+        this.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowRight') { event.preventDefault(); this.show(this.current + 1); }
+          if (event.key === 'ArrowLeft') { event.preventDefault(); this.show(this.current - 1); }
+        });
+      }
+      show(index) {
+        this.current = (index + this.slides.length) % this.slides.length;
+        this.slides.forEach((slide, position) => {
+          const active = position === this.current;
+          slide.hidden = !active;
+          slide.classList.toggle('is-active', active);
+        });
+        this.dots.forEach((dot, position) => dot.setAttribute('aria-current', position === this.current ? 'true' : 'false'));
+      }
+    }
+    customElements.define(tagName, StorefrontSlideshow);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Storefront slideshow",
+  "settings": [
+    {"type":"text","id":"accessible_label","label":"Slideshow label","default":"Featured slides"},
+    {"type":"header","content":"Layout"},
+    {"type":"range","id":"desktop_width_percent","label":"Desktop width","min":50,"max":100,"step":5,"unit":"%","default":100},
+    {"type":"range","id":"corner_radius","label":"Corner radius","min":0,"max":40,"step":2,"unit":"px","default":12},
+    {"type":"range","id":"shadow_softness","label":"Shadow softness","min":0,"max":40,"step":2,"unit":"px","default":12},
+    {"type":"range","id":"shadow_opacity","label":"Shadow opacity","min":0,"max":50,"step":5,"unit":"%","default":10},
+    {"type":"select","id":"image_ratio","label":"Image ratio","options":[{"value":"16 / 9","label":"Widescreen"},{"value":"4 / 3","label":"Landscape"},{"value":"1 / 1","label":"Square"},{"value":"3 / 4","label":"Portrait"}],"default":"16 / 9"},
+    {"type":"header","content":"Caption and controls"},
+    {"type":"range","id":"caption_size","label":"Caption size","min":12,"max":30,"step":2,"unit":"px","default":16},
+    {"type":"range","id":"caption_padding","label":"Caption padding","min":0,"max":32,"step":4,"unit":"px","default":16},
+    {"type":"select","id":"caption_alignment","label":"Caption alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}],"default":"center"},
+    {"type":"color","id":"caption_background","label":"Caption background","default":"#FFFFFF"},
+    {"type":"color","id":"caption_color","label":"Caption text","default":"#222222"},
+    {"type":"color","id":"control_background","label":"Control background","default":"#FFFFFF"},
+    {"type":"color","id":"control_color","label":"Control and dot color","default":"#222222"},
+    {"type":"header","content":"Slide 1"},
+    {"type":"image_picker","id":"slide_1_image","label":"Image"},
+    {"type":"product","id":"slide_1_product","label":"Product destination"},
+    {"type":"collection","id":"slide_1_collection","label":"Collection destination"},
+    {"type":"text","id":"slide_1_caption","label":"Caption"},
+    {"type":"header","content":"Slide 2"},
+    {"type":"image_picker","id":"slide_2_image","label":"Image"},
+    {"type":"product","id":"slide_2_product","label":"Product destination"},
+    {"type":"collection","id":"slide_2_collection","label":"Collection destination"},
+    {"type":"text","id":"slide_2_caption","label":"Caption"},
+    {"type":"header","content":"Slide 3"},
+    {"type":"image_picker","id":"slide_3_image","label":"Image"},
+    {"type":"product","id":"slide_3_product","label":"Product destination"},
+    {"type":"collection","id":"slide_3_collection","label":"Collection destination"},
+    {"type":"text","id":"slide_3_caption","label":"Caption"}
+  ],
+  "presets": [{"name":"Storefront slideshow"}],
+  "tag": null,
+  "class": "storefront-slideshow-block"
+}
+{% endschema %}
