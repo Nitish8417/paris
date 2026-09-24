@@ -426,12 +426,12 @@
           "type": "video",
           "settings": {
             "video": "https://www.youtube.com/watch?v=LjCpEE2GQFo",
-            "heading": "DJI Osmo Action 6",
+            "heading": "",
             "text": "",
-            "button_label": "",
+            "button_label": "DJI Osmo Action 6",
             "button_link": "shopify://products/dji-osmo-action-6-adventure-combo",
-            "content_h": "left",
-            "content_v": "top",
+            "content_h": "center",
+            "content_v": "bottom",
             "text_color": "#ffffff"
           }
         },
@@ -439,12 +439,12 @@
           "type": "video",
           "settings": {
             "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
-            "heading": "Soundcore Sleep A30",
+            "heading": "",
             "text": "",
-            "button_label": "",
+            "button_label": "Soundcore Sleep A30",
             "button_link": "shopify://products/soundcore-a30-smart-anc-sleep-earbuds",
-            "content_h": "left",
-            "content_v": "top",
+            "content_h": "center",
+            "content_v": "bottom",
             "text_color": "#ffffff"
           }
         },
@@ -452,12 +452,12 @@
           "type": "video",
           "settings": {
             "video": "https://www.youtube.com/watch?v=942XCi2OqAY",
-            "heading": "Nebula Cosmos Laser",
+            "heading": "",
             "text": "",
-            "button_label": "",
+            "button_label": "Nebula Cosmos Laser",
             "button_link": "shopify://products/nebula-projector-cosmos-laser-4k",
-            "content_h": "left",
-            "content_v": "top",
+            "content_h": "center",
+            "content_v": "bottom",
             "text_color": "#ffffff"
           }
         }
