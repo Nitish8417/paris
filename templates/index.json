@@ -916,7 +916,7 @@
         "testimonial_8MQWyg": {
           "type": "testimonial",
           "settings": {
-            "quote": "The Xiaomi magnetic power bank with the built-in cable basically lives in my bag now. No more hunting for a cable at the airport.",
+            "quote": "The Xiaomi magnetic power bank with the built-in cable basically lives in my bag now. very nice product",
             "name": "Mariam S.",
             "role": "Frequent traveller",
             "rating": 5,
@@ -963,7 +963,7 @@
             "quote": "Ordered a travel adapter two days before a trip and it made it in time!",
             "name": "Omar T.",
             "role": "Techty customer",
-            "rating": 5,
+            "rating": 4,
             "tag": "Travel",
             "tag_link": "/collections/travel"
           }
@@ -989,7 +989,7 @@
         "cta_link": "https://wa.me/96522280345",
         "columns": 3,
         "width": "1600px",
-        "autoplay": 5,
+        "autoplay": 3,
         "show_stars": true,
         "surface": true,
         "pad_top": 56,
