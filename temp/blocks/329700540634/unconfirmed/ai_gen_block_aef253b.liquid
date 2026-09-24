@@ -1,6 +1,339 @@
+{% doc %}
+  @prompt
+    Create a NEW theme block named 'Techty Featured Products' for the Paris theme. Show 4 or 5 individually selectable featured products as a carousel, one full featured product panel visible at a time. Match the existing Paris Featured product / Trending Item layout: a large product image gallery on the left and the selected product's title, price, quantity, Add to cart, and Buy it now controls on the right, not compact product cards or a featured collection banner. Put clickable image thumbnails BELOW the large main product image (not vertically beside it), and let customers scroll through each product's pictures independently. Put prominent previous/next PRODUCT navigation arrows at the outer left and right SIDES of the full carousel, as in the previous block; these must switch between the 4–5 featured products and remain distinct from image gallery navigation. Ensure each panel's images, variants if applicable, and purchase actions correspond to its own selected product. Keep mobile responsive. Do not change or remove the existing Trending Featured product section or other blocks.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-featured-products-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    color: {{ block.settings.text_color }};
+    background: {{ block.settings.background_color }};
+    padding: 32px 64px;
+    box-sizing: border-box;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__heading {
+    margin: 0 0 28px;
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    text-align: {{ block.settings.heading_alignment }};
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__carousel {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__viewport {
+    overflow: hidden;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__track {
+    display: flex;
+    transition: transform 0.35s ease;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__panel {
+    flex: 0 0 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 48px;
+    align-items: center;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__gallery {
+    min-width: 0;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__main-image,
+  .ai-featured-products-{{ ai_gen_id }}__placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    object-fit: contain;
+    background: {{ block.settings.image_background }};
+    border-radius: {{ block.settings.image_radius }}px;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ block.settings.muted_color }};
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__placeholder svg {
+    width: 60%;
+    height: 60%;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__thumbs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 14px 2px 4px;
+    scrollbar-width: thin;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__thumb {
+    flex: 0 0 72px;
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.image_radius }}px;
+    background: {{ block.settings.image_background }};
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__thumb[aria-current="true"] {
+    border: 2px solid {{ block.settings.heading_color }};
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__details {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__title {
+    margin: 0;
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.title_size }}px;
+    line-height: 1.2;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__price {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__quantity,
+  .ai-featured-products-{{ ai_gen_id }}__variant-label {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__quantity-input,
+  .ai-featured-products-{{ ai_gen_id }}__variant-select {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 7px;
+    padding: 10px 12px;
+    color: {{ block.settings.text_color }};
+    background: {{ block.settings.input_background }};
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.input_radius }}px;
+    font: inherit;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__actions {
+    display: grid;
+    gap: 10px;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__button {
+    min-height: 48px;
+    border: 1px solid {{ block.settings.button_border }};
+    border-radius: {{ block.settings.button_radius }}px;
+    padding: 12px 18px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__button--cart {
+    background: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text }};
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__button--buy {
+    background: transparent;
+    color: {{ block.settings.button_background }};
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__button:hover,
+  .ai-featured-products-{{ ai_gen_id }}__button:focus-visible,
+  .ai-featured-products-{{ ai_gen_id }}__arrow:focus-visible,
+  .ai-featured-products-{{ ai_gen_id }}__thumb:focus-visible {
+    outline: 3px solid {{ block.settings.focus_color }};
+    outline-offset: 2px;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    transform: translateY(-50%);
+    border: 1px solid {{ block.settings.arrow_border }};
+    border-radius: 50%;
+    background: {{ block.settings.arrow_background }};
+    color: {{ block.settings.arrow_color }};
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .ai-featured-products-{{ ai_gen_id }}__arrow--prev { left: -58px; }
+  .ai-featured-products-{{ ai_gen_id }}__arrow--next { right: -58px; }
+  .ai-featured-products-{{ ai_gen_id }}__arrow:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  @media screen and (max-width: 749px) {
+    .ai-featured-products-{{ ai_gen_id }} { padding: 26px 18px; }
+    .ai-featured-products-{{ ai_gen_id }}__panel { grid-template-columns: 1fr; gap: 24px; }
+    .ai-featured-products-{{ ai_gen_id }}__arrow { top: 31%; width: 40px; height: 40px; font-size: 23px; }
+    .ai-featured-products-{{ ai_gen_id }}__arrow--prev { left: 8px; }
+    .ai-featured-products-{{ ai_gen_id }}__arrow--next { right: 8px; }
+  }
+{% endstyle %}
+
+<featured-products-{{ ai_gen_id }} class="ai-featured-products-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.heading != blank %}<h2 class="ai-featured-products-{{ ai_gen_id }}__heading">{{ block.settings.heading | escape }}</h2>{% endif %}
+  {% if block.settings.products != blank %}
+    <div class="ai-featured-products-{{ ai_gen_id }}__carousel">
+      <button class="ai-featured-products-{{ ai_gen_id }}__arrow ai-featured-products-{{ ai_gen_id }}__arrow--prev" type="button" aria-label="Previous product">&#8249;</button>
+      <div class="ai-featured-products-{{ ai_gen_id }}__viewport">
+        <div class="ai-featured-products-{{ ai_gen_id }}__track">
+          {% for product in block.settings.products %}
+            <article class="ai-featured-products-{{ ai_gen_id }}__panel" data-product-panel>
+              <div class="ai-featured-products-{{ ai_gen_id }}__gallery" data-gallery>
+                {% if product.media.size > 0 %}
+                  <img class="ai-featured-products-{{ ai_gen_id }}__main-image" data-main-image src="{{ product.media.first | image_url: width: 1200 }}" alt="{{ product.media.first.alt | default: product.title | escape }}" width="1200" height="1200" loading="lazy">
+                  <div class="ai-featured-products-{{ ai_gen_id }}__thumbs" role="list" aria-label="{{ product.title | escape }} images">
+                    {% for media in product.media %}
+                      {% if media.media_type == 'image' %}
+                        <button class="ai-featured-products-{{ ai_gen_id }}__thumb" type="button" data-image-url="{{ media | image_url: width: 1200 }}" data-image-alt="{{ media.alt | default: product.title | escape }}" aria-label="View image {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"><img src="{{ media | image_url: width: 160 }}" alt="" width="72" height="72" loading="lazy"></button>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="ai-featured-products-{{ ai_gen_id }}__placeholder">{{ 'product-apparel-1' | placeholder_svg_tag }}</div>
+                {% endif %}
+              </div>
+              <div class="ai-featured-products-{{ ai_gen_id }}__details">
+                <h3 class="ai-featured-products-{{ ai_gen_id }}__title">{{ product.title | escape }}</h3>
+                <div class="ai-featured-products-{{ ai_gen_id }}__price">{{ product.selected_or_first_available_variant.price | money }}</div>
+                {% form 'product', product %}
+                  <label class="ai-featured-products-{{ ai_gen_id }}__variant-label" for="variant-{{ ai_gen_id }}-{{ forloop.index }}">Variant</label>
+                  <select class="ai-featured-products-{{ ai_gen_id }}__variant-select" id="variant-{{ ai_gen_id }}-{{ forloop.index }}" name="id">
+                    {% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>{{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} — Sold out{% endunless %}</option>{% endfor %}
+                  </select>
+                  <label class="ai-featured-products-{{ ai_gen_id }}__quantity" for="quantity-{{ ai_gen_id }}-{{ forloop.index }}">Quantity</label>
+                  <input class="ai-featured-products-{{ ai_gen_id }}__quantity-input" id="quantity-{{ ai_gen_id }}-{{ forloop.index }}" type="number" name="quantity" value="1" min="1">
+                  <div class="ai-featured-products-{{ ai_gen_id }}__actions">
+                    <button class="ai-featured-products-{{ ai_gen_id }}__button ai-featured-products-{{ ai_gen_id }}__button--cart" type="submit">{{ block.settings.cart_label }}</button>
+                    <button class="ai-featured-products-{{ ai_gen_id }}__button ai-featured-products-{{ ai_gen_id }}__button--buy" type="submit" name="checkout">{{ block.settings.buy_label }}</button>
+                  </div>
+                {% endform %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+      <button class="ai-featured-products-{{ ai_gen_id }}__arrow ai-featured-products-{{ ai_gen_id }}__arrow--next" type="button" aria-label="Next product">&#8250;</button>
+    </div>
+  {% else %}
+    <p>{{ block.settings.empty_message | escape }}</p>
+  {% endif %}
+</featured-products-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FeaturedProducts{{ ai_gen_id }} extends HTMLElement {
+      connectedCallback() {
+        this.track = this.querySelector('.ai-featured-products-{{ ai_gen_id }}__track');
+        this.panels = this.querySelectorAll('[data-product-panel]');
+        this.index = 0;
+        this.previous = this.querySelector('.ai-featured-products-{{ ai_gen_id }}__arrow--prev');
+        this.next = this.querySelector('.ai-featured-products-{{ ai_gen_id }}__arrow--next');
+        this.bindGalleries();
+        this.previous.addEventListener('click', () => this.goTo(this.index - 1));
+        this.next.addEventListener('click', () => this.goTo(this.index + 1));
+        this.update();
+      }
+      bindGalleries() {
+        this.querySelectorAll('[data-gallery]').forEach((gallery) => {
+          const main = gallery.querySelector('[data-main-image]');
+          gallery.querySelectorAll('[data-image-url]').forEach((thumb) => {
+            thumb.addEventListener('click', () => {
+              if (main) {
+                main.src = thumb.dataset.imageUrl;
+                main.alt = thumb.dataset.imageAlt;
+                gallery.querySelectorAll('[data-image-url]').forEach((item) => item.setAttribute('aria-current', 'false'));
+                thumb.setAttribute('aria-current', 'true');
+              }
+            });
+          });
+        });
+      }
+      goTo(index) {
+        if (index < 0 || index >= this.panels.length) return;
+        this.index = index;
+        this.update();
+      }
+      update() {
+        this.track.style.transform = 'translateX(-' + (this.index * 100) + '%)';
+        this.previous.disabled = this.index === 0;
+        this.next.disabled = this.index === this.panels.length - 1;
+      }
+    }
+    customElements.define('featured-products-{{ ai_gen_id }}', FeaturedProducts{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Techty Featured Products",
+  "settings": [
+    {"type":"product_list","id":"products","label":"Featured products","limit":5},
+    {"type":"text","id":"heading","label":"Heading","default":"Featured products"},
+    {"type":"text","id":"cart_label","label":"Add to cart label","default":"Add to cart"},
+    {"type":"text","id":"buy_label","label":"Buy it now label","default":"Buy it now"},
+    {"type":"text","id":"empty_message","label":"Empty message","default":"Select 4 or 5 products to display this carousel."},
+    {"type":"range","id":"desktop_width_percent","label":"Desktop width","min":50,"max":100,"step":5,"unit":"%","default":100},
+    {"type":"header","content":"Layout"},
+    {"type":"select","id":"heading_alignment","label":"Heading alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"}],"default":"center"},
+    {"type":"range","id":"heading_size","label":"Heading size","min":18,"max":48,"step":2,"unit":"px","default":28},
+    {"type":"range","id":"title_size","label":"Product title size","min":20,"max":48,"step":2,"unit":"px","default":30},
+    {"type":"range","id":"image_radius","label":"Image radius","min":0,"max":20,"step":2,"unit":"px","default":4},
+    {"type":"range","id":"input_radius","label":"Input radius","min":0,"max":20,"step":2,"unit":"px","default":4},
+    {"type":"range","id":"button_radius","label":"Button radius","min":0,"max":20,"step":2,"unit":"px","default":4},
+    {"type":"header","content":"Colors"},
+    {"type":"color","id":"background_color","label":"Background","default":"#f4f1ff"},
+    {"type":"color","id":"image_background","label":"Image background","default":"#ffffff"},
+    {"type":"color","id":"heading_color","label":"Heading","default":"#010133"},
+    {"type":"color","id":"text_color","label":"Text","default":"#000041"},
+    {"type":"color","id":"muted_color","label":"Muted text","default":"#5c5d5d"},
+    {"type":"color","id":"border_color","label":"Border","default":"#d6d6d6"},
+    {"type":"color","id":"input_background","label":"Input background","default":"#ffffff"},
+    {"type":"color","id":"button_background","label":"Button background","default":"#000000"},
+    {"type":"color","id":"button_text","label":"Button text","default":"#ffffff"},
+    {"type":"color","id":"button_border","label":"Button border","default":"#000000"},
+    {"type":"color","id":"arrow_background","label":"Arrow background","default":"#ffffff"},
+    {"type":"color","id":"arrow_color","label":"Arrow color","default":"#000041"},
+    {"type":"color","id":"arrow_border","label":"Arrow border","default":"#000041"},
+    {"type":"color","id":"focus_color","label":"Focus outline","default":"#7a25ff"}
+  ],
+  "presets": [{"name":"Techty Featured Products"}],
+  "tag": null,
+  "class": "techty-featured-products-block"
+}
 {% endschema %}
