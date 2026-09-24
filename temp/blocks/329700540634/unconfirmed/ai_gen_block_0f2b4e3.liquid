@@ -1,6 +1,88 @@
+{% doc %}
+  @prompt
+    Create a NEW Paris theme section named 'Techty Featured Products' with repeatable product blocks: each block has ONE product picker, so I can add one product at a time (4 or 5 total) and drag/reorder the blocks in the theme editor to change carousel order. Do not use a single multi-product picker. Show one full product panel at a time, matching the existing Paris Featured product / Trending Item appearance: large scrollable main product image gallery on the left, with SMALL clickable image thumbnails horizontally BELOW it; selected product title, price, a centered and polished quantity selector, Add to cart and Buy it now on the right. Show variant selection only if that product has actual variant choices. Put prominent previous/next PRODUCT arrows at the outside left and right edges of the entire carousel, separate from controls for scrolling the current product's main images. Each slide's image gallery, variants, quantity, and purchase actions must operate on that slide's product. Responsive on mobile. Do not make compact cards or a featured collection banner. Do not modify or remove the existing Trending Featured product section or other blocks.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-featured-products-{{ ai_gen_id }} { display:block; width:{{ block.settings.desktop_width_percent }}%; max-width:100%; margin:0 auto; color:{{ block.settings.text_color }}; font-family:{{ settings.type_body_font.family }}; }
+  .ai-featured-products-{{ ai_gen_id }}__heading { margin:0 0 28px; text-align:center; color:{{ block.settings.heading_color }}; font-family:{{ settings.type_heading_font.family }}; font-size:clamp(24px,3vw,40px); }
+  .ai-featured-products-{{ ai_gen_id }}__carousel { position:relative; padding:0 58px; }
+  .ai-featured-products-{{ ai_gen_id }}__viewport { overflow:hidden; }
+  .ai-featured-products-{{ ai_gen_id }}__track { display:flex; transition:transform .35s ease; }
+  .ai-featured-products-{{ ai_gen_id }}__slide { min-width:100%; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr); gap:clamp(28px,6vw,88px); align-items:center; }
+  .ai-featured-products-{{ ai_gen_id }}__gallery { min-width:0; }
+  .ai-featured-products-{{ ai_gen_id }}__main-images { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:thin; background:{{ settings.image_background_color }}; border-radius:{{ settings.all_product_grid_radius }}px; }
+  .ai-featured-products-{{ ai_gen_id }}__main-image { min-width:100%; aspect-ratio:1/1; object-fit:contain; scroll-snap-align:start; }
+  .ai-featured-products-{{ ai_gen_id }}__thumbs { display:flex; gap:10px; overflow-x:auto; margin-top:14px; padding:2px; }
+  .ai-featured-products-{{ ai_gen_id }}__thumb { flex:0 0 64px; width:64px; height:64px; padding:0; border:1px solid {{ block.settings.border_color }}; background:{{ settings.image_background_color }}; border-radius:{{ settings.all_product_grid_radius }}px; cursor:pointer; overflow:hidden; }
+  .ai-featured-products-{{ ai_gen_id }}__thumb[aria-current="true"] { border:2px solid {{ block.settings.heading_color }}; }
+  .ai-featured-products-{{ ai_gen_id }}__thumb img { width:100%; height:100%; object-fit:cover; }
+  .ai-featured-products-{{ ai_gen_id }}__details { text-align:center; }
+  .ai-featured-products-{{ ai_gen_id }}__title { margin:0 0 12px; color:{{ block.settings.heading_color }}; font-family:{{ settings.type_heading_font.family }}; font-size:clamp(22px,2.6vw,34px); }
+  .ai-featured-products-{{ ai_gen_id }}__price { margin-bottom:24px; font-size:20px; }
+  .ai-featured-products-{{ ai_gen_id }}__variants { display:flex; flex-direction:column; gap:12px; margin-bottom:22px; text-align:left; }
+  .ai-featured-products-{{ ai_gen_id }}__variant label { display:block; margin-bottom:6px; font-weight:600; }
+  .ai-featured-products-{{ ai_gen_id }}__select, .ai-featured-products-{{ ai_gen_id }}__quantity { width:100%; min-height:46px; padding:10px 12px; border:1px solid {{ block.settings.border_color }}; border-radius:{{ settings.all_input_radius }}px; background:#fff; color:{{ block.settings.text_color }}; }
+  .ai-featured-products-{{ ai_gen_id }}__quantity-wrap { display:flex; justify-content:center; align-items:center; gap:12px; margin:0 auto 20px; }
+  .ai-featured-products-{{ ai_gen_id }}__quantity { width:86px; text-align:center; }
+  .ai-featured-products-{{ ai_gen_id }}__quantity-btn { width:38px; height:38px; border:1px solid {{ block.settings.border_color }}; border-radius:50%; background:{{ block.settings.button_background }}; color:{{ block.settings.button_text }}; cursor:pointer; font-size:20px; }
+  .ai-featured-products-{{ ai_gen_id }}__actions { display:grid; gap:10px; }
+  .ai-featured-products-{{ ai_gen_id }}__button { min-height:50px; border:1px solid {{ block.settings.button_background }}; border-radius:{{ settings.all_button_radius }}px; background:{{ block.settings.button_background }}; color:{{ block.settings.button_text }}; cursor:pointer; font-weight:700; }
+  .ai-featured-products-{{ ai_gen_id }}__button--buy { background:transparent; color:{{ block.settings.button_background }}; }
+  .ai-featured-products-{{ ai_gen_id }}__nav { position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border:1px solid {{ block.settings.heading_color }}; border-radius:50%; background:{{ block.settings.nav_background }}; color:{{ block.settings.heading_color }}; cursor:pointer; z-index:2; font-size:25px; }
+  .ai-featured-products-{{ ai_gen_id }}__nav--prev { left:0; }.ai-featured-products-{{ ai_gen_id }}__nav--next { right:0; }
+  .ai-featured-products-{{ ai_gen_id }}__placeholder { aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; background:{{ settings.image_background_color }}; }.ai-featured-products-{{ ai_gen_id }}__placeholder svg { width:70%; height:70%; }
+  @media(max-width:749px){ .ai-featured-products-{{ ai_gen_id }}__carousel{padding:0 42px}.ai-featured-products-{{ ai_gen_id }}__slide{grid-template-columns:1fr;gap:24px}.ai-featured-products-{{ ai_gen_id }}__nav{width:36px;height:36px;font-size:20px}.ai-featured-products-{{ ai_gen_id }}__details{text-align:center} }
+{% endstyle %}
+
+<techty-featured-products-{{ ai_gen_id }} class="ai-featured-products-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.heading != blank %}<h2 class="ai-featured-products-{{ ai_gen_id }}__heading">{{ block.settings.heading }}</h2>{% endif %}
+  <div class="ai-featured-products-{{ ai_gen_id }}__carousel">
+    <button type="button" class="ai-featured-products-{{ ai_gen_id }}__nav ai-featured-products-{{ ai_gen_id }}__nav--prev" aria-label="Previous product">&#8249;</button>
+    <div class="ai-featured-products-{{ ai_gen_id }}__viewport"><div class="ai-featured-products-{{ ai_gen_id }}__track">
+      {% for i in (1..5) %}
+        {% assign product_key = 'product_' | append: i %}{% assign selected_product = block.settings[product_key] %}
+        {% if selected_product != blank %}
+          <article class="ai-featured-products-{{ ai_gen_id }}__slide" data-product-slide>
+            <div class="ai-featured-products-{{ ai_gen_id }}__gallery">
+              <div class="ai-featured-products-{{ ai_gen_id }}__main-images" data-gallery>
+                {% for image in selected_product.images %}<img class="ai-featured-products-{{ ai_gen_id }}__main-image" src="{{ image | image_url: width: 1200 }}" alt="{{ image.alt | default: selected_product.title | escape }}" loading="lazy">{% endfor %}
+              </div>
+              <div class="ai-featured-products-{{ ai_gen_id }}__thumbs">{% for image in selected_product.images %}<button type="button" class="ai-featured-products-{{ ai_gen_id }}__thumb" data-thumb="{{ forloop.index0 }}" aria-label="View image {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"><img src="{{ image | image_url: width: 160 }}" alt="" loading="lazy"></button>{% endfor %}</div>
+            </div>
+            <div class="ai-featured-products-{{ ai_gen_id }}__details">
+              <h3 class="ai-featured-products-{{ ai_gen_id }}__title">{{ selected_product.title }}</h3><div class="ai-featured-products-{{ ai_gen_id }}__price" data-price>{{ selected_product.selected_or_first_available_variant.price | money }}</div>
+              <form method="post" action="/cart/add" class="ai-featured-products-{{ ai_gen_id }}__form" data-product-form>
+                {% if selected_product.options.size > 0 %}<div class="ai-featured-products-{{ ai_gen_id }}__variants">{% for option in selected_product.options_with_values %}<div class="ai-featured-products-{{ ai_gen_id }}__variant"><label for="{{ ai_gen_id }}-{{ i }}-{{ forloop.index }}">{{ option.name }}</label><select class="ai-featured-products-{{ ai_gen_id }}__select" id="{{ ai_gen_id }}-{{ i }}-{{ forloop.index }}" data-option-index="{{ forloop.index0 }}">{% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}</select></div>{% endfor %}</div>{% endif %}
+                <select name="id" class="ai-featured-products-{{ ai_gen_id }}__select" data-variant hidden>{% for variant in selected_product.variants %}<option value="{{ variant.id }}" data-options="{{ variant.options | join: '||' | escape }}" data-price="{{ variant.price | money }}" {% if variant == selected_product.selected_or_first_available_variant %}selected{% endif %}>{{ variant.title }}</option>{% endfor %}</select>
+                <div class="ai-featured-products-{{ ai_gen_id }}__quantity-wrap"><button type="button" class="ai-featured-products-{{ ai_gen_id }}__quantity-btn" data-minus aria-label="Decrease quantity">−</button><input class="ai-featured-products-{{ ai_gen_id }}__quantity" type="number" name="quantity" value="1" min="1" aria-label="Quantity"><button type="button" class="ai-featured-products-{{ ai_gen_id }}__quantity-btn" data-plus aria-label="Increase quantity">+</button></div>
+                <div class="ai-featured-products-{{ ai_gen_id }}__actions"><button class="ai-featured-products-{{ ai_gen_id }}__button" type="submit">Add to cart</button><button class="ai-featured-products-{{ ai_gen_id }}__button ai-featured-products-{{ ai_gen_id }}__button--buy" type="submit" name="return_to" value="/checkout">Buy it now</button></div>
+              </form>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div></div>
+    <button type="button" class="ai-featured-products-{{ ai_gen_id }}__nav ai-featured-products-{{ ai_gen_id }}__nav--next" aria-label="Next product">&#8250;</button>
+  </div>
+</techty-featured-products-{{ ai_gen_id }}>
+
+<script>
+(function(){
+  class TechtyFeaturedProducts{{ ai_gen_id }} extends HTMLElement{
+    connectedCallback(){
+      this.track=this.querySelector('.ai-featured-products-{{ ai_gen_id }}__track');this.slides=[...this.querySelectorAll('[data-product-slide]')];this.index=0;
+      this.querySelector('[data-product-slide]') && this.bindSlides();
+      this.querySelector('.ai-featured-products-{{ ai_gen_id }}__nav--prev').addEventListener('click',()=>this.move(-1));this.querySelector('.ai-featured-products-{{ ai_gen_id }}__nav--next').addEventListener('click',()=>this.move(1));
+    }
+    move(step){if(!this.slides.length)return;this.index=(this.index+step+this.slides.length)%this.slides.length;this.track.style.transform='translateX(-'+(this.index*100)+'%)';}
+    bindSlides(){this.slides.forEach(slide=>{let gallery=slide.querySelector('[data-gallery]');slide.querySelectorAll('[data-thumb]').forEach(button=>button.addEventListener('click',()=>{gallery.children[Number(button.dataset.thumb)].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});slide.querySelectorAll('[data-thumb]').forEach(b=>b.setAttribute('aria-current','false'));button.setAttribute('aria-current','true')}));let qty=slide.querySelector('[name="quantity"]');slide.querySelector('[data-minus]').addEventListener('click',()=>qty.value=Math.max(1,Number(qty.value)-1));slide.querySelector('[data-plus]').addEventListener('click',()=>qty.value=Number(qty.value)+1);let form=slide.querySelector('[data-product-form]'),variant=slide.querySelector('[data-variant]'),price=slide.querySelector('[data-price]'),options=[...slide.querySelectorAll('[data-option-index]')];let sync=()=>{let values=options.map(o=>o.value);[...variant.options].forEach(o=>o.selected=o.dataset.options.split('||').every((v,i)=>v===values[i]));let chosen=variant.selectedOptions[0];if(chosen)price.textContent=chosen.dataset.price};options.forEach(o=>o.addEventListener('change',sync));form.addEventListener('submit',()=>sync())});}
+  }
+  customElements.define('techty-featured-products-{{ ai_gen_id }}',TechtyFeaturedProducts{{ ai_gen_id }});
+})();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{"name":"Techty Featured Products","settings":[{"type":"text","id":"heading","label":"Heading","default":"Featured products"},{"type":"range","id":"desktop_width_percent","label":"Desktop width","min":50,"max":100,"step":5,"unit":"%","default":100},{"type":"header","content":"Products"},{"type":"product","id":"product_1","label":"Product 1"},{"type":"product","id":"product_2","label":"Product 2"},{"type":"product","id":"product_3","label":"Product 3"},{"type":"product","id":"product_4","label":"Product 4"},{"type":"product","id":"product_5","label":"Product 5"},{"type":"header","content":"Colors"},{"type":"color","id":"heading_color","label":"Heading and controls","default":"#000000"},{"type":"color","id":"text_color","label":"Text","default":"#000041"},{"type":"color","id":"border_color","label":"Borders","default":"#d6d6d6"},{"type":"color","id":"button_background","label":"Button background","default":"#000000"},{"type":"color","id":"button_text","label":"Button text","default":"#ffffff"},{"type":"color","id":"nav_background","label":"Arrow background","default":"#ffffff"}],"presets":[{"name":"Techty Featured Products"}],"tag":null,"class":"techty-featured-products-block"}
 {% endschema %}
