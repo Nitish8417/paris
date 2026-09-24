@@ -520,33 +520,6 @@
         "bottom_space_mobile": 40
       }
     },
-    "featured_collection_Lrjbtf": {
-      "type": "featured-collection",
-      "name": "t:sections.featured_collection.presets.name",
-      "settings": {
-        "grid_image_size": "square",
-        "image_fit": "cover",
-        "image_background_color": "#FFFFFF",
-        "enable_image_border": true,
-        "show_add_to_cart": true,
-        "heading": "Cleaning - Reimagined",
-        "heading_size": "h2",
-        "heading_size_mobile": "h3_mobile",
-        "heading_alignment": "left",
-        "enable_collection_title": false,
-        "collection": "robot-vacuum",
-        "products_style": true,
-        "products_to_show": 10,
-        "columns_desktop": 3,
-        "btn_text": "View All",
-        "btn_link": "shopify://collections/robot-vacuum",
-        "color_scheme": "",
-        "top_space_desktop": 55,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 25,
-        "bottom_space_mobile": 40
-      }
-    },
     "parallax_4KzCAA": {
       "type": "parallax",
       "blocks": {
@@ -740,9 +713,32 @@
         "bottom_space_mobile": 25
       }
     },
-    "179023889020b7b5a5": {
-      "type": "_blocks",
-      "settings": {}
+    "featured_collection_Lrjbtf": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "grid_image_size": "square",
+        "image_fit": "cover",
+        "image_background_color": "#FFFFFF",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Cleaning - Reimagined",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "robot-vacuum",
+        "products_style": true,
+        "products_to_show": 10,
+        "columns_desktop": 3,
+        "btn_text": "View All",
+        "btn_link": "shopify://collections/robot-vacuum",
+        "color_scheme": "",
+        "top_space_desktop": 55,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 25,
+        "bottom_space_mobile": 40
+      }
     },
     "slideshow_hmng4R": {
       "type": "slideshow",
@@ -1244,10 +1240,9 @@
     "featured_collection_7WcCJR",
     "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
-    "featured_collection_Lrjbtf",
     "parallax_4KzCAA",
     "media_grid_rHNQbG",
-    "179023889020b7b5a5",
+    "featured_collection_Lrjbtf",
     "slideshow_hmng4R",
     "parallax_hmHXrH",
     "17902391153e7e95f0",
