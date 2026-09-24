@@ -1,6 +1,71 @@
+{% doc %}
+  @prompt
+    Create a clean, responsive store-benefits section inspired by the reference image: a horizontal row of simple dark navy outline icons with bold uppercase labels on a white background. Include four benefits: “Secure and Flexible Payment Options” with a payment icon, “Genuine Products” with a shield/check icon, “1–2 Days Delivery” with a delivery truck icon, and “Pre-order Available” with a suitable preorder/calendar icon. Keep the spacing balanced and make the items stack neatly on mobile. Allow the merchant to edit the text and icons in the theme editor.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% style %}
+  .ai-benefits-{{ ai_gen_id }} { display: block; width: {{ block.settings.desktop_width_percent }}%; max-width: 100%; margin: 0 auto; background: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; padding: {{ block.settings.vertical_padding }}px 0; }
+  .ai-benefits-{{ ai_gen_id }}__list { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: {{ block.settings.item_gap }}px; align-items: start; }
+  .ai-benefits-{{ ai_gen_id }}__item { min-width: 0; display: flex; align-items: center; justify-content: center; gap: 14px; text-align: left; }
+  .ai-benefits-{{ ai_gen_id }}__icon { width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px; flex: 0 0 {{ block.settings.icon_size }}px; color: {{ block.settings.icon_color }}; }
+  .ai-benefits-{{ ai_gen_id }}__icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ai-benefits-{{ ai_gen_id }}__label { margin: 0; color: {{ block.settings.text_color }}; font-size: {{ block.settings.text_size }}px; font-weight: 700; line-height: 1.25; letter-spacing: {{ block.settings.letter_spacing }}px; text-transform: uppercase; }
+  @media screen and (max-width: 749px) { .ai-benefits-{{ ai_gen_id }} { padding: {{ block.settings.mobile_padding }}px 16px; } .ai-benefits-{{ ai_gen_id }}__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 18px; } .ai-benefits-{{ ai_gen_id }}__item { justify-content: flex-start; gap: 10px; } .ai-benefits-{{ ai_gen_id }}__icon { width: {{ block.settings.mobile_icon_size }}px; height: {{ block.settings.mobile_icon_size }}px; flex-basis: {{ block.settings.mobile_icon_size }}px; } .ai-benefits-{{ ai_gen_id }}__label { font-size: {{ block.settings.mobile_text_size }}px; } }
+  @media screen and (max-width: 420px) { .ai-benefits-{{ ai_gen_id }}__list { grid-template-columns: 1fr; } }
+{% endstyle %}
+<div class="ai-benefits-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-benefits-{{ ai_gen_id }}__list">
+    {% for i in (1..4) %}
+      {% liquid
+        assign label_key = 'benefit_' | append: i | append: '_label'
+        assign icon_key = 'benefit_' | append: i | append: '_icon'
+        assign label = block.settings[label_key]
+        assign icon = block.settings[icon_key]
+      %}
+      <div class="ai-benefits-{{ ai_gen_id }}__item">
+        <span class="ai-benefits-{{ ai_gen_id }}__icon" aria-hidden="true">
+          {% case icon %}
+            {% when 'payment' %}<svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"></rect><path d="M2.5 9h19M6 14h3"></path></svg>
+            {% when 'shield' %}<svg viewBox="0 0 24 24"><path d="M12 21s8-3.7 8-10V5l-8-3-8 3v6c0 6.3 8 10 8 10Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg>
+            {% when 'delivery' %}<svg viewBox="0 0 24 24"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="19" r="1.8"></circle><circle cx="18" cy="19" r="1.8"></circle><path d="M14 13h7"></path></svg>
+            {% when 'calendar' %}<svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2"></rect><path d="M7 2.5v4M17 2.5v4M3 9h18M8 13h3M8 17h3M14 13h3M14 17h3"></path></svg>
+          {% endcase %}
+        </span>
+        <span class="ai-benefits-{{ ai_gen_id }}__label">{{ label }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Store benefits",
+  "settings": [
+    {"type":"header","content":"Benefits"},
+    {"type":"text","id":"benefit_1_label","label":"Benefit 1 text","default":"Secure and Flexible Payment Options"},
+    {"type":"select","id":"benefit_1_icon","label":"Benefit 1 icon","options":[{"value":"payment","label":"Payment"},{"value":"shield","label":"Shield"},{"value":"delivery","label":"Delivery"},{"value":"calendar","label":"Calendar"}],"default":"payment"},
+    {"type":"text","id":"benefit_2_label","label":"Benefit 2 text","default":"Genuine Products"},
+    {"type":"select","id":"benefit_2_icon","label":"Benefit 2 icon","options":[{"value":"payment","label":"Payment"},{"value":"shield","label":"Shield"},{"value":"delivery","label":"Delivery"},{"value":"calendar","label":"Calendar"}],"default":"shield"},
+    {"type":"text","id":"benefit_3_label","label":"Benefit 3 text","default":"1–2 Days Delivery"},
+    {"type":"select","id":"benefit_3_icon","label":"Benefit 3 icon","options":[{"value":"payment","label":"Payment"},{"value":"shield","label":"Shield"},{"value":"delivery","label":"Delivery"},{"value":"calendar","label":"Calendar"}],"default":"delivery"},
+    {"type":"text","id":"benefit_4_label","label":"Benefit 4 text","default":"Pre-order Available"},
+    {"type":"select","id":"benefit_4_icon","label":"Benefit 4 icon","options":[{"value":"payment","label":"Payment"},{"value":"shield","label":"Shield"},{"value":"delivery","label":"Delivery"},{"value":"calendar","label":"Calendar"}],"default":"calendar"},
+    {"type":"header","content":"Layout"},
+    {"type":"range","id":"desktop_width_percent","label":"Desktop width","min":50,"max":100,"step":5,"unit":"%","default":100},
+    {"type":"range","id":"item_gap","label":"Item gap","min":10,"max":80,"step":5,"unit":"px","default":25},
+    {"type":"range","id":"vertical_padding","label":"Desktop padding","min":10,"max":60,"step":5,"unit":"px","default":25},
+    {"type":"range","id":"mobile_padding","label":"Mobile padding","min":10,"max":50,"step":5,"unit":"px","default":20},
+    {"type":"header","content":"Style"},
+    {"type":"color","id":"background_color","label":"Background","default":"#FFFFFF"},
+    {"type":"color","id":"text_color","label":"Text","default":"#010133"},
+    {"type":"color","id":"icon_color","label":"Icons","default":"#010133"},
+    {"type":"range","id":"icon_size","label":"Icon size","min":24,"max":56,"step":4,"unit":"px","default":40},
+    {"type":"range","id":"mobile_icon_size","label":"Mobile icon size","min":20,"max":44,"step":4,"unit":"px","default":32},
+    {"type":"range","id":"text_size","label":"Text size","min":10,"max":20,"step":1,"unit":"px","default":13},
+    {"type":"range","id":"mobile_text_size","label":"Mobile text size","min":10,"max":18,"step":1,"unit":"px","default":12},
+    {"type":"range","id":"letter_spacing","label":"Letter spacing","min":0,"max":3,"step":0.5,"unit":"px","default":0.5}
+  ],
+  "presets":[{"name":"Store benefits"}],
+  "tag":null,
+  "class":"store-benefits-block"
+}
 {% endschema %}
