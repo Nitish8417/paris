@@ -760,6 +760,10 @@
         "bottom_space_mobile": 25
       }
     },
+    "179023889020b7b5a5": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "slideshow_hmng4R": {
       "type": "slideshow",
       "name": "t:sections.slideshow.presets.name",
@@ -827,7 +831,7 @@
         "heading_size": "h4",
         "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
-        "width_type": "theme",
+        "width_type": "full",
         "inner_width": 1220,
         "side_padding": 20,
         "side_padding_mobile": 16,
@@ -899,6 +903,10 @@
         "bg_color_opacity": "#000000",
         "overlay_opacity": 64
       }
+    },
+    "17902391153e7e95f0": {
+      "type": "_blocks",
+      "settings": {}
     },
     "logo_list_9UqKFM": {
       "type": "logo-list",
@@ -1289,8 +1297,36 @@
         "pad_bottom": 56
       }
     },
-    "1789460615dc3216fc": {
+    "17902411156f39c5b1": {
       "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3d8bb27_gPeLWa": {
+          "type": "ai_gen_block_3d8bb27",
+          "name": "Techty Featured Product Carousel",
+          "settings": {
+            "products": [
+              "grit-apex-smart-watch-with-2-straps",
+              "asiwo-mako-electric-swimming-kickboard",
+              "eufy-s1-pro-wearable-heated-breast-pump-with-charging-case",
+              "anker-a1638-nano-10k-45w-power-bank-with-retractable-cable"
+            ],
+            "add_label": "Add to cart",
+            "buy_label": "Buy it now",
+            "desktop_width_percent": 100,
+            "background_color": "#f4f1ff",
+            "image_background": "#ffffff",
+            "heading_color": "#010133",
+            "text_color": "#000041",
+            "button_color": "#000000",
+            "button_text_color": "#f4f1ff",
+            "border_color": "#d6d2e5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3d8bb27_gPeLWa"
+      ],
       "settings": {}
     }
   },
@@ -1305,12 +1341,14 @@
     "collection_tabs_FXXzEb",
     "parallax_4KzCAA",
     "media_grid_rHNQbG",
+    "179023889020b7b5a5",
     "slideshow_hmng4R",
     "featured_product_9gXb4k",
     "parallax_hmHXrH",
+    "17902391153e7e95f0",
     "logo_list_9UqKFM",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
-    "1789460615dc3216fc"
+    "17902411156f39c5b1"
   ]
 }
