@@ -163,6 +163,16 @@
         this.slides = this.querySelectorAll('[data-slide]');
         this.dots = this.querySelectorAll('[data-dot]');
         this.index = 0;
+        this.style.display = 'block';
+this.style.marginLeft = 'auto';
+this.style.marginRight = 'auto';
+this.style.textAlign = 'center';
+
+this.querySelectorAll('img').forEach((image) => {
+  image.style.display = 'block';
+  image.style.marginLeft = 'auto';
+  image.style.marginRight = 'auto';
+});
         this.querySelector('[data-previous]').addEventListener('click', () => this.goTo(this.index - 1));
         this.querySelector('[data-next]').addEventListener('click', () => this.goTo(this.index + 1));
         this.dots.forEach((dot) => dot.addEventListener('click', () => this.goTo(Number(dot.dataset.dot))));
