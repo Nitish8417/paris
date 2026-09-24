@@ -18,9 +18,9 @@
             "selection_message": "",
             "message_font_size": 12,
             "message_border_radius": 0,
-            "message_bg_color": "#F4F1FF",
-            "message_text_color": "#F4F1FF",
-            "message_border_color": "#F4F1FF"
+            "message_bg_color": "#f4f1ff",
+            "message_text_color": "#f4f1ff",
+            "message_border_color": "#f4f1ff"
           },
           "blocks": {}
         }
@@ -380,11 +380,11 @@
         "subheading": "",
         "align": "center",
         "heading_color": "#14213d",
-        "section_bg": "#F4F1FF",
+        "section_bg": "#f4f1ff",
         "columns": 3,
         "ratio": "3 / 4",
         "radius": 8,
-        "text_color": "#F4F1FF",
+        "text_color": "#f4f1ff",
         "overlay_color": "#0b1b3f",
         "overlay_opacity": 45,
         "width": "100%",
@@ -719,7 +719,7 @@
       "settings": {
         "grid_image_size": "square",
         "image_fit": "cover",
-        "image_background_color": "#FFFFFF",
+        "image_background_color": "#ffffff",
         "enable_image_border": true,
         "show_add_to_cart": true,
         "heading": "Cleaning - Reimagined",
@@ -812,7 +812,7 @@
             "desktop_width_percent": 100,
             "image_height": 600,
             "thumbnail_size": 60,
-            "background_color": "#F4F1FF",
+            "background_color": "#f4f1ff",
             "border_color": "#000041"
           },
           "blocks": {}
@@ -831,7 +831,7 @@
             "gap": 40,
             "radius": 20,
             "arrow_bg": "#000041",
-            "arrow_text": "#FFFFFF"
+            "arrow_text": "#ffffff"
           },
           "blocks": {}
         }
@@ -905,7 +905,7 @@
         "testimonial_6xWCYA": {
           "type": "testimonial",
           "settings": {
-            "quote": "Bought the GRIT Apex for my evening walks. Having two straps in the box was a nice touch — sporty one for the gym, the other for work.",
+            "quote": "Bought the GRIT Apex for my evening walks. love how it tracks everything",
             "name": "Fahad M.",
             "role": "Wearables customer",
             "rating": 5,
@@ -960,7 +960,7 @@
         "testimonial_LVjeXL": {
           "type": "testimonial",
           "settings": {
-            "quote": "Ordered a travel adapter two days before a trip and it made it in time. I also swapped a cable that didn't fit my phone — the exchange was easy and free.",
+            "quote": "Ordered a travel adapter two days before a trip and it made it in time!",
             "name": "Omar T.",
             "role": "Techty customer",
             "rating": 5,
@@ -981,7 +981,7 @@
       ],
       "name": "Techty testimonials",
       "settings": {
-        "show_editor_note": true,
+        "show_editor_note": false,
         "eyebrow": "Customer stories",
         "heading": "What our customers say",
         "subheading": "Real experiences from people who shop Techty across Kuwait.",
@@ -1230,6 +1230,45 @@
         "top_space_mobile": 50,
         "bottom_space_mobile": 50
       }
+    },
+    "1790250658af0c4015": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8ce77ed_N4zRkP": {
+          "type": "ai_gen_block_8ce77ed",
+          "settings": {
+            "benefit_1_label": "Secure and Flexible Payment Options",
+            "benefit_1_icon": "payment",
+            "benefit_2_label": "Genuine Products",
+            "benefit_2_icon": "shield",
+            "benefit_3_label": "1–2 Days Delivery",
+            "benefit_3_icon": "delivery",
+            "benefit_4_label": "Pre-order Available",
+            "benefit_4_icon": "calendar",
+            "desktop_width_percent": 100,
+            "item_gap": 25,
+            "vertical_padding": 25,
+            "mobile_padding": 20,
+            "background_color": "#FFFFFF",
+            "text_color": "#010133",
+            "icon_color": "#010133",
+            "icon_background": "#F4F1FF",
+            "icon_border": "#DCD6F5",
+            "icon_shadow": "#DCD6F5",
+            "accent_color": "#B9A7FF",
+            "icon_size": 40,
+            "mobile_icon_size": 32,
+            "text_size": 13,
+            "mobile_text_size": 12,
+            "letter_spacing": 0.5
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8ce77ed_N4zRkP"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -1248,6 +1287,7 @@
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
-    "logo_list_9UqKFM"
+    "logo_list_9UqKFM",
+    "1790250658af0c4015"
   ]
 }
