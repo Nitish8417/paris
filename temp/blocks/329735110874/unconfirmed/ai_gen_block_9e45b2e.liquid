@@ -1,6 +1,224 @@
+{% doc %}
+  @prompt
+    Create a polished, responsive slideshow section for the storefront with rounded corners, a subtle adjustable soft shadow, centered presentation, image captions, three slide slots, and navigation dots. Each slide must include an image and a normal URL/link setting. Clicking the slide image should open the entered link. Do not use product or collection picker settings. The image must always remain visible whether the link field is empty or filled, so never conditionally hide or replace the image when a link is added. Place the previous and next arrow buttons vertically centered on the left and right sides of the slideshow image, not at the bottom. Keep the design clean and modern, preserve accessible labels and keyboard-friendly controls, and include easy-to-adjust settings for corner radius, shadow softness, image ratio, slideshow width, caption styling, arrow controls, dots, and colors. Make sure the images dont give empty slides 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-slideshow-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin-inline: auto;
+    color: {{ block.settings.caption_color }};
+    font-family: inherit;
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.corner_radius }}px;
+    box-shadow: 0 4px {{ block.settings.shadow_softness }}px rgba(0, 0, 0, {{ block.settings.shadow_opacity | divided_by: 100.0 }});
+    background: {{ block.settings.placeholder_color }};
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__track { position: relative; width: 100%; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__slide { display: none; position: relative; width: 100%; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__slide.is-active { display: block; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__media {
+    display: block;
+    width: 100%;
+    aspect-ratio: {{ block.settings.image_ratio }};
+    overflow: hidden;
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__media img,
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__placeholder svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__placeholder { width: 100%; height: 100%; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__empty {
+    position: absolute;
+    inset: auto 12px 12px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #222;
+    background: rgba(255,255,255,.94);
+    text-align: center;
+    font-size: 14px;
+    pointer-events: none;
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__caption {
+    padding: {{ block.settings.caption_padding }}px 18px;
+    margin: 0;
+    background: {{ block.settings.caption_background }};
+    color: {{ block.settings.caption_color }};
+    text-align: {{ block.settings.caption_alignment }};
+    font-size: {{ block.settings.caption_size }}px;
+    line-height: 1.4;
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid {{ block.settings.arrow_color }};
+    border-radius: 50%;
+    background: {{ block.settings.arrow_background }};
+    color: {{ block.settings.arrow_color }};
+    cursor: pointer;
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow:hover { filter: brightness(.92); }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow:focus-visible,
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__dot:focus-visible { outline: 3px solid {{ block.settings.focus_color }}; outline-offset: 3px; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow--prev { left: 14px; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow--next { right: 14px; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow svg { width: 20px; height: 20px; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__dots { display: flex; justify-content: center; gap: 10px; padding-top: 16px; }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__dot {
+    width: 12px; height: 12px; padding: 0; border: 2px solid {{ block.settings.dot_color }};
+    border-radius: 50%; background: transparent; cursor: pointer;
+  }
+  .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__dot[aria-current="true"] { background: {{ block.settings.dot_color }}; }
+  @media screen and (max-width: 749px) {
+    .ai-slideshow-{{ ai_gen_id }} { width: 100%; }
+    .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow { width: 40px; height: 40px; }
+    .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow--prev { left: 10px; }
+    .ai-slideshow-{{ ai_gen_id }} .ai-slideshow__arrow--next { right: 10px; }
+  }
+{% endstyle %}
+
+<ai-slideshow-{{ ai_gen_id }} class="ai-slideshow-{{ ai_gen_id }}" aria-label="{{ block.settings.accessible_label | escape }}" {{ block.shopify_attributes }}>
+  {% assign slide_count = 0 %}
+  {% for i in (1..3) %}
+    {% assign image_key = 'slide_' | append: i | append: '_image' %}
+    {% if block.settings[image_key] != blank %}{% assign slide_count = slide_count | plus: 1 %}{% endif %}
+  {% endfor %}
+  <div class="ai-slideshow__frame">
+    <div class="ai-slideshow__track" aria-live="polite">
+      {% assign rendered_index = 0 %}
+      {% for i in (1..3) %}
+        {% liquid
+          assign image_key = 'slide_' | append: i | append: '_image'
+          assign link_key = 'slide_' | append: i | append: '_link'
+          assign caption_key = 'slide_' | append: i | append: '_caption'
+          assign image = block.settings[image_key]
+          assign slide_link = block.settings[link_key]
+          assign caption = block.settings[caption_key]
+        %}
+        {% if image != blank %}
+          {% assign rendered_index = rendered_index | plus: 1 %}
+          <div class="ai-slideshow__slide{% if rendered_index == 1 %} is-active{% endif %}" data-slide="{{ rendered_index }}" {% if rendered_index != 1 %}hidden{% endif %}>
+            {% if slide_link != blank %}<a class="ai-slideshow__media" href="{{ slide_link }}" aria-label="{{ caption | default: block.settings.accessible_label | escape }}">{% else %}<div class="ai-slideshow__media">{% endif %}
+              {{ image | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200, 1600, 2000, 2400', alt: image.alt | escape }}
+            {% if slide_link != blank %}</a>{% else %}</div>{% endif %}
+            {% if caption != blank %}<p class="ai-slideshow__caption">{{ caption | escape }}</p>{% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% if slide_count == 0 %}
+        <div class="ai-slideshow__slide is-active">
+          <div class="ai-slideshow__media">
+            <div class="ai-slideshow__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+            <div class="ai-slideshow__empty">Add at least one slide image to begin</div>
+          </div>
+          <p class="ai-slideshow__caption">Add an image in a slide slot</p>
+        </div>
+      {% endif %}
+    </div>
+    {% if slide_count > 1 %}
+      <button class="ai-slideshow__arrow ai-slideshow__arrow--prev" type="button" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="ai-slideshow__arrow ai-slideshow__arrow--next" type="button" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    {% endif %}
+  </div>
+  {% if slide_count > 1 %}
+    <div class="ai-slideshow__dots" aria-label="Choose a slide">
+      {% for i in (1..slide_count) %}<button class="ai-slideshow__dot" type="button" aria-label="Go to slide {{ i }}" aria-current="{% if i == 1 %}true{% else %}false{% endif %}" data-dot="{{ i }}"></button>{% endfor %}
+    </div>
+  {% endif %}
+</ai-slideshow-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    const tagName = 'ai-slideshow-{{ ai_gen_id }}';
+    if (customElements.get(tagName)) return;
+    class AiSlideshow extends HTMLElement {
+      connectedCallback() {
+        this.slides = Array.from(this.querySelectorAll('.ai-slideshow__slide[data-slide]'));
+        this.dots = Array.from(this.querySelectorAll('.ai-slideshow__dot'));
+        this.current = 0;
+        if (this.slides.length < 2) return;
+        this.querySelector('.ai-slideshow__arrow--prev')?.addEventListener('click', () => this.show(this.current - 1));
+        this.querySelector('.ai-slideshow__arrow--next')?.addEventListener('click', () => this.show(this.current + 1));
+        this.dots.forEach((dot, index) => dot.addEventListener('click', () => this.show(index)));
+        this.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowLeft') { event.preventDefault(); this.show(this.current - 1); }
+          if (event.key === 'ArrowRight') { event.preventDefault(); this.show(this.current + 1); }
+        });
+      }
+      show(index) {
+        this.current = (index + this.slides.length) % this.slides.length;
+        this.slides.forEach((slide, position) => {
+          const active = position === this.current;
+          slide.classList.toggle('is-active', active);
+          slide.hidden = !active;
+        });
+        this.dots.forEach((dot, position) => dot.setAttribute('aria-current', position === this.current ? 'true' : 'false'));
+      }
+    }
+    customElements.define(tagName, AiSlideshow);
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Linked image slideshow",
+  "settings": [
+    { "type": "text", "id": "accessible_label", "label": "Slideshow label", "default": "Featured image slideshow" },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "options": [{ "value": "16 / 9", "label": "Widescreen" }, { "value": "4 / 3", "label": "Landscape" }, { "value": "1 / 1", "label": "Square" }, { "value": "3 / 4", "label": "Portrait" }], "default": "16 / 9" },
+    { "type": "range", "id": "corner_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "shadow_softness", "label": "Shadow softness", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "shadow_opacity", "label": "Shadow strength", "min": 0, "max": 50, "step": 5, "unit": "%", "default": 10 },
+    { "type": "color", "id": "placeholder_color", "label": "Placeholder background", "default": "#F4F1FF" },
+    { "type": "header", "content": "Slide 1" },
+    { "type": "image_picker", "id": "slide_1_image", "label": "Image" },
+    { "type": "url", "id": "slide_1_link", "label": "Image link" },
+    { "type": "text", "id": "slide_1_caption", "label": "Caption" },
+    { "type": "header", "content": "Slide 2" },
+    { "type": "image_picker", "id": "slide_2_image", "label": "Image" },
+    { "type": "url", "id": "slide_2_link", "label": "Image link" },
+    { "type": "text", "id": "slide_2_caption", "label": "Caption" },
+    { "type": "header", "content": "Slide 3" },
+    { "type": "image_picker", "id": "slide_3_image", "label": "Image" },
+    { "type": "url", "id": "slide_3_link", "label": "Image link" },
+    { "type": "text", "id": "slide_3_caption", "label": "Caption" },
+    { "type": "header", "content": "Caption style" },
+    { "type": "range", "id": "caption_size", "label": "Text size", "min": 12, "max": 28, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "caption_padding", "label": "Vertical padding", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 12 },
+    { "type": "select", "id": "caption_alignment", "label": "Alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "center" },
+    { "type": "color", "id": "caption_color", "label": "Text", "default": "#000000" },
+    { "type": "color", "id": "caption_background", "label": "Background", "default": "#FFFFFF" },
+    { "type": "header", "content": "Navigation" },
+    { "type": "range", "id": "arrow_size", "label": "Arrow button size", "min": 36, "max": 64, "step": 4, "unit": "px", "default": 44 },
+    { "type": "color", "id": "arrow_color", "label": "Arrow color", "default": "#000000" },
+    { "type": "color", "id": "arrow_background", "label": "Arrow background", "default": "#FFFFFF" },
+    { "type": "color", "id": "dot_color", "label": "Dot color", "default": "#000000" },
+    { "type": "color", "id": "focus_color", "label": "Keyboard focus", "default": "#000F9F" }
+  ],
+  "presets": [{ "name": "Linked image slideshow" }],
+  "tag": null,
+  "class": "linked-image-slideshow"
+}
 {% endschema %}
