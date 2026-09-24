@@ -312,8 +312,8 @@
         "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
         "columns_desktop": 4,
-        "columns_mobile": 1,
-        "card_height": 200,
+        "columns_mobile": 2,
+        "card_height": 270,
         "enable_slider": true,
         "infinite": true,
         "show_arrows": false,
@@ -517,6 +517,33 @@
         "top_space_desktop": 80,
         "bottom_space_desktop": 80,
         "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "featured_collection_Lrjbtf": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "grid_image_size": "square",
+        "image_fit": "cover",
+        "image_background_color": "#FFFFFF",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Cleaning - Reimagined",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "robot-vacuum",
+        "products_style": true,
+        "products_to_show": 10,
+        "columns_desktop": 3,
+        "btn_text": "View All",
+        "btn_link": "shopify://collections/robot-vacuum",
+        "color_scheme": "",
+        "top_space_desktop": 55,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 25,
         "bottom_space_mobile": 40
       }
     },
@@ -793,12 +820,185 @@
             "border_color": "#000041"
           },
           "blocks": {}
+        },
+        "ai_gen_block_5bed7a6_zPGnbw": {
+          "type": "ai_gen_block_5bed7a6",
+          "settings": {
+            "product_1": "grit-apex-smart-watch-with-2-straps",
+            "product_2": "eufy-s1-pro-wearable-heated-breast-pump-with-charging-case",
+            "product_3": "anker-prime-a2683-200w-6-port-gan-charger",
+            "product_4": "asiwo-mako-electric-swimming-kickboard",
+            "product_5": "",
+            "product_6": "",
+            "width": 1150,
+            "image_width": 50,
+            "gap": 40,
+            "radius": 20,
+            "arrow_bg": "#000041",
+            "arrow_text": "#FFFFFF"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_f08f8ee_hYWc8M"
+        "ai_gen_block_f08f8ee_hYWc8M",
+        "ai_gen_block_5bed7a6_zPGnbw"
       ],
       "settings": {}
+    },
+    "rich_text_yi96Lj": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_VhiTnD": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Tech Beyond the Ordinary</strong>",
+            "heading_size": "h2",
+            "heading_size_mobile": "h3_mobile"
+          }
+        },
+        "text_tpYj8j": {
+          "type": "text",
+          "settings": {
+            "text": "<p><br/>Shop Kuwait's curated collection of smart gadgets, mobile accessories, gaming gear, audio, wearables, and home tech all in one place.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VhiTnD",
+        "text_tpYj8j"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "layout_type": false,
+        "content_width": "small",
+        "text_position": "center",
+        "text_alignment": "center",
+        "color_scheme": "",
+        "top_space_desktop": 90,
+        "bottom_space_desktop": 35,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "techty_testimonials_hrDT7G": {
+      "type": "techty-testimonials",
+      "blocks": {
+        "testimonial_kWnBXP": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "It's rare to find one place in Kuwait that has the charger, the speaker and the gift all in the same order. Everything I needed was on Techty, and it all arrived together.",
+            "name": "Abdullah K.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Shop all",
+            "tag_link": "/collections/all"
+          }
+        },
+        "testimonial_p6Gfcd": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I messaged them on WhatsApp to check which charger actually suits my laptop. Quick, straight answer, and they didn't push me toward the most expensive one.",
+            "name": "Noura A.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Chargers",
+            "tag_link": "/collections/chargers-adapters"
+          }
+        },
+        "testimonial_6xWCYA": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Bought the GRIT Apex for my evening walks. Having two straps in the box was a nice touch — sporty one for the gym, the other for work.",
+            "name": "Fahad M.",
+            "role": "Wearables customer",
+            "rating": 5,
+            "tag": "Smart watches",
+            "tag_link": "/collections/smart-watches-fitness-trackers"
+          }
+        },
+        "testimonial_8MQWyg": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The Xiaomi magnetic power bank with the built-in cable basically lives in my bag now. No more hunting for a cable at the airport.",
+            "name": "Mariam S.",
+            "role": "Frequent traveller",
+            "rating": 5,
+            "tag": "Power banks",
+            "tag_link": "/collections/power-banks"
+          }
+        },
+        "testimonial_AGmQGX": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Wanted Soundcore earbuds that are good for calls while driving. Voice comes through clearly and they're comfortable enough to forget I'm wearing them.",
+            "name": "Dana R.",
+            "role": "Audio customer",
+            "rating": 5,
+            "tag": "Earbuds",
+            "tag_link": "/collections/earbuds-headphones"
+          }
+        },
+        "testimonial_hVzQD8": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Got a Neewer light kit and the KM18 lavalier mic for my home setup. Took about ten minutes to get running and my videos look like a different channel.",
+            "name": "Hessa J.",
+            "role": "Content creator",
+            "rating": 5,
+            "tag": "Creator kit",
+            "tag_link": "/collections/content-creator-kit"
+          }
+        },
+        "testimonial_TQg9iX": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The gaming section is well picked rather than endless. Grabbed a new controller and a couple of cables for my setup, and everything matched the description exactly.",
+            "name": "Yousef H.",
+            "role": "Gaming customer",
+            "rating": 5,
+            "tag": "Gaming gear",
+            "tag_link": "/collections/gaming-controllers-gear"
+          }
+        },
+        "testimonial_LVjeXL": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Ordered a travel adapter two days before a trip and it made it in time. I also swapped a cable that didn't fit my phone — the exchange was easy and free.",
+            "name": "Omar T.",
+            "role": "Techty customer",
+            "rating": 5,
+            "tag": "Travel",
+            "tag_link": "/collections/travel"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_kWnBXP",
+        "testimonial_p6Gfcd",
+        "testimonial_6xWCYA",
+        "testimonial_8MQWyg",
+        "testimonial_AGmQGX",
+        "testimonial_hVzQD8",
+        "testimonial_TQg9iX",
+        "testimonial_LVjeXL"
+      ],
+      "name": "Techty testimonials",
+      "settings": {
+        "show_editor_note": true,
+        "eyebrow": "Customer stories",
+        "heading": "What our customers say",
+        "subheading": "Real experiences from people who shop Techty across Kuwait.",
+        "cta_label": "Share your experience",
+        "cta_link": "https://wa.me/96522280345",
+        "columns": 3,
+        "width": "1600px",
+        "autoplay": 5,
+        "show_stars": true,
+        "surface": true,
+        "pad_top": 56,
+        "pad_bottom": 56
+      }
     },
     "logo_list_9UqKFM": {
       "type": "logo-list",
@@ -1034,187 +1234,6 @@
         "top_space_mobile": 50,
         "bottom_space_mobile": 50
       }
-    },
-    "1790248145c253eeaf": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_5bed7a6_t74YTW": {
-          "type": "ai_gen_block_5bed7a6",
-          "settings": {
-            "product_1": "grit-apex-smart-watch-with-2-straps",
-            "product_2": "eufy-s1-pro-wearable-heated-breast-pump-with-charging-case",
-            "product_3": "anker-prime-a2683-200w-6-port-gan-charger",
-            "product_4": "asiwo-mako-electric-swimming-kickboard",
-            "product_5": "",
-            "product_6": "",
-            "width": 1150,
-            "image_width": 50,
-            "gap": 40,
-            "radius": 20,
-            "arrow_bg": "#000041",
-            "arrow_text": "#FFFFFF"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_5bed7a6_t74YTW"
-      ],
-      "settings": {}
-    },
-    "rich_text_yi96Lj": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_VhiTnD": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Tech Beyond the Ordinary</strong>",
-            "heading_size": "h2",
-            "heading_size_mobile": "h3_mobile"
-          }
-        },
-        "text_tpYj8j": {
-          "type": "text",
-          "settings": {
-            "text": "<p><br/>Shop Kuwait's curated collection of smart gadgets, mobile accessories, gaming gear, audio, wearables, and home tech all in one place.<br/><br/></p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_VhiTnD",
-        "text_tpYj8j"
-      ],
-      "name": "t:sections.rich_text.presets.name",
-      "settings": {
-        "layout_type": false,
-        "content_width": "small",
-        "text_position": "center",
-        "text_alignment": "center",
-        "color_scheme": "",
-        "top_space_desktop": 90,
-        "bottom_space_desktop": 35,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
-    },
-    "techty_testimonials_hrDT7G": {
-      "type": "techty-testimonials",
-      "blocks": {
-        "testimonial_kWnBXP": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "It's rare to find one place in Kuwait that has the charger, the speaker and the gift all in the same order. Everything I needed was on Techty, and it all arrived together.",
-            "name": "Abdullah K.",
-            "role": "Techty customer",
-            "rating": 5,
-            "tag": "Shop all",
-            "tag_link": "/collections/all"
-          }
-        },
-        "testimonial_p6Gfcd": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "I messaged them on WhatsApp to check which charger actually suits my laptop. Quick, straight answer, and they didn't push me toward the most expensive one.",
-            "name": "Noura A.",
-            "role": "Techty customer",
-            "rating": 5,
-            "tag": "Chargers",
-            "tag_link": "/collections/chargers-adapters"
-          }
-        },
-        "testimonial_6xWCYA": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Bought the GRIT Apex for my evening walks. Having two straps in the box was a nice touch — sporty one for the gym, the other for work.",
-            "name": "Fahad M.",
-            "role": "Wearables customer",
-            "rating": 5,
-            "tag": "Smart watches",
-            "tag_link": "/collections/smart-watches-fitness-trackers"
-          }
-        },
-        "testimonial_8MQWyg": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The Xiaomi magnetic power bank with the built-in cable basically lives in my bag now. No more hunting for a cable at the airport.",
-            "name": "Mariam S.",
-            "role": "Frequent traveller",
-            "rating": 5,
-            "tag": "Power banks",
-            "tag_link": "/collections/power-banks"
-          }
-        },
-        "testimonial_AGmQGX": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Wanted Soundcore earbuds that are good for calls while driving. Voice comes through clearly and they're comfortable enough to forget I'm wearing them.",
-            "name": "Dana R.",
-            "role": "Audio customer",
-            "rating": 5,
-            "tag": "Earbuds",
-            "tag_link": "/collections/earbuds-headphones"
-          }
-        },
-        "testimonial_hVzQD8": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Got a Neewer light kit and the KM18 lavalier mic for my home setup. Took about ten minutes to get running and my videos look like a different channel.",
-            "name": "Hessa J.",
-            "role": "Content creator",
-            "rating": 5,
-            "tag": "Creator kit",
-            "tag_link": "/collections/content-creator-kit"
-          }
-        },
-        "testimonial_TQg9iX": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The gaming section is well picked rather than endless. Grabbed a new controller and a couple of cables for my setup, and everything matched the description exactly.",
-            "name": "Yousef H.",
-            "role": "Gaming customer",
-            "rating": 5,
-            "tag": "Gaming gear",
-            "tag_link": "/collections/gaming-controllers-gear"
-          }
-        },
-        "testimonial_LVjeXL": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Ordered a travel adapter two days before a trip and it made it in time. I also swapped a cable that didn't fit my phone — the exchange was easy and free.",
-            "name": "Omar T.",
-            "role": "Techty customer",
-            "rating": 5,
-            "tag": "Travel",
-            "tag_link": "/collections/travel"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_kWnBXP",
-        "testimonial_p6Gfcd",
-        "testimonial_6xWCYA",
-        "testimonial_8MQWyg",
-        "testimonial_AGmQGX",
-        "testimonial_hVzQD8",
-        "testimonial_TQg9iX",
-        "testimonial_LVjeXL"
-      ],
-      "name": "Techty testimonials",
-      "settings": {
-        "show_editor_note": true,
-        "eyebrow": "Customer stories",
-        "heading": "What our customers say",
-        "subheading": "Real experiences from people who shop Techty across Kuwait.",
-        "cta_label": "Share your experience",
-        "cta_link": "https://wa.me/96522280345",
-        "columns": 3,
-        "width": "1600px",
-        "autoplay": 5,
-        "show_stars": true,
-        "surface": true,
-        "pad_top": 56,
-        "pad_bottom": 56
-      }
     }
   },
   "order": [
@@ -1225,15 +1244,15 @@
     "featured_collection_7WcCJR",
     "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
+    "featured_collection_Lrjbtf",
     "parallax_4KzCAA",
     "media_grid_rHNQbG",
     "179023889020b7b5a5",
     "slideshow_hmng4R",
     "parallax_hmHXrH",
     "17902391153e7e95f0",
-    "logo_list_9UqKFM",
-    "1790248145c253eeaf",
     "rich_text_yi96Lj",
-    "techty_testimonials_hrDT7G"
+    "techty_testimonials_hrDT7G",
+    "logo_list_9UqKFM"
   ]
 }
