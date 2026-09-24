@@ -1,6 +1,90 @@
+{% doc %}
+  @prompt
+    Create a NEW Paris theme section named 'Techty Featured Products' with repeatable product blocks: each block has ONE product picker, so I can add one product at a time (4 or 5 total) and drag/reorder the blocks in the theme editor to change carousel order. Do not use a single multi-product picker. Show one full product panel at a time, matching the existing Paris Featured product / Trending Item appearance: large scrollable main product image gallery on the left, with SMALL clickable image thumbnails horizontally BELOW it; selected product title, price, a centered and polished quantity selector, Add to cart and Buy it now on the right. Show variant selection only if that product has actual variant choices. Put prominent previous/next PRODUCT arrows at the outside left and right edges of the entire carousel, separate from controls for scrolling the current product's main images. Each slide's image gallery, variants, quantity, and purchase actions must operate on that slide's product. Responsive on mobile. Do not make compact cards or a featured collection banner. Do not modify or remove the existing Trending Featured product section or other blocks.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-techty-featured-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    color: #000041;
+    font-family: {{ settings.type_body_font.family }};
+  }
+  .ai-techty-featured-{{ ai_gen_id }}__panel { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr); gap:clamp(28px,5vw,72px); align-items:center; position:relative; }
+  .ai-techty-featured-{{ ai_gen_id }}__gallery { min-width:0; }
+  .ai-techty-featured-{{ ai_gen_id }}__main { background:{{ settings.image_background_color }}; aspect-ratio:1 / 1; overflow:hidden; border-radius:{{ settings.all_product_grid_radius }}px; }
+  .ai-techty-featured-{{ ai_gen_id }}__main img { width:100%; height:100%; object-fit:contain; display:block; }
+  .ai-techty-featured-{{ ai_gen_id }}__thumbs { display:flex; gap:10px; overflow-x:auto; padding:14px 2px 4px; scrollbar-width:thin; }
+  .ai-techty-featured-{{ ai_gen_id }}__thumb { width:66px; height:66px; flex:0 0 66px; border:1px solid {{ settings.color_schemes.primary.settings.border_color }}; border-radius:{{ settings.all_product_grid_radius }}px; padding:3px; background:#fff; cursor:pointer; }
+  .ai-techty-featured-{{ ai_gen_id }}__thumb[aria-current="true"] { border:2px solid #000041; }
+  .ai-techty-featured-{{ ai_gen_id }}__thumb img { width:100%; height:100%; object-fit:contain; display:block; }
+  .ai-techty-featured-{{ ai_gen_id }}__info { display:flex; flex-direction:column; gap:18px; }
+  .ai-techty-featured-{{ ai_gen_id }}__title { margin:0; color:#010133; font-family:{{ settings.type_heading_font.family }}; font-size:clamp(24px,3vw,42px); line-height:1.1; }
+  .ai-techty-featured-{{ ai_gen_id }}__price { font-size:20px; font-weight:600; }
+  .ai-techty-featured-{{ ai_gen_id }}__options { display:flex; flex-direction:column; gap:12px; }
+  .ai-techty-featured-{{ ai_gen_id }}__option label { display:block; font-weight:600; margin-bottom:6px; }
+  .ai-techty-featured-{{ ai_gen_id }}__select, .ai-techty-featured-{{ ai_gen_id }}__quantity { width:100%; min-height:46px; border:1px solid #000041; border-radius:{{ settings.all_input_radius }}px; background:#fff; color:#000041; padding:0 14px; }
+  .ai-techty-featured-{{ ai_gen_id }}__quantity-wrap { display:flex; align-items:center; justify-content:center; gap:18px; margin:2px auto; }
+  .ai-techty-featured-{{ ai_gen_id }}__quantity { width:74px; text-align:center; padding:0; }
+  .ai-techty-featured-{{ ai_gen_id }}__qty-btn { border:0; background:transparent; color:#000041; font-size:26px; line-height:1; cursor:pointer; padding:8px; }
+  .ai-techty-featured-{{ ai_gen_id }}__actions { display:grid; gap:10px; }
+  .ai-techty-featured-{{ ai_gen_id }}__button { min-height:50px; border-radius:{{ settings.all_button_radius }}px; border:1px solid #000; cursor:pointer; font-weight:600; font-size:15px; }
+  .ai-techty-featured-{{ ai_gen_id }}__button--cart { background:#000; color:#f4f1ff; }
+  .ai-techty-featured-{{ ai_gen_id }}__button--buy { background:#f4f1ff; color:#000041; }
+  .ai-techty-featured-{{ ai_gen_id }}__empty { padding:60px 20px; background:{{ settings.image_background_color }}; text-align:center; color:#000041; }
+  .ai-techty-featured-{{ ai_gen_id }}__empty svg { width:100%; max-width:420px; height:260px; display:block; margin:0 auto 18px; }
+  @media (max-width:749px) { .ai-techty-featured-{{ ai_gen_id }}__panel { grid-template-columns:1fr; gap:24px; } .ai-techty-featured-{{ ai_gen_id }}__info { gap:14px; } }
+{% endstyle %}
+
+<techty-featured-product-{{ ai_gen_id }} class="ai-techty-featured-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.product != blank %}
+    {% assign product = block.settings.product %}
+    {% assign current_variant = product.selected_or_first_available_variant %}
+    <div class="ai-techty-featured-{{ ai_gen_id }}__panel">
+      <div class="ai-techty-featured-{{ ai_gen_id }}__gallery">
+        <div class="ai-techty-featured-{{ ai_gen_id }}__main">
+          {% if product.featured_image %}<img data-main-image src="{{ product.featured_image | image_url: width: 1400 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}">{% endif %}
+        </div>
+        <div class="ai-techty-featured-{{ ai_gen_id }}__thumbs" role="list">
+          {% for image in product.images %}<button class="ai-techty-featured-{{ ai_gen_id }}__thumb" type="button" data-image="{{ image | image_url: width: 1400 }}" aria-label="View image {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"><img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | default: product.title | escape }}" width="160" height="160" loading="lazy"></button>{% endfor %}
+        </div>
+      </div>
+      <div class="ai-techty-featured-{{ ai_gen_id }}__info">
+        <h2 class="ai-techty-featured-{{ ai_gen_id }}__title">{{ product.title }}</h2>
+        <div class="ai-techty-featured-{{ ai_gen_id }}__price" data-price>{{ current_variant.price | money }}</div>
+        {% if product.has_only_default_variant == false %}<div class="ai-techty-featured-{{ ai_gen_id }}__options">{% for option in product.options_with_values %}<div class="ai-techty-featured-{{ ai_gen_id }}__option"><label for="ai-option-{{ ai_gen_id }}-{{ forloop.index }}">{{ option.name }}</label><select class="ai-techty-featured-{{ ai_gen_id }}__select" id="ai-option-{{ ai_gen_id }}-{{ forloop.index }}" data-option-index="{{ forloop.index0 }}">{% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}</select></div>{% endfor %}</div>{% endif %}
+        <div class="ai-techty-featured-{{ ai_gen_id }}__quantity-wrap"><button class="ai-techty-featured-{{ ai_gen_id }}__qty-btn" type="button" data-minus aria-label="Decrease quantity">−</button><input class="ai-techty-featured-{{ ai_gen_id }}__quantity" type="number" name="quantity" value="1" min="1" aria-label="Quantity"><button class="ai-techty-featured-{{ ai_gen_id }}__qty-btn" type="button" data-plus aria-label="Increase quantity">+</button></div>
+        <div class="ai-techty-featured-{{ ai_gen_id }}__actions"><button class="ai-techty-featured-{{ ai_gen_id }}__button ai-techty-featured-{{ ai_gen_id }}__button--cart" type="button" data-add>Add to cart</button><button class="ai-techty-featured-{{ ai_gen_id }}__button ai-techty-featured-{{ ai_gen_id }}__button--buy" type="button" data-buy>Buy it now</button></div>
+      </div>
+    </div>
+  {% else %}<div class="ai-techty-featured-{{ ai_gen_id }}__empty">{{ 'image' | placeholder_svg_tag }}<div>Select a product to display this featured product panel.</div></div>{% endif %}
+</techty-featured-product-{{ ai_gen_id }}>
+
+<script>
+(function(){
+  class TechtyFeaturedProduct{{ ai_gen_id }} extends HTMLElement {
+    connectedCallback(){
+      this.variantData={{ product.variants | json }};
+      this.main=this.querySelector('[data-main-image]');
+      this.thumbs=this.querySelectorAll('[data-image]');
+      this.qty=this.querySelector('[name="quantity"]');
+      this.variant=this.variantData && this.variantData[0];
+      this.thumbs.forEach((button)=>button.addEventListener('click',()=>{this.main.src=button.dataset.image;this.thumbs.forEach((item)=>item.setAttribute('aria-current','false'));button.setAttribute('aria-current','true')}));
+      this.querySelector('[data-minus]')?.addEventListener('click',()=>{this.qty.value=Math.max(1,Number(this.qty.value)-1)});
+      this.querySelector('[data-plus]')?.addEventListener('click',()=>{this.qty.value=Number(this.qty.value)+1});
+      this.querySelectorAll('[data-option-index]').forEach((select)=>select.addEventListener('change',()=>this.updateVariant()));
+      this.querySelector('[data-add]')?.addEventListener('click',()=>this.submit(false));
+      this.querySelector('[data-buy]')?.addEventListener('click',()=>this.submit(true));
+    }
+    updateVariant(){const values=[...this.querySelectorAll('[data-option-index]')].map((select)=>select.value);this.variant=this.variantData.find((item)=>item.options.every((value,index)=>value===values[index]))||this.variant;}
+    submit(buy){if(!this.variant||!this.variant.available)return;const form=document.createElement('form');form.method='post';form.action=buy?'/cart/add':'/cart/add';form.innerHTML='<input name="id" value="'+this.variant.id+'"><input name="quantity" value="'+this.qty.value+'">';if(buy)form.innerHTML+='<input name="return_to" value="/checkout">';document.body.appendChild(form);form.submit()}
+  }
+  customElements.define('techty-featured-product-{{ ai_gen_id }}',TechtyFeaturedProduct{{ ai_gen_id }});
+})();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{"name":"Techty Featured Products","settings":[{"type":"product","id":"product","label":"Product"},{"type":"range","id":"desktop_width_percent","label":"Desktop width","min":50,"max":100,"step":5,"unit":"%","default":100}],"presets":[{"name":"Techty Featured Products"}],"tag":null,"class":"techty-featured-products"}
 {% endschema %}
