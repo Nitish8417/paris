@@ -1,6 +1,222 @@
+{% doc %}
+  @prompt
+    Fix a bug in an existing custom "Rounded slideshow" block. The first slide's image does not display, and the content that renders as the first slide is actually the second slide's image/content — this looks like an off-by-one error in the slide loop or carousel index initialization. Correct the logic so all slides render in the correct order starting from the true first slide, while keeping the existing rounded corners, center alignment, and soft shadow styling intact.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-rounded-slideshow-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__track {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    border-radius: {{ block.settings.corner_radius }}px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, {{ block.settings.shadow_opacity | divided_by: 100.0 }});
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__track::-webkit-scrollbar { display: none; }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__slide {
+    position: relative;
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    overflow: hidden;
+    border-radius: {{ block.settings.corner_radius }}px;
+    background: #f4f1ff;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__image,
+  .ai-rounded-slideshow-{{ ai_gen_id }}__placeholder svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: {{ block.settings.image_ratio }};
+    object-fit: cover;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__placeholder {
+    position: relative;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__empty {
+    position: absolute;
+    inset: auto 12px 12px;
+    text-align: center;
+    color: #282828;
+    font-size: 14px;
+    background: rgba(255,255,255,.92);
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__caption {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 24px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(transparent, rgba(0,0,0,.72));
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__caption h2,
+  .ai-rounded-slideshow-{{ ai_gen_id }}__caption p { margin: 0; }
+  .ai-rounded-slideshow-{{ ai_gen_id }}__caption p { margin-top: 6px; }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #000041;
+    border-radius: 50%;
+    background: #fff;
+    color: #000041;
+    cursor: pointer;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__button:focus-visible {
+    outline: 3px solid #000041;
+    outline-offset: 3px;
+  }
+
+  .ai-rounded-slideshow-{{ ai_gen_id }}__status { color: #000041; font-size: 14px; }
+
+  @media screen and (max-width: 749px) {
+    .ai-rounded-slideshow-{{ ai_gen_id }} { width: 100%; }
+    .ai-rounded-slideshow-{{ ai_gen_id }}__caption { padding: 18px; }
+  }
+{% endstyle %}
+
+<rounded-slideshow-{{ ai_gen_id }} class="ai-rounded-slideshow-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-rounded-slideshow-{{ ai_gen_id }}__track" data-track tabindex="0" aria-label="Slideshow">
+    {% for i in (1..5) %}
+      {% liquid
+        assign image_key = 'slide_' | append: i | append: '_image'
+        assign title_key = 'slide_' | append: i | append: '_title'
+        assign text_key = 'slide_' | append: i | append: '_text'
+        assign image = block.settings[image_key]
+        assign title = block.settings[title_key]
+        assign text = block.settings[text_key]
+      %}
+      {% if image != blank or title != blank or text != blank %}
+        <div class="ai-rounded-slideshow-{{ ai_gen_id }}__slide" data-slide>
+          {% if image != blank %}
+            <img class="ai-rounded-slideshow-{{ ai_gen_id }}__image" src="{{ image | image_url: width: 2400 }}" alt="{{ image.alt | escape }}" loading="lazy" width="{{ image.width }}" height="{{ image.height }}">
+          {% else %}
+            <div class="ai-rounded-slideshow-{{ ai_gen_id }}__placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+              <div class="ai-rounded-slideshow-{{ ai_gen_id }}__empty">Add an image to slide {{ i }}</div>
+            </div>
+          {% endif %}
+          {% if title != blank or text != blank %}
+            <div class="ai-rounded-slideshow-{{ ai_gen_id }}__caption">
+              {% if title != blank %}<h2>{{ title | escape }}</h2>{% endif %}
+              {% if text != blank %}<p>{{ text | escape }}</p>{% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="ai-rounded-slideshow-{{ ai_gen_id }}__controls" aria-label="Slideshow controls">
+    <button class="ai-rounded-slideshow-{{ ai_gen_id }}__button" type="button" data-previous aria-label="Previous slide">&#8592;</button>
+    <span class="ai-rounded-slideshow-{{ ai_gen_id }}__status" data-status aria-live="polite"></span>
+    <button class="ai-rounded-slideshow-{{ ai_gen_id }}__button" type="button" data-next aria-label="Next slide">&#8594;</button>
+  </div>
+</rounded-slideshow-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    const tagName = 'rounded-slideshow-{{ ai_gen_id }}';
+    if (customElements.get(tagName)) return;
+    class RoundedSlideshow extends HTMLElement {
+      connectedCallback() {
+        this.track = this.querySelector('[data-track]');
+        this.slides = Array.from(this.querySelectorAll('[data-slide]'));
+        this.status = this.querySelector('[data-status]');
+        this.currentIndex = 0;
+        if (!this.track || !this.slides.length) {
+          this.querySelector('.ai-rounded-slideshow-{{ ai_gen_id }}__controls').hidden = true;
+          return;
+        }
+        this.updateStatus();
+        this.querySelector('[data-previous]').addEventListener('click', () => this.goTo(this.currentIndex - 1));
+        this.querySelector('[data-next]').addEventListener('click', () => this.goTo(this.currentIndex + 1));
+        this.track.addEventListener('scroll', () => {
+          const width = this.track.clientWidth;
+          if (!width) return;
+          const nextIndex = Math.round(this.track.scrollLeft / width);
+          if (nextIndex !== this.currentIndex && nextIndex >= 0 && nextIndex < this.slides.length) {
+            this.currentIndex = nextIndex;
+            this.updateStatus();
+          }
+        }, { passive: true });
+      }
+      goTo(index) {
+        this.currentIndex = (index + this.slides.length) % this.slides.length;
+        this.slides[this.currentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        this.updateStatus();
+      }
+      updateStatus() {
+        if (this.status) this.status.textContent = (this.currentIndex + 1) + ' / ' + this.slides.length;
+      }
+    }
+    customElements.define(tagName, RoundedSlideshow);
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Rounded slideshow",
+  "settings": [
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "options": [
+      { "value": "16 / 9", "label": "Wide" },
+      { "value": "4 / 3", "label": "Landscape" },
+      { "value": "1 / 1", "label": "Square" }
+    ], "default": "16 / 9" },
+    { "type": "range", "id": "corner_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "shadow_opacity", "label": "Shadow strength", "min": 0, "max": 30, "step": 5, "unit": "%", "default": 10 },
+    { "type": "header", "content": "Slide 1" },
+    { "type": "image_picker", "id": "slide_1_image", "label": "Image" },
+    { "type": "text", "id": "slide_1_title", "label": "Heading" },
+    { "type": "text", "id": "slide_1_text", "label": "Text" },
+    { "type": "header", "content": "Slide 2" },
+    { "type": "image_picker", "id": "slide_2_image", "label": "Image" },
+    { "type": "text", "id": "slide_2_title", "label": "Heading" },
+    { "type": "text", "id": "slide_2_text", "label": "Text" },
+    { "type": "header", "content": "Slide 3" },
+    { "type": "image_picker", "id": "slide_3_image", "label": "Image" },
+    { "type": "text", "id": "slide_3_title", "label": "Heading" },
+    { "type": "text", "id": "slide_3_text", "label": "Text" },
+    { "type": "header", "content": "Slide 4" },
+    { "type": "image_picker", "id": "slide_4_image", "label": "Image" },
+    { "type": "text", "id": "slide_4_title", "label": "Heading" },
+    { "type": "text", "id": "slide_4_text", "label": "Text" },
+    { "type": "header", "content": "Slide 5" },
+    { "type": "image_picker", "id": "slide_5_image", "label": "Image" },
+    { "type": "text", "id": "slide_5_title", "label": "Heading" },
+    { "type": "text", "id": "slide_5_text", "label": "Text" }
+  ],
+  "presets": [{ "name": "Rounded slideshow" }],
+  "tag": null,
+  "class": "rounded-slideshow-block"
+}
 {% endschema %}
