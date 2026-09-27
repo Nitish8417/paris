@@ -521,6 +521,33 @@
         "bottom_space_mobile": 40
       }
     },
+    "featured_collection_w89H83": {
+      "type": "featured-collection",
+      "name": "Featured Collection 3",
+      "settings": {
+        "grid_image_size": "auto",
+        "image_fit": "contain",
+        "image_background_color": "#ffffff",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Power Ready",
+        "heading_size": "h3",
+        "heading_size_mobile": "h4_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "power-banks",
+        "products_style": true,
+        "products_to_show": 14,
+        "columns_desktop": 4,
+        "btn_text": "View all",
+        "btn_link": "shopify://collections/power-banks",
+        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
     "multi_video_banner_XzJNrW": {
       "type": "multi-video-banner",
       "blocks": {
@@ -596,33 +623,6 @@
         "padding_bottom_mobile": 0
       }
     },
-    "featured_collection_w89H83": {
-      "type": "featured-collection",
-      "name": "Featured Collection 3",
-      "settings": {
-        "grid_image_size": "auto",
-        "image_fit": "contain",
-        "image_background_color": "#ffffff",
-        "enable_image_border": true,
-        "show_add_to_cart": true,
-        "heading": "Power Ready",
-        "heading_size": "h3",
-        "heading_size_mobile": "h4_mobile",
-        "heading_alignment": "left",
-        "enable_collection_title": false,
-        "collection": "power-banks",
-        "products_style": true,
-        "products_to_show": 14,
-        "columns_desktop": 4,
-        "btn_text": "View all",
-        "btn_link": "shopify://collections/power-banks",
-        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
-    },
     "featured_collection_TkqFKJ": {
       "type": "featured-collection",
       "name": "Featured Collection 5",
@@ -638,6 +638,33 @@
         "heading_alignment": "left",
         "enable_collection_title": false,
         "collection": "keyboards-mouse-accessories",
+        "products_style": true,
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "btn_text": "View All",
+        "btn_link": "",
+        "color_scheme": "",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
+    "featured_collection_g6xdCU": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "grid_image_size": "landscape",
+        "image_fit": "contain",
+        "image_background_color": "#FFFFFF",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Made for Playtime",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "kids",
         "products_style": true,
         "products_to_show": 8,
         "columns_desktop": 4,
@@ -1424,9 +1451,10 @@
     "techty_explore_cards_79rtPn",
     "1790490736d27d64ec",
     "featured_collection_eQYpkF",
-    "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
+    "multi_video_banner_XzJNrW",
     "featured_collection_TkqFKJ",
+    "featured_collection_g6xdCU",
     "parallax_4KzCAA",
     "featured_collection_FWLjdc",
     "media_grid_rHNQbG",
