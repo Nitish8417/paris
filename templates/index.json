@@ -234,7 +234,7 @@
         "collection_mECwwp": {
           "type": "collection",
           "settings": {
-            "collection": "offers",
+            "collection": "special-offers",
             "image": "shopify://shop_images/Techty_Background_1900_x_740_px_1080_x_1080_px.jpg",
             "heading": ""
           }
