@@ -392,13 +392,10 @@
         "pad_bottom": 35
       }
     },
-    "179025429037efe8ec": {
-      "type": "_blocks",
-      "settings": {}
-    },
     "featured_collection_7WcCJR": {
       "type": "featured-collection",
       "custom_css": [],
+      "name": "Featured Collection 1",
       "settings": {
         "grid_image_size": "auto",
         "image_fit": "cover",
@@ -421,6 +418,33 @@
         "bottom_space_desktop": 80,
         "top_space_mobile": 25,
         "bottom_space_mobile": 25
+      }
+    },
+    "featured_collection_eQYpkF": {
+      "type": "featured-collection",
+      "name": "Featured Collection 2",
+      "settings": {
+        "grid_image_size": "square",
+        "image_fit": "contain",
+        "image_background_color": "#FFFFFF",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Enhance Every Drive",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "car-mobile-accessories",
+        "products_style": true,
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "btn_text": "View All",
+        "btn_link": "",
+        "color_scheme": "",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
       }
     },
     "1790490736d27d64ec": {
@@ -458,34 +482,8 @@
       "block_order": [
         "ai_gen_block_1a62e7f_WXiqh7"
       ],
+      "name": "Rounded Slideshow",
       "settings": {}
-    },
-    "featured_collection_eQYpkF": {
-      "type": "featured-collection",
-      "name": "t:sections.featured_collection.presets.name",
-      "settings": {
-        "grid_image_size": "square",
-        "image_fit": "contain",
-        "image_background_color": "#FFFFFF",
-        "enable_image_border": true,
-        "show_add_to_cart": true,
-        "heading": "Enhance Every Drive",
-        "heading_size": "h2",
-        "heading_size_mobile": "h3_mobile",
-        "heading_alignment": "left",
-        "enable_collection_title": false,
-        "collection": "car-mobile-accessories",
-        "products_style": true,
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "btn_text": "View All",
-        "btn_link": "",
-        "color_scheme": "",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
     },
     "multi_video_banner_XzJNrW": {
       "type": "multi-video-banner",
@@ -535,7 +533,7 @@
         "video_KEqnBX",
         "video_GKE9fH"
       ],
-      "name": "YouTube video banner",
+      "name": "YouTube Video Banner",
       "settings": {
         "display_mode": "slider",
         "inner_width": "full",
@@ -564,6 +562,7 @@
     },
     "featured_collection_w89H83": {
       "type": "featured-collection",
+      "name": "Featured Collection 3",
       "settings": {
         "grid_image_size": "auto",
         "image_fit": "contain",
@@ -810,7 +809,7 @@
     },
     "featured_collection_Lrjbtf": {
       "type": "featured-collection",
-      "name": "t:sections.featured_collection.presets.name",
+      "name": "Featured Collection 4",
       "settings": {
         "grid_image_size": "square",
         "image_fit": "cover",
@@ -833,21 +832,6 @@
         "bottom_space_desktop": 80,
         "top_space_mobile": 25,
         "bottom_space_mobile": 40
-      }
-    },
-    "slideshow_hmng4R": {
-      "type": "slideshow",
-      "name": "t:sections.slideshow.presets.name",
-      "settings": {
-        "layout_type": "fullwidth",
-        "desktop_height": "slider-custom",
-        "desktop_custom_height": 700,
-        "mobile_height": "mobile-slider-custom",
-        "mobile_custom_height": 500,
-        "rotate": false,
-        "interval": 5,
-        "transition": "swipe",
-        "controls": "number"
       }
     },
     "parallax_hmHXrH": {
@@ -935,6 +919,7 @@
         "ai_gen_block_f08f8ee_hYWc8M",
         "ai_gen_block_5bed7a6_zPGnbw"
       ],
+      "name": "Trending Featured Products",
       "settings": {}
     },
     "rich_text_yi96Lj": {
@@ -1074,7 +1059,7 @@
         "testimonial_TQg9iX",
         "testimonial_LVjeXL"
       ],
-      "name": "Techty testimonials",
+      "name": "Techty Testimonials",
       "settings": {
         "show_editor_note": false,
         "eyebrow": "Customer stories",
@@ -1325,45 +1310,6 @@
         "top_space_mobile": 50,
         "bottom_space_mobile": 50
       }
-    },
-    "1790250658af0c4015": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_8ce77ed_N4zRkP": {
-          "type": "ai_gen_block_8ce77ed",
-          "settings": {
-            "benefit_1_label": "Secure and Flexible Payment Options",
-            "benefit_1_icon": "payment",
-            "benefit_2_label": "Genuine Products",
-            "benefit_2_icon": "shield",
-            "benefit_3_label": "1–2 Days Delivery",
-            "benefit_3_icon": "delivery",
-            "benefit_4_label": "Pre-order Available",
-            "benefit_4_icon": "calendar",
-            "desktop_width_percent": 100,
-            "item_gap": 45,
-            "vertical_padding": 15,
-            "mobile_padding": 20,
-            "background_color": "#e5e5f5",
-            "text_color": "#010133",
-            "icon_color": "#010133",
-            "icon_background": "#f4f1ff",
-            "icon_border": "#dcd6f5",
-            "icon_shadow": "#dcd6f5",
-            "accent_color": "#b9a7ff",
-            "icon_size": 40,
-            "mobile_icon_size": 32,
-            "text_size": 13,
-            "mobile_text_size": 12,
-            "letter_spacing": 0.5
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_8ce77ed_N4zRkP"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -1371,22 +1317,19 @@
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
     "techty_explore_cards_79rtPn",
-    "179025429037efe8ec",
     "featured_collection_7WcCJR",
-    "1790490736d27d64ec",
     "featured_collection_eQYpkF",
+    "1790490736d27d64ec",
     "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
     "parallax_4KzCAA",
     "featured_collection_FWLjdc",
     "media_grid_rHNQbG",
     "featured_collection_Lrjbtf",
-    "slideshow_hmng4R",
     "parallax_hmHXrH",
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
-    "logo_list_9UqKFM",
-    "1790250658af0c4015"
+    "logo_list_9UqKFM"
   ]
 }
