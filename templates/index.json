@@ -1364,10 +1364,6 @@
         "ai_gen_block_8ce77ed_N4zRkP"
       ],
       "settings": {}
-    },
-    "1790489811710a20b7": {
-      "type": "_blocks",
-      "settings": {}
     }
   },
   "order": [
@@ -1390,8 +1386,7 @@
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
-    "1790250658af0c4015",
     "logo_list_9UqKFM",
-    "1790489811710a20b7"
+    "1790250658af0c4015"
   ]
 }
