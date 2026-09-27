@@ -341,6 +341,61 @@
         "bottom_space_mobile": 25
       }
     },
+    "featured_collection_7WcCJR": {
+      "type": "featured-collection",
+      "custom_css": [],
+      "name": "Featured Collection 1",
+      "settings": {
+        "grid_image_size": "auto",
+        "image_fit": "cover",
+        "image_background_color": "#ffffff",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Sound Check",
+        "heading_size": "h3",
+        "heading_size_mobile": "h4_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "headphones",
+        "products_style": true,
+        "products_to_show": 10,
+        "columns_desktop": 4,
+        "btn_text": "View All",
+        "btn_link": "shopify://collections/content-creator-kit",
+        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 25,
+        "bottom_space_mobile": 25
+      }
+    },
+    "featured_collection_TkqFKJ": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "grid_image_size": "square",
+        "image_fit": "contain",
+        "image_background_color": "#FFFFFF",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Level Up Your Desk",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "keyboards-mouse-accessories",
+        "products_style": true,
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "btn_text": "View All",
+        "btn_link": "",
+        "color_scheme": "",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
     "techty_explore_cards_79rtPn": {
       "type": "techty-explore-cards",
       "blocks": {
@@ -399,34 +454,6 @@
         "width": "100%",
         "pad_top": 30,
         "pad_bottom": 35
-      }
-    },
-    "featured_collection_7WcCJR": {
-      "type": "featured-collection",
-      "custom_css": [],
-      "name": "Featured Collection 1",
-      "settings": {
-        "grid_image_size": "auto",
-        "image_fit": "cover",
-        "image_background_color": "#ffffff",
-        "enable_image_border": true,
-        "show_add_to_cart": true,
-        "heading": "Sound Check",
-        "heading_size": "h3",
-        "heading_size_mobile": "h4_mobile",
-        "heading_alignment": "left",
-        "enable_collection_title": false,
-        "collection": "headphones",
-        "products_style": true,
-        "products_to_show": 10,
-        "columns_desktop": 4,
-        "btn_text": "View All",
-        "btn_link": "shopify://collections/content-creator-kit",
-        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 25,
-        "bottom_space_mobile": 25
       }
     },
     "1790490736d27d64ec": {
@@ -1365,8 +1392,9 @@
     "blocks_qYUEmD",
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
-    "techty_explore_cards_79rtPn",
     "featured_collection_7WcCJR",
+    "featured_collection_TkqFKJ",
+    "techty_explore_cards_79rtPn",
     "1790490736d27d64ec",
     "featured_collection_eQYpkF",
     "multi_video_banner_XzJNrW",
