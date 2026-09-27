@@ -1,0 +1,61 @@
+{% doc %}
+  @prompt
+    The existing custom "Rounded slideshow" block (class rounded-slideshow-block) has two separate, conflicting CSS style blocks defining the same classes (e.g. two different rules for .ai-slideshow-{{ ai_gen_id }}__caption, .ai-slideshow-{{ ai_gen_id }}__viewport, .ai-slideshow-{{ ai_gen_id }}__button, etc — one inside a {% style %} tag, another inside a plain <style> tag). Remove this duplication and consolidate into a single, clean style definition. Preserve the most recently requested design: rounded corners and soft shadow on the container (using the corner_radius, shadow_offset, shadow_softness, shadow_opacity settings), center alignment of the slideshow block itself, a transparent caption background, bold and slightly larger caption text, and the caption text positioned at the bottom-left of each slide (not centered, not spanning full width). Keep all existing functionality (slide navigation buttons, dots, links, placeholder image) working exactly as before., wHEN I add the link it is not showing , The slide link does not work. And can you make the slide image - 1350 x 480 px, Do we need a shop now. Cant we make the container clickable , I want the left-right arrows in the middle not the bottom , Can you add 2 more image options 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% style %}
+.rounded-slideshow-block-{{ ai_gen_id }}{display:block;width:{{ block.settings.desktop_width_percent }}%;max-width:100%;margin:0 auto}
+.ai-slideshow-{{ ai_gen_id }}__viewport{position:relative;overflow:hidden;width:100%;aspect-ratio:1350/480;border-radius:{{ block.settings.corner_radius }}px;box-shadow:0 {{ block.settings.shadow_offset }}px {{ block.settings.shadow_softness }}px rgba(0,0,0,{{ block.settings.shadow_opacity | divided_by:100.0 }})}
+.ai-slideshow-{{ ai_gen_id }}__track{display:flex;width:100%;height:100%;transition:transform .35s ease}
+.ai-slideshow-{{ ai_gen_id }}__slide{position:relative;flex:0 0 100%;min-width:0;height:100%}
+.ai-slideshow-{{ ai_gen_id }}__media{display:block;width:100%;height:100%;object-fit:cover}
+.ai-slideshow-{{ ai_gen_id }}__placeholder{position:relative;width:100%;height:100%;background:#f1f1f1}
+.ai-slideshow-{{ ai_gen_id }}__placeholder svg{display:block;width:100%;height:100%}
+.ai-slideshow-{{ ai_gen_id }}__empty-state{position:absolute;right:16px;bottom:16px;left:16px;color:#333;font-size:14px;text-align:center;pointer-events:none}
+.ai-slideshow-{{ ai_gen_id }}__caption{position:absolute;bottom:20px;left:20px;z-index:1;max-width:calc(100% - 40px);margin:0;color:{{ block.settings.caption_color }};background:transparent;font-size:{{ block.settings.caption_size }}px;font-weight:700;line-height:1.3;text-align:left;text-shadow:0 1px 4px rgba(0,0,0,.75);pointer-events:none}
+.ai-slideshow-{{ ai_gen_id }}__slide-link{position:absolute;inset:0;z-index:2;display:block;cursor:pointer}
+.ai-slideshow-{{ ai_gen_id }}__slide-link:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+.ai-slideshow-{{ ai_gen_id }}__controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px}
+.ai-slideshow-{{ ai_gen_id }}__button{position:absolute;top:50%;z-index:3;display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;padding:0;border:1px solid {{ block.settings.control_color }};border-radius:50%;color:{{ block.settings.control_color }};background:rgba(255,255,255,.9);cursor:pointer;transform:translateY(-50%)}
+.ai-slideshow-{{ ai_gen_id }}__button[data-slideshow-prev]{left:16px}
+.ai-slideshow-{{ ai_gen_id }}__button[data-slideshow-next]{right:16px}
+.ai-slideshow-{{ ai_gen_id }}__button:hover{color:{{ block.settings.control_hover_color }};background:{{ block.settings.control_color }}}
+.ai-slideshow-{{ ai_gen_id }}__button:focus-visible,.ai-slideshow-{{ ai_gen_id }}__dot:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.ai-slideshow-{{ ai_gen_id }}__button svg{width:18px;height:18px}
+.ai-slideshow-{{ ai_gen_id }}__dots{display:flex;align-items:center;justify-content:center;gap:8px}
+.ai-slideshow-{{ ai_gen_id }}__dot{width:10px;height:10px;padding:0;border:1px solid {{ block.settings.control_color }};border-radius:50%;background:transparent;cursor:pointer}
+.ai-slideshow-{{ ai_gen_id }}__dot[aria-current=true]{background:{{ block.settings.control_color }}}
+@media screen and (max-width:749px){.rounded-slideshow-block-{{ ai_gen_id }}{width:100%}.ai-slideshow-{{ ai_gen_id }}__caption{bottom:14px;left:14px;max-width:calc(100% - 28px);font-size:{{ block.settings.caption_size | times:0.9 }}px}.ai-slideshow-{{ ai_gen_id }}__button[data-slideshow-prev]{left:8px}.ai-slideshow-{{ ai_gen_id }}__button[data-slideshow-next]{right:8px}}
+{% endstyle %}
+<rounded-slideshow-{{ ai_gen_id }} class="rounded-slideshow-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+<div class="ai-slideshow-{{ ai_gen_id }}__viewport">
+<div class="ai-slideshow-{{ ai_gen_id }}__track" data-slideshow-track>
+{% for i in (1..5) %}
+{% liquid
+assign image_key='slide_' | append:i | append:'_image'
+assign caption_key='slide_' | append:i | append:'_caption'
+assign link_key='slide_' | append:i | append:'_link'
+assign image=block.settings[image_key]
+assign caption=block.settings[caption_key]
+assign slide_link=block.settings[link_key]
+%}
+{% if image != blank or caption != blank or slide_link != blank or forloop.first %}
+<div class="ai-slideshow-{{ ai_gen_id }}__slide" data-slideshow-slide>
+{% if image != blank %}<img class="ai-slideshow-{{ ai_gen_id }}__media" src="{{ image | image_url: width:2000 }}" alt="{{ image.alt | escape }}" loading="lazy" width="{{ image.width }}" height="{{ image.height }}">{% else %}<div class="ai-slideshow-{{ ai_gen_id }}__placeholder">{{ 'image' | placeholder_svg_tag }}{% if forloop.first %}<span class="ai-slideshow-{{ ai_gen_id }}__empty-state">Add an image to this slide</span>{% endif %}</div>{% endif %}
+{% if caption != blank %}<p class="ai-slideshow-{{ ai_gen_id }}__caption">{{ caption | escape }}</p>{% endif %}
+{% if slide_link != blank %}<a class="ai-slideshow-{{ ai_gen_id }}__slide-link" href="{{ slide_link | escape }}" aria-label="{{ caption | default:'Open slide link' | escape }}"></a>{% endif %}
+</div>
+{% endif %}
+{% endfor %}
+</div>
+<button class="ai-slideshow-{{ ai_gen_id }}__button" type="button" data-slideshow-prev aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+<button class="ai-slideshow-{{ ai_gen_id }}__button" type="button" data-slideshow-next aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="ai-slideshow-{{ ai_gen_id }}__controls" aria-label="Slideshow controls"><div class="ai-slideshow-{{ ai_gen_id }}__dots" data-slideshow-dots></div></div>
+</rounded-slideshow-{{ ai_gen_id }}>
+<script>
+(function(){const tagName='rounded-slideshow-{{ ai_gen_id }}';if(customElements.get(tagName))return;class RoundedSlideshow extends HTMLElement{connectedCallback(){this.track=this.querySelector('[data-slideshow-track]');this.slides=Array.from(this.querySelectorAll('[data-slideshow-slide]'));this.dots=this.querySelector('[data-slideshow-dots]');this.index=0;if(!this.track||!this.slides.length||!this.dots)return;this.slides.forEach((slide,index)=>{const dot=document.createElement('button');dot.type='button';dot.className='ai-slideshow-{{ ai_gen_id }}__dot';dot.setAttribute('aria-label','Go to slide '+(index+1));dot.addEventListener('click',()=>this.showSlide(index));this.dots.appendChild(dot)});this.querySelector('[data-slideshow-prev]').addEventListener('click',()=>this.showSlide(this.index-1));this.querySelector('[data-slideshow-next]').addEventListener('click',()=>this.showSlide(this.index+1));this.showSlide(0)}showSlide(index){this.index=(index+this.slides.length)%this.slides.length;this.track.style.transform='translateX(-'+this.index*100+'%)';Array.from(this.dots.children).forEach((dot,dotIndex)=>{if(dotIndex===this.index)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')})}}customElements.define(tagName,RoundedSlideshow)})();
+</script>
+{% schema %}
+{"name":"Rounded slideshow","settings":[{"type":"range","id":"desktop_width_percent","label":"Desktop width","min":50,"max":100,"step":5,"unit":"%","default":100},{"type":"header","content":"Slides"},{"type":"image_picker","id":"slide_1_image","label":"Slide 1 image"},{"type":"text","id":"slide_1_caption","label":"Slide 1 caption"},{"type":"url","id":"slide_1_link","label":"Slide 1 link"},{"type":"image_picker","id":"slide_2_image","label":"Slide 2 image"},{"type":"text","id":"slide_2_caption","label":"Slide 2 caption"},{"type":"url","id":"slide_2_link","label":"Slide 2 link"},{"type":"image_picker","id":"slide_3_image","label":"Slide 3 image"},{"type":"text","id":"slide_3_caption","label":"Slide 3 caption"},{"type":"url","id":"slide_3_link","label":"Slide 3 link"},{"type":"image_picker","id":"slide_4_image","label":"Slide 4 image"},{"type":"text","id":"slide_4_caption","label":"Slide 4 caption"},{"type":"url","id":"slide_4_link","label":"Slide 4 link"},{"type":"image_picker","id":"slide_5_image","label":"Slide 5 image"},{"type":"text","id":"slide_5_caption","label":"Slide 5 caption"},{"type":"url","id":"slide_5_link","label":"Slide 5 link"},{"type":"header","content":"Appearance"},{"type":"range","id":"corner_radius","label":"Corner radius","min":0,"max":40,"step":2,"unit":"px","default":16},{"type":"range","id":"shadow_offset","label":"Shadow offset","min":0,"max":20,"step":1,"unit":"px","default":4},{"type":"range","id":"shadow_softness","label":"Shadow softness","min":0,"max":40,"step":2,"unit":"px","default":16},{"type":"range","id":"shadow_opacity","label":"Shadow opacity","min":0,"max":100,"step":5,"unit":"%","default":15},{"type":"range","id":"caption_size","label":"Caption size","min":14,"max":32,"step":2,"unit":"px","default":20},{"type":"color","id":"caption_color","label":"Caption text","default":"#ffffff"},{"type":"color","id":"control_color","label":"Controls","default":"#000000"},{"type":"color","id":"control_hover_color","label":"Control hover","default":"#ffffff"}],"presets":[{"name":"Rounded slideshow"}],"tag":null,"class":"rounded-slideshow-block"}
+{% endschema %}

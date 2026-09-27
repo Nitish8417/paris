@@ -433,42 +433,6 @@
     },
     "179025429037efe8ec": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_3f77539_7pNnkm": {
-          "type": "ai_gen_block_3f77539",
-          "settings": {
-            "slide_1_image": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
-            "slide_1_caption": "",
-            "slide_1_link": "",
-            "slide_2_image": "shopify://shop_images/asiwo-mako-electric-swimming-kickboard-yellow-swimmer-eboarders.jpg",
-            "slide_2_caption": "",
-            "slide_2_link": "shopify://products/asiwo-mako-electric-swimming-kickboard",
-            "slide_3_image": "shopify://shop_images/image_37c90e69.jpg",
-            "slide_3_caption": "",
-            "slide_3_link": "",
-            "desktop_width_percent": 95,
-            "corner_radius": 34,
-            "shadow_softness": 22,
-            "shadow_offset": 10,
-            "shadow_opacity": 35,
-            "image_ratio": "16 / 7",
-            "background_color": "#ffffff",
-            "placeholder_color": "#f1f1f1",
-            "placeholder_text_color": "#333333",
-            "caption_background": "#000000",
-            "caption_text_color": "#ffffff",
-            "caption_radius": 8,
-            "control_background": "#ffffff",
-            "control_hover_background": "#f1f1f1",
-            "control_color": "#000000",
-            "dot_color": "#000000"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_3f77539_7pNnkm"
-      ],
       "settings": {}
     },
     "featured_collection_7WcCJR": {
@@ -496,6 +460,70 @@
         "bottom_space_desktop": 80,
         "top_space_mobile": 25,
         "bottom_space_mobile": 25
+      }
+    },
+    "1790490736d27d64ec": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1a62e7f_WXiqh7": {
+          "type": "ai_gen_block_1a62e7f",
+          "settings": {
+            "desktop_width_percent": 95,
+            "slide_1_image": "shopify://shop_images/techty_web_banners_10.jpg",
+            "slide_1_caption": "Promate Urban-X",
+            "slide_1_link": "shopify://products/promate-urban-x-tech-pouch-with-biometric-lock-apple-find-my",
+            "slide_2_image": "shopify://shop_images/techty_web_banners_12.jpg",
+            "slide_2_caption": "Asiwo Mako",
+            "slide_2_link": "shopify://products/asiwo-mako-electric-swimming-kickboard",
+            "slide_3_caption": "",
+            "slide_3_link": "",
+            "slide_4_image": "shopify://shop_images/techty_web_banners_11.jpg",
+            "slide_4_caption": "Lefeet Seagull C1",
+            "slide_4_link": "shopify://products/lefeet-seagull-c1-modular-water-scooter",
+            "slide_5_caption": "",
+            "slide_5_link": "",
+            "corner_radius": 20,
+            "shadow_offset": 5,
+            "shadow_softness": 18,
+            "shadow_opacity": 15,
+            "caption_size": 20,
+            "caption_color": "#ffffff",
+            "control_color": "#000000",
+            "control_hover_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1a62e7f_WXiqh7"
+      ],
+      "settings": {}
+    },
+    "featured_collection_eQYpkF": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "grid_image_size": "square",
+        "image_fit": "contain",
+        "image_background_color": "#FFFFFF",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Enhance Every Drive",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "car-mobile-accessories",
+        "products_style": true,
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "btn_text": "View All",
+        "btn_link": "",
+        "color_scheme": "",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
       }
     },
     "multi_video_banner_XzJNrW": {
@@ -645,6 +673,33 @@
         "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
         "bg_color_opacity": "#000000",
         "overlay_opacity": 64
+      }
+    },
+    "featured_collection_FWLjdc": {
+      "type": "featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "grid_image_size": "square",
+        "image_fit": "contain",
+        "image_background_color": "#FFFFFF",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Track Every Move",
+        "heading_size": "h2",
+        "heading_size_mobile": "h3_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "smart-watches-fitness-trackers",
+        "products_style": true,
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "btn_text": "View All",
+        "btn_link": "",
+        "color_scheme": "",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
       }
     },
     "media_grid_rHNQbG": {
@@ -1309,6 +1364,10 @@
         "top_space_mobile": 50,
         "bottom_space_mobile": 50
       }
+    },
+    "1790489811710a20b7": {
+      "type": "_blocks",
+      "settings": {}
     }
   },
   "order": [
@@ -1319,9 +1378,12 @@
     "techty_explore_cards_79rtPn",
     "179025429037efe8ec",
     "featured_collection_7WcCJR",
+    "1790490736d27d64ec",
+    "featured_collection_eQYpkF",
     "multi_video_banner_XzJNrW",
     "featured_collection_w89H83",
     "parallax_4KzCAA",
+    "featured_collection_FWLjdc",
     "media_grid_rHNQbG",
     "featured_collection_Lrjbtf",
     "slideshow_hmng4R",
@@ -1329,6 +1391,7 @@
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
-    "logo_list_9UqKFM"
+    "logo_list_9UqKFM",
+    "1790489811710a20b7"
   ]
 }
