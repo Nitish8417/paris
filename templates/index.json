@@ -371,7 +371,7 @@
     },
     "featured_collection_p4wwEa": {
       "type": "featured-collection",
-      "name": "t:sections.featured_collection.presets.name",
+      "name": "Featured Collection 6",
       "settings": {
         "grid_image_size": "square",
         "image_fit": "contain",
@@ -383,7 +383,7 @@
         "heading_size_mobile": "h3_mobile",
         "heading_alignment": "left",
         "enable_collection_title": false,
-        "collection": "massagers",
+        "collection": "kitchen-gadgets",
         "products_style": true,
         "products_to_show": 8,
         "columns_desktop": 4,
