@@ -332,45 +332,6 @@
         "bottom_space_mobile": 25
       }
     },
-    "1790250658af0c4015": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_8ce77ed_N4zRkP": {
-          "type": "ai_gen_block_8ce77ed",
-          "settings": {
-            "benefit_1_label": "Secure and Flexible Payment Options",
-            "benefit_1_icon": "payment",
-            "benefit_2_label": "Genuine Products",
-            "benefit_2_icon": "shield",
-            "benefit_3_label": "1–2 Days Delivery",
-            "benefit_3_icon": "delivery",
-            "benefit_4_label": "Pre-order Available",
-            "benefit_4_icon": "calendar",
-            "desktop_width_percent": 100,
-            "item_gap": 45,
-            "vertical_padding": 15,
-            "mobile_padding": 20,
-            "background_color": "#e5e5f5",
-            "text_color": "#010133",
-            "icon_color": "#010133",
-            "icon_background": "#f4f1ff",
-            "icon_border": "#dcd6f5",
-            "icon_shadow": "#dcd6f5",
-            "accent_color": "#b9a7ff",
-            "icon_size": 40,
-            "mobile_icon_size": 32,
-            "text_size": 13,
-            "mobile_text_size": 12,
-            "letter_spacing": 0.5
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_8ce77ed_N4zRkP"
-      ],
-      "settings": {}
-    },
     "techty_explore_cards_79rtPn": {
       "type": "techty-explore-cards",
       "blocks": {
@@ -1365,6 +1326,45 @@
         "bottom_space_mobile": 50
       }
     },
+    "1790250658af0c4015": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8ce77ed_N4zRkP": {
+          "type": "ai_gen_block_8ce77ed",
+          "settings": {
+            "benefit_1_label": "Secure and Flexible Payment Options",
+            "benefit_1_icon": "payment",
+            "benefit_2_label": "Genuine Products",
+            "benefit_2_icon": "shield",
+            "benefit_3_label": "1–2 Days Delivery",
+            "benefit_3_icon": "delivery",
+            "benefit_4_label": "Pre-order Available",
+            "benefit_4_icon": "calendar",
+            "desktop_width_percent": 100,
+            "item_gap": 45,
+            "vertical_padding": 15,
+            "mobile_padding": 20,
+            "background_color": "#e5e5f5",
+            "text_color": "#010133",
+            "icon_color": "#010133",
+            "icon_background": "#f4f1ff",
+            "icon_border": "#dcd6f5",
+            "icon_shadow": "#dcd6f5",
+            "accent_color": "#b9a7ff",
+            "icon_size": 40,
+            "mobile_icon_size": 32,
+            "text_size": 13,
+            "mobile_text_size": 12,
+            "letter_spacing": 0.5
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8ce77ed_N4zRkP"
+      ],
+      "settings": {}
+    },
     "1790489811710a20b7": {
       "type": "_blocks",
       "settings": {}
@@ -1374,7 +1374,6 @@
     "blocks_qYUEmD",
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
-    "1790250658af0c4015",
     "techty_explore_cards_79rtPn",
     "179025429037efe8ec",
     "featured_collection_7WcCJR",
@@ -1391,6 +1390,7 @@
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
     "techty_testimonials_hrDT7G",
+    "1790250658af0c4015",
     "logo_list_9UqKFM",
     "1790489811710a20b7"
   ]
