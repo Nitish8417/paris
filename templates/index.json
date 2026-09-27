@@ -652,7 +652,7 @@
     },
     "featured_collection_g6xdCU": {
       "type": "featured-collection",
-      "name": "t:sections.featured_collection.presets.name",
+      "name": "Featured Collection 6",
       "settings": {
         "grid_image_size": "landscape",
         "image_fit": "contain",
