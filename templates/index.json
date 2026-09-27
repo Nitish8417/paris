@@ -46,11 +46,11 @@
             "font_family": "heading",
             "description": "",
             "description_size": "textMedium",
-            "content_position": "down-start",
-            "content_alignment": "left",
+            "content_position": "mid-center",
+            "content_alignment": "center",
             "content_width": "medium",
-            "mobile_content_position": "down-start",
-            "mobile_content_alignment": "left",
+            "mobile_content_position": "mid-center",
+            "mobile_content_alignment": "center",
             "btn_text_1": "Shop Now",
             "btn_link_1": "shopify://products/grit-apex-smart-watch-with-2-straps",
             "btn_size_1": "medium",
@@ -282,7 +282,7 @@
         "collection_Q6aWhN": {
           "type": "collection",
           "settings": {
-            "collection": "personal-care-fitness",
+            "collection": "personal-care-grooming",
             "image": "shopify://shop_images/HomeScreen_Banner_-_PB_2.jpg",
             "heading": "Personal Care"
           }
@@ -350,7 +350,7 @@
             "item_gap": 45,
             "vertical_padding": 15,
             "mobile_padding": 20,
-            "background_color": "#E5E5F5",
+            "background_color": "#e5e5f5",
             "text_color": "#010133",
             "icon_color": "#010133",
             "icon_background": "#f4f1ff",
@@ -439,9 +439,12 @@
           "settings": {
             "slide_1_image": "shopify://shop_images/maxresdefault_ef693c6a-d1e6-4c26-98aa-3f3b0f115983.jpg",
             "slide_1_caption": "",
+            "slide_1_link": "",
             "slide_2_image": "shopify://shop_images/asiwo-mako-electric-swimming-kickboard-yellow-swimmer-eboarders.jpg",
             "slide_2_caption": "",
+            "slide_2_link": "",
             "slide_3_caption": "",
+            "slide_3_link": "",
             "desktop_width_percent": 95,
             "corner_radius": 34,
             "shadow_softness": 22,
