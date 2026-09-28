@@ -369,13 +369,51 @@
         "bottom_space_mobile": 25
       }
     },
+    "1790490736d27d64ec": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1a62e7f_WXiqh7": {
+          "type": "ai_gen_block_1a62e7f",
+          "settings": {
+            "desktop_width_percent": 95,
+            "slide_1_image": "shopify://shop_images/techty_web_banners_10.jpg",
+            "slide_1_caption": "Promate Urban-X",
+            "slide_1_link": "shopify://products/promate-urban-x-tech-pouch-with-biometric-lock-charging-kit",
+            "slide_2_image": "shopify://shop_images/techty_web_banners_12.jpg",
+            "slide_2_caption": "Asiwo Mako",
+            "slide_2_link": "shopify://products/asiwo-mako-electric-swimming-kickboard",
+            "slide_3_caption": "",
+            "slide_3_link": "",
+            "slide_4_image": "shopify://shop_images/techty_web_banners_11.jpg",
+            "slide_4_caption": "Lefeet Seagull C1",
+            "slide_4_link": "shopify://products/lefeet-seagull-c1-modular-water-scooter",
+            "slide_5_caption": "",
+            "slide_5_link": "",
+            "corner_radius": 20,
+            "shadow_offset": 5,
+            "shadow_softness": 18,
+            "shadow_opacity": 15,
+            "caption_size": 20,
+            "caption_color": "#ffffff",
+            "control_color": "#000000",
+            "control_hover_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1a62e7f_WXiqh7"
+      ],
+      "name": "Rounded Slideshow",
+      "settings": {}
+    },
     "featured_collection_p4wwEa": {
       "type": "featured-collection",
       "name": "Featured Collection 6",
       "settings": {
         "grid_image_size": "square",
         "image_fit": "contain",
-        "image_background_color": "#FFFFFF",
+        "image_background_color": "#ffffff",
         "enable_image_border": true,
         "show_add_to_cart": true,
         "heading": "Good Food Has Never Been This Easy",
@@ -456,51 +494,13 @@
         "pad_bottom": 35
       }
     },
-    "1790490736d27d64ec": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_1a62e7f_WXiqh7": {
-          "type": "ai_gen_block_1a62e7f",
-          "settings": {
-            "desktop_width_percent": 95,
-            "slide_1_image": "shopify://shop_images/techty_web_banners_10.jpg",
-            "slide_1_caption": "Promate Urban-X",
-            "slide_1_link": "shopify://products/promate-urban-x-tech-pouch-with-biometric-lock-charging-kit",
-            "slide_2_image": "shopify://shop_images/techty_web_banners_12.jpg",
-            "slide_2_caption": "Asiwo Mako",
-            "slide_2_link": "shopify://products/asiwo-mako-electric-swimming-kickboard",
-            "slide_3_caption": "",
-            "slide_3_link": "",
-            "slide_4_image": "shopify://shop_images/techty_web_banners_11.jpg",
-            "slide_4_caption": "Lefeet Seagull C1",
-            "slide_4_link": "shopify://products/lefeet-seagull-c1-modular-water-scooter",
-            "slide_5_caption": "",
-            "slide_5_link": "",
-            "corner_radius": 20,
-            "shadow_offset": 5,
-            "shadow_softness": 18,
-            "shadow_opacity": 15,
-            "caption_size": 20,
-            "caption_color": "#ffffff",
-            "control_color": "#000000",
-            "control_hover_color": "#ffffff"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_1a62e7f_WXiqh7"
-      ],
-      "name": "Rounded Slideshow",
-      "settings": {}
-    },
     "featured_collection_eQYpkF": {
       "type": "featured-collection",
       "name": "Featured Collection 2",
       "settings": {
         "grid_image_size": "square",
         "image_fit": "contain",
-        "image_background_color": "#FFFFFF",
+        "image_background_color": "#ffffff",
         "enable_image_border": true,
         "show_add_to_cart": true,
         "heading": "Enhance Every Drive",
@@ -629,7 +629,7 @@
       "settings": {
         "grid_image_size": "square",
         "image_fit": "contain",
-        "image_background_color": "#FFFFFF",
+        "image_background_color": "#ffffff",
         "enable_image_border": true,
         "show_add_to_cart": true,
         "heading": "Level Up Your Desk",
@@ -656,7 +656,7 @@
       "settings": {
         "grid_image_size": "landscape",
         "image_fit": "contain",
-        "image_background_color": "#FFFFFF",
+        "image_background_color": "#ffffff",
         "enable_image_border": true,
         "show_add_to_cart": true,
         "heading": "Made for Playtime",
@@ -731,7 +731,7 @@
       "settings": {
         "grid_image_size": "square",
         "image_fit": "contain",
-        "image_background_color": "#FFFFFF",
+        "image_background_color": "#ffffff",
         "enable_image_border": true,
         "show_add_to_cart": true,
         "heading": "Track Every Move",
@@ -1447,9 +1447,9 @@
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
     "featured_collection_7WcCJR",
+    "1790490736d27d64ec",
     "featured_collection_p4wwEa",
     "techty_explore_cards_79rtPn",
-    "1790490736d27d64ec",
     "featured_collection_eQYpkF",
     "featured_collection_w89H83",
     "multi_video_banner_XzJNrW",
