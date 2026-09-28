@@ -228,6 +228,34 @@
         "controls": "arrows"
       }
     },
+    "featured_collection_7WcCJR": {
+      "type": "featured-collection",
+      "custom_css": [],
+      "name": "Featured Collection 1",
+      "settings": {
+        "grid_image_size": "auto",
+        "image_fit": "cover",
+        "image_background_color": "#ffffff",
+        "enable_image_border": true,
+        "show_add_to_cart": true,
+        "heading": "Sound Check",
+        "heading_size": "h3",
+        "heading_size_mobile": "h4_mobile",
+        "heading_alignment": "left",
+        "enable_collection_title": false,
+        "collection": "headphones",
+        "products_style": true,
+        "products_to_show": 10,
+        "columns_desktop": 4,
+        "btn_text": "View All",
+        "btn_link": "shopify://collections/content-creator-kit",
+        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
+        "top_space_desktop": 80,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 25,
+        "bottom_space_mobile": 25
+      }
+    },
     "collection_carousel_ikXhD7": {
       "type": "collection-carousel",
       "blocks": {
@@ -337,34 +365,6 @@
         "arrow_color": "#f4f1ff",
         "top_space_desktop": 30,
         "bottom_space_desktop": 30,
-        "top_space_mobile": 25,
-        "bottom_space_mobile": 25
-      }
-    },
-    "featured_collection_7WcCJR": {
-      "type": "featured-collection",
-      "custom_css": [],
-      "name": "Featured Collection 1",
-      "settings": {
-        "grid_image_size": "auto",
-        "image_fit": "cover",
-        "image_background_color": "#ffffff",
-        "enable_image_border": true,
-        "show_add_to_cart": true,
-        "heading": "Sound Check",
-        "heading_size": "h3",
-        "heading_size_mobile": "h4_mobile",
-        "heading_alignment": "left",
-        "enable_collection_title": false,
-        "collection": "headphones",
-        "products_style": true,
-        "products_to_show": 10,
-        "columns_desktop": 4,
-        "btn_text": "View All",
-        "btn_link": "shopify://collections/content-creator-kit",
-        "color_scheme": "scheme-2650adcd-2cb1-4453-b006-7133d808b04b",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
         "top_space_mobile": 25,
         "bottom_space_mobile": 25
       }
@@ -1446,8 +1446,8 @@
     "blocks_qYUEmD",
     "slideshow_AwDwyy",
     "collection_carousel_ikXhD7",
-    "featured_collection_7WcCJR",
     "1790490736d27d64ec",
+    "featured_collection_7WcCJR",
     "featured_collection_p4wwEa",
     "techty_explore_cards_79rtPn",
     "featured_collection_eQYpkF",
