@@ -423,7 +423,7 @@
         "enable_collection_title": false,
         "collection": "kitchen-gadgets",
         "products_style": true,
-        "products_to_show": 8,
+        "products_to_show": 16,
         "columns_desktop": 4,
         "btn_text": "View All",
         "btn_link": "",
