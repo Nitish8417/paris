@@ -498,7 +498,7 @@
       "type": "featured-collection",
       "name": "Featured Collection 2",
       "settings": {
-        "grid_image_size": "auto",
+        "grid_image_size": "portrait",
         "image_fit": "contain",
         "image_background_color": "#ffffff",
         "enable_image_border": true,
