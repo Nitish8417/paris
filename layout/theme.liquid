@@ -825,7 +825,12 @@
     });
   }
 
-  function start() { track(); load(); }
+   function start() {
+    track();
+    var path = window.location.pathname.replace(/\/$/, '');
+    if (path === BASE) return; // homepage: don't show Recently Viewed
+    load();
+  }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);
