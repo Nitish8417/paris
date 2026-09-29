@@ -498,7 +498,7 @@
       "type": "featured-collection",
       "name": "Featured Collection 2",
       "settings": {
-        "grid_image_size": "portrait",
+        "grid_image_size": "square",
         "image_fit": "contain",
         "image_background_color": "#ffffff",
         "enable_image_border": true,
@@ -511,7 +511,7 @@
         "collection": "car-mobile-accessories",
         "products_style": true,
         "products_to_show": 8,
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "btn_text": "View All",
         "btn_link": "",
         "color_scheme": "",
