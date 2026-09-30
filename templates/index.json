@@ -320,7 +320,7 @@
         "heading_size": "h4",
         "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "columns_mobile": 3,
         "card_height": 270,
         "enable_slider": true,
@@ -337,8 +337,8 @@
         "arrow_color": "#f4f1ff",
         "top_space_desktop": 30,
         "bottom_space_desktop": 30,
-        "top_space_mobile": 25,
-        "bottom_space_mobile": 25
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
       }
     },
     "1790490736d27d64ec": {
