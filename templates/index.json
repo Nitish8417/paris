@@ -321,7 +321,7 @@
         "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
         "columns_desktop": 4,
-        "columns_mobile": 2,
+        "columns_mobile": 3,
         "card_height": 270,
         "enable_slider": true,
         "infinite": true,
