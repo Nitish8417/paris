@@ -221,7 +221,7 @@
         "desktop_height": "desktop-adapt-image",
         "desktop_custom_height": 450,
         "mobile_height": "mobile-adapt-image",
-        "mobile_custom_height": 380,
+        "mobile_custom_height": 400,
         "rotate": true,
         "interval": 4,
         "transition": "swipe",
