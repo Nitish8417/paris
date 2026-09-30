@@ -1,0 +1,59 @@
+{% doc %}
+  @prompt
+    Add custom CSS/Liquid to the product page's Text block that displays "Shipping calculated at checkout" directly below the price. Make this text small (about 8px font size) and reduce the top margin/spacing so it sits tight against the price above it, on both desktop and mobile.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-shipping-note-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    font-size: 8px;
+    line-height: 1.25;
+    margin: 2px 0 0;
+    padding: 0;
+    color: inherit;
+  }
+
+  .ai-shipping-note-{{ ai_gen_id }} p {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+{% endstyle %}
+
+<div class="ai-shipping-note-{{ ai_gen_id }}" style="width: {{ block.settings.desktop_width_percent }}%;" {{ block.shopify_attributes }}>
+  {{ block.settings.shipping_text | escape }}
+</div>
+
+{% schema %}
+{
+  "name": "Shipping note",
+  "settings": [
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Shipping message",
+      "default": "Shipping calculated at checkout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping note"
+    }
+  ],
+  "tag": null,
+  "class": "shipping-note-block"
+}
+{% endschema %}
