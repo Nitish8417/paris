@@ -33,7 +33,7 @@
         "c033bf0d-321c-4c90-a67b-21ed411255b8": {
           "type": "price",
           "settings": {
-            "hide_shipping_content": true
+            "hide_shipping_content": false
           }
         },
         "warranty_custom_warantee": {
@@ -265,23 +265,6 @@
         "top_space_mobile": 25,
         "bottom_space_mobile": 25
       }
-    },
-    "1790778813346be61b": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_79c9849_3aXGbN": {
-          "type": "ai_gen_block_79c9849",
-          "settings": {
-            "shipping_text": "Shipping calculated at checkout",
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_79c9849_3aXGbN"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -290,7 +273,6 @@
     "rich_text_FQE4Qa",
     "collapsible_content_99hJfE",
     "related-products",
-    "contact_form_iMKqhm",
-    "1790778813346be61b"
+    "contact_form_iMKqhm"
   ]
 }
