@@ -598,7 +598,20 @@
         "video_qBzPrD": {
           "type": "video",
           "settings": {
-            "video": "https://www.youtube.com/watch?v=EbebFc9PHcU",
+            "video": "https://www.youtube.com/watch?v=KBNDckehs6A",
+            "heading": "",
+            "text": "",
+            "button_label": "Soundcore A30",
+            "button_link": "shopify://products/soundcore-a30-smart-anc-sleep-earbuds",
+            "content_h": "center",
+            "content_v": "bottom",
+            "text_color": "#ffffff"
+          }
+        },
+        "video_7kGdtE": {
+          "type": "video",
+          "settings": {
+            "video": "",
             "heading": "",
             "text": "",
             "button_label": "",
@@ -611,11 +624,12 @@
         "video_FQc8YV": {
           "type": "video",
           "settings": {
+            "video": "https://www.youtube.com/watch?v=XI7nlAaf4iA",
             "heading": "",
             "text": "",
-            "button_label": "",
-            "button_link": "",
-            "content_h": "left",
+            "button_label": "DJI OSMO Action 6",
+            "button_link": "shopify://products/dji-osmo-action-6-adventure-combo",
+            "content_h": "center",
             "content_v": "bottom",
             "text_color": "#ffffff"
           }
@@ -623,6 +637,7 @@
       },
       "block_order": [
         "video_qBzPrD",
+        "video_7kGdtE",
         "video_FQc8YV"
       ],
       "name": "YouTube video banner",
