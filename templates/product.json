@@ -156,34 +156,6 @@
         "bottom_space_mobile": 40
       }
     },
-    "rich_text_FQE4Qa": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_76MdC9": {
-          "type": "heading",
-          "settings": {
-            "heading": "Description",
-            "heading_size": "h2",
-            "heading_size_mobile": "h3_mobile"
-          }
-        }
-      },
-      "block_order": [
-        "heading_76MdC9"
-      ],
-      "name": "t:sections.rich_text.presets.name",
-      "settings": {
-        "layout_type": true,
-        "content_width": "large",
-        "text_position": "start",
-        "text_alignment": "left",
-        "color_scheme": "",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
-    },
     "collapsible_content_99hJfE": {
       "type": "collapsible-content",
       "blocks": {
@@ -270,7 +242,6 @@
   "order": [
     "main",
     "rich_text_A7hYrb",
-    "rich_text_FQE4Qa",
     "collapsible_content_99hJfE",
     "related-products",
     "contact_form_iMKqhm"
