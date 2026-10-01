@@ -412,12 +412,17 @@
           {% endif %}
           {{ block.shopify_attributes }}
         >
-          {%- if block.settings.cover_image != blank -%}
-            {%- if is_first -%}
-              {{ block.settings.cover_image | image_url: width: 2400 | image_tag: class: 'mvb__cover', widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', fetchpriority: 'high', alt: block.settings.cover_image.alt }}
-            {%- else -%}
-              {{ block.settings.cover_image | image_url: width: 2400 | image_tag: class: 'mvb__cover', widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: block.settings.cover_image.alt }}
-            {%- endif -%}
+            {%- if v != blank and v.type == 'youtube' -%}
+            <img
+              class="mvb__cover"
+              src="https://img.youtube.com/vi/{{ v.id | escape }}/hqdefault.jpg"
+              alt="{{ block.settings.heading | default: 'Video preview' | escape }}"
+              width="480"
+              height="360"
+              {% if is_first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+            >
+          {%- elsif block.settings.cover_image != blank -%}
+            {{ block.settings.cover_image | image_url: width: 2400 | image_tag: class: 'mvb__cover', widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: block.settings.cover_image.alt }}
           {%- elsif embed == blank -%}
             {{ 'hero-apparel-1' | placeholder_svg_tag: 'mvb__placeholder' }}
           {%- endif -%}
