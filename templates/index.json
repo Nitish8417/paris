@@ -611,12 +611,12 @@
         "video_7kGdtE": {
           "type": "video",
           "settings": {
-            "video": "",
+            "video": "https://youtu.be/6tXEHFmFGPg?si=DPdgx5VesfdohG2J",
             "heading": "",
             "text": "",
-            "button_label": "",
-            "button_link": "",
-            "content_h": "left",
+            "button_label": "Neewer Pro II",
+            "button_link": "shopify://products/neewer-rgb660-pro-ii-2-light-led-video-light-kit-with-stands-and-bag",
+            "content_h": "center",
             "content_v": "bottom",
             "text_color": "#ffffff"
           }
