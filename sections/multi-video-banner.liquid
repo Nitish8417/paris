@@ -324,6 +324,44 @@
     #mvb-{{ sid }} .mvb__slide,
     #mvb-{{ sid }} .mvb__iframe { transition: none; }
   }
+  #mvb-{{ sid }} .mvb__iframe {
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+#mvb-{{ sid }} .mvb__iframe[hidden] { display: none; }
+#mvb-{{ sid }} .mvb__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 6;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+#mvb-{{ sid }} .mvb__play:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+#mvb-{{ sid }} .mvb__slide.is-playing .mvb__cover {
+  display: none;
+}
+#mvb-{{ sid }} .mvb__slide.is-playing .mvb__play {
+  display: none;
+}
+
 </style>
 
 <multi-video-banner
@@ -340,9 +378,9 @@
           assign embed = blank
           if v != blank
             if v.type == 'youtube'
-              assign embed = 'https://www.youtube.com/embed/' | append: v.id | append: '?autoplay=1&mute=1&loop=1&playlist=' | append: v.id | append: '&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1&origin=' | append: request.origin
+              assign embed = 'https://www.youtube.com/embed/' | append: v.id | append: '?autoplay=1&mute=0&playsinline=1&controls=1&rel=0'
             elsif v.type == 'vimeo'
-              assign embed = 'https://player.vimeo.com/video/' | append: v.id | append: '?background=1&autoplay=1&loop=1&muted=1&dnt=1'
+              assign embed = 'https://player.vimeo.com/video/' | append: v.id | append: '?autoplay=1&muted=0&controls=1&dnt=1'
             endif
           endif
 
@@ -380,16 +418,21 @@
           {%- endif -%}
 
           {%- if embed != blank -%}
-            <iframe
-              class="mvb__iframe"
-              {% if defer_load %}data-src{% else %}src{% endif %}="{{ embed }}"
-              title="{{ block.settings.heading | default: 'Background video' | escape }}"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              tabindex="-1"
-              aria-hidden="true"
-              onload="if(this.getAttribute('src'))this.classList.add('is-loaded')"
-            ></iframe>
-          {%- endif -%}
+  <iframe
+    class="mvb__iframe"
+    data-src="{{ embed | escape }}"
+    title="{{ block.settings.heading | default: 'Video' | escape }}"
+    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+    allowfullscreen
+    loading="lazy"
+    hidden
+  ></iframe>
+  <button type="button" class="mvb__play" aria-label="Play video with sound">
+    <span aria-hidden="true">▶</span>
+    <span>Play video</span>
+  </button>
+{%- endif -%}
+
 
           <div class="mvb__overlay"></div>
 
@@ -457,24 +500,40 @@
   if (!customElements.get('multi-video-banner')) {
     class MultiVideoBanner extends HTMLElement {
       connectedCallback() {
-        if (!this.classList.contains('mvb--slider')) return;
         this.slides = Array.from(this.querySelectorAll('.mvb__slide'));
-        if (this.slides.length < 2) return;
-
         this.dots = Array.from(this.querySelectorAll('.mvb__dot'));
         this.index = 0;
         this.delay = parseInt(this.dataset.autoplay || '0', 10) * 1000;
         this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        this.addEventListener('click', (event) => {
+          const play = event.target.closest('.mvb__play');
+          if (!play || !this.contains(play)) return;
+          const slide = play.closest('.mvb__slide');
+          const frame = slide?.querySelector('.mvb__iframe[data-src]');
+          if (!frame) return;
+
+          this.stop();
+          frame.hidden = false;
+          frame.src = frame.dataset.src;
+          slide.classList.add('is-playing');
+        });
+
+        if (!this.classList.contains('mvb--slider') || this.slides.length < 2) return;
+
         this.querySelector('[data-prev]')?.addEventListener('click', () => this.go(this.index - 1, true));
         this.querySelector('[data-next]')?.addEventListener('click', () => this.go(this.index + 1, true));
-        this.dots.forEach((dot, i) => dot.addEventListener('click', () => this.go(i, true)));
+        this.dots.forEach((dot, i) =>
+          dot.addEventListener('click', () => this.go(i, true))
+        );
 
         let startX = null;
-        this.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
-        this.addEventListener('touchend', (e) => {
+        this.addEventListener('touchstart', (event) => {
+          startX = event.touches[0].clientX;
+        }, { passive: true });
+        this.addEventListener('touchend', (event) => {
           if (startX === null) return;
-          const dx = e.changedTouches[0].clientX - startX;
+          const dx = event.changedTouches[0].clientX - startX;
           if (Math.abs(dx) > 40) this.go(this.index + (dx < 0 ? 1 : -1), true);
           startX = null;
         });
@@ -483,12 +542,18 @@
         this.addEventListener('mouseleave', () => this.start());
         this.addEventListener('focusin', () => this.stop());
 
-        /* Theme editor: jump to the block being edited */
-        this.addEventListener('shopify:block:select', (e) => {
-          const i = this.slides.indexOf(e.target.closest('.mvb__slide'));
-          if (i > -1) { this.go(i); this.stop(); this.editing = true; }
+        this.addEventListener('shopify:block:select', (event) => {
+          const i = this.slides.indexOf(event.target.closest('.mvb__slide'));
+          if (i > -1) {
+            this.go(i);
+            this.stop();
+            this.editing = true;
+          }
         });
-        this.addEventListener('shopify:block:deselect', () => { this.editing = false; this.start(); });
+        this.addEventListener('shopify:block:deselect', () => {
+          this.editing = false;
+          this.start();
+        });
 
         this.start();
       }
@@ -497,7 +562,8 @@
 
       start() {
         this.stop();
-        if (!this.delay || this.reduced || this.editing) return;
+        if (!this.delay || this.reduced || this.editing ||
+            this.querySelector('.mvb__slide.is-playing')) return;
         this.timer = setInterval(() => this.go(this.index + 1), this.delay);
       }
 
@@ -509,7 +575,12 @@
         if (next === this.index) return;
 
         const current = this.slides[this.index];
-        this.send(current, 'pause');
+        const frame = current.querySelector('.mvb__iframe');
+        if (frame?.hasAttribute('src')) {
+          frame.removeAttribute('src');
+          frame.hidden = true;
+          current.classList.remove('is-playing');
+        }
         current.classList.remove('is-active');
         current.setAttribute('aria-hidden', 'true');
         current.inert = true;
@@ -519,32 +590,17 @@
         incoming.removeAttribute('aria-hidden');
         incoming.inert = false;
 
-        const lazy = incoming.querySelector('iframe[data-src]');
-        if (lazy) {
-          lazy.src = lazy.dataset.src;
-          lazy.removeAttribute('data-src');
-        } else {
-          this.send(incoming, 'play');
-        }
-
-        this.dots.forEach((d, i) => d.setAttribute('aria-current', i === next ? 'true' : 'false'));
+        this.dots.forEach((dot, i) =>
+          dot.setAttribute('aria-current', i === next ? 'true' : 'false')
+        );
         this.index = next;
         if (byUser) this.start();
-      }
-
-      send(slide, action) {
-        const frame = slide.querySelector('iframe');
-        if (!frame || !frame.getAttribute('src') || !frame.contentWindow) return;
-        const isYT = frame.src.includes('youtube');
-        const msg = isYT
-          ? { event: 'command', func: action === 'play' ? 'playVideo' : 'pauseVideo', args: [] }
-          : { method: action };
-        frame.contentWindow.postMessage(JSON.stringify(msg), '*');
       }
     }
     customElements.define('multi-video-banner', MultiVideoBanner);
   }
 </script>
+
 
 {% schema %}
 {
