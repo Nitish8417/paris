@@ -208,8 +208,8 @@
       },
       "scheme-2650adcd-2cb1-4453-b006-7133d808b04b": {
         "settings": {
-          "bg_color": "#f4f1ff",
-          "alternate_bg_color": "#e1e1f1",
+          "bg_color": "#F5F5F7",
+          "alternate_bg_color": "#F1F1F3",
           "heading_color": "#03032b",
           "text_color": "#000041",
           "btn_bg_color": "#000000",
