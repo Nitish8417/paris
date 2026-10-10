@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "brands": {
+      "type": "brands-directory",
+      "settings": {
+        "menu": "new-mega-menu",
+        "parent_title": "Brands",
+        "eyebrow": "Official brands",
+        "heading": "Shop by brand",
+        "text": "<p>Explore the trusted tech brands we carry in Kuwait, from everyday essentials to the latest gadgets.</p>",
+        "show_search": true,
+        "show_letters": true,
+        "show_count": true,
+        "columns_desktop": 6,
+        "columns_mobile": "2",
+        "logo_bg": "#0e0e10",
+        "color_scheme": "primary",
+        "top_space_desktop": 40,
+        "bottom_space_desktop": 80,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 48
+      }
+    }
+  },
+  "order": ["brands"]
+}
