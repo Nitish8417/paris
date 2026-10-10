@@ -145,11 +145,9 @@
           </div>
           </div>
             <div class="product-header">
-              {% if search != true %}
-                <div class="product-swatch-slot">
-                  {{ colorSwatchesProduct }}
-                </div>
-              {% endif %}
+              <div class="product-swatch-slot">
+                {{ colorSwatchesProduct }}
+              </div>
                 <div class="product-title-wrapper">
                   {% if settings.product_vendor %}
                   <p class="vendor">{{ cardProduct.vendor }}</p>
