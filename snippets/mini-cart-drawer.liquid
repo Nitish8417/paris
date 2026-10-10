@@ -860,6 +860,8 @@
 
   function ensureBadge() {
     if (!CONFIG.makeBadge) return null;
+    // The theme header already renders its own count bubble; a second one would overlap it.
+    if (document.querySelector('[data-header-cart-count]')) return null;
 
     var existing = document.querySelector('.tt-cart-badge');
     if (existing) return existing;
@@ -897,12 +899,24 @@
       }
     }
 
-    // 2. any count the theme already renders (drawer heading, etc.)
+    // 2. the theme's header bubble (hidden at zero, blank above 99, like cart-drawer.js)
+    document.querySelectorAll('[data-header-cart-count]').forEach(function (el) {
+      el.textContent = count > 0 && count < 100 ? String(count) : '';
+      el.classList.toggle('hidden', count === 0);
+      if (animate && count > 0) {
+        el.classList.remove('tt-count-pop');
+        void el.offsetWidth;
+        el.classList.add('tt-count-pop');
+        setTimeout(function () { el.classList.remove('tt-count-pop'); }, 600);
+      }
+    });
+
+    // 3. any other count the theme renders (drawer heading, etc.)
     document.querySelectorAll(
       '#cartDrawer-count, .cart-total-count, [data-cart-count], ' +
       '.cart-count, .cart-count-bubble, [class*="cart-item-count"]'
     ).forEach(function (el) {
-      if (el.classList.contains('tt-cart-badge')) return;
+      if (el.classList.contains('tt-cart-badge') || el.hasAttribute('data-header-cart-count')) return;
       if (el.hasAttribute('data-cart-count')) el.setAttribute('data-cart-count', count);
 
       var txt = (el.textContent || '').trim();
@@ -911,7 +925,7 @@
       }
     });
 
-    // 3. accessible label on the icon itself
+    // 4. accessible label on the icon itself
     var icon = cartIcon();
     if (icon) icon.setAttribute('aria-label', 'Cart, ' + count + ' item' + (count === 1 ? '' : 's'));
 
