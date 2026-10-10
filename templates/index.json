@@ -1484,6 +1484,7 @@
       "block_order": [
         "ai_gen_block_8ce77ed_N4zRkP"
       ],
+      "disabled": true,
       "name": "Store Benefits",
       "settings": {}
     }
