@@ -1196,7 +1196,7 @@ product-card {
 .product-swatch-slot {
   display: flex;
   align-items: center;
-  min-height: 30px;
+  min-height: 28px;
   overflow: hidden;
 }
 
@@ -1210,16 +1210,68 @@ product-card {
 
 .product-swatch-slot .product-swatch-list {
   flex-wrap: nowrap;
+  align-items: center;
   gap: 6px;
-  margin-bottom: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .product-swatch-slot .product-swatch-list .color-swatch {
-  padding: 3px;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  padding: 2px;
+  border: 1px solid var(--borderColor);
+  border-radius: 50%;
+  background-color: var(--bodyColor);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-swatch-slot .product-swatch-list .color-swatch:hover,
+.product-swatch-slot .product-swatch-list .color-swatch.active,
+.product-swatch-slot .product-swatch-list .color-swatch.selected {
+  border-color: var(--bodyTextColor);
+  box-shadow: 0 0 0 1px var(--bodyTextColor);
+}
+
+.product-swatch-slot .product-swatch-list .swatch-variant-color {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
 .product-swatch-slot .product-value {
+  flex: none;
   white-space: nowrap;
+}
+
+.product-swatch-slot .product-swatch-more {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--borderColor);
+  border-radius: 999px;
+  color: var(--bodyTextColor);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.product-swatch-slot .product-swatch-more:hover {
+  border-color: var(--bodyTextColor);
 }
 
 .product-title-wrapper {
@@ -2522,8 +2574,8 @@ product-card {
 /* Same swatch area */
 .collection [data-product-grid] .product-swatch-slot,
 .collection-grid [data-product-grid] .product-swatch-slot {
-  min-height: 34px !important;
-  margin-bottom: 6px !important;
+  min-height: 28px !important;
+  margin-bottom: 10px !important;
 }
 
 /* Same product title area */
@@ -2539,33 +2591,45 @@ product-card {
 .collection-grid [data-product-grid] .product-name {
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
-  -webkit-line-clamp: 3 !important;
-  line-clamp: 3 !important;
+  -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
   overflow: hidden !important;
-  min-height: calc(1.35em * 3) !important;
-  max-height: calc(1.35em * 3) !important;
-  line-height: 1.35 !important;
+  min-height: calc(1.4em * 2) !important;
+  max-height: calc(1.4em * 2) !important;
+  padding: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
   margin: 0 !important;
 }
 
-/* Same price area */
+/* Price sits right under the title */
 .collection [data-product-grid] .price-wrapper,
 .collection-grid [data-product-grid] .price-wrapper {
-  min-height: 32px !important;
-  margin-top: 0 !important;
+  min-height: 0 !important;
+  margin-top: 8px !important;
   margin-bottom: 0 !important;
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: baseline !important;
   flex-wrap: wrap !important;
-  gap: 4px !important;
+  gap: 2px 8px !important;
 }
 
-/* Reduce space between price and Add to Cart */
+.collection [data-product-grid] .price-wrapper .item-price,
+.collection-grid [data-product-grid] .price-wrapper .item-price {
+  margin-right: 0 !important;
+}
+
+.collection [data-product-grid] .price-wrapper .item-price-old,
+.collection-grid [data-product-grid] .price-wrapper .item-price-old {
+  opacity: 0.6;
+}
+
+/* Button pinned to the card bottom so every card in a row ends level */
 .collection [data-product-grid] .product-card-atc,
 .collection-grid [data-product-grid] .product-card-atc {
   width: 100% !important;
   margin-top: auto !important;
-  padding-top: 4px !important;
+  padding-top: 14px !important;
 }
 
 /* Equal Add to Cart buttons */
@@ -2664,26 +2728,32 @@ product-card {
 
   .collection [data-product-grid] .product-swatch-slot,
   .collection-grid [data-product-grid] .product-swatch-slot {
-    min-height: 30px !important;
-    margin-bottom: 4px !important;
+    min-height: 24px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .collection [data-product-grid] .product-swatch-slot .color-swatch,
+  .collection-grid [data-product-grid] .product-swatch-slot .color-swatch {
+    width: 22px;
+    height: 22px;
   }
 
   .collection [data-product-grid] .product-name,
   .collection-grid [data-product-grid] .product-name {
-    font-size: 12px !important;
-    line-height: 1.3 !important;
-    min-height: calc(1.3em * 3) !important;
-    max-height: calc(1.3em * 3) !important;
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    min-height: calc(1.35em * 2) !important;
+    max-height: calc(1.35em * 2) !important;
   }
 
   .collection [data-product-grid] .price-wrapper,
   .collection-grid [data-product-grid] .price-wrapper {
-    min-height: 28px !important;
+    margin-top: 6px !important;
   }
 
   .collection [data-product-grid] .product-card-atc,
   .collection-grid [data-product-grid] .product-card-atc {
-    padding-top: 2px !important;
+    padding-top: 10px !important;
   }
 
   .collection [data-product-grid] .product-card-atc__btn,

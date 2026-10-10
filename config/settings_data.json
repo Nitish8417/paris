@@ -58,7 +58,7 @@
     "swatchs_custom_value": "",
     "show_save_amount": true,
     "option_style": "swatch",
-    "product_conetnt_aligment": "center",
+    "product_conetnt_aligment": "left",
     "quickview": true,
     "image_border": false,
     "image_background": true,

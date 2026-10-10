@@ -74,9 +74,9 @@
                 >
                 <span class="swatch-variant-item swatch-variant-color {% if settings.show_variant_image %} variant-img{% endif %}"
                   {% if variantValue and settings.show_variant_image and variantValue.featured_media %}
-                    style="background-image:url({{ variantValue.featured_media.preview_image | image_url: width: 22 }});"
+                    style="background-image:url({{ variantValue.featured_media.preview_image | image_url: width: 64 }});"
                   {% elsif value.product_url and value.variant.product.featured_media and settings.show_variant_image %}
-                    style="background-image:url({{ value.variant.product.featured_media.preview_image | image_url: width: 22 }});"
+                    style="background-image:url({{ value.variant.product.featured_media.preview_image | image_url: width: 64 }});"
                   {% else %}
                     data-color="{{ value }}"
                     style="background-color:{{ value }};"
@@ -87,8 +87,13 @@
             {% endfor %}
             {% if option.values.size > 4 %}
               <li class="product-swatch-item product-value">
-                <a href="{{ cardProduct.url | within : collection }}" class="textSmall"
-                  >+{{ option.values.size | minus: 4 -}} more
+                {%- assign more_colors = option.values.size | minus: 4 -%}
+                <a
+                  href="{{ cardProduct.url | within: collection }}"
+                  class="product-swatch-more"
+                  aria-label="{{ more_colors }} more {{ option.name | escape }} options"
+                >
+                  +{{ more_colors }}
                 </a>
               </li>
             {% endif %}
