@@ -1,0 +1,25 @@
+{% doc %}
+  Renders the "Show more / Show less" toggle for a filter list that has hidden extra values.
+
+  @param {string} id - Unique id for the toggle button
+  @param {number} hidden_count - Number of filter values hidden behind the toggle
+{% enddoc %}
+<show-more-button>
+  <button
+    class="show-more-button link no-js-hidden"
+    id="{{ id }}"
+    type="button"
+    aria-expanded="false"
+  >
+    <span class="label-show-more label-text visible-hidden">
+      {{- 'products.facets.show_more' | t }}
+      <span class="show-more-count">+{{ hidden_count }}</span>
+    </span>
+    <span class="label-show-less label-text visible-hidden hidden">
+      {{- 'products.facets.show_less' | t -}}
+    </span>
+    <svg class="show-more-icon" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true" focusable="false">
+      <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</show-more-button>

@@ -302,6 +302,11 @@ class ShowMoreFilterButton extends HTMLElement {
         this.querySelectorAll(".visible-hidden").forEach((element) =>
           element.classList.toggle("hidden"),
         );
+        const button = event.currentTarget;
+        button.setAttribute(
+          attributes.expanded,
+          (button.getAttribute(attributes.expanded) !== "true").toString(),
+        );
       },
     );
   }
