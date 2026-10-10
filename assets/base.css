@@ -1194,10 +1194,21 @@ product-card {
 
 /* Swatches stay on a single fixed-height row so title, price and button line up across cards. */
 .product-swatch-slot {
+  --cardSwatchSize: 34px;
+  --cardSwatchGap: 8px;
   display: flex;
   align-items: center;
-  min-height: 28px;
+  min-height: calc(var(--cardSwatchSize) + 4px);
+  padding: 2px;
+  margin-left: -2px;
   overflow: hidden;
+}
+
+@media only screen and (max-width: 767px) {
+  .product-swatch-slot {
+    --cardSwatchSize: 30px;
+    --cardSwatchGap: 6px;
+  }
 }
 
 .align-center .product-swatch-slot {
@@ -1211,15 +1222,15 @@ product-card {
 .product-swatch-slot .product-swatch-list {
   flex-wrap: nowrap;
   align-items: center;
-  gap: 6px;
+  gap: var(--cardSwatchGap);
   margin: 0;
   padding: 0;
 }
 
 .product-swatch-slot .product-swatch-list .color-swatch {
   flex: none;
-  width: 26px;
-  height: 26px;
+  width: var(--cardSwatchSize);
+  height: var(--cardSwatchSize);
   padding: 2px;
   border: 1px solid var(--borderColor);
   border-radius: 50%;
@@ -1259,12 +1270,12 @@ product-card {
 .product-swatch-slot .product-swatch-more {
   display: inline-flex;
   align-items: center;
-  height: 22px;
-  padding: 0 8px;
+  height: calc(var(--cardSwatchSize) - 6px);
+  padding: 0 9px;
   border: 1px solid var(--borderColor);
   border-radius: 999px;
   color: var(--bodyTextColor);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1;
   text-decoration: none;
@@ -2574,8 +2585,7 @@ product-card {
 /* Same swatch area */
 .collection [data-product-grid] .product-swatch-slot,
 .collection-grid [data-product-grid] .product-swatch-slot {
-  min-height: 28px !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 8px !important;
 }
 
 /* Same product title area */
@@ -2728,14 +2738,7 @@ product-card {
 
   .collection [data-product-grid] .product-swatch-slot,
   .collection-grid [data-product-grid] .product-swatch-slot {
-    min-height: 24px !important;
-    margin-bottom: 8px !important;
-  }
-
-  .collection [data-product-grid] .product-swatch-slot .color-swatch,
-  .collection-grid [data-product-grid] .product-swatch-slot .color-swatch {
-    width: 22px;
-    height: 22px;
+    margin-bottom: 6px !important;
   }
 
   .collection [data-product-grid] .product-name,

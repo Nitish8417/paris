@@ -159,8 +159,7 @@ product-rail[data-static] .product-rail__nav {
 }
 
 .product-rail .product-swatch-slot {
-  min-height: 28px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .product-rail .product-name {
@@ -241,13 +240,7 @@ product-rail[data-static] .product-rail__nav {
   }
 
   .product-rail .product-swatch-slot {
-    min-height: 24px;
-    margin-bottom: 8px;
-  }
-
-  .product-rail .product-swatch-slot .color-swatch {
-    width: 22px;
-    height: 22px;
+    margin-bottom: 6px;
   }
 
   .product-rail .product-name {
