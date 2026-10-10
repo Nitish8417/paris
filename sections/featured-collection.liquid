@@ -196,17 +196,11 @@
     padding: 30px;
   }
 
-  /* Cards stretch to the tallest slide so every button ends on the same line. */
-  #shopify-section-{{ section.id }} .product-media-cards.featured-collection-item {
-    height: 100%;
-  }
-
-  #shopify-section-{{ section.id }} .product-card,
+  /* Slides keep an auto height: Flickity sizes the carousel from them, so a percentage height collapses it to 0. */
   #shopify-section-{{ section.id }} .product-card-inner {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
   }
 
   #shopify-section-{{ section.id }} .product-header {
@@ -369,7 +363,7 @@
       padding-right: 5px !important;
       box-sizing: border-box !important;
       display: flex !important;
-      height: 100% !important;
+      height: auto !important;
     }
 
     #shopify-section-{{ section.id }} .product-media-cards.featured-collection-item:first-child {
