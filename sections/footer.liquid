@@ -1,5 +1,14 @@
+{%- liquid
+  assign trust_blocks = section.blocks | where: 'type', 'trust'
+  assign menu_blocks = section.blocks | where: 'type', 'link_list'
+  assign newsletter_block = section.blocks | where: 'type', 'newsletter' | first
+  assign has_contact = false
+  if section.settings.contact_phone != blank or section.settings.contact_email != blank or section.settings.contact_address != blank or section.settings.contact_whatsapp != blank
+    assign has_contact = true
+  endif
+-%}
 <div
-  class="footer-inner-wrapper"
+  class="footer-inner-wrapper tt-footer"
   style="
     --footer-section-description-color: {{ section.settings.description_color }};
     --footer-newsletter-heading-color: {{ section.settings.newsletter_heading_color }};
@@ -12,232 +21,679 @@
     --footer-menu-link-size: {{ section.settings.menu_link_size }}px;
   "
 >
-  <div class="container">
-    <div class="grid-row footer-navi-menus">
-      <div class="grid-item-md-12 grid-item-l-4 footer-navi-column">
-        <div class="footer-logo-box">
-          <a href="{{ routes.root_url }}" class="footer-logo">
-            {%- if section.settings.image != blank -%}
-              <img
-                srcset="{{ section.settings.image | image_url: width: section.settings.image_width }} 1x, {{ section.settings.image | image_url: width: 200 }} 2x"
-                src="{{ section.settings.image | image_url: width: section.settings.image_width }}"
-                loading="lazy"
-                aspect-ratio="{{ section.settings.image.aspect_ratio }}"
-                width="{{ section.settings.image_width }}"
-                height="{{ section.settings.image_width | divided_by:section.settings.image.aspect_ratio }}"
-                alt="{{ section.settings.image.alt | default: shop.name | escape }}"
-              >
-            {% else %}
-              {{ shop.name | escape }}
-            {% endif %}
-          </a>
-          {% if section.settings.description != blank %}
-            <div class="textBase">
-              {{ section.settings.description }}
-            </div>
-          {% endif %}
-          {% if section.settings.show_social %}
-            {% render 'social-media' %}
-          {% endif %}
-        </div>
-      </div>
-      {% if section.blocks.size > 0 %}
-        <div class="grid-item-md-12 grid-item-l-8 footer-navi-column">
-          <div class="footer-item-right">
-            {%- for block in section.blocks -%}
-              {%- case block.type -%}
-                {%- when 'newsletter' -%}
-                  <div class="footer-newsletter">
-                    <div class="newsletter-heading">
-                      {%- if block.settings.heading != blank -%}
-                        <h4 class="news-letter-title">{{ block.settings.heading }}</h4>
-                      {% endif %}
-                      {% if block.settings.description != blank %}
-                        <p class="news-letter-desc textSmall">{{ block.settings.description }}</p>
-                      {% endif %}
-                    </div>
-                    <div class="news-letter-form">
-                      {%- form 'customer', id: 'contact_form', class: 'signup-form' -%}
-                        <input type="hidden" name="contact[tags]" value="newsletter">
-                        <fieldset>
-                          <div class="form-field">
-                            <label class="hidden" for="NewsletterFormFooter">{{ block.settings.placeholder }}</label>
-                            <input
-                              id="NewsletterFormFooter"
-                              type="email"
-                              name="contact[email]"
-                              class="form-input-field"
-                              value="{%- if form.context == 'footer' -%}{{ form.email }}{%- endif -%}"
-                              aria-required="true"
-                              autocapitalize="off"
-                              autocomplete="email"
-                              {%- if form.errors -%}
-                                autofocus
-                                aria-invalid="true"
-                                aria-describedby="Newsletter-error-{{ section.id }}"
-                              {%- elsif form.posted_successfully? -%}
-                                aria-describedby="Newsletter-success-{{ section.id }}"
-                              {%- endif -%}
-                              placeholder="{{ block.settings.placeholder }}"
-                              pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)*[a-zA-Z]{2,}))$"
-                              required
-                            >
-                            <label class="hidden" for="NewsletterForm">{{- block.settings.placeholder -}}</label>
-                          </div>
-                          <button
-                            class="btn btn-medium"
-                            type="submit"
-                            aria-label=" {{ 'newsletter.button_label' | t }}"
-                          >
-                            <span>
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <path d="M1 5.8H10.5833M6 11L11 5.8L6 1" stroke="currentColor" stroke-width="1.5"
-                                  stroke-linecap="round" stroke-linejoin="round"></path>
-                              </svg>
-                            </span>
-                          </button>
-                        </fieldset>
-                        {%- if form.posted_successfully? -%}
-                          <div class="form-message__wrapper success">
-                            <div
-                              id="Newsletter-success-{{ section.id }}"
-                              class="success-message"
-                              tabindex="-1"
-                              autofocus
-                              role="status"
-                            >
-                              <span class="alerticon">
-                                <svg
-                                  fill="none"
-                                  height="7"
-                                  viewBox="0 0 7 7"
-                                  width="7"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                                >
-                                  <clipPath id="a"><path d="m0 0h7v7h-7z"></path></clipPath>
-                                  <g clip-path="url(#a)" fill="currentColor">
-                                      <path d="m3.46762 5.27917-2.754073-2.72918-.71355643.f70711 2.75406943 2.72918z"></path>
-                                      <path d="m0 0h6.02588v1.00457h-6.02588z" transform="matrix(-.71031 .703889 .71031 .703889 6.32977 1.03186)"></path>
-                                  </g>
-                                </svg>
-                              </span>
-                              {{- 'newsletter.success' | t -}}
-                            </div>
-                          </div>
-                        {%- endif -%}
-                        {%- if form.errors -%}
-                          <div class="form-message__wrapper error" id="Newsletter-error-{{ section.id }}" autofocus>
-                            <div class="error_heading">
-                              <span class="alerticon">
-                                <svg width="7" height="8" viewBox="0 0 7 8" fill="none">
-                                  <rect x="5.9751" y="0.818024" width="1" height="8" transform="rotate(45 5.9751 0.818024)" fill="currentColor"></rect>
-                                  <rect x="6.68213" y="6.47488" width="1" height="8" transform="rotate(135 6.68213 6.47488)" fill="currentColor"></rect>
-                                </svg>
-                              </span>
-                              {{- form.errors.translated_fields.email }}
-                              {{ form.errors.messages.email -}}
-                            </div>
-                          </div>
-                        {%- endif -%}
-                      {%- endform -%}
-                    </div>
-                  </div>
-              {% endcase %}
-            {% endfor %}
+  <div class="{{ settings.layout_width }}">
+    {%- if trust_blocks.size > 0 -%}
+      <ul class="tt-footer__trust" role="list">
+        {%- for block in trust_blocks -%}
+          <li class="tt-footer__trust-item" {{ block.shopify_attributes }}>
+            <span class="tt-footer__trust-icon" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'delivery' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
+                {%- when 'warranty' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+                {%- when 'secure' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14.5v2.5"/></svg>
+                {%- when 'returns' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h11a5 5 0 0 1 0 10H8"/><path d="M8 5L4 9l4 4"/></svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19c0 1.5-2 2.5-5 2.5"/></svg>
+              {%- endcase -%}
+            </span>
+            <span class="tt-footer__trust-copy">
+              {%- if block.settings.title != blank -%}
+                <span class="tt-footer__trust-title">{{ block.settings.title | escape }}</span>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <span class="tt-footer__trust-text">{{ block.settings.text | escape }}</span>
+              {%- endif -%}
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
 
-            <div class="footer-navi-list" id="footer-menus" data-accordian-wrapper>
-              <div class="grid-row">
-                {%- for block in section.blocks -%}
-                  {%- case block.type -%}
-                    {%- when 'link_list' -%}
-                      <div class="grid-item-md-4 grid-item-l-3">
-                        <div class="footer-nav-menu{% if section.settings.open_menu_mobile %} active{% endif %}">
-                          {%- if block.settings.heading != blank -%}
-                            <h6 class="footer-menu-title" data-accordian-head>
-                              {{ block.settings.heading }}
-                              <span class="footer-arrow">
-                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
-                                  <path d="M12.6667 1L6.83333 6.83333L1 1" stroke="currentColor" stroke-width="1.25"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                              </span>
-                            </h6>
-                          {% endif %}
-                          {%- if block.settings.menu != blank -%}
-                            <ul
-                              class="no-bullet footer-menu-list"
-                              data-accordian-content
-                              {% if section.settings.open_menu_mobile %}
-                                style="display:block;"
-                              {% endif %}
-                            >
-                              {%- for link in block.settings.menu.links -%}
-                                <li>
-                                  <a data-text="{{ link.title | escape -}}" href="{{ link.url }}">
-                                    <span>{{- link.title | escape -}}</span>
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          {% endif %}
-                        </div>
-                      </div>
-                  {% endcase %}
-                {% endfor %}
-              </div>
+    <div class="tt-footer__main{% if newsletter_block == blank %} tt-footer__main--no-newsletter{% endif %}">
+      <div class="tt-footer__brand">
+        <a href="{{ routes.root_url }}" class="tt-footer__logo">
+          {%- if section.settings.image != blank -%}
+            {%- liquid
+              assign logo_height = section.settings.image_width | divided_by: section.settings.image.aspect_ratio | round
+              assign logo_alt = section.settings.image.alt | default: shop.name
+            -%}
+            {{
+              section.settings.image
+              | image_url: width: 400
+              | image_tag:
+                loading: 'lazy',
+                width: section.settings.image_width,
+                height: logo_height,
+                alt: logo_alt
+            }}
+          {%- else -%}
+            <span class="tt-footer__logo-text">{{ shop.name | escape }}</span>
+          {%- endif -%}
+        </a>
+        {%- if section.settings.description != blank -%}
+          <div class="tt-footer__about">{{ section.settings.description }}</div>
+        {%- endif -%}
+        {%- if section.settings.show_social -%}
+          {% render 'social-media' %}
+        {%- endif -%}
+      </div>
+
+      {%- if menu_blocks.size > 0 or has_contact -%}
+        <div class="tt-footer__links" data-accordian-wrapper>
+          {%- for block in menu_blocks -%}
+            <div class="tt-footer__col footer-nav-menu{% if section.settings.open_menu_mobile %} active{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="tt-footer__title" data-accordian-head>
+                  {{ block.settings.heading | escape }}
+                  <span class="tt-footer__chevron" aria-hidden="true">
+                    <svg width="12" height="8" viewBox="0 0 14 8" fill="none"><path d="M12.6667 1L6.83333 6.83333L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </h2>
+              {%- endif -%}
+              {%- if block.settings.menu != blank -%}
+                <ul
+                  class="tt-footer__list"
+                  role="list"
+                  data-accordian-content
+                  {% if section.settings.open_menu_mobile %}style="display:block;"{% endif %}
+                >
+                  {%- for link in block.settings.menu.links -%}
+                    <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
             </div>
-          </div>
-        </div>
-      {% endif %}
-    </div>
-    <div class="footer-bottom-wrapper">
-      <div class="grid-row items-align-center">
-        <div class="grid-item-md-12 grid-item-l-7">
-          <div class="footer-copyright">
-            {% unless section.settings.hide_copyright_content %}
-              <small>
-                {% if section.settings.custom_copyright_content != blank %}
-                  {{ section.settings.custom_copyright_content }}
-                {% else %}
-                  Copyright&copy; {{ 'now' | date: '%Y' }}
-                  {{ shop.name | link_to: routes.root_url }}
-                  {{ powered_by_link -}}
-                {% endif %}
-              </small>
-            {% endunless %}
-            {%- if section.settings.payment_enable -%}
-              <ul class="no-bullet payment-icons">
-                {%- for type in shop.enabled_payment_types -%}
-                  <li class="payment-item">
-                    {{ type | payment_type_svg_tag: class: 'icon' }}
+          {%- endfor -%}
+
+          {%- if has_contact -%}
+            <div class="tt-footer__col tt-footer__col--contact">
+              <h2 class="tt-footer__title tt-footer__title--static">{{ section.settings.contact_heading | escape }}</h2>
+              <ul class="tt-footer__contact" role="list">
+                {%- if section.settings.contact_phone != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+                    <a href="tel:{{ section.settings.contact_phone | remove: ' ' }}">{{ section.settings.contact_phone | escape }}</a>
                   </li>
-                {%- endfor -%}
+                {%- endif -%}
+                {%- if section.settings.contact_whatsapp != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/></svg>
+                    <a href="https://wa.me/{{ section.settings.contact_whatsapp | remove: ' ' | remove: '+' }}" target="_blank" rel="noopener">WhatsApp us</a>
+                  </li>
+                {%- endif -%}
+                {%- if section.settings.contact_email != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                    <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email | escape }}</a>
+                  </li>
+                {%- endif -%}
+                {%- if section.settings.contact_address != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                    <span>{{ section.settings.contact_address | escape | newline_to_br }}</span>
+                  </li>
+                {%- endif -%}
               </ul>
-            {%- endif -%}
-          </div>
+            </div>
+          {%- endif -%}
         </div>
-        <div class="grid-item-md-12 grid-item-l-5">
-          <div class="footer-btm-dropdown">
-            {% render 'localization', section: section %}
-            {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-              <span class="follow-shop-btn">
-                {{ shop | login_button: action: 'follow' }}
-              </span>
+      {%- endif -%}
+
+      {%- if newsletter_block != blank -%}
+        <div class="tt-footer__newsletter" {{ newsletter_block.shopify_attributes }}>
+          {%- if newsletter_block.settings.heading != blank -%}
+            <h2 class="tt-footer__news-title">{{ newsletter_block.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if newsletter_block.settings.description != blank -%}
+            <p class="tt-footer__news-text">{{ newsletter_block.settings.description }}</p>
+          {%- endif -%}
+          {%- form 'customer', id: 'contact_form', class: 'tt-footer__news-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <label class="hidden" for="NewsletterFormFooter">{{ newsletter_block.settings.placeholder | escape }}</label>
+            <div class="tt-footer__news-field">
+              <input
+                id="NewsletterFormFooter"
+                type="email"
+                name="contact[email]"
+                value="{%- if form.context == 'footer' -%}{{ form.email }}{%- endif -%}"
+                autocapitalize="off"
+                autocomplete="email"
+                placeholder="{{ newsletter_block.settings.placeholder | escape }}"
+                required
+                {% if form.errors %}
+                  aria-invalid="true"
+                  aria-describedby="Newsletter-error-{{ section.id }}"
+                {% elsif form.posted_successfully? %}
+                  aria-describedby="Newsletter-success-{{ section.id }}"
+                {% endif %}
+              >
+              <button type="submit" aria-label="{{ 'newsletter.button_label' | t }}">
+                <svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 5.8H10.5833M6 11L11 5.8L6 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            {%- if form.posted_successfully? -%}
+              <p id="Newsletter-success-{{ section.id }}" class="tt-footer__news-message" role="status" tabindex="-1">
+                {{- 'newsletter.success' | t -}}
+              </p>
             {%- endif -%}
-          </div>
+            {%- if form.errors -%}
+              <p id="Newsletter-error-{{ section.id }}" class="tt-footer__news-message tt-footer__news-message--error" role="alert">
+                {{- form.errors.translated_fields.email }} {{ form.errors.messages.email -}}
+              </p>
+            {%- endif -%}
+          {%- endform -%}
+          <p class="tt-footer__news-note">No spam. Unsubscribe anytime.</p>
         </div>
+      {%- endif -%}
+    </div>
+
+    <div class="tt-footer__bottom">
+      <p class="tt-footer__copyright">
+        {%- if section.settings.custom_copyright_content != blank -%}
+          {{ section.settings.custom_copyright_content }}
+        {%- else -%}
+          &copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. All rights reserved.
+        {%- endif -%}
+      </p>
+      <div class="tt-footer__bottom-end">
+        <div class="footer-btm-dropdown">
+          {% render 'localization', section: section %}
+          {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+            <span class="follow-shop-btn">{{ shop | login_button: action: 'follow' }}</span>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.payment_enable -%}
+          <ul class="no-bullet tt-footer__payments" role="list">
+            {%- for type in shop.enabled_payment_types -%}
+              <li>{{ type | payment_type_svg_tag: class: 'icon' }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
       </div>
     </div>
   </div>
 </div>
+
+{% stylesheet %}
+  .footer .tt-footer {
+    --ttLine: rgba(255, 255, 255, 0.1);
+    --ttMuted: rgba(255, 255, 255, 0.62);
+    color: #fff;
+  }
+
+  .footer .tt-footer a {
+    padding: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Trust strip */
+  .tt-footer__trust {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin: 0;
+    padding: 36px 0;
+    list-style: none;
+    border-bottom: 1px solid var(--ttLine);
+  }
+
+  .tt-footer__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+  }
+
+  .tt-footer__trust-icon {
+    display: inline-flex;
+    flex: 0 0 48px;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--ttLine);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .tt-footer__trust-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tt-footer__trust-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .tt-footer__trust-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .tt-footer__trust-text {
+    color: var(--ttMuted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  /* Main grid */
+  .tt-footer__main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 2.4fr) minmax(0, 1.35fr);
+    gap: 48px;
+    padding: 56px 0 48px;
+  }
+
+  .tt-footer__main--no-newsletter {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 3fr);
+  }
+
+  .tt-footer__logo {
+    display: inline-block;
+    margin-bottom: 18px;
+  }
+
+  .tt-footer__logo img {
+    display: block;
+    height: auto;
+  }
+
+  .tt-footer__logo-text {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .tt-footer__about,
+  .tt-footer__about p {
+    max-width: 360px;
+    margin: 0;
+    padding: 0;
+    color: var(--footer-section-description-color, var(--ttMuted));
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  .tt-footer .footer-social-icons {
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .tt-footer .footer-social-icons li a {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--ttLine);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .tt-footer .footer-social-icons li a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tt-footer .footer-social-icons li a svg path {
+    fill: currentColor;
+  }
+
+  .tt-footer .footer-social-icons li a:hover {
+    background: #fff;
+    color: #111;
+    transform: translateY(-2px);
+  }
+
+  .tt-footer .footer-social-icons li a:hover svg path {
+    fill: currentColor;
+  }
+
+  .tt-footer__links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 32px;
+  }
+
+  .tt-footer__col.footer-nav-menu {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .tt-footer__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 18px;
+    padding: 0;
+    color: var(--footer-menu-heading-color, #fff);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .tt-footer__chevron {
+    display: none;
+  }
+
+  .tt-footer__list,
+  .tt-footer__contact {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tt-footer__list li,
+  .tt-footer__contact li {
+    margin: 0;
+    list-style: none;
+  }
+
+  .footer .tt-footer__list a {
+    display: inline-block;
+    color: var(--ttMuted);
+    font-size: 14px;
+    line-height: 1.45;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .footer .tt-footer__list a:hover {
+    color: var(--footer-menu-link-hover-color, #fff);
+    transform: translateX(3px);
+  }
+
+  .tt-footer__contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--ttMuted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .tt-footer__contact svg {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    color: #fff;
+  }
+
+  .footer .tt-footer__contact a:hover {
+    color: #fff;
+  }
+
+  /* Newsletter card */
+  .tt-footer__newsletter {
+    align-self: start;
+    padding: 28px;
+    border: 1px solid var(--ttLine);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .tt-footer__news-title {
+    margin: 0;
+    padding: 0;
+    color: var(--footer-newsletter-heading-color, #fff);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .tt-footer__news-text {
+    margin: 8px 0 0;
+    color: var(--footer-newsletter-text-color, var(--ttMuted));
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .tt-footer__news-form {
+    margin-top: 18px;
+  }
+
+  .tt-footer__news-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 5px 5px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    transition: border-color 0.2s ease;
+  }
+
+  .tt-footer__news-field:focus-within {
+    border-color: #fff;
+  }
+
+  .tt-footer__news-field input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .tt-footer__news-field input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .tt-footer__news-field button {
+    display: inline-flex;
+    flex: 0 0 42px;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .tt-footer__news-field button:hover {
+    transform: translateX(2px);
+  }
+
+  .tt-footer__news-message {
+    margin: 10px 0 0;
+    color: #8be0a4;
+    font-size: 13px;
+  }
+
+  .tt-footer__news-message--error {
+    color: #ff8a80;
+  }
+
+  .tt-footer__news-note {
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+  }
+
+  /* Bottom bar */
+  .tt-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 0 28px;
+    border-top: 1px solid var(--ttLine);
+  }
+
+  .tt-footer__copyright {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+  }
+
+  .tt-footer__copyright a {
+    color: inherit;
+  }
+
+  .tt-footer__bottom-end {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .tt-footer__bottom-end .footer-btm-dropdown:empty {
+    display: none;
+  }
+
+  .tt-footer__payments {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tt-footer__payments li {
+    display: inline-flex;
+    margin: 0;
+  }
+
+  .tt-footer__payments .icon {
+    width: 38px;
+    height: 24px;
+    border-radius: 4px;
+  }
+
+  @media only screen and (max-width: 1199px) {
+    .tt-footer__main {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 40px;
+    }
+
+    .tt-footer__links {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .tt-footer__trust {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 14px;
+      padding: 28px 0;
+    }
+
+    .tt-footer__trust-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .tt-footer__trust-icon {
+      flex-basis: 40px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    .tt-footer__trust-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .tt-footer__trust-title {
+      font-size: 14px;
+    }
+
+    .tt-footer__trust-text {
+      font-size: 12px;
+    }
+
+    .tt-footer__main,
+    .tt-footer__main--no-newsletter {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 36px 0 28px;
+    }
+
+    .tt-footer__links {
+      grid-row: auto;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .tt-footer__col.footer-nav-menu {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--ttLine);
+    }
+
+    .tt-footer__col.footer-nav-menu .tt-footer__title {
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .tt-footer__chevron {
+      display: inline-flex;
+      transition: transform 0.3s ease;
+    }
+
+    .tt-footer__col.footer-nav-menu.active .tt-footer__chevron {
+      transform: rotate(180deg);
+    }
+
+    .tt-footer__col.footer-nav-menu .tt-footer__list {
+      display: none;
+      padding-top: 14px;
+    }
+
+    .tt-footer__col--contact {
+      padding-top: 24px;
+    }
+
+    .tt-footer__newsletter {
+      padding: 22px;
+    }
+
+    .tt-footer__news-title {
+      font-size: 20px;
+    }
+
+    .tt-footer__bottom {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      padding: 20px 0 90px;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:sections.footer.name",
   "tag": "footer",
   "class": "footer",
-  "max_blocks": 6,
+  "max_blocks": 14,
   "settings": [
     {
       "type": "image_picker",
@@ -265,6 +721,37 @@
       "id": "show_social",
       "default": true,
       "label": "t:sections.footer.settings.show_social.label"
+    },
+    {
+      "type": "header",
+      "content": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Heading",
+      "default": "Contact us"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "contact_whatsapp",
+      "label": "WhatsApp number",
+      "info": "Include the country code, e.g. +965 1234 5678"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Email"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_address",
+      "label": "Address"
     },
     {
       "type": "header",
@@ -359,7 +846,6 @@
       "label": "t:sections.footer.settings.enable_language_selector.label",
       "info": "t:sections.footer.settings.enable_language_selector.info"
     },
-
     {
       "type": "checkbox",
       "id": "enable_currency_selector",
@@ -385,7 +871,8 @@
       "type": "checkbox",
       "id": "hide_copyright_content",
       "default": true,
-      "label": "t:sections.footer.settings.hide_copyright_content.label"
+      "label": "t:sections.footer.settings.hide_copyright_content.label",
+      "info": "No longer used: the footer always shows a copyright line."
     },
     {
       "type": "inline_richtext",
@@ -394,6 +881,38 @@
     }
   ],
   "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust badge",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "delivery",
+          "options": [
+            { "value": "delivery", "label": "Delivery" },
+            { "value": "warranty", "label": "Warranty / authentic" },
+            { "value": "secure", "label": "Secure payment" },
+            { "value": "returns", "label": "Returns" },
+            { "value": "support", "label": "Support" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Fast delivery"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Quick shipping to your door"
+        }
+      ]
+    },
     {
       "type": "link_list",
       "name": "t:sections.footer.blocks.menu.name",
@@ -442,21 +961,9 @@
   ],
   "default": {
     "blocks": [
-      {
-        "type": "newsletter"
-      },
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "link_list"
-      }
+      { "type": "newsletter" },
+      { "type": "link_list" },
+      { "type": "link_list" }
     ]
   }
 }
