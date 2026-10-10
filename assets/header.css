@@ -1765,7 +1765,7 @@ body:not(.side-drawer-body-open, .no-scroll)
   }
 
   .header .fullwidth-megamenus .submenu-dropdown > .container {
-    width: 98% !important;
+    width: 96% !important;
     max-width: 1600px !important;
     margin: 0 auto !important;
     padding-left: 20px !important;
