@@ -3767,6 +3767,11 @@ show-more-button .link .label-text {
   gap: 14px;
 }
 
+.shortby-title .sortby-current {
+  margin-left: 4px;
+  font-weight: 600;
+}
+
 .sortby-filter-box {
   position: absolute;
   top: 40px;

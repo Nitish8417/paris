@@ -55,6 +55,8 @@
             class="cart active {{ template  }} no-js-hidden"
             {% if template != 'cart' and settings.enable_cart_drawer == true %}
               id="minicart-drawer-toggle"
+              data-cart-drawer-open
+              aria-controls="minicart"
             {% endif %}
             aria-label="Cart"
           >

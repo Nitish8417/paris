@@ -70,11 +70,17 @@
     >
 
       {%- if collection != blank and collection.all_products_count > 0 -%}
+        {%- assign card_index = 0 -%}
+        {%- for pass in (1..2) -%}
         {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-          {% assign aosDelayAttr = forloop.index | times: 150 %}
+          {%- capture is_sold_out -%}{%- render 'card-sold-out', product: product -%}{%- endcapture -%}
+          {%- if pass == 1 and is_sold_out == 'true' -%}{%- continue -%}{%- endif -%}
+          {%- if pass == 2 and is_sold_out != 'true' -%}{%- continue -%}{%- endif -%}
+          {%- assign card_index = card_index | plus: 1 -%}
+          {% assign aosDelayAttr = card_index | times: 150 %}
           {% assign productFormId = 'product-form-'
             | append: section.id
-            | append: forloop.index
+            | append: card_index
             | append: '-'
             | append: collection.handle
           %}
@@ -93,6 +99,7 @@
             %}
           </div>
         {% endfor %}
+        {%- endfor -%}
       {% else %}
         {% assign limit = section.settings.products_to_show %}
         {%- for i in (1..limit) -%}
@@ -231,8 +238,9 @@
   }
 
   #shopify-section-{{ section.id }} .price-wrapper {
-    min-height: 1.5em;
+    min-height: 48px;
     margin-top: 0;
+    align-content: flex-start;
   }
 
   #shopify-section-{{ section.id }} .product-card-atc {

@@ -1,5 +1,6 @@
 {% comment %}theme-check-disable ImgWidthAndHeight,ImgLazyLoading,DeprecateLazysizes,DeprecatedFilter{% endcomment %}
 {%- assign img_url = image | image_url: width: '100' | replace: 'width=100', 'width={width}' -%}
+{%- assign img_alt = alt | default: image.alt -%}
 <img
   {% if id != blank %}
     id="{{ id }}"
@@ -12,7 +13,7 @@
   width="{{ image.width }}"
   height="{{ image.height }}"
   data-original="{{ image | image_url }}"
-  alt="{{ image.alt | escape }}"
+  alt="{{ img_alt | strip_html | escape }}"
   loading="lazy"
   style="object-position:{{ image.presentation.focal_point }}"
   data-flickity-lazyload="{{ img_url }}"
@@ -22,7 +23,7 @@
   <img
     class="{{ class }}"
     src="{{ image | img_url: 'master' }}"
-    alt="{{ image.alt | default: shop.name | strip_html }}"
+    alt="{{ img_alt | default: shop.name | strip_html | escape }}"
     width="{{ image.width }}"
     height="{{ image.height }}"
   >

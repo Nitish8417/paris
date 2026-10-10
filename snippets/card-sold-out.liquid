@@ -1,0 +1,17 @@
+{% doc %}
+  Outputs "true" when a product card would show as out of stock.
+  Must stay in sync with the add-to-cart logic in product-grid.liquid.
+
+  @param {product} product - The product to check
+
+  @example
+  {%- capture is_sold_out -%}{%- render 'card-sold-out', product: product -%}{%- endcapture -%}
+{% enddoc %}
+{%- liquid
+  assign card_variant = product.selected_or_first_available_variant
+  if product.available == false or card_variant == blank or card_variant.available == false
+    echo 'true'
+  elsif card_variant.inventory_management == 'shopify' and card_variant.inventory_quantity <= 0
+    echo 'true'
+  endif
+-%}

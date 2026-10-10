@@ -23,6 +23,9 @@ class SiderbarFiltersForm extends HTMLElement {
       "input",
       this.debouncedOnSubmit.bind(this),
     );
+    this.addEventListener("change", (event) => {
+      if (event.target.name === "sort_by") this.onSortChange(event.target);
+    });
   }
 
   static setListeners() {
@@ -34,6 +37,25 @@ class SiderbarFiltersForm extends HTMLElement {
       SiderbarFiltersForm.renderPage(searchParams, null, false);
     };
     window.addEventListener("popstate", onHistoryChange);
+
+    document.addEventListener("click", (event) => {
+      document
+        .querySelectorAll("#FiltersSortForm .facet-filters-sort[open]")
+        .forEach((details) => {
+          if (!details.contains(event.target)) details.removeAttribute("open");
+        });
+    });
+  }
+
+  onSortChange(input) {
+    const details = input.closest(".facet-filters-sort");
+    if (!details) return;
+    const current = details.querySelector("[data-sort-current]");
+    if (current) current.textContent = input.dataset.name;
+    details.querySelectorAll(".sortby-item").forEach((item) => {
+      item.classList.toggle("selected", item.contains(input));
+    });
+    if (details.closest("#FiltersSortForm")) details.removeAttribute("open");
   }
 
   static renderPage(searchParams, event, updateURLHash = true) {
@@ -113,7 +135,7 @@ class SiderbarFiltersForm extends HTMLElement {
   static renderFilters(html, event) {
     const parsedHTML = new DOMParser().parseFromString(html, "text/html");
     const facetDetailsElements = parsedHTML.querySelectorAll(
-      "#SidebarFiltersForm .js-filter, #sidebarFiltersFormMobile .js-filter",
+      "#SidebarFiltersForm .js-filter, #sidebarFiltersFormMobile .js-filter, #FiltersSortForm .js-filter",
     );
     const matchesIndex = (element) => {
       const jsFilter = event ? event.target.closest(".js-filter") : undefined;
@@ -247,9 +269,13 @@ class PriceSlider extends HTMLElement {
     }
     noUiSlider.create(rangeslider, args);
 
+    // Leave the inputs empty while the handles sit at the range bounds so an
+    // untouched slider never submits a price filter.
     rangeslider.noUiSlider.on("update", function (values) {
-      amounts.querySelector(".field__input_min").value = values[0];
-      amounts.querySelector(".field__input_max").value = values[1];
+      amounts.querySelector(".field__input_min").value =
+        parseFloat(values[0]) > args.range.min ? values[0] : "";
+      amounts.querySelector(".field__input_max").value =
+        parseFloat(values[1]) < args.range.max ? values[1] : "";
     });
     rangeslider.noUiSlider.on("change", function (values) {
       form.querySelector("form").dispatchEvent(event);

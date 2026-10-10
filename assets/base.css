@@ -1192,6 +1192,36 @@ product-card {
   display: inline-flex;
 }
 
+/* Swatches stay on a single fixed-height row so title, price and button line up across cards. */
+.product-swatch-slot {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  overflow: hidden;
+}
+
+.align-center .product-swatch-slot {
+  justify-content: center;
+}
+
+.align-right .product-swatch-slot {
+  justify-content: flex-end;
+}
+
+.product-swatch-slot .product-swatch-list {
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin-bottom: 0;
+}
+
+.product-swatch-slot .product-swatch-list .color-swatch {
+  padding: 3px;
+}
+
+.product-swatch-slot .product-value {
+  white-space: nowrap;
+}
+
 .product-title-wrapper {
   display: grid;
   gap: 4px;
@@ -2634,7 +2664,7 @@ product-card {
 
   .collection [data-product-grid] .product-swatch-slot,
   .collection-grid [data-product-grid] .product-swatch-slot {
-    min-height: 28px !important;
+    min-height: 30px !important;
     margin-bottom: 4px !important;
   }
 

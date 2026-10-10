@@ -42,7 +42,7 @@
       -%}
       {% if colorOptions contains downOption %}
           <ul class="no-bullet product-swatch-list small-variant rounded-enabled">
-            {%- for value in option.values limit: 5 -%}
+            {%- for value in option.values limit: 4 -%}
               {% liquid
                 if forloop.first
                 endif
@@ -85,10 +85,10 @@
                 {% render 'color-media', variant: variantValue %}
               </li>
             {% endfor %}
-            {% if option.values.size > 5 %}
+            {% if option.values.size > 4 %}
               <li class="product-swatch-item product-value">
                 <a href="{{ cardProduct.url | within : collection }}" class="textSmall"
-                  >+{{ option.values.size | minus: 5 -}} more
+                  >+{{ option.values.size | minus: 4 -}} more
                 </a>
               </li>
             {% endif %}
@@ -105,9 +105,9 @@
           <div class="media-image" style="--mediaRatio:{{ cardproductImageRatio }}%">
               <{% if cardProduct != blank %}a href="{{ current_variant.url }}" aria-label="{{ cardProduct.title }}"{% else %}div{%endif %} data-main-image tabindex="-1">
                  {%- if cardProduct.featured_media != blank -%}
-                  {%- render 'image', image: cardProduct.featured_media.preview_image -%}
+                  {%- render 'image', image: cardProduct.featured_media.preview_image, alt: cardProduct.title -%}
                   {%- if second_image != blank and settings.hover_second_image == true -%}
-                    {%- render 'image', image: second_image, class: 'img-hovered' -%}
+                    {%- render 'image', image: second_image, class: 'img-hovered', alt: cardProduct.title -%}
                   {%- endif -%}
               {% else %}
                 {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}

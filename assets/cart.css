@@ -451,3 +451,111 @@
 .cart-item__nested-line {
   padding-right: 20px;
 }
+
+/* Desktop: mini cart opens as a dropdown under the header cart icon.
+   --cart-dropdown-* are set by cart-drawer.js when it opens. */
+@media only screen and (min-width: 1200px) {
+  .minicart-panel .blur-layer-bg {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    cursor: default;
+  }
+
+  .minicart-panel .moving-cursor {
+    display: none;
+  }
+
+  .minicart-panel .side-drawer-modal {
+    position: fixed;
+    top: calc(var(--cart-dropdown-top, 80px) + 10px);
+    right: var(--cart-dropdown-right, 24px);
+    width: 420px;
+    max-width: calc(100vw - 24px);
+    height: auto;
+    max-height: calc(100vh - var(--cart-dropdown-top, 80px) - 30px);
+    margin: 0;
+    border-radius: var(--boxRadius);
+    box-shadow: 0 12px 32px rgb(var(--shadowColor), 0.18);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .minicart-panel.active .side-drawer-modal {
+    opacity: 1;
+  }
+
+  .minicart-panel .side-drawer-modal::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    right: var(--cart-dropdown-caret, 12px);
+    width: 14px;
+    height: 14px;
+    background-color: var(--bodyTextColor);
+    transform: rotate(45deg);
+  }
+
+  .minicart-panel .side-drawer-modal-inner {
+    position: relative;
+    height: auto;
+    max-height: inherit;
+    border-radius: var(--boxRadius);
+    overflow: hidden;
+  }
+
+  .minicart-panel .side-drawer-modal-head {
+    padding: 8px 16px 8px 20px;
+  }
+
+  .minicart-panel .side-drawer-modal-body {
+    height: auto;
+    min-height: 0;
+    flex: 1;
+    display: flex;
+  }
+
+  .minicart-panel .minicart {
+    height: auto;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .minicart-panel .minicart .cart-orders-box {
+    max-height: 340px;
+    padding: 20px;
+  }
+
+  .minicart-panel .cart-orders-box.is-empty {
+    padding: 32px 20px;
+  }
+
+  .minicart-panel .minicart-products .cart-product-item {
+    padding-bottom: 28px;
+  }
+
+  .minicart-panel .cart-product-img-wrapper {
+    margin-right: 16px;
+  }
+
+  .minicart-panel .cart-product-img {
+    min-width: 80px;
+    max-width: 80px;
+  }
+
+  .minicart-panel .side-drawer-modal-foot {
+    padding: 0 20px;
+    border-top: 1px solid var(--borderColor);
+  }
+
+  .minicart-panel .minicart .minicart-total-wrapper {
+    padding: 14px 0 12px;
+  }
+
+  .minicart-panel .cart-tax-text {
+    margin-bottom: 12px;
+  }
+}

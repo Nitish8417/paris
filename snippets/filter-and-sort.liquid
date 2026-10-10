@@ -3,7 +3,7 @@
     assign results_url = results.url
   else
     assign terms = results.terms | escape
-    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: results.sort_by
   endif
 %}
 <div class="facets-bar-wrapper">
@@ -41,13 +41,24 @@
       </div>
       <div class="product-facet-item-right">
         {% if section.settings.enable_sorting == true %}
-          {% assign sortBy = results.sort_by | default: results.default_sort_by %}
+          {% liquid
+            assign sortBy = results.sort_by | default: results.default_sort_by
+            assign sortByName = ''
+            for option in results.sort_options
+              if option.value == sortBy
+                assign sortByName = option.name
+              endif
+            endfor
+          %}
           <sidebar-filter-form class="facet-sorting-box">
             <form id="FiltersSortForm" class="sorting">
-              <details class="facet-filters-sort">
+              <details class="facet-filters-sort js-filter" data-index="sort-desktop">
                 <summary class="facet-summary">
                   <span class="shortby-title">
-                    {{- 'products.facets.sort_by_label' | t }}
+                    <span>
+                      {{- 'products.facets.sort_by_label' | t }}
+                      <span class="sortby-current" data-sort-current>{{ sortByName | escape }}</span>
+                    </span>
                     <svg
                       width="10"
                       height="7"
@@ -65,13 +76,13 @@
                 <div class="sortby-filter-box">
                   <ul class="no-bullet sortby-dropdown">
                     {%- for option in results.sort_options -%}
-                      <li class="sortby-item {% if option.value == sort_by %} selected{% endif %}" tabindex="0">
-                        <label class="filter-sort-names" id="sortByName-{{ forloop.index }}">
+                      <li class="sortby-item{% if option.value == sortBy %} selected{% endif %}" tabindex="0">
+                        <label class="filter-sort-names" for="SortBy-desktop-{{ forloop.index }}">
                           <input
                             type="radio"
                             class="filter-sort-checkbox"
                             name="sort_by"
-                            id="sortByName-{{ forloop.index }}"
+                            id="SortBy-desktop-{{ forloop.index }}"
                             value="{{ option.value | escape }}"
                             data-name="{{ option.name | escape }}"
                             {% if option.value == sortBy %}
@@ -141,7 +152,10 @@
                     <details class="facet-filters-sort js-filter" data-index="mobile-{{ loopindex }}">
                       <summary class="facet-summary">
                         <span class="shortby-title">
-                          {{ 'products.facets.filter_and_sort' | t }}
+                          <span>
+                            {{- 'products.facets.sort_by_label' | t }}
+                            <span class="sortby-current" data-sort-current>{{ sortByName | escape }}</span>
+                          </span>
                           <svg
                             width="10"
                             height="7"
@@ -159,13 +173,13 @@
                       <div class="sortby-filter-box">
                         <ul class="no-bullet sortby-dropdown">
                           {%- for option in results.sort_options -%}
-                            <li class="sortby-item {% if option.value == sort_by %} selected{% endif %}">
-                              <label class="filter-sort-names" id="sortByName-{{ forloop.index }}">
+                            <li class="sortby-item{% if option.value == sortBy %} selected{% endif %}">
+                              <label class="filter-sort-names" for="SortBy-mobile-{{ forloop.index }}">
                                 <input
                                   type="radio"
                                   class="filter-sort-checkbox"
                                   name="sort_by"
-                                  id="sortByName-{{ forloop.index }}"
+                                  id="SortBy-mobile-{{ forloop.index }}"
                                   value="{{ option.value | escape }}"
                                   data-name="{{ option.name | escape }}"
                                   {% if option.value == sortBy %}
@@ -266,9 +280,9 @@
                               </ul>
                               {%- if filter.values.size > limitFilter -%}
                                 {% assign indexVale = indexVale | plus: 1 %}
-                                <ul class="{% if value.active and  colorName contains filterName %}product-swatch-list large{% else %}no-bullet{% endif %} more-items hidden">
-                                  {%- for value in filter.values offset: filterLimit -%}
-                                    <li class="{% if value.active and  colorName contains filterName %}color-swatch product-swatch-item selected{% else %}filter-tab-item{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}">
+                                <ul class="{% if colorName contains filterName %}product-swatch-list large{% else %}no-bullet{% endif %} more-items hidden">
+                                  {%- for value in filter.values offset: limitFilter -%}
+                                    <li class="{% if colorName contains filterName %}color-swatch product-swatch-item{% else %}filter-tab-item{% endif %}{% if value.active and colorName contains filterName %} selected{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}">
                                       <input
                                         id="Filter-{{ filter.label | handle }}-{{ indexVale }}-{{ loopindex }}"
                                         type="checkbox"
@@ -280,16 +294,17 @@
                                           checked
                                         {% endif %}
                                       >
-                                      <span class="mark"></span>
-                                      <label
-                                        for="Filter-{{ filter.label | handle }}-{{ indexVale}}-{{ loopindex }}"
-                                        class="sidebar-filter-name"
-
-                                        title="{{ value.label | escape }}"
+                                      <span
+                                        class="{% if colorName contains filterName %}swatch-variant-item swatch-variant-color{% else %} mark{% endif %}"
                                         {% if colorName contains filterName %}
                                           data-color="{{ value.label | escape }}"
                                           style="background-color:{{ value.label | escape }}"
                                         {% endif %}
+                                      ></span>
+                                      <label
+                                        for="Filter-{{ filter.label | handle }}-{{ indexVale}}-{{ loopindex }}"
+                                        class="sidebar-filter-name {% if colorName contains filterName %} hidden{% endif %}"
+                                        title="{{ value.label | escape }}"
                                       >
                                         {{- value.label | escape -}}
                                       </label>

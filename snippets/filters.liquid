@@ -35,7 +35,7 @@
             <div class="side-filter-content">
               {%- case filter.type -%}
                 {%- when 'boolean', 'list' -%}
-                  {% assign indexValue = indexVale | plus: 1 %}
+                  {% assign indexValue = 1 %}
                   <ul class="{% if colorName contains filterName %}product-swatch-list large {% else %}no-bullet{% endif %} ">
                     {%- for value in filter.values limit: limitFilter -%}
                       <li class="{% if colorName contains filterName %}color-swatch {% if settings.swatches_style == 'circle' %} swatch-circle{% endif %} product-swatch-item{% else %}filter-tab-item{% endif %}{% if value.active and  colorName contains filterName %} selected{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}">
@@ -58,7 +58,7 @@
                           {% endif %}
                         ></span>
                         <label
-                          for="Filter-{{ filter.label | handle }}-{{ findexValue }}"
+                          for="Filter-{{ filter.label | handle }}-{{ indexValue }}"
                           class="sidebar-filter-name {% if colorName contains filterName %} hidden{% endif %}"
                           title="{{ value.label | escape }}"
                         >
@@ -70,10 +70,10 @@
                   </ul>
                   {%- if filter.values.size > limitFilter -%}
                     <ul
-                      class="{% if value.active and  colorName contains filterName %}product-swatch-list large{% else %}no-bullet{% endif %} more-items hidden"
+                      class="{% if colorName contains filterName %}product-swatch-list large{% else %}no-bullet{% endif %} more-items hidden"
                     >
-                      {%- for value in filter.values offset: filterLimit -%}
-                        <li class="{% if value.active and  colorName contains filterName %}color-swatch product-swatch-item selected{% else %}filter-tab-item{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}">
+                      {%- for value in filter.values offset: limitFilter -%}
+                        <li class="{% if colorName contains filterName %}color-swatch {% if settings.swatches_style == 'circle' %} swatch-circle{% endif %} product-swatch-item{% else %}filter-tab-item{% endif %}{% if value.active and colorName contains filterName %} selected{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}">
                           <input
                             id="Filter-{{ filter.label | handle }}-{{ indexValue }}"
                             type="checkbox"
@@ -85,16 +85,17 @@
                               checked
                             {% endif %}
                           >
-                          <span class="mark"></span>
-                          <label
-                            for="Filter-{{ filter.label | handle }}-{{ indexValue }}"
-                            class="sidebar-filter-name"
-
-                            title="{{ value.label | escape }}"
+                          <span
+                            class="{% if colorName contains filterName %}swatch-variant-item swatch-variant-color{% else %} mark{% endif %}"
                             {% if colorName contains filterName %}
                               data-color="{{ value.label | escape }}"
                               style="background-color:{{ value.label | escape }}"
                             {% endif %}
+                          ></span>
+                          <label
+                            for="Filter-{{ filter.label | handle }}-{{ indexValue }}"
+                            class="sidebar-filter-name {% if colorName contains filterName %} hidden{% endif %}"
+                            title="{{ value.label | escape }}"
                           >
                             {{- value.label | escape -}}
                           </label>

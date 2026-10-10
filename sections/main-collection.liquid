@@ -67,7 +67,12 @@
             <div class="loading-overlay gradient"></div>
             {% if collection.products_count > 0 %}
               <div class="grid-row">
+                {%- assign card_index = 0 -%}
+                {%- for pass in (1..2) -%}
                 {%- for product in collection.products limit: section.settings.products_per_page -%}
+                  {%- capture is_sold_out -%}{%- render 'card-sold-out', product: product -%}{%- endcapture -%}
+                  {%- if pass == 1 and is_sold_out == 'true' -%}{%- continue -%}{%- endif -%}
+                  {%- if pass == 2 and is_sold_out != 'true' -%}{%- continue -%}{%- endif -%}
                   {% assign show_product = true %}
                   {% assign selected_variant = null %}
 
@@ -86,12 +91,13 @@
                   {% endif %}
 
                   {% if show_product %}
-                    {% assign aosDelayAttr = forloop.index | times: 50 %}
+                    {%- assign card_index = card_index | plus: 1 -%}
+                    {% assign aosDelayAttr = card_index | times: 50 %}
                     {%- capture current -%}{% cycle section.id: 1, 2, 3, 4 %}{%- endcapture -%}
                     {%- assign placeholder_image = 'product-apparel-' | append: current -%}
                     {% assign productFormId = 'product-form-'
                       | append: section.id
-                      | append: forloop.index
+                      | append: card_index
                       | append: '-'
                       | append: collection.handle
                     %}
@@ -108,6 +114,7 @@
                     </div>
                   {% endif %}
                 {% endfor %}
+                {%- endfor -%}
               </div>
             {% else %}
               <div class="empty-wrapper">
