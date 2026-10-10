@@ -32,7 +32,7 @@
         class="collection-split-banner height-{{ section.settings.banner_height_desktop }} mobile-height-{{ section.settings.banner_height_mobile }}{% if collectionImageStatus == false %} collection-split-banner--no-image{% endif %}{% if contentStatus == false %} collection-split-banner--no-content{% endif %}"
       >
         {% if contentStatus %}
-          <div class="collection-split-banner__content align-{{ section.settings.content_alignment }}">
+          <div class="{{ settings.layout_width }} collection-split-banner__content align-{{ section.settings.content_alignment }}">
             <div class="collection-split-banner__content-inner content-width-{{ section.settings.content_width }}">
               {% if section.settings.show_collection_title and collection.title != blank %}
                 <h1 class="collection-split-banner__heading banner-heading h2">
@@ -94,21 +94,26 @@
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner-section {
-    padding: 20px 0 0;
+    padding: 0;
   }
-#shopify-section-{{ section.id }} .collection-banner-full-width {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-}
+
+  #shopify-section-{{ section.id }} .collection-banner-full-width {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Text sits in the theme container; the image bleeds to the right edge
+     and fades into the background colour behind the text. */
   #shopify-section-{{ section.id }} .collection-split-banner {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.25fr) minmax(0, 0.75fr);
-    align-items: stretch;
+    --bannerMediaStart: 26%;
+    position: relative;
+    display: flex;
+    align-items: center;
     width: 100%;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 0;
     background: var(--bodyColor);
     color: var(--mainHeadingColor);
     height: auto !important;
@@ -127,18 +132,22 @@
     min-height: 480px;
   }
 
-  #shopify-section-{{ section.id }} .collection-split-banner--no-image,
   #shopify-section-{{ section.id }} .collection-split-banner--no-content {
-    grid-template-columns: 1fr;
+    --bannerMediaStart: 0%;
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner__content {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 48px 40px;
-    background: var(--bodyColor);
-    z-index: 1;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner:not(.collection-split-banner--no-image) .collection-split-banner__content-inner {
+    max-width: min(var(--bannerTextMax, 420px), 40%);
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner__content.align-center {
@@ -157,14 +166,17 @@
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner__content-inner.content-width-small {
+    --bannerTextMax: 420px;
     max-width: 420px;
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner__content-inner.content-width-medium {
+    --bannerTextMax: 520px;
     max-width: 520px;
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner__content-inner.content-width-large {
+    --bannerTextMax: 640px;
     max-width: 100%;
   }
 
@@ -225,14 +237,31 @@
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner__media {
-    position: relative;
-    align-self: stretch;
-    min-height: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: var(--bannerMediaStart);
+    z-index: 1;
     overflow: hidden;
     background: transparent;
     padding: 0;
     margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .collection-split-banner:not(.collection-split-banner--no-content) .collection-split-banner__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      var(--bodyColor) 0%,
+      color-mix(in srgb, var(--bodyColor) 75%, transparent) 14%,
+      color-mix(in srgb, var(--bodyColor) 30%, transparent) 30%,
+      transparent 48%
+    );
   }
 
   #shopify-section-{{ section.id }} .collection-split-banner__image {
@@ -265,10 +294,24 @@
   }
 
   @media only screen and (max-width: 989px) {
-    #shopify-section-{{ section.id }} .collection-split-banner {
-      grid-template-columns: 1fr;
-      border-radius: 20px;
+    #shopify-section-{{ section.id }} .collection-split-banner,
+    #shopify-section-{{ section.id }} .collection-split-banner[class*="height-"] {
+      flex-direction: column;
+      align-items: stretch;
       min-height: 0;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner:not(.collection-split-banner--no-image) .collection-split-banner__content-inner {
+      max-width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .collection-split-banner:not(.collection-split-banner--no-content) .collection-split-banner__media::after {
+      background: linear-gradient(
+        180deg,
+        var(--bodyColor) 0%,
+        color-mix(in srgb, var(--bodyColor) 40%, transparent) 18%,
+        transparent 40%
+      );
     }
 
     #shopify-section-{{ section.id }} .collection-split-banner.mobile-height-small .collection-split-banner__media {
@@ -284,11 +327,15 @@
     }
 
     #shopify-section-{{ section.id }} .collection-split-banner__content {
-      padding: 32px 24px;
+      width: 100%;
+      padding-top: 28px;
+      padding-bottom: 20px;
       order: 1;
     }
 
     #shopify-section-{{ section.id }} .collection-split-banner__media {
+      position: relative;
+      inset: auto;
       order: 2;
       min-height: 240px;
       aspect-ratio: 16 / 10;
