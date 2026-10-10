@@ -528,12 +528,12 @@
 <!-- ============ TT RECENTLY VIEWED ============ -->
 <style id="tt-rv-css">
   .tt-rv {
-    padding-top: 40px;
+    padding-top: 16px;
     padding-bottom: 56px;
   }
   @media only screen and (max-width: 767px) {
     .tt-rv {
-      padding-top: 32px;
+      padding-top: 8px;
       padding-bottom: 40px;
     }
   }
@@ -1085,6 +1085,8 @@
     function hideQuickBuy() {
       document.querySelectorAll('button, a, span, div, [role="button"]').forEach(function (el) {
         if (el.children.length > 2) return;
+        // A card's image box can read as just "Quick buy" too; it must stay visible.
+        if (el.querySelector('img, picture, video')) return;
         if (/^\s*quick\s*buy\s*$/i.test(el.textContent || '')) {
           var target = el.closest('button, a, [role="button"]') || el;
           target.classList.add('tt-quickbuy-hidden');

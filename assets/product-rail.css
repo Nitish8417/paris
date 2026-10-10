@@ -1,4 +1,9 @@
 /* Horizontal product row shared by Related products and Recently viewed. */
+.related-products product-recommendations {
+  display: block;
+  min-height: 1px;
+}
+
 .product-rail {
   --railColumns: 4;
   --railGap: 20px;
