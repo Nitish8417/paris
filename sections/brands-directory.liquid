@@ -52,8 +52,7 @@
       {%- if brand_links.size > 0 -%}
         <div class="bd__toolbar">
           {%- if section.settings.show_search -%}
-            <label class="bd__search">
-              <span class="visually-hidden">Search brands</span>
+            <label class="bd__search" aria-label="Search brands">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
               <input type="search" placeholder="Search brands" autocomplete="off" data-bd-search>
             </label>
@@ -124,6 +123,7 @@
   #shopify-section-{{ section.id }} {
     --topSpace: {{ section.settings.top_space_desktop }}px;
     --bottomSpace: {{ section.settings.bottom_space_desktop }}px;
+    overflow: clip;
   }
 
   #shopify-section-{{ section.id }} .bd {
@@ -323,6 +323,7 @@
     justify-content: center;
     aspect-ratio: 16 / 10;
     margin: 8px 8px 0;
+    padding: 14px 20px;
     border-radius: 11px;
     background: var(--bdLogoBg);
     overflow: hidden;
@@ -331,6 +332,8 @@
   #shopify-section-{{ section.id }} .bd__logo img {
     width: 100%;
     height: 100%;
+    min-width: 0;
+    min-height: 0;
     object-fit: contain;
     transition: transform 0.4s ease;
   }
@@ -465,6 +468,7 @@
 
     #shopify-section-{{ section.id }} .bd__logo {
       margin: 6px 6px 0;
+      padding: 10px 12px;
       border-radius: 10px;
     }
 

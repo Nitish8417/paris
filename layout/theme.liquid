@@ -934,7 +934,7 @@
 
   function heroRoot() {
     return document.querySelector('.section-hero-banner')
-        || document.querySelector('#MainContent > .shopify-section');
+        || ({{ template.name | json }} === 'index' ? document.querySelector('#MainContent > .shopify-section') : null);
   }
 
   // The slide = nearest ancestor of the link that holds an image and is banner-wide
