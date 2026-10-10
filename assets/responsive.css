@@ -2118,3 +2118,32 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Sticky filter sidebar on collection and search pages */
+@media (min-width: 992px) {
+  .section-collection-filters,
+  .section-search {
+    overflow: clip;
+  }
+
+  .collection-grid > .sidebar-filter {
+    position: sticky;
+    top: var(--stickyFilterTop, 112px);
+    align-self: start;
+    max-height: calc(100vh - var(--stickyFilterTop, 112px) - 20px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+  }
+
+  .collection-grid > .sidebar-filter::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .collection-grid > .sidebar-filter::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.18);
+  }
+}
