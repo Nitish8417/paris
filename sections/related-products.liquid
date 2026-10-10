@@ -14,55 +14,39 @@
       product-recommendations
     >
       {%- if recommendations.performed and recommendations.products_count > 0 -%}
-        {% if section.settings.heading != blank %}
-          <div class="heading-header">
-            <h2 class="{{ section.settings.heading_size }} {{ section.settings.heading_size_mobile }} align-{{ section.settings.heading_alignment }}">
-              {% if section.settings.heading != blank -%}
+        <product-rail class="product-rail">
+          <div class="product-rail__header">
+            {% if section.settings.heading != blank %}
+              <h2 class="product-rail__title {{ section.settings.heading_size }} {{ section.settings.heading_size_mobile }}">
                 {{- section.settings.heading -}}
-              {% endif %}
-            </h2>
+              </h2>
+            {% endif %}
+            <div class="product-rail__actions">
+              {% render 'product-rail-nav' %}
+            </div>
           </div>
-        {% endif %}
-        <div class="related-products-wrapper">
-          <div
-            id="related-viewed-products-{{ section.id }}"
-            class="related-viewed-slider product_card  slider"
-
-            data-flickity-slider
-            data-flickity='
-              {
-               "cellAlign": "left",
-              "wrapAround": false,
-              "contain": true,
-              "resize": true,
-              "pageDots": false,
-              "groupCells": true,
-              "prevNextButtons": true
-              }
-            '
-          >
+          <ul class="product-rail__track" data-rail-track role="list">
             {%- for product in recommendations.products limit: section.settings.products_count -%}
-              {% assign aosDelayAttr = forloop.index | times: 50 %}
               {% assign productFormId = 'product-form-' | append: section.id | append: forloop.index %}
-              <div class="product-media-cards">
-                {%- capture current -%}{% cycle section.id: 1, 2, 3, 4 %}{%- endcapture -%}
-                {%- assign placeholder_image = 'product-apparel-' | append: current -%}
+              <li class="product-rail__item">
                 {% render 'product-grid',
                   cardProduct: product,
                   section: section,
                   productFormId: productFormId,
-                  aosDelayAttr: aosDelayAttr,
-                  placeholder_image: placeholder_image,
-                  imageRatio: section.settings.grid_image_size
+                  imageRatio: 'square',
+                  show_add_to_cart: true,
+                  enable_image_border: true
                 %}
-              </div>
+              </li>
             {% endfor %}
-          </div>
-        </div>
+          </ul>
+        </product-rail>
       {% endif %}
     </product-recommendations>
   </div>
 </div>
+{{ 'product-rail.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-rail.js' | asset_url }}" defer="defer"></script>
 <style>
   #shopify-section-{{ section.id }} {
     --topSpace:{{ section.settings.top_space_desktop }}px;
@@ -74,7 +58,12 @@
       --topSpace:{{ section.settings.top_space_mobile }}px;
       --bottomSpace:{{ section.settings.bottom_space_mobile }}px;
     }
+  }
 
+  /* Recommendations load later; until then (or when there are none) the section takes no space. */
+  #shopify-section-{{ section.id }}:not(:has(.product-rail__item)) .spacing-box {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 </style>
 {% schema %}

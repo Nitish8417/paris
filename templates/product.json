@@ -188,7 +188,7 @@
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
-        "enable_first_default": false,
+        "enable_first_default": true,
         "heading": "About Product",
         "heading_size": "h2",
         "heading_size_mobile": "h3_mobile",
@@ -205,13 +205,13 @@
       "settings": {
         "grid_image_size": "square",
         "heading": "Related products",
-        "heading_size": "h4",
-        "heading_size_mobile": "h3_mobile",
+        "heading_size": "h3",
+        "heading_size_mobile": "h4_mobile",
         "heading_alignment": "left",
         "products_count": 8,
-        "color_scheme": "secondary",
-        "top_space_desktop": 80,
-        "bottom_space_desktop": 80,
+        "color_scheme": "",
+        "top_space_desktop": 40,
+        "bottom_space_desktop": 40,
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
       }

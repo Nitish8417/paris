@@ -1,0 +1,22 @@
+{%- comment -%}
+  Rendered only through the Section Rendering API (/products/<handle>?section_id=recently-viewed-card)
+  so the Recently viewed row can reuse the theme product card.
+{%- endcomment -%}
+{%- if product != blank -%}
+  {% render 'product-grid',
+    cardProduct: product,
+    section: section,
+    productFormId: 'product-form-recent',
+    imageRatio: 'square',
+    show_add_to_cart: true,
+    enable_image_border: true
+  %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Recently viewed card",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}
