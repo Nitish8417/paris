@@ -526,7 +526,7 @@
         "subheading": "",
         "align": "center",
         "heading_color": "#14213d",
-        "section_bg": "#F5F5F7",
+        "section_bg": "#f5f5f7",
         "columns": 3,
         "ratio": "3 / 4",
         "radius": 8,
@@ -1033,8 +1033,9 @@
         "ai_gen_block_5bed7a6_zPGnbw": {
           "type": "ai_gen_block_5bed7a6",
           "settings": {
+            "heading": "Trending now",
             "product_1": "grit-apex-smart-watch-with-2-straps",
-            "product_2": "eufy-s1-pro-wearable-heated-breast-pump-with-charging-case",
+            "product_2": "xiaomi-smart-band-11-active-fitness-tracker",
             "product_3": "anker-prime-a2683-200w-6-port-gan-charger",
             "product_4": "asiwo-mako-electric-swimming-kickboard",
             "product_5": "",
@@ -1463,7 +1464,7 @@
             "item_gap": 45,
             "vertical_padding": 15,
             "mobile_padding": 20,
-            "background_color": "#F5F5F7",
+            "background_color": "#f5f5f7",
             "text_color": "#010133",
             "icon_color": "#010133",
             "icon_background": "#f4f1ff",
