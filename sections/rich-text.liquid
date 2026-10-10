@@ -1,6 +1,6 @@
 <div class="{% if section.settings.layout_type == false%}{{ settings.layout_width }}{% endif %}">
   <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
-    <div class="{% if section.settings.layout_type == true %}container{% endif %} inner-container">
+    <div class="{% if section.settings.layout_type == true %}{{ settings.layout_width }}{% endif %} inner-container">
       <div class="rich-text content-width-{{  section.settings.content_width }} align-{{section.settings.text_position }} ">
         <div class="align-{{ section.settings.text_alignment}}">
           {% for block in section.blocks %}

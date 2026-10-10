@@ -6,7 +6,7 @@
 <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
   <product-recently-viewed data-product-id="{{ product.id }}" class="hidden"></product-recently-viewed>
 
-  <div class="{% if section.settings.container_type =='container' %}container {% endif %}product-container">
+  <div class="{% if section.settings.container_type == 'container' %}{{ settings.layout_width }} {% endif %}product-container">
     <div class="main-product-grid">
       {% render 'product-media-gallery', product: product, section: section, product_variant: product_variant %}
       <div class="main-product-content">
@@ -316,6 +316,12 @@
     max-width: none;
   }
 
+  #shopify-section-{{ section.id }} .main-price .product-item-tax-shipping {
+    flex-basis: 100%;
+    margin-top: 6px;
+    opacity: 0.7;
+  }
+
   #shopify-section-{{ section.id }} .main-product-content .product-form,
   #shopify-section-{{ section.id }} .main-product-content .main-product-form,
   #shopify-section-{{ section.id }} .main-product-content .shopify-payment-button,
@@ -397,7 +403,7 @@
   }
   @media only screen and (max-width: 767px) {
 
-  /* Reduce and center the complete product image container */
+  /* Gallery spans the container width so it lines up with the product info */
   #shopify-section-{{ section.id }} .main-product-images {
     width: 100% !important;
     max-width: 100% !important;
@@ -408,7 +414,7 @@
 
   #shopify-section-{{ section.id }} .product-slide-box {
     width: 100% !important;
-    max-width: 340px !important;
+    max-width: 100% !important;
     margin: 0 auto !important;
     gap: 0 !important;
     position: relative !important;

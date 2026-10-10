@@ -1473,7 +1473,7 @@ product-card {
   left: auto;
 }
 
-.inner-container:not(.container) {
+.inner-container:not(.container):not(.container-extra-large):not(.container-medium):not(.container-small) {
   padding-left: calc(15px * 2);
   padding-right: calc(15px * 2);
 }

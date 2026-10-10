@@ -100,7 +100,7 @@
         ".product-swatch-item input.swatch-option + .swatch-variant-color {width: 64px !important; height: 64px !important; min-width: 64px !important; min-height: 64px !important; border-radius: 50% !important; background-size: cover !important; background-position: center !important;}"
       ],
       "settings": {
-        "container_type": "fullwidth",
+        "container_type": "container",
         "gallery_type": "carousel",
         "media_max_width": 680,
         "main_image_height": 540,
