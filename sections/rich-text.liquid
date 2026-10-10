@@ -1,7 +1,13 @@
+{%- liquid
+  assign is_highlights = false
+  if template.name == 'product'
+    assign is_highlights = true
+  endif
+-%}
 <div class="{% if section.settings.layout_type == false%}{{ settings.layout_width }}{% endif %}">
   <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
     <div class="{% if section.settings.layout_type == true %}{{ settings.layout_width }}{% endif %} inner-container">
-      <div class="rich-text content-width-{{  section.settings.content_width }} align-{{section.settings.text_position }} ">
+      <div class="rich-text content-width-{{  section.settings.content_width }} align-{{section.settings.text_position }}{% if is_highlights %} rich-text--highlights{% endif %}">
         <div class="align-{{ section.settings.text_alignment}}">
           {% for block in section.blocks %}
             {% case block.type %}
@@ -11,7 +17,12 @@
                     class="rich-text-title {{  block.settings.heading_size }} {{  block.settings.heading_size_mobile }}"
                     {{ block.shopify_attributes }}
                   >
-                    {{ block.settings.heading }}
+                    {%- if is_highlights -%}
+                      <span class="rich-text__icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+                      </span>
+                    {%- endif -%}
+                    <span>{{ block.settings.heading }}</span>
                   </h2>
                 {% endif %}
               {% when 'text' %}
@@ -53,6 +64,244 @@
 
   }
 </style>
+
+{%- if is_highlights -%}
+  <style>
+    #shopify-section-{{ section.id }} .rich-text--highlights {
+      --rtLine: color-mix(in srgb, var(--bodyTextColor) 10%, transparent);
+      --rtTint: color-mix(in srgb, var(--bodyTextColor) 5%, #fff);
+      --rtMuted: color-mix(in srgb, var(--bodyTextColor) 68%, transparent);
+      width: 100%;
+      max-width: 100%;
+      padding: 32px;
+      border: 1px solid var(--rtLine);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(17, 17, 17, 0.05);
+      text-align: left;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text--highlights > div {
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text--highlights .rich-text-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 24px;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      min-width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--bodyTextColor);
+      color: #fff;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text--highlights .rich-text-desc {
+      max-width: none;
+      margin: 0;
+      color: var(--rtMuted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text--highlights .rich-text-desc ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text--highlights .rich-text-desc li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text--highlights .rich-text-desc li::before,
+    #shopify-section-{{ section.id }} .rich-text--highlights .rich-text-desc li::marker {
+      content: none;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text--highlights strong {
+      color: var(--bodyTextColor);
+      font-weight: 600;
+    }
+
+    #shopify-section-{{ section.id }} .rt-features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .rt-features > li {
+      position: relative;
+      padding: 16px 18px 16px 54px !important;
+      border: 1px solid var(--rtLine);
+      border-radius: 14px;
+      background: var(--rtTint);
+      transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    #shopify-section-{{ section.id }} .rt-features > li:hover {
+      border-color: color-mix(in srgb, var(--bodyTextColor) 22%, transparent);
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    #shopify-section-{{ section.id }} .rt-features > li::after {
+      content: "";
+      position: absolute;
+      top: 17px;
+      left: 18px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bodyTextColor) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
+    }
+
+    #shopify-section-{{ section.id }} .rt-features > li > strong:first-child {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text-desc h2,
+    #shopify-section-{{ section.id }} .rich-text-desc h3,
+    #shopify-section-{{ section.id }} .rich-text-desc h4,
+    #shopify-section-{{ section.id }} .rich-text-desc h5 {
+      margin: 32px 0 16px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rtLine);
+      color: var(--bodyTextColor);
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    #shopify-section-{{ section.id }} .rich-text-desc p {
+      margin: 0 0 12px;
+    }
+
+    #shopify-section-{{ section.id }} .rt-kits {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .rt-kit {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 18px;
+      border: 1px solid var(--rtLine);
+      border-radius: 14px;
+      background: #fff;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    #shopify-section-{{ section.id }} .rt-kit:hover {
+      border-color: color-mix(in srgb, var(--bodyTextColor) 22%, transparent);
+      box-shadow: 0 10px 24px rgba(17, 17, 17, 0.06);
+    }
+
+    #shopify-section-{{ section.id }} .rt-kit > p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    #shopify-section-{{ section.id }} .rt-kit ul {
+      display: grid;
+      gap: 6px;
+    }
+
+    #shopify-section-{{ section.id }} .rt-kit li.rt-sku {
+      justify-self: start;
+      padding: 3px 10px !important;
+      border-radius: 999px;
+      background: var(--rtTint);
+      border: 1px solid var(--rtLine);
+      color: var(--bodyTextColor);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    @media only screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} .rich-text--highlights {
+        padding: 20px 16px;
+        border-radius: 14px;
+      }
+
+      #shopify-section-{{ section.id }} .rich-text--highlights .rich-text-title {
+        font-size: 19px;
+        margin-bottom: 18px;
+      }
+
+      #shopify-section-{{ section.id }} .rich-text__icon {
+        width: 38px;
+        min-width: 38px;
+        height: 38px;
+      }
+
+      #shopify-section-{{ section.id }} .rt-features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var root = document.querySelector('#shopify-section-{{ section.id }} .rich-text--highlights');
+      if (!root || root.dataset.rtReady) return;
+      root.dataset.rtReady = '1';
+
+      root.querySelectorAll('.rich-text-desc').forEach(function (desc) {
+        var scope = desc.querySelector('.metafield-rich_text_field') || desc;
+        var firstList = scope.querySelector(':scope > ul');
+        if (firstList && firstList.querySelector('li > strong:first-child')) firstList.classList.add('rt-features');
+
+        var isKitTitle = function (el) {
+          return el && el.tagName === 'P' && el.children.length === 1 && el.firstElementChild.tagName === 'STRONG' &&
+            el.textContent.trim() === el.firstElementChild.textContent.trim();
+        };
+
+        var children = Array.prototype.slice.call(scope.children);
+        var grid = null;
+        for (var i = 0; i < children.length; i++) {
+          var el = children[i];
+          var next = children[i + 1];
+          if (isKitTitle(el) && next && next.tagName === 'UL') {
+            if (!grid) {
+              grid = document.createElement('div');
+              grid.className = 'rt-kits';
+              scope.insertBefore(grid, el);
+            }
+            var card = document.createElement('div');
+            card.className = 'rt-kit';
+            card.appendChild(el);
+            card.appendChild(next);
+            grid.appendChild(card);
+            next.querySelectorAll('li').forEach(function (li) {
+              if (/^[A-Z0-9][A-Z0-9-]{4,}$/.test(li.textContent.trim())) li.classList.add('rt-sku');
+            });
+            i++;
+          } else {
+            grid = null;
+          }
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
 
 {% schema %}
 {
