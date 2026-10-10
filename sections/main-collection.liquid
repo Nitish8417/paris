@@ -2,9 +2,47 @@
 <script src="{{ 'nouislider.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'filter.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'infinite-scroll.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'stock-ordered-grid.js' | asset_url }}" defer="defer"></script>
 <div class="{{ section.settings.color_scheme }}-scheme spacing-box">
   {% render 'filter-and-sort', results: collection, section: section %}
   {% paginate collection.products by section.settings.products_per_page %}
+    {%- liquid
+      # Sold-out products go after every in-stock product across all pages. This works by
+      # streaming the availability filter's "in stock" results first, then "out of stock".
+      assign stock_order = false
+      assign stock_scope = 'all'
+      for filter in collection.filters
+        if filter.param_name != 'filter.v.availability'
+          continue
+        endif
+        if filter.active_values.size > 0
+          assign stock_scope = filter.active_values | map: 'value' | join: '-'
+        elsif paginate.current_page == 1
+          for value in filter.values
+            if value.value == '1'
+              assign in_stock_count = value.count
+              assign in_stock_url = value.url_to_add
+            elsif value.value == '0'
+              assign out_of_stock_count = value.count
+              assign out_of_stock_url = value.url_to_add
+            endif
+          endfor
+          if in_stock_count > 0 and out_of_stock_count > 0
+            assign stock_order = true
+          endif
+        endif
+      endfor
+      assign stock_scope = stock_scope | append: '-' | append: paginate.current_page
+
+      assign page_sold_out = 0
+      if stock_order
+        for product in collection.products
+          unless product.available
+            assign page_sold_out = page_sold_out | plus: 1
+          endunless
+        endfor
+      endif
+    -%}
     <div class="{{ settings.layout_width }}">
       <div class="collection-grid">
         {% if section.settings.enable_filtering and collection.filters.size > 0 %}
@@ -63,7 +101,24 @@
               >
             {% endif %}
           </div>
-          <div class="collection-result" id="result-product-grid" data-id="{{ section.id }}">
+          {%- if stock_order -%}
+            <stock-ordered-grid
+              data-section-id="{{ section.id }}"
+              data-per-page="{{ section.settings.products_per_page }}"
+              data-in-stock-url="{{ in_stock_url | escape }}"
+              data-in-stock-count="{{ in_stock_count }}"
+              data-out-of-stock-url="{{ out_of_stock_url | escape }}"
+              data-out-of-stock-count="{{ out_of_stock_count }}"
+              data-initial-complete="{% if page_sold_out == 0 %}true{% else %}false{% endif %}"
+              data-mode="{% if section.settings.pagination_type == 'infinite' %}infinite{% else %}button{% endif %}"
+              data-status-template="{{ 'products.facets.product_count' | t: product_count: '[shown]', count: collection.products_count | escape }}"
+            >
+          {%- endif -%}
+          <div
+            class="collection-result{% if stock_order and page_sold_out > 0 %} is-stock-pending{% endif %}"
+            id="result-product-grid"
+            data-id="{{ section.id }}"
+          >
             <div class="loading-overlay gradient"></div>
             {% if collection.products_count > 0 %}
               <div class="grid-row">
@@ -97,6 +152,9 @@
                     {%- assign placeholder_image = 'product-apparel-' | append: current -%}
                     {% assign productFormId = 'product-form-'
                       | append: section.id
+                      | append: '-'
+                      | append: stock_scope
+                      | append: '-'
                       | append: card_index
                       | append: '-'
                       | append: collection.handle
@@ -122,7 +180,18 @@
               </div>
             {% endif %}
           </div>
-          {% if section.settings.pagination_type == 'infinite' %}
+          {% if stock_order %}
+            <div class="pagination-container stock-order-pager" data-stock-order-pager>
+              <p class="stock-order-status textSmall" data-stock-order-status aria-live="polite">
+                {%- assign first_page_count = paginate.page_size | at_most: collection.products_count -%}
+                {{- 'products.facets.product_count' | t: product_count: first_page_count, count: collection.products_count -}}
+              </p>
+              <a href="{{ paginate.next.url }}" class="btn stock-order-more" data-stock-order-more>
+                <span>{{ 'sections.collection_template.load_more' | t }}</span>
+              </a>
+            </div>
+            </stock-ordered-grid>
+          {% elsif section.settings.pagination_type == 'infinite' %}
             {% if paginate.next %}
               <div class="pagination-container align-center">
                 <infinite-scroll

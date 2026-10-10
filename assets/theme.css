@@ -3507,6 +3507,95 @@ loop-heading-outer {
   height: 24px;
 }
 
+stock-ordered-grid {
+  display: block;
+}
+
+.collection-result.is-stock-pending {
+  position: relative;
+  min-height: 420px;
+}
+
+/* Revealed after 4s regardless, so a failed script never leaves the grid hidden. */
+.js .collection-result.is-stock-pending .grid-row {
+  opacity: 0;
+  animation: stock-order-reveal 0s linear 4s forwards;
+}
+
+.js .collection-result.is-stock-pending::after {
+  content: "";
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  border: 3px solid var(--borderColor);
+  border-top-color: var(--bodyTextColor);
+  border-radius: 50%;
+  animation: stock-order-spin 0.8s linear infinite, stock-order-hide 0s linear 4s forwards;
+}
+
+@keyframes stock-order-reveal {
+  to { opacity: 1; }
+}
+
+@keyframes stock-order-hide {
+  to { visibility: hidden; }
+}
+
+@keyframes stock-order-spin {
+  to { transform: rotate(360deg); }
+}
+
+.stock-order-pager {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.stock-order-pager[hidden] {
+  display: none;
+}
+
+.stock-order-status {
+  margin: 0;
+  opacity: 0.75;
+}
+
+.stock-order-more {
+  position: relative;
+  min-width: 200px;
+}
+
+.stock-order-more.loading {
+  pointer-events: none;
+  color: transparent;
+}
+
+.stock-order-more.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 2px solid currentColor;
+  border-color: var(--borderColor);
+  border-top-color: var(--bodyTextColor);
+  border-radius: 50%;
+  animation: stock-order-spin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .collection-result.is-stock-pending::after,
+  .stock-order-more.loading::after {
+    animation-duration: 2s;
+  }
+}
+
 sidebar-filter {
   display: block;
 }
