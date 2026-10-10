@@ -387,19 +387,25 @@
     display: none;
   }
 
-  .tt-footer__list,
-  .tt-footer__contact {
+  .tt-footer ul.tt-footer__list,
+  .tt-footer ul.tt-footer__contact {
     display: grid;
-    gap: 12px;
+    gap: 10px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .tt-footer__list li,
-  .tt-footer__contact li {
+  .tt-footer ul.tt-footer__list li,
+  .tt-footer ul.tt-footer__contact li {
     margin: 0;
+    padding: 0;
     list-style: none;
+  }
+
+  .tt-footer ul.tt-footer__list li::before,
+  .tt-footer ul.tt-footer__list li::marker {
+    content: none;
   }
 
   .footer .tt-footer__list a {
