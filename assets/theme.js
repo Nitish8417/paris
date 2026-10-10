@@ -356,34 +356,42 @@ function tabElementsCall(tabheader) {
   }
 }
 
-function colorMediaInit(section = document) {
-  let swatchColorElement = section.querySelectorAll("[data-card-color-option]");
-  Array.from(swatchColorElement).forEach(function (element) {
-    element.addEventListener("mouseover", function (event) {
-      let productGrid = element.closest("[data-product-grid]");
-      let mainImageGrid = productGrid.querySelector("[data-main-image]");
-      let allImageElement = element.querySelector("script");
-      if (productGrid.querySelector(".product-swatch-item.active")) {
-        productGrid
-          .querySelector(".product-swatch-item.active")
-          .classList.remove("active");
-      }
-      element.classList.add("active");
-      if (allImageElement && mainImageGrid) {
-        let swatchMedia = new DOMParser()
-          .parseFromString(JSON.parse(allImageElement.textContent), "text/html")
-          .querySelector(".media-content");
-        console.log(swatchMedia);
-        mainImageGrid.innerHTML = swatchMedia.innerHTML;
-      }
-    });
-    element.addEventListener("click", function (event) {
-      let url = element.getAttribute("data-product-url");
-      if (url) {
-        let mainUrl = window.location.origin + url;
-        window.location.href = mainUrl;
-      }
-    });
+// Delegated once on the document so cards added later (filters, sorting,
+// load more, stock-ordered grid, quick view) get swatch previews too.
+function colorMediaInit() {
+  if (colorMediaInit.bound) return;
+  colorMediaInit.bound = true;
+
+  document.addEventListener("mouseover", function (event) {
+    let element = event.target.closest("[data-card-color-option]");
+    if (!element || element.contains(event.relatedTarget)) return;
+
+    let productGrid = element.closest("[data-product-grid]");
+    if (!productGrid) return;
+    let mainImageGrid = productGrid.querySelector("[data-main-image]");
+    let allImageElement = element.querySelector("script");
+
+    let activeSwatch = productGrid.querySelector(".product-swatch-item.active");
+    if (activeSwatch && activeSwatch !== element) {
+      activeSwatch.classList.remove("active");
+    }
+    element.classList.add("active");
+
+    if (allImageElement && mainImageGrid) {
+      let swatchMedia = new DOMParser()
+        .parseFromString(JSON.parse(allImageElement.textContent), "text/html")
+        .querySelector(".media-content");
+      if (swatchMedia) mainImageGrid.innerHTML = swatchMedia.innerHTML;
+    }
+  });
+
+  document.addEventListener("click", function (event) {
+    let element = event.target.closest("[data-card-color-option]");
+    if (!element) return;
+    let url = element.getAttribute("data-product-url");
+    if (url) {
+      window.location.href = window.location.origin + url;
+    }
   });
 }
 
