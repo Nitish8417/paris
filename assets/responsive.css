@@ -2119,7 +2119,7 @@
   }
 }
 
-/* Sticky filter sidebar on collection and search pages */
+/* Sticky filter sidebar on collection and search pages (desktop only) */
 @media (min-width: 992px) {
   .section-collection-filters,
   .section-search {
