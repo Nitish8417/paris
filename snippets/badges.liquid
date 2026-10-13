@@ -11,9 +11,17 @@
   </div>
 {%- else -%}
   <div class="badge-card">
-    {% if settings.sale_badge and product.compare_at_price_max %}
-      {% if product.compare_at_price_max > product.price %}
-        <span class="badge-item  badge-sale">{{ 'general.badges.sale' | t }}</span>
+    {% if settings.sale_badge %}
+      {% liquid
+        assign sale_compare = product.compare_at_price_min
+        assign sale_price = product.price_min
+        assign sale_percent = 0
+        if sale_compare > sale_price and sale_compare > 0
+          assign sale_percent = sale_compare | minus: sale_price | times: 100.0 | divided_by: sale_compare | round
+        endif
+      %}
+      {% if sale_percent >= 1 %}
+        <span class="badge-item badge-sale">-{{ sale_percent }}%</span>
       {% endif %}
     {% endif %}
     {% if settings.custom_tag %}
