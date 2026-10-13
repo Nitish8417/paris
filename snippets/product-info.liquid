@@ -175,6 +175,9 @@
         product_variant: product_variant,
         block: block
       %}
+      {% if quickView == blank %}
+        {% render 'frequently-bought-together', product: product %}
+      {% endif %}
 
     {%- when 'share' -%}
       {%- render 'social-share',

@@ -1,0 +1,216 @@
+{%- comment -%}
+  Products come from the product metafield:
+  namespace custom, key frequently_bought_together, type List of products.
+{%- endcomment -%}
+{%- liquid
+  assign fbt_meta = product.metafields.custom.frequently_bought_together
+  assign fbt_products = fbt_meta.value
+-%}
+{%- if fbt_products != blank -%}
+  <product-rail class="fbt" {{ block.shopify_attributes }}>
+    <div class="fbt__header">
+      <p class="fbt__heading">Frequently bought together</p>
+      {% render 'product-rail-nav' %}
+    </div>
+    <ul class="fbt__track" data-rail-track role="list">
+      {%- for fbt_product in fbt_products -%}
+        {%- if fbt_product == blank or fbt_product.id == product.id -%}{% continue %}{%- endif -%}
+        {%- liquid
+          assign fbt_variant = fbt_product.selected_or_first_available_variant
+          capture fbt_sold_out
+            render 'card-sold-out', product: fbt_product
+          endcapture
+          assign fbt_sold_out = fbt_sold_out | strip
+          assign fbt_is_new = false
+          for fbt_tag in fbt_product.tags
+            assign fbt_tag_down = fbt_tag | downcase
+            if fbt_tag_down == 'new' or fbt_tag_down == 'new arrival'
+              assign fbt_is_new = true
+            endif
+          endfor
+        -%}
+        <li class="fbt__card">
+          <a class="fbt__media" href="{{ fbt_product.url }}">
+            {%- if fbt_is_new -%}
+              <span class="fbt__badge">New Arrival</span>
+            {%- endif -%}
+            {%- if fbt_product.featured_media != blank -%}
+              <img
+                src="{{ fbt_product.featured_media | image_url: width: 600 }}"
+                alt="{{ fbt_product.featured_media.alt | default: fbt_product.title | escape }}"
+                width="300"
+                height="300"
+                loading="lazy"
+              >
+            {%- else -%}
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'fbt__placeholder' }}
+            {%- endif -%}
+          </a>
+          <div class="fbt__body">
+            {%- if fbt_product.vendor != blank -%}
+              <p class="fbt__vendor">{{ fbt_product.vendor }}</p>
+            {%- endif -%}
+            <a class="fbt__title" href="{{ fbt_product.url }}">{{ fbt_product.title }}</a>
+            <p class="fbt__price">{{ fbt_product.price | money }}</p>
+            {%- if fbt_sold_out == 'true' -%}
+              <button class="fbt__btn fbt__btn--sold" type="button" disabled>Sold out</button>
+            {%- elsif fbt_product.has_only_default_variant -%}
+              <form class="fbt__form" action="{{ routes.cart_add_url }}" method="post">
+                <input type="hidden" name="id" value="{{ fbt_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button class="fbt__btn fbt__btn--cart add-to-cart-btn" type="submit" name="add">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+                    <path fill="currentColor" d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6.2 6l.4 2h12.7a1 1 0 0 1 1 .8l1.2 6a1 1 0 0 1-1 1.2H8.1a1 1 0 0 1-1-.8L5.2 4H3V2h3.2a1 1 0 0 1 1 .8L6.2 6z"/>
+                  </svg>
+                  Add to cart
+                </button>
+              </form>
+            {%- else -%}
+              <a class="fbt__btn fbt__btn--options" href="{{ fbt_product.url }}">Choose options</a>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </product-rail>
+  <style>
+    .fbt {
+      margin-top: 28px;
+    }
+    .fbt__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .fbt__heading {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #111;
+    }
+    .fbt .product-rail__arrow {
+      width: 34px;
+      height: 34px;
+    }
+    .fbt__track {
+      display: flex;
+      gap: 12px;
+      margin: 0;
+      padding: 0 0 4px;
+      list-style: none;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .fbt__track::-webkit-scrollbar {
+      display: none;
+    }
+    .fbt__card {
+      flex: 0 0 calc(50% - 6px);
+      min-width: 148px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+    .fbt__media {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+      background: #ececec;
+      overflow: hidden;
+    }
+    .fbt__media img,
+    .fbt__placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 16px;
+    }
+    .fbt__badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 1;
+      padding: 4px 8px;
+      background: #12343f;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .fbt__body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 12px 2px 0;
+      flex: 1;
+    }
+    .fbt__vendor {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #6b6b6b;
+    }
+    .fbt__title {
+      margin: 0;
+      color: #111;
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.35;
+      text-decoration: none;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      min-height: calc(1.35em * 2);
+    }
+    .fbt__price {
+      margin: 0 0 8px;
+      font-size: 14px;
+      font-weight: 650;
+      color: #111;
+    }
+    .fbt__form {
+      margin-top: auto;
+    }
+    .fbt__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 42px;
+      margin-top: auto;
+      padding: 8px 10px;
+      border: 1px solid #111;
+      background: #fff;
+      color: #111;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .fbt__btn--cart {
+      background: #111;
+      color: #fff;
+    }
+    .fbt__btn--sold {
+      border-color: transparent;
+      background: #e4e4e4;
+      color: #8d8d8d;
+      cursor: default;
+    }
+  </style>
+{%- endif -%}
