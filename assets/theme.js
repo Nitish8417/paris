@@ -4,27 +4,69 @@ function themeAllSliderInt(section = document) {
     if (!jQuery(element).hasClass("flickity-enabled")) {
       themeSlidersInit(element);
     } else {
+      sortSoldOutLast(element);
       jQuery(element).flickity("resize");
     }
   });
+}
+
+function isSoldOutProductCell(cell) {
+  if (!cell || !cell.querySelector) return false;
+  if (cell.getAttribute("data-sold-out") === "true") return true;
+  return !!cell.querySelector(
+    ".badge-sold, [data-sold-out='true'], product-card[data-sold-out='true'], .product-card[data-sold-out='true']"
+  );
 }
 
 function sortSoldOutLast(container) {
   var root = container && container.jquery ? container[0] : container;
   if (!root || !root.children) return;
   var cells = Array.prototype.filter.call(root.children, function (el) {
-    return el.nodeType === 1 && el.querySelector && el.querySelector("product-card, .product-card");
+    return (
+      el.nodeType === 1 &&
+      el.querySelector &&
+      el.querySelector("product-card, .product-card")
+    );
   });
+  // Skip non-product sliders (media galleries, testimonials, etc.).
   if (cells.length < 2) return;
+
   var available = [];
   var soldOut = [];
   cells.forEach(function (cell) {
-    if (cell.querySelector(".badge-sold, [data-sold-out='true']")) soldOut.push(cell);
+    if (isSoldOutProductCell(cell)) soldOut.push(cell);
     else available.push(cell);
   });
   var ordered = available.concat(soldOut);
-  if (!ordered.some(function (el, i) { return el !== cells[i]; })) return;
-  ordered.forEach(function (el) { root.appendChild(el); });
+  var needsReorder = ordered.some(function (el, i) {
+    return el !== cells[i];
+  });
+  if (!needsReorder) return;
+
+  var $root = window.jQuery ? jQuery(root) : null;
+  var wasFlickity = !!(
+    $root &&
+    $root.hasClass("flickity-enabled") &&
+    typeof $root.flickity === "function"
+  );
+  var flickityOptions = null;
+  if (wasFlickity) {
+    try {
+      flickityOptions = JSON.parse(root.getAttribute("data-flickity") || "{}");
+      $root.flickity("destroy");
+    } catch (error) {
+      wasFlickity = false;
+      flickityOptions = null;
+    }
+  }
+
+  ordered.forEach(function (el) {
+    root.appendChild(el);
+  });
+
+  if (wasFlickity && flickityOptions) {
+    $root.flickity(flickityOptions);
+  }
 }
 
 function themeSlidersInit(element, slideIndex) {

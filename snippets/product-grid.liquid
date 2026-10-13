@@ -96,7 +96,17 @@
   {% endfor %}
 {% endif %}        
 {% endcapture %}
- <product-card class="product-card"  data-product-grid>
+{%- liquid
+  assign card_is_sold_out = false
+  if cardProduct != blank
+    if cardProduct.available == false or current_variant == blank or current_variant.available == false
+      assign card_is_sold_out = true
+    elsif current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity <= 0
+      assign card_is_sold_out = true
+    endif
+  endif
+-%}
+ <product-card class="product-card" data-product-grid{% if card_is_sold_out %} data-sold-out="true"{% endif %}>
     <div class="product-card-inner align-{{ settings.product_conetnt_aligment }}"  {% if search != true and aosDelayAttr and settings.animation_enable %}data-aos="fade-up" data-aos-delay="{{ aosDelayAttr }}"{% endif %}>
    <div class="product-media-card{% if enable_image_border %} border-enabled{% elsif enable_image_border != false and settings.image_border %} border-enabled{% endif %}">
         {% render 'badges', product:cardProduct %}

@@ -73,17 +73,10 @@
         {%- assign card_index = 0 -%}
         {%- for pass in (1..2) -%}
         {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-          {%- liquid
-            assign card_variant = product.selected_or_first_available_variant
-            assign is_sold_out = false
-            if product.available == false or card_variant == blank or card_variant.available == false
-              assign is_sold_out = true
-            elsif card_variant.inventory_management == 'shopify' and card_variant.inventory_quantity <= 0
-              assign is_sold_out = true
-            endif
-          -%}
-          {%- if pass == 1 and is_sold_out -%}{%- continue -%}{%- endif -%}
-          {%- if pass == 2 and is_sold_out == false -%}{%- continue -%}{%- endif -%}
+          {%- capture is_sold_out -%}{%- render 'card-sold-out', product: product -%}{%- endcapture -%}
+          {%- assign is_sold_out = is_sold_out | strip -%}
+          {%- if pass == 1 and is_sold_out == 'true' -%}{%- continue -%}{%- endif -%}
+          {%- if pass == 2 and is_sold_out != 'true' -%}{%- continue -%}{%- endif -%}
           {%- assign card_index = card_index | plus: 1 -%}
           {% assign aosDelayAttr = card_index | times: 150 %}
           {% assign productFormId = 'product-form-'
@@ -92,7 +85,10 @@
             | append: '-'
             | append: collection.handle
           %}
-          <div class="{% if section.settings.products_style %}product-media-cards featured-collection-item grid-item-md-{{ item_column }}{% else %}grid-item-md-{{ item_column }}{% endif %}">
+          <div
+            class="{% if section.settings.products_style %}product-media-cards featured-collection-item grid-item-md-{{ item_column }}{% else %}grid-item-md-{{ item_column }}{% endif %}"
+            {% if is_sold_out == 'true' %}data-sold-out="true"{% endif %}
+          >
             {%- capture current -%}{% cycle section.id: 1, 2, 3, 4 %}{%- endcapture -%}
             {%- assign placeholder_image = 'product-apparel-' | append: current -%}
             {% render 'product-grid',
