@@ -176,7 +176,7 @@
         block: block
       %}
       {% if quickView == blank %}
-        {% render 'frequently-bought-together', product: product %}
+        {% render 'frequently-bought-together', product: product, section: section %}
       {% endif %}
 
     {%- when 'share' -%}
