@@ -1731,6 +1731,58 @@ body:not(.side-drawer-body-open, .no-scroll)
     opacity: 1 !important;
   }
 }
+/* Laptop widths: the full menu does not fit next to the logo and icons. */
+@media only screen and (min-width: 1200px) {
+  .header .navbar-nav {
+    justify-content: safe center !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1439px) {
+  .header .navbar {
+    column-gap: 14px !important;
+  }
+
+  .header .logo-image,
+  .header .header-logo-item,
+  .header .logo-image img,
+  .header .header-logo-item img {
+    max-width: 150px !important;
+  }
+
+  .header .logo-image img,
+  .header .header-logo-item img {
+    max-height: 56px !important;
+  }
+
+  .header .site-nav-item .site-nav-link {
+    margin: 0 2px !important;
+    padding: 10px 5px !important;
+    font-size: 13px !important;
+  }
+
+  .header .nav-main-wrapper .tt-navicon {
+    width: 15px;
+    height: 15px;
+    margin-inline-end: 5px;
+  }
+
+  .header .icons,
+  .header .icons-inline {
+    gap: 0 !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1365px) {
+  .header .nav-main-wrapper .tt-navicon {
+    display: none;
+  }
+
+  .header .site-nav-item .site-nav-link {
+    padding: 10px 4px !important;
+  }
+}
+
 @media only screen and (max-width: 1199px) {
   .main-header-top,
   .header {
