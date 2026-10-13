@@ -1094,125 +1094,6 @@
         "bottom_space_mobile": 40
       }
     },
-    "techty_testimonials_hrDT7G": {
-      "type": "techty-testimonials",
-      "blocks": {
-        "testimonial_kWnBXP": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "It's rare to find one place in Kuwait that has the charger, the speaker and the gift all in the same order. Everything I needed was on Techty, and it all arrived together.",
-            "name": "Abdullah K.",
-            "role": "Techty customer",
-            "rating": 5,
-            "tag": "Shop all",
-            "tag_link": "/collections/all"
-          }
-        },
-        "testimonial_p6Gfcd": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "I messaged them on WhatsApp to check which charger actually suits my laptop. Quick, straight answer, and they didn't push me toward the most expensive one.",
-            "name": "Noura A.",
-            "role": "Techty customer",
-            "rating": 5,
-            "tag": "Chargers",
-            "tag_link": "/collections/chargers-adapters"
-          }
-        },
-        "testimonial_6xWCYA": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Bought the GRIT Apex for my evening walks. love how it tracks everything",
-            "name": "Fahad M.",
-            "role": "Wearables customer",
-            "rating": 5,
-            "tag": "Smart watches",
-            "tag_link": "/collections/smart-watches-fitness-trackers"
-          }
-        },
-        "testimonial_8MQWyg": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The Xiaomi magnetic power bank with the built-in cable basically lives in my bag now. very nice product",
-            "name": "Mariam S.",
-            "role": "Frequent traveller",
-            "rating": 5,
-            "tag": "Power banks",
-            "tag_link": "/collections/power-banks"
-          }
-        },
-        "testimonial_AGmQGX": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Wanted Soundcore earbuds that are good for calls while driving. Voice comes through clearly and they're comfortable enough to forget I'm wearing them.",
-            "name": "Dana R.",
-            "role": "Audio customer",
-            "rating": 5,
-            "tag": "Earbuds",
-            "tag_link": "/collections/earbuds-headphones"
-          }
-        },
-        "testimonial_hVzQD8": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Got a Neewer light kit and the KM18 lavalier mic for my home setup. Took about ten minutes to get running and my videos look like a different channel.",
-            "name": "Hessa J.",
-            "role": "Content creator",
-            "rating": 5,
-            "tag": "Creator kit",
-            "tag_link": "/collections/content-creator-kit"
-          }
-        },
-        "testimonial_TQg9iX": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The gaming section is well picked rather than endless. Grabbed a new controller and a couple of cables for my setup, and everything matched the description exactly.",
-            "name": "Yousef H.",
-            "role": "Gaming customer",
-            "rating": 5,
-            "tag": "Gaming gear",
-            "tag_link": "/collections/gaming-controllers-gear"
-          }
-        },
-        "testimonial_LVjeXL": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Ordered a travel adapter two days before a trip and it made it in time!",
-            "name": "Omar T.",
-            "role": "Techty customer",
-            "rating": 4,
-            "tag": "Travel",
-            "tag_link": "/collections/travel"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_kWnBXP",
-        "testimonial_p6Gfcd",
-        "testimonial_6xWCYA",
-        "testimonial_8MQWyg",
-        "testimonial_AGmQGX",
-        "testimonial_hVzQD8",
-        "testimonial_TQg9iX",
-        "testimonial_LVjeXL"
-      ],
-      "name": "Techty Testimonials",
-      "settings": {
-        "show_editor_note": false,
-        "eyebrow": "Customer stories",
-        "heading": "What our customers say",
-        "subheading": "Real experiences from people who shop Techty across Kuwait.",
-        "cta_label": "Share your experience",
-        "cta_link": "https://wa.me/96522280345",
-        "columns": 3,
-        "width": "1600px",
-        "autoplay": 3,
-        "show_stars": true,
-        "surface": true,
-        "pad_top": 56,
-        "pad_bottom": 56
-      }
-    },
     "logo_list_9UqKFM": {
       "type": "logo-list",
       "blocks": {
@@ -1447,47 +1328,6 @@
         "top_space_mobile": 50,
         "bottom_space_mobile": 50
       }
-    },
-    "1790250658af0c4015": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_8ce77ed_N4zRkP": {
-          "type": "ai_gen_block_8ce77ed",
-          "settings": {
-            "benefit_1_label": "Secure and Flexible Payment Options",
-            "benefit_1_icon": "payment",
-            "benefit_2_label": "Genuine Products",
-            "benefit_2_icon": "shield",
-            "benefit_3_label": "1–2 Days Delivery",
-            "benefit_3_icon": "delivery",
-            "benefit_4_label": "Pre-order Available",
-            "benefit_4_icon": "calendar",
-            "desktop_width_percent": 100,
-            "item_gap": 45,
-            "vertical_padding": 15,
-            "mobile_padding": 20,
-            "background_color": "#f5f5f7",
-            "text_color": "#010133",
-            "icon_color": "#010133",
-            "icon_background": "#f4f1ff",
-            "icon_border": "#dcd6f5",
-            "icon_shadow": "#dcd6f5",
-            "accent_color": "#b9a7ff",
-            "icon_size": 40,
-            "mobile_icon_size": 32,
-            "text_size": 13,
-            "mobile_text_size": 12,
-            "letter_spacing": 0.5
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_8ce77ed_N4zRkP"
-      ],
-      "disabled": true,
-      "name": "Store Benefits",
-      "settings": {}
     }
   },
   "order": [
@@ -1510,8 +1350,6 @@
     "parallax_hmHXrH",
     "17902391153e7e95f0",
     "rich_text_yi96Lj",
-    "techty_testimonials_hrDT7G",
-    "logo_list_9UqKFM",
-    "1790250658af0c4015"
+    "logo_list_9UqKFM"
   ]
 }
