@@ -1000,6 +1000,12 @@ product-card {
 }
 
 
+.section-main-product .product-swatch-list .product-swatch-item.active,
+.section-main-product .product-swatch-list .product-swatch-item:has(input:checked) {
+  border-color: #111;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #111;
+}
+
 .product-swatch-list .color-swatch.active,
 .product-swatch-list .color-swatch:hover,
 .product-swatch-list.large .product-swatch-item:hover .swatch-variant-color,

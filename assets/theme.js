@@ -783,6 +783,7 @@ class DeferredMedia extends HTMLElement {
 customElements.define("deferred-media", DeferredMedia);
 
 document.addEventListener("DOMContentLoaded", function (section = document) {
+  stripVariantFromProductUrl();
   themeAllSliderInt();
   scrollingContentInt();
   beforeandAfterInit();
@@ -1029,6 +1030,17 @@ class StoreLocatorMap extends HTMLElement {
 }
 customElements.define("store-locator-map", StoreLocatorMap);
 
+function stripVariantFromProductUrl() {
+  if (!document.querySelector(".section-main-product")) return;
+  if (!window.location.search.includes("variant=")) return;
+  var url = new URL(window.location.href);
+  url.searchParams.delete("variant");
+  var next = url.pathname + url.search + url.hash;
+  if (next !== window.location.pathname + window.location.search + window.location.hash) {
+    history.replaceState({}, "", next);
+  }
+}
+
 class VariantSelector extends HTMLElement {
   #pendingRequestUrl;
   #abortController;
@@ -1046,10 +1058,52 @@ class VariantSelector extends HTMLElement {
       document.querySelectorAll("variant-selector"),
     ).filter((selector) => selector !== this);
     this.section = this.closest("section,.product-quick-view-drawer");
+    stripVariantFromProductUrl();
+    if (this.shouldAwaitSelection()) {
+      this.clearDefaultSelection();
+      return;
+    }
     this.updateOptions();
     this.updateMasterId();
     this.updateVariantClass();
     this.showInitialAvailability();
+  }
+
+  productPath() {
+    return (this.dataset.url || window.location.pathname).split("?")[0];
+  }
+
+  shouldAwaitSelection() {
+    if (!this.closest(".section-main-product")) return false;
+    if (!this.querySelector('input[type="radio"], select')) return false;
+    return window.__ttChosenProduct !== this.productPath();
+  }
+
+  clearDefaultSelection() {
+    this.querySelectorAll('input[type="radio"]').forEach((input) => {
+      input.checked = false;
+      input.dataset.currentChecked = "false";
+    });
+    this.querySelectorAll(".product-swatch-item").forEach((item) => {
+      item.classList.remove("active", "current-item-checked");
+    });
+    this.options = [];
+    this.currentVariant = null;
+
+    const productForm = document.getElementById(
+      `product-form-${this.dataset.section}`,
+    );
+    const addButton = productForm?.querySelector('[name="add"]');
+    if (addButton && addButton.getAttribute("data-sold-out") !== "true") {
+      addButton.setAttribute("disabled", "disabled");
+      addButton.setAttribute("aria-disabled", "true");
+    }
+    const payment = productForm?.querySelector(".shopify-payment-button");
+    if (payment) {
+      payment.setAttribute("aria-disabled", "true");
+      payment.style.pointerEvents = "none";
+      payment.style.opacity = "0.45";
+    }
   }
 
   disconnectedCallback() {
@@ -1095,6 +1149,9 @@ class VariantSelector extends HTMLElement {
     if (!(event.target instanceof HTMLElement)) return;
 
     this.hasUserInteracted = true;
+    if (this.closest(".section-main-product")) {
+      window.__ttChosenProduct = this.productPath();
+    }
 
     const changedInput =
       event.target instanceof HTMLSelectElement
@@ -1460,13 +1517,24 @@ class VariantSelector extends HTMLElement {
     const responseButton = html.querySelector('[name="add"]');
     const responseButtonText = html.querySelector("[data-addtocart-text]");
 
+    const payment = productForm.querySelector(".shopify-payment-button");
     if (responseButton) {
       if (responseButton.hasAttribute("disabled")) {
         liveButton.setAttribute("disabled", "disabled");
         liveButton.setAttribute("aria-disabled", "true");
+        if (payment) {
+          payment.setAttribute("aria-disabled", "true");
+          payment.style.pointerEvents = "none";
+          payment.style.opacity = "0.45";
+        }
       } else {
         liveButton.removeAttribute("disabled");
         liveButton.removeAttribute("aria-disabled");
+        if (payment) {
+          payment.removeAttribute("aria-disabled");
+          payment.style.pointerEvents = "";
+          payment.style.opacity = "";
+        }
       }
       if (liveButtonText && responseButtonText) {
         liveButtonText.textContent = responseButtonText.textContent.trim();
