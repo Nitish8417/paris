@@ -9,7 +9,26 @@ function themeAllSliderInt(section = document) {
   });
 }
 
+function sortSoldOutLast(container) {
+  var root = container && container.jquery ? container[0] : container;
+  if (!root || !root.children) return;
+  var cells = Array.prototype.filter.call(root.children, function (el) {
+    return el.nodeType === 1 && el.querySelector && el.querySelector("product-card, .product-card");
+  });
+  if (cells.length < 2) return;
+  var available = [];
+  var soldOut = [];
+  cells.forEach(function (cell) {
+    if (cell.querySelector(".badge-sold, [data-sold-out='true']")) soldOut.push(cell);
+    else available.push(cell);
+  });
+  var ordered = available.concat(soldOut);
+  if (!ordered.some(function (el, i) { return el !== cells[i]; })) return;
+  ordered.forEach(function (el) { root.appendChild(el); });
+}
+
 function themeSlidersInit(element, slideIndex) {
+  sortSoldOutLast(element);
   let selector = element;
   if (element.nodeType) {
     selector = jQuery(element);

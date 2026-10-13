@@ -73,9 +73,17 @@
         {%- assign card_index = 0 -%}
         {%- for pass in (1..2) -%}
         {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-          {%- capture is_sold_out -%}{%- render 'card-sold-out', product: product -%}{%- endcapture -%}
-          {%- if pass == 1 and is_sold_out == 'true' -%}{%- continue -%}{%- endif -%}
-          {%- if pass == 2 and is_sold_out != 'true' -%}{%- continue -%}{%- endif -%}
+          {%- liquid
+            assign card_variant = product.selected_or_first_available_variant
+            assign is_sold_out = false
+            if product.available == false or card_variant == blank or card_variant.available == false
+              assign is_sold_out = true
+            elsif card_variant.inventory_management == 'shopify' and card_variant.inventory_quantity <= 0
+              assign is_sold_out = true
+            endif
+          -%}
+          {%- if pass == 1 and is_sold_out -%}{%- continue -%}{%- endif -%}
+          {%- if pass == 2 and is_sold_out == false -%}{%- continue -%}{%- endif -%}
           {%- assign card_index = card_index | plus: 1 -%}
           {% assign aosDelayAttr = card_index | times: 150 %}
           {% assign productFormId = 'product-form-'
