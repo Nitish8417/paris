@@ -82,23 +82,35 @@
             {% endif %}
           >
             {%- if collection != blank and collection.all_products_count > 0 -%}
-              {% liquid
-                for product in block.settings.collection.products limit: section.settings.products_count
-                  capture current
-                    cycle section.id: 1, 2, 3, 4
-                  endcapture
-                  assign aosDelayAttr = forloop.index | times: 50
-                  assign placeholder_image = 'product-apparel-' | append: current
-                  assign productFormId = 'product-form-' | append: section.id | append: forloop.index | append: '-' | append: collection.handle
-                  if section.settings.stacked_products
-                    echo '<div class="grid-item-md-3">'
-                  endif
-                  render 'product-grid', cardProduct: product, section: section, block: block, aosDelayAttr: aosDelayAttr, placeholder_image: placeholder_image, productFormId: productFormId, imageRatio: section.settings.grid_image_size
-                  if section.settings.stacked_products
-                    echo '</div>'
-                  endif
-                endfor
-              %}
+              {%- assign card_index = 0 -%}
+              {%- for pass in (1..2) -%}
+                {%- for product in block.settings.collection.products limit: section.settings.products_count -%}
+                  {%- capture is_sold_out -%}{%- render 'card-sold-out', product: product -%}{%- endcapture -%}
+                  {%- assign is_sold_out = is_sold_out | strip -%}
+                  {%- if pass == 1 and is_sold_out == 'true' -%}{%- continue -%}{%- endif -%}
+                  {%- if pass == 2 and is_sold_out != 'true' -%}{%- continue -%}{%- endif -%}
+                  {%- assign card_index = card_index | plus: 1 -%}
+                  {%- capture current -%}{% cycle section.id: 1, 2, 3, 4 %}{%- endcapture -%}
+                  {%- assign aosDelayAttr = card_index | times: 50 -%}
+                  {%- assign placeholder_image = 'product-apparel-' | append: current -%}
+                  {%- assign productFormId = 'product-form-' | append: section.id | append: card_index | append: '-' | append: collection.handle -%}
+                  {%- if section.settings.stacked_products -%}
+                    <div class="grid-item-md-3">
+                  {%- endif -%}
+                  {% render 'product-grid',
+                    cardProduct: product,
+                    section: section,
+                    block: block,
+                    aosDelayAttr: aosDelayAttr,
+                    placeholder_image: placeholder_image,
+                    productFormId: productFormId,
+                    imageRatio: section.settings.grid_image_size
+                  %}
+                  {%- if section.settings.stacked_products -%}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
             {% else %}
               {% assign limit = section.settings.products_count %}
               {%- for i in (1..limit) -%}

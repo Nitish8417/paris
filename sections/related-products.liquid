@@ -26,19 +26,27 @@
             </div>
           </div>
           <ul class="product-rail__track" data-rail-track role="list">
-            {%- for product in recommendations.products limit: section.settings.products_count -%}
-              {% assign productFormId = 'product-form-' | append: section.id | append: forloop.index %}
-              <li class="product-rail__item">
-                {% render 'product-grid',
-                  cardProduct: product,
-                  section: section,
-                  productFormId: productFormId,
-                  imageRatio: 'square',
-                  show_add_to_cart: true,
-                  enable_image_border: true
-                %}
-              </li>
-            {% endfor %}
+            {%- assign card_index = 0 -%}
+            {%- for pass in (1..2) -%}
+              {%- for product in recommendations.products limit: section.settings.products_count -%}
+                {%- capture is_sold_out -%}{%- render 'card-sold-out', product: product -%}{%- endcapture -%}
+                {%- assign is_sold_out = is_sold_out | strip -%}
+                {%- if pass == 1 and is_sold_out == 'true' -%}{%- continue -%}{%- endif -%}
+                {%- if pass == 2 and is_sold_out != 'true' -%}{%- continue -%}{%- endif -%}
+                {%- assign card_index = card_index | plus: 1 -%}
+                {% assign productFormId = 'product-form-' | append: section.id | append: card_index %}
+                <li class="product-rail__item">
+                  {% render 'product-grid',
+                    cardProduct: product,
+                    section: section,
+                    productFormId: productFormId,
+                    imageRatio: 'square',
+                    show_add_to_cart: true,
+                    enable_image_border: true
+                  %}
+                </li>
+              {%- endfor -%}
+            {%- endfor -%}
           </ul>
         </product-rail>
       {% endif %}

@@ -688,6 +688,52 @@
     watch(wrap);
   }
 
+  function isSoldOut(card) {
+    return !!(card && card.querySelector('.badge-sold, [data-sold-out="true"]'));
+  }
+
+  function inStockFirst(cards) {
+    var available = [];
+    var soldOut = [];
+    cards.forEach(function (card) {
+      (isSoldOut(card) ? soldOut : available).push(card);
+    });
+    return available.concat(soldOut);
+  }
+
+  function sortRail(track) {
+    var items = Array.prototype.slice.call(track.children);
+    if (items.length < 2) return;
+    var available = [];
+    var soldOut = [];
+    items.forEach(function (item) {
+      (isSoldOut(item) ? soldOut : available).push(item);
+    });
+    var ordered = available.concat(soldOut);
+    var changed = ordered.some(function (el, i) { return el !== items[i]; });
+    if (!changed) return;
+    ordered.forEach(function (el) { track.appendChild(el); });
+    var rail = track.closest('product-rail');
+    if (rail && typeof rail.update === 'function') rail.update();
+  }
+
+  function watchRails() {
+    var pending = false;
+    function run() {
+      pending = false;
+      document.querySelectorAll('[data-rail-track]').forEach(sortRail);
+    }
+    if (window.MutationObserver && document.body) {
+      var mo = new MutationObserver(function () {
+        if (pending) return;
+        pending = true;
+        setTimeout(run, 50);
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    }
+    run();
+  }
+
   function fetchCard(handle) {
     return fetch(BASE + '/products/' + handle + '?section_id=recently-viewed-card')
       .then(function (r) { return r.ok ? r.text() : ''; })
@@ -718,11 +764,12 @@
         write(read().filter(function (h) { return h === here || alive.indexOf(h) > -1; }));
       }
 
-      mount(cards);
+      mount(inStockFirst(cards));
     });
   }
 
    function start() {
+    watchRails();
     track();
     var path = window.location.pathname.replace(/\/$/, '');
     if (path === BASE) return; // homepage: don't show Recently Viewed

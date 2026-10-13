@@ -34,30 +34,36 @@
                 }
               '
             >
-              {%- for item in search.results limit: section.settings['products_count-'] %}
-                {% case item.object_type %}
-                  {% when 'product' %}
-                    {% assign aosDelayAttr = forloop.index | times: 50 %}
-                    {% assign productFormId = 'product-form-'
-                      | append: section.id
-                      | append: forloop.index
-                      | append: '-'
-                      | append: collection.handle
+              {%- assign card_index = 0 -%}
+              {%- for pass in (1..2) -%}
+                {%- for item in search.results limit: section.settings['products_count-'] -%}
+                  {%- if item.object_type != 'product' -%}{%- continue -%}{%- endif -%}
+                  {%- capture is_sold_out -%}{%- render 'card-sold-out', product: item -%}{%- endcapture -%}
+                  {%- assign is_sold_out = is_sold_out | strip -%}
+                  {%- if pass == 1 and is_sold_out == 'true' -%}{%- continue -%}{%- endif -%}
+                  {%- if pass == 2 and is_sold_out != 'true' -%}{%- continue -%}{%- endif -%}
+                  {%- assign card_index = card_index | plus: 1 -%}
+                  {%- assign aosDelayAttr = card_index | times: 50 -%}
+                  {%- assign productFormId = 'product-form-'
+                    | append: section.id
+                    | append: card_index
+                    | append: '-'
+                    | append: collection.handle
+                  -%}
+                  <div class="product-media-cards">
+                    {%- capture current -%}{% cycle section.id: 1, 2, 3, 4 %}{%- endcapture -%}
+                    {%- assign placeholder_image = 'product-apparel-' | append: current -%}
+                    {% render 'product-grid',
+                      cardProduct: item,
+                      section: section,
+                      productFormId: productFormId,
+                      aosDelayAttr: aosDelayAttr,
+                      placeholder_image: placeholder_image,
+                      imageRatio: section.settings.grid_image_size
                     %}
-                    <div class="product-media-cards">
-                      {%- capture current -%}{% cycle section.id: 1, 2, 3, 4 %}{%- endcapture -%}
-                      {%- assign placeholder_image = 'product-apparel-' | append: current -%}
-                      {% render 'product-grid',
-                        cardProduct: item,
-                        section: section,
-                        productFormId: productFormId,
-                        aosDelayAttr: aosDelayAttr,
-                        placeholder_image: placeholder_image,
-                        imageRatio: section.settings.grid_image_size
-                      %}
-                    </div>
-                {% endcase %}
-              {% endfor %}
+                  </div>
+                {%- endfor -%}
+              {%- endfor -%}
             </div>
           {% endpaginate %}
         {% endif %}
