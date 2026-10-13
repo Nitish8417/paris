@@ -686,6 +686,8 @@
 <style id="tt-quick-buy-css">
   /* ---------- Quick Buy overlay ---------- */
   .tt-media { position: relative; }
+  /* Card images are absolutely positioned against .media-image; an inline link must not become their box. */
+  .media-image a.tt-media { position: static; }
 
   .tt-quick-buy {
     position: absolute;
@@ -1014,6 +1016,8 @@
   }
 
   function findMedia(card) {
+    var box = card.querySelector('.media-image');
+    if (box) return box;
     var img = card.querySelector('img');
     if (!img) return null;
     var el = img.parentElement, depth = 0;
