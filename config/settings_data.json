@@ -47,7 +47,7 @@
     "type_body_scale": 100,
     "type_body_line_height": 1.6,
     "type_body_spacing": "0.5",
-    "animation_enable": true,
+    "animation_enable": false,
     "layout_width": "container-medium",
     "all_box_radius": "4",
     "all_product_grid_radius": "4",
