@@ -8,6 +8,10 @@
     assign gift_card_recipient = true
   endif
 
+  if product_variant == blank
+    assign product_variant = product.selected_or_first_available_variant
+  endif
+
   assign can_add_to_cart = false
   assign add_to_cart_text = 'products.product.unavailable' | t
   assign inventory_managed = false
