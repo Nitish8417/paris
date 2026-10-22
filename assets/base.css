@@ -989,6 +989,22 @@ product-card {
   border-radius: 3px;
 }
 
+/* Variant photos are shot on a white field. Without cover/center, the
+   swatch shows the empty corner of the file and every color looks blank.
+   Product cards already do this; the product form and quick view did not. */
+.product-form__controls .swatch-circle .swatch-variant-color {
+  display: block;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .product-swatch-list.small-large .swatch-variant-color {
   min-width: 20px;
   min-height: 20px;
