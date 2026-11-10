@@ -35,11 +35,11 @@
     "slideshow_AwDwyy": {
       "type": "slideshow",
       "blocks": {
-        "slide_HrdFKc": {
+        "slide_YKJ9Ui": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/techty_web_banners_4_cffacd90-aac3-49ec-8f13-684c4b28031c.jpg",
-            "image_mobile": "shopify://shop_images/techty_web_banners_4_cffacd90-aac3-49ec-8f13-684c4b28031c.jpg",
+            "image_desktop": "shopify://shop_images/Camping_d52b4e85-caf9-441d-b184-ac6ff217599f.webp",
+            "image_mobile": "shopify://shop_images/Camping_d52b4e85-caf9-441d-b184-ac6ff217599f.webp",
             "subheading": "",
             "heading": "",
             "heading_size": "h2",
@@ -53,7 +53,7 @@
             "mobile_content_position": "down-start",
             "mobile_content_alignment": "left",
             "btn_text_1": "Shop now",
-            "btn_link_1": "shopify://collections/xiaomi",
+            "btn_link_1": "shopify://collections/sports-outdoor-activities",
             "btn_size_1": "medium",
             "btn_as_link_1": false,
             "btn_text_2": "",
@@ -121,11 +121,11 @@
             "btn_hover_border_color_2": "#ffffff"
           }
         },
-        "slide_YKJ9Ui": {
+        "slide_HrdFKc": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/techty_web_banners_3_1a81bc4b-2edd-48e1-b5f1-c7159a77b285.jpg",
-            "image_mobile": "shopify://shop_images/techty_web_banners_3_1a81bc4b-2edd-48e1-b5f1-c7159a77b285.jpg",
+            "image_desktop": "shopify://shop_images/techty_web_banners_4_cffacd90-aac3-49ec-8f13-684c4b28031c.jpg",
+            "image_mobile": "shopify://shop_images/techty_web_banners_4_cffacd90-aac3-49ec-8f13-684c4b28031c.jpg",
             "subheading": "",
             "heading": "",
             "heading_size": "h2",
@@ -139,7 +139,7 @@
             "mobile_content_position": "down-start",
             "mobile_content_alignment": "left",
             "btn_text_1": "Shop now",
-            "btn_link_1": "shopify://products/cronda-base-3-5h-upgraded-diving-equipment-system",
+            "btn_link_1": "shopify://collections/xiaomi",
             "btn_size_1": "medium",
             "btn_as_link_1": false,
             "btn_text_2": "",
@@ -252,9 +252,9 @@
         }
       },
       "block_order": [
-        "slide_HrdFKc",
-        "slide_X4Wh74",
         "slide_YKJ9Ui",
+        "slide_X4Wh74",
+        "slide_HrdFKc",
         "slide_3AR3Cp",
         "slide_RPf7kT"
       ],
