@@ -25,6 +25,16 @@
         "overlay_opacity": 0
       }
     },
+    "breadcrumb_JigR4z": {
+      "type": "breadcrumb",
+      "settings": {
+        "color_scheme": "",
+        "top_space_desktop": 5,
+        "bottom_space_desktop": 5,
+        "top_space_mobile": 40,
+        "bottom_space_mobile": 40
+      }
+    },
     "collection_list_f9kReR": {
       "type": "collection-list",
       "blocks": {
@@ -59,6 +69,7 @@
         "collection_zEp3Xx",
         "collection_x86fx8"
       ],
+      "disabled": true,
       "name": "t:sections.collection_list.presets.name",
       "settings": {
         "collections_column": 4,
@@ -101,6 +112,7 @@
         "collection_8ciY9x",
         "collection_hprBzb"
       ],
+      "disabled": true,
       "name": "t:sections.collection_list.presets.name",
       "settings": {
         "collections_column": 4,
@@ -112,16 +124,6 @@
         "color_scheme": "",
         "top_space_desktop": 80,
         "bottom_space_desktop": 80,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 40
-      }
-    },
-    "breadcrumb_JigR4z": {
-      "type": "breadcrumb",
-      "settings": {
-        "color_scheme": "",
-        "top_space_desktop": 5,
-        "bottom_space_desktop": 5,
         "top_space_mobile": 40,
         "bottom_space_mobile": 40
       }
